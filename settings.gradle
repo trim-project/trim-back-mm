@@ -1,1 +1,6 @@
 rootProject.name = 'trim'
+include 'Trim-Api'
+include 'Trim-Domain'
+include 'Trim-Infra'
+include 'Trim-Common'
+
