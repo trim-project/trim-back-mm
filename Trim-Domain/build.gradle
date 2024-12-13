@@ -1,18 +1,16 @@
-plugins {
-    id 'groovy'
-}
-
-group = 'com'
-version = '0.0.1-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
+bootJar { enabled = false }
+jar { enabled = true }
 
 dependencies {
     implementation 'org.apache.groovy:groovy:4.0.14'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+    api 'mysql:mysql-connector-java:8.0.33'
+
+    implementation project(':Trim-Common')
+    implementation project(':Trim-Infra')
 }
 
 test {
