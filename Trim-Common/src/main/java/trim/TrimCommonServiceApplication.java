@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TrimApiServerApplication {
+public class TrimCommonServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(TrimApiServerApplication.class, args);
+        SpringApplication.run(TrimCommonServiceApplication.class, args);
     }
 }
