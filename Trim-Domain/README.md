@@ -24,7 +24,7 @@
 Trim-Domain
 ├── src
 │   ├── main
-│   │   ├── java.trim.domain
+│   │   ├── java.trim.domains
 │   │   │   ├── domains # 도메인 별로 패키지를 나누어 구성한다.
 │   │   │   │   ├── entity
 │   │   │   │   │   ├── domain
