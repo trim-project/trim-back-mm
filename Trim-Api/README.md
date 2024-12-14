@@ -10,10 +10,10 @@
 ### 🏷️ Directory Structure
 
 ```
-GREEN-Api
+Trim-Api
 ├── src
 │   ├── main
-│   │   ├── java.greenTouch.api
+│   │   ├── java.trim.api
 │   │   │   ├── apis
 │   │   │   ├── auth
 │   │   │   ├── common 
