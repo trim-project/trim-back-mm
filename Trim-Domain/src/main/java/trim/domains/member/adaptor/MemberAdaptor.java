@@ -10,7 +10,4 @@ public interface MemberAdaptor {
 
     Member queryMemberByNickname(String nickname);
 
-    Boolean exist(String username);
-
-    Boolean existsByNickname(String nickname);
 }
