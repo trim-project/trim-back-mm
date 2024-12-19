@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.DomainService;
 import trim.domains.member.adaptor.MemberAdaptor;
 import trim.domains.member.domain.Member;
+import trim.domains.member.domain.Profile;
 import trim.domains.member.domain.Role;
 import trim.domains.member.domain.SocialType;
 import trim.domains.member.repository.MemberRepository;
@@ -20,13 +21,12 @@ public class MemberDomainServiceImpl implements MemberDomainService {
     private final MemberValidator memberValidator;
 
     @Override
-    public Long registerMember(String username, String email, SocialType socialType) {
-        memberValidator.checkCanRegister(username);
+    public Long registerMember(Profile profile,Role role, String nickname) {
+        memberValidator.checkCanRegister(profile.getUsername());
         Member newMember = Member.builder()
-                .role(Role.USER)
-                .username(username)
-                .email(email)
-                .socialType(socialType)
+                .profile(profile)
+                .role(role)
+                .nickname(nickname)
                 .build();
         return memberRepository.save(newMember).getId();
     }
