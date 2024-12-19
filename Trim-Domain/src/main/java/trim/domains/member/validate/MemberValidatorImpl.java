@@ -6,7 +6,6 @@ import trim.common.annotation.DomainValidator;
 import trim.domains.member.repository.MemberRepository;
 
 @DomainValidator
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberValidatorImpl implements MemberValidator{
     private final MemberRepository memberRepository;

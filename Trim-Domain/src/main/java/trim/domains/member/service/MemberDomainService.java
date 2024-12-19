@@ -1,9 +1,11 @@
 package trim.domains.member.service;
 
+import trim.domains.member.domain.Profile;
+import trim.domains.member.domain.Role;
 import trim.domains.member.domain.SocialType;
 
 public interface MemberDomainService {
-    Long registerMember(String username, String email, SocialType socialType);
+    Long registerMember(Profile profile, Role role, String nickname);
 
     void withdrawMember(String username);
 

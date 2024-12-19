@@ -29,16 +29,11 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Embedded
+    private Profile profile;
 
     @Column(nullable = false, unique = true)
     private String nickname;
-
-    private String email;
-
-    @Enumerated(EnumType.STRING)
-    private SocialType socialType;
 
     // 변경될 수 있음
     private int nicknameChangeChance;
