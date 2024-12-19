@@ -3,6 +3,7 @@ package trim.domains.member.validate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.DomainValidator;
+import trim.domains.member.domain.Member;
 import trim.domains.member.repository.MemberRepository;
 
 @DomainValidator
@@ -16,7 +17,9 @@ public class MemberValidatorImpl implements MemberValidator{
     }
 
     @Override
-    public Boolean checkCanConvertNickname(String nickname) {
-        return memberRepository.existsByNickname(nickname);
+    public void checkCanConvertNickname(Member member) {
+        if (member.getNicknameChangeChance() == 0) {
+            throw new RuntimeException("have any chance");
+        }
     }
 }

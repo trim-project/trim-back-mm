@@ -32,6 +32,15 @@ public class MemberDomainServiceImpl implements MemberDomainService {
     }
 
     @Override
+    public Long convertNickname(String username, String nickname) {
+        Member member = memberAdaptor.queryMemberByUsername(username);
+        memberValidator.checkCanConvertNickname(member);
+        member.updateNickname(nickname);
+        member.countConvertNicknameChance();
+        return member.getId();
+    }
+
+    @Override
     public void withdrawMember(String username) {
 
     }
