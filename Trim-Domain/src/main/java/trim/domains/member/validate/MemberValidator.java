@@ -1,8 +1,10 @@
 package trim.domains.member.validate;
 
+import trim.domains.member.domain.Member;
+
 public interface MemberValidator {
 
     Boolean checkCanRegister(String username);
 
-    Boolean checkCanConvertNickname(String nickname);
+    void checkCanConvertNickname(Member member);
 }

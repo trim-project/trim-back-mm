@@ -38,6 +38,14 @@ public class Member extends BaseTimeEntity {
     // 변경될 수 있음
     private int nicknameChangeChance;
 
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void countConvertNicknameChance() {
+        this.nicknameChangeChance--;
+    }
+
 //    @OneToMany(mappedBy = "writer")
 //    private List<Question> questionList = new ArrayList<>();
 
