@@ -12,8 +12,10 @@ public class MemberValidatorImpl implements MemberValidator{
     private final MemberRepository memberRepository;
 
     @Override
-    public Boolean checkCanRegister(String username) {
-        return memberRepository.existsByNickname(username);
+    public void checkCanRegister(String username) {
+        if (!memberRepository.existsByNickname(username)) {
+            throw new RuntimeException("not found user");
+        }
     }
 
     @Override
