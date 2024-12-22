@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByWriter(Member writer);
+
+    List<Question> findByWriterUsername(String username);
 }
