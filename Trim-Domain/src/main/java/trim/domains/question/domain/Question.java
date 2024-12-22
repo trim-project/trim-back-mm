@@ -1,14 +1,18 @@
 package trim.domains.question.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
 import trim.domains.member.domain.Member;
+import trim.domains.question.dto.QuestionDto;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@SuperBuilder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "question")
 public class Question extends BaseTimeEntity {
     @Id
@@ -28,4 +32,8 @@ public class Question extends BaseTimeEntity {
     private String content;
 
 
+    public void edit(QuestionDto dto) {
+        this.content = dto.getContent();
+        this.title = dto.getTitle();
+    }
 }
