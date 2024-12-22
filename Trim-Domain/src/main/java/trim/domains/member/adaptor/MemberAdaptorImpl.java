@@ -20,7 +20,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
 
     @Override
     public Member queryMemberByUsername(String username) {
-        return memberRepository.findByUsername(username)
+        return memberRepository.findByProfileUsername(username)
                 .orElseThrow(() -> new RuntimeException("not found member"));
     }
 

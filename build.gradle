@@ -68,3 +68,29 @@ subprojects { // 모든 하위 모듈들에 이 설정을 적용합니다.
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+def modules = [
+		"Trim-Api": "api",
+		"Trim-Domain": "domain",
+		"Trim-Common": "common"
+]
+
+
+// 각 서브모듈에 YML 복사 태스크 추가
+modules.each { moduleName, configName ->
+	project(":${moduleName}") {
+		task copyYML(type: Copy) {
+			from "${rootProject.projectDir}/config/${configName}/"
+			include '*.yml'
+			into "${projectDir}/src/main/resources/"
+
+			doFirst {
+				file("${projectDir}/src/main/resources/").mkdirs()
+				println "Copying YAML files from config/${configName} to ${projectDir}/src/main/resources/"
+			}
+		}
+
+		// processResources 전에 copyYML 태스크 실행
+		processResources.dependsOn copyYML
+	}
+}

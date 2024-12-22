@@ -20,7 +20,7 @@ public class QuestionAdaptorImpl implements QuestionAdaptor{
 
     @Override
     public List<Question> queryByWriterUsername(String username) {
-        return questionRepository.findByWriterUsername(username);
+        return questionRepository.findByWriterProfileUsername(username);
     }
 
     @Override
