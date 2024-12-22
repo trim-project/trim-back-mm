@@ -18,11 +18,9 @@ public class MemberDomainServiceImpl implements MemberDomainService {
 
     private final MemberRepository memberRepository;
     private final MemberAdaptor memberAdaptor;
-    private final MemberValidator memberValidator;
 
     @Override
-    public Long registerMember(Profile profile,Role role, String nickname) {
-        memberValidator.checkCanRegister(profile.getUsername());
+    public Long registerMember(Profile profile, Role role, String nickname) {
         Member newMember = Member.builder()
                 .profile(profile)
                 .role(role)
@@ -34,7 +32,6 @@ public class MemberDomainServiceImpl implements MemberDomainService {
     @Override
     public Long convertNickname(String username, String nickname) {
         Member member = memberAdaptor.queryMemberByUsername(username);
-        memberValidator.checkCanConvertNickname(member);
         member.updateNickname(nickname);
         member.countConvertNicknameChance();
         return member.getId();
