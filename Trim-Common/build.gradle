@@ -9,3 +9,14 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task copyYML(type: Copy) {
+    from "${rootProject.projectDir}/config/common/"
+    include '*.yml'
+    into "${projectDir}/src/main/resources/"
+
+    // 대상 디렉토리가 없는 경우 생성
+    doFirst {
+        file("${projectDir}/src/main/resources/").mkdirs()
+    }
+}
