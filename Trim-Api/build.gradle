@@ -14,11 +14,21 @@ repositories {
 
 
 dependencies {
+    // JUnit
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Project Modules
     implementation project(':Trim-Domain')
     implementation project(':Trim-Common')
     implementation project(':Trim-Infra')
+
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+    // Lombok Integration with MapStruct (optional, if using Lombok)
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 }
 
 test {
