@@ -13,7 +13,7 @@ public class FindQuestionResponse {
     private String author;
 
 
-    public FindQuestionResponse of(Question question) {
+    public static FindQuestionResponse of(Question question) {
         return FindQuestionResponse.builder()
                 .title(question.getTitle())
                 .content(question.getContent())
