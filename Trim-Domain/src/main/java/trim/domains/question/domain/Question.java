@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
 import trim.domains.member.domain.Member;
-import trim.domains.question.dto.QuestionDto;
+import trim.domains.question.dto.request.CreateQuestionRequest;
 
 @Entity
 @Getter
@@ -32,7 +32,7 @@ public class Question extends BaseTimeEntity {
     private String content;
 
 
-    public void edit(QuestionDto dto) {
+    public void edit(CreateQuestionRequest dto) {
         this.content = dto.getContent();
         this.title = dto.getTitle();
     }

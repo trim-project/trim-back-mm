@@ -1,13 +1,13 @@
 package trim.domains.question.service;
 
 import trim.domains.member.domain.Member;
-import trim.domains.question.dto.QuestionDto;
+import trim.domains.question.dto.request.CreateQuestionRequest;
 
 public interface QuestionDomainService {
 
-    Long writeQuestion(Member member, QuestionDto request);
+    Long writeQuestion(Member member, CreateQuestionRequest request);
 
-    void editQuestion(Member member, Long questionId, QuestionDto request);
+    void editQuestion(Member member, Long questionId, CreateQuestionRequest request);
 
     void removeQuestion(Member member, Long questionId);
 }
