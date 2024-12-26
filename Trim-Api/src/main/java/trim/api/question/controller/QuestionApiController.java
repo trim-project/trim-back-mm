@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.question.service.CreateQuestionUseCase;
 import trim.api.question.service.FindQuestionUseCase;
+import trim.api.question.service.EditQuestionUseCase;
 import trim.domains.member.domain.Member;
 import trim.domains.question.dto.request.CreateQuestionRequest;
+import trim.domains.question.dto.request.EditQuestionRequest;
 import trim.domains.question.dto.response.FindQuestionResponse;
 
 @RequiredArgsConstructor
@@ -14,12 +16,13 @@ import trim.domains.question.dto.response.FindQuestionResponse;
 public class QuestionApiController {
 
     private final CreateQuestionUseCase createQuestionUseCase;
+    private final EditQuestionUseCase editQuestionUseCase;
     private final FindQuestionUseCase findQuestionUseCase;
 
     /** 질문 등록 - 테스트용 **/
     @PostMapping("/")
-    public Long createQuestion(Member writer, @RequestBody CreateQuestionRequest createQuestionRequest){
-        return createQuestionUseCase.execute(writer, createQuestionRequest);
+    public Long createQuestion(Member writer, @RequestBody CreateQuestionRequest request){
+        return createQuestionUseCase.execute(writer, request);
 
     }
 
@@ -29,5 +32,12 @@ public class QuestionApiController {
         return findQuestionUseCase.execute(questionId);
     }
 
+    /** 질문 수정 - 테스트용 **/
+    @PostMapping("/{id}")
+    public void updateQuestion(Member writer,
+                               @PathVariable("id") Long questionId,
+                               @RequestBody EditQuestionRequest request){
+        editQuestionUseCase.execute(writer, questionId, request);
+    }
 
 }
