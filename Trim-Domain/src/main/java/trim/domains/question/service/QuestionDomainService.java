@@ -6,9 +6,9 @@ import trim.domains.question.dto.request.EditQuestionRequest;
 
 public interface QuestionDomainService {
 
-    Long writeQuestion(Member member, CreateQuestionRequest request);
+    Long writeQuestion(Member member, CreateQuestionRequest dto);
 
-    void editQuestion(Member member, Long questionId, EditQuestionRequest request);
+    void editQuestion(Member member, Long questionId, EditQuestionRequest dto);
 
     void removeQuestion(Member member, Long questionId);
 }

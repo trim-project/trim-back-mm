@@ -1,10 +1,8 @@
 package trim.domains.comment.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
 import trim.domains.member.domain.Member;
 import trim.domains.question.domain.Question;
@@ -13,6 +11,7 @@ import trim.domains.question.domain.Question;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@SuperBuilder
 public class QuestionComment extends BaseTimeEntity {
 
     @Id
