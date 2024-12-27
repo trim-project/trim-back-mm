@@ -10,11 +10,4 @@ public class EditQuestionRequest {
     private String title;
     private String content;
 
-    public Question from(){
-        return Question.builder()
-                .title(this.getTitle())
-                .content(this.getContent())
-                .build();
-    }
-
 }
