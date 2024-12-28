@@ -9,8 +9,10 @@ import trim.api.question.service.EditQuestionUseCase;
 import trim.domains.member.domain.Member;
 import trim.domains.question.dto.request.CreateQuestionRequest;
 import trim.domains.question.dto.request.EditQuestionRequest;
-import trim.domains.question.dto.response.FindAllQuestionResponse;
 import trim.domains.question.dto.response.FindQuestionResponse;
+import trim.domains.question.dto.response.QuestionResponse;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -31,13 +33,13 @@ public class QuestionApiController {
 
     /** 질문 단일 조회 - 테스트용 **/
     @GetMapping("/{id}")
-    public FindQuestionResponse findQuestion(@PathVariable("id") Long questionId){
+    public QuestionResponse findQuestion(@PathVariable("id") Long questionId){
         return findQuestionUseCase.execute(questionId);
     }
 
     /** 질문 전체 조회 - 테스트용 **/
     @GetMapping("/")
-    public FindAllQuestionResponse findAllQuestions(){
+    public List<FindQuestionResponse> findAllQuestions(){
         return findAllQuestionUseCase.execute();
     }
 

@@ -3,18 +3,24 @@ package trim.api.question.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.UseCase;
+import trim.domains.comment.adaptor.QuestionCommentAdaptor;
+import trim.domains.comment.domain.QuestionComment;
 import trim.domains.question.adaptor.QuestionAdaptor;
 import trim.domains.question.domain.Question;
-import trim.domains.question.dto.response.FindQuestionResponse;
+import trim.domains.question.dto.response.QuestionResponse;
+
+import java.util.List;
 
 @UseCase
 @RequiredArgsConstructor
 public class FindQuestionUseCase {
-    private final QuestionAdaptor questionAdaptor;
 
-    @Transactional
-    public FindQuestionResponse execute(Long questionId) {
+    private final QuestionAdaptor questionAdaptor;
+    private final QuestionCommentAdaptor questionCommentAdaptor;
+
+    public QuestionResponse execute(Long questionId) {
         Question question = questionAdaptor.queryById(questionId);
-        return FindQuestionResponse.of(question);
+        List<QuestionComment> questionComments = questionCommentAdaptor.queryAllByQuestionId(questionId);
+        return QuestionResponse.of(question, questionComments);
     }
 }
