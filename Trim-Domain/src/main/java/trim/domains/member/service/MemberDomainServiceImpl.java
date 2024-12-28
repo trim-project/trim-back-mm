@@ -25,6 +25,7 @@ public class MemberDomainServiceImpl implements MemberDomainService {
                 .profile(profile)
                 .role(role)
                 .nickname(nickname)
+                .nicknameChangeChance(1)
                 .build();
         return memberRepository.save(newMember).getId();
     }

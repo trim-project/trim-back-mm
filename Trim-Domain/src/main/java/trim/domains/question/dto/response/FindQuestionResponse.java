@@ -1,23 +1,19 @@
 package trim.domains.question.dto.response;
 
 import lombok.Builder;
-import lombok.Data;
-import trim.domains.member.domain.Member;
+import lombok.Getter;
 import trim.domains.question.domain.Question;
 
-@Data
+@Getter
 @Builder
 public class FindQuestionResponse {
     private String title;
-    private String content;
-    private String author;
+    private String nickname;
 
-
-    public static FindQuestionResponse of(Question question) {
+    public static FindQuestionResponse of(Question question){
         return FindQuestionResponse.builder()
                 .title(question.getTitle())
-                .content(question.getContent())
+                .nickname(question.getWriter().getNickname())
                 .build();
     }
-
 }
