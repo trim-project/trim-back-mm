@@ -10,4 +10,6 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByWriter(Member writer);
 
     List<Question> findByWriterProfileUsername(String username);
+
+
 }

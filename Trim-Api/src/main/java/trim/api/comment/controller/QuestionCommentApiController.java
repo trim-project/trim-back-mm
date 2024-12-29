@@ -15,7 +15,8 @@ public class QuestionCommentApiController {
 
     private final CreateQuestionCommentUseCase createQuestionCommentUseCaseUseCase;
     private final DeleteQuestionCommentUseCase deleteQuestionCommentUseCase;
-
+    
+    /** 댓글 등록 테스트용 **/
     @PostMapping("/")
     public Long createQuestionComment(Member writer,
                                       @PathVariable("questionId") Long questionId,
@@ -24,6 +25,7 @@ public class QuestionCommentApiController {
         return createQuestionCommentUseCaseUseCase.execute(writer, questionId, dto);
     }
 
+    /** 댓글 삭제 테스트용 **/
     @DeleteMapping("/{questionCommentId}")
     public void deleteQuestionComment(Member writer,
                                       @PathVariable("questionCommentId") Long questionCommentId){
