@@ -15,6 +15,12 @@ public class QuestionCommentAdaptorImpl implements QuestionCommentAdaptor{
     private final QuestionCommentRepository questionCommentRepository;
 
     @Override
+    public QuestionComment queryById(Long questionCommentId) {
+        return questionCommentRepository.findById(questionCommentId)
+                .orElseThrow(() -> new RuntimeException("not found questionComment"));
+    }
+
+    @Override
     public List<QuestionComment> queryAllByQuestionId(Long questionId) {
         return questionCommentRepository.findAllByQuestionId(questionId);
     }
