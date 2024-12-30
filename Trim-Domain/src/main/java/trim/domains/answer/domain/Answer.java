@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import trim.common.model.BaseTimeEntity;
 import trim.domains.member.domain.Member;
+import trim.domains.question.domain.Question;
 
 @Entity
 @Getter
@@ -25,5 +26,9 @@ public class Answer extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "writer_id")
     private Member writer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
+    private Question question;
 
 }
