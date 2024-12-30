@@ -10,5 +10,5 @@ public interface QuestionDomainService {
 
     void editQuestion(Member member, Long questionId, EditQuestionRequest dto);
 
-    void removeQuestion(Member member, Long questionId);
+    void deleteQuestion(Member member, Long questionId);
 }

@@ -32,7 +32,10 @@ public class QuestionDomainServiceImpl implements QuestionDomainService{
     }
 
     @Override
-    public void removeQuestion(Member member, Long questionId) {
+    public void deleteQuestion(Member member, Long questionId) {
+        Question question = questionAdaptor.queryById(questionId);
+        questionValidate.canDelete(member, question);
+        // todo 여기에 삭제 로직
 
     }
 }
