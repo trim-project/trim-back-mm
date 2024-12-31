@@ -1,6 +1,7 @@
 package trim.api.member.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import trim.api.member.mapper.MemberMapper;
 import trim.api.member.vo.MemberRequest;
 import trim.common.annotation.UseCase;
@@ -8,6 +9,7 @@ import trim.domains.member.domain.Profile;
 import trim.domains.member.domain.Role;
 import trim.domains.member.service.MemberDomainService;
 
+@Slf4j
 @UseCase
 @RequiredArgsConstructor
 public class RegisterMemberUseCase {
@@ -16,6 +18,9 @@ public class RegisterMemberUseCase {
 
     public Long execute(MemberRequest memberRequest) {
         Profile profile = MemberMapper.INSTANCE.toProfile(memberRequest);
+        log.info("profile email = {}", profile.getEmail());
+        log.info("profile username = {}", profile.getUsername());
+        log.info("profile socialType = {}", profile.getSocialType());
         return memberDomainService.registerMember(
                 profile,
                 Role.converter(memberRequest.getRole()),
