@@ -4,13 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Embeddable
 @Getter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Profile {
 
     @Column(nullable = false, unique = true)
