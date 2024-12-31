@@ -1,10 +1,7 @@
 package trim.api.member.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import trim.api.member.service.RegisterMemberUseCase;
 import trim.api.member.vo.MemberRequest;
 
@@ -15,7 +12,7 @@ public class MemberApiController {
 
     private final RegisterMemberUseCase registerMemberUseCase;
 
-    @GetMapping
+    @PostMapping
     public Long registerServerTestMember(@RequestBody MemberRequest memberRequest) {
         return registerMemberUseCase.execute(memberRequest);
     }
