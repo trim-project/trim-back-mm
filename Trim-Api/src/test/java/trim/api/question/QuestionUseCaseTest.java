@@ -10,16 +10,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import trim.TrimApiServiceApplication;
+import trim.api.question.dto.request.QuestionRequest;
+import trim.api.question.dto.response.FindQuestionResponse;
+import trim.api.question.dto.response.QuestionResponse;
 import trim.api.question.service.*;
 import trim.domains.comment.adaptor.QuestionCommentAdaptor;
 import trim.domains.comment.domain.QuestionComment;
 import trim.domains.member.domain.Member;
 import trim.domains.question.adaptor.QuestionAdaptor;
 import trim.domains.question.domain.Question;
-import trim.domains.question.dto.request.CreateQuestionRequest;
-import trim.domains.question.dto.request.EditQuestionRequest;
-import trim.domains.question.dto.response.FindQuestionResponse;
-import trim.domains.question.dto.response.QuestionResponse;
 import trim.domains.question.service.QuestionDomainService;
 
 import java.util.Arrays;
@@ -51,7 +50,7 @@ public class QuestionUseCaseTest {
     @Mock
     private Member testMember;
 
-    private CreateQuestionRequest createRequest;
+    private QuestionRequest createRequest;
 
     @BeforeEach
     void setUp() {
@@ -60,7 +59,7 @@ public class QuestionUseCaseTest {
                 .nickname("nickname")
                 .nicknameChangeChance(1).build();
 
-        createRequest = CreateQuestionRequest.builder()
+        createRequest = QuestionRequest.builder()
                 .title("Test Title")
                 .content("Test Content")
                 .build();
@@ -72,7 +71,7 @@ public class QuestionUseCaseTest {
     void createQuestion_Success() throws Exception {
         //given
         Long newQuestionId = 1L;
-        when(questionDomainService.writeQuestion(testMember, createRequest))
+        when(questionDomainService.writeQuestion(testMember, createRequest.from()))
                 .thenReturn(newQuestionId);
 
         //when
@@ -80,7 +79,7 @@ public class QuestionUseCaseTest {
 
         //then
         assertThat(resultId).isEqualTo(newQuestionId);
-        verify(questionDomainService).writeQuestion(testMember, createRequest);
+        verify(questionDomainService).writeQuestion(testMember, createRequest.from());
     }
 
     @Test
