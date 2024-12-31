@@ -2,12 +2,12 @@ package trim.api.question.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+import trim.api.question.dto.response.QuestionResponse;
 import trim.common.annotation.UseCase;
 import trim.domains.comment.adaptor.QuestionCommentAdaptor;
 import trim.domains.comment.domain.QuestionComment;
 import trim.domains.question.adaptor.QuestionAdaptor;
 import trim.domains.question.domain.Question;
-import trim.domains.question.dto.response.QuestionResponse;
 
 import java.util.List;
 

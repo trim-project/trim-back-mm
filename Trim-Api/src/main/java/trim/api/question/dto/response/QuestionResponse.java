@@ -1,4 +1,4 @@
-package trim.domains.question.dto.response;
+package trim.api.question.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

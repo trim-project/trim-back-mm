@@ -2,12 +2,12 @@ package trim.api.question.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import trim.api.question.dto.request.QuestionRequest;
+import trim.api.question.dto.response.FindQuestionResponse;
+import trim.api.question.dto.response.QuestionResponse;
 import trim.api.question.service.*;
 import trim.domains.member.domain.Member;
-import trim.domains.question.dto.request.CreateQuestionRequest;
-import trim.domains.question.dto.request.EditQuestionRequest;
-import trim.domains.question.dto.response.FindQuestionResponse;
-import trim.domains.question.dto.response.QuestionResponse;
+
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class QuestionApiController {
 
     /** 질문 등록 - 테스트용 **/
     @PostMapping
-    public Long createQuestion(Member writer, @RequestBody CreateQuestionRequest request){
+    public Long createQuestion(Member writer, @RequestBody QuestionRequest request){
         return createQuestionUseCase.execute(writer, request);
 
     }
@@ -45,7 +45,7 @@ public class QuestionApiController {
     @PostMapping("/{questionId}")
     public void updateQuestion(Member writer,
                                @PathVariable Long questionId,
-                               @RequestBody EditQuestionRequest request){
+                               @RequestBody QuestionRequest request){
         editQuestionUseCase.execute(writer, questionId, request);
     }
 
