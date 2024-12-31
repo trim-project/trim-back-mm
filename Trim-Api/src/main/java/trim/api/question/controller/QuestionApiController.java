@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/question")
+@RequestMapping("/api/questions")
 public class QuestionApiController {
 
     private final CreateQuestionUseCase createQuestionUseCase;
@@ -23,36 +23,36 @@ public class QuestionApiController {
     private final DeleteQuestionUseCase deleteQuestionUseCase;
 
     /** 질문 등록 - 테스트용 **/
-    @PostMapping("/")
+    @PostMapping
     public Long createQuestion(Member writer, @RequestBody CreateQuestionRequest request){
         return createQuestionUseCase.execute(writer, request);
 
     }
 
     /** 질문 단일 조회 - 테스트용 **/
-    @GetMapping("/{id}")
-    public QuestionResponse findQuestion(@PathVariable("id") Long questionId){
+    @GetMapping("/{questionId}")
+    public QuestionResponse findQuestion(@PathVariable Long questionId){
         return findQuestionUseCase.execute(questionId);
     }
 
     /** 질문 전체 조회 - 테스트용 **/
-    @GetMapping("/")
+    @GetMapping
     public List<FindQuestionResponse> findAllQuestions(){
         return findAllQuestionUseCase.execute();
     }
 
     /** 질문 수정 - 테스트용 **/
-    @PostMapping("/{id}")
+    @PostMapping("/{questionId}")
     public void updateQuestion(Member writer,
-                               @PathVariable("id") Long questionId,
+                               @PathVariable Long questionId,
                                @RequestBody EditQuestionRequest request){
         editQuestionUseCase.execute(writer, questionId, request);
     }
 
     /** 질문 삭제 - 테스트 용 **/
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{questionId}")
     public void deleteQuestion(Member writer,
-                               @PathVariable("id") Long questionId){
+                               @PathVariable Long questionId){
         deleteQuestionUseCase.deleteQuestion(writer, questionId);
     }
 
