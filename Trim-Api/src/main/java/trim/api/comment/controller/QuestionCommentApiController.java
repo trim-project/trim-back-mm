@@ -10,14 +10,14 @@ import trim.domains.member.domain.Member;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/{questionId}/questionComment")
+@RequestMapping("/api/questions/{questionId}/comments")
 public class QuestionCommentApiController {
 
     private final CreateQuestionCommentUseCase createQuestionCommentUseCaseUseCase;
     private final DeleteQuestionCommentUseCase deleteQuestionCommentUseCase;
     
     /** 댓글 등록 테스트용 **/
-    @PostMapping("/")
+    @PostMapping
     public Long createQuestionComment(Member writer,
                                       @PathVariable("questionId") Long questionId,
                                       @RequestBody CreateQuestionCommentRequest dto){
@@ -26,10 +26,10 @@ public class QuestionCommentApiController {
     }
 
     /** 댓글 삭제 테스트용 **/
-    @DeleteMapping("/{questionCommentId}")
+    @DeleteMapping("/{commentId}")
     public void deleteQuestionComment(Member writer,
-                                      @PathVariable("questionCommentId") Long questionCommentId){
-        deleteQuestionCommentUseCase.execute(writer, questionCommentId);
+                                      @PathVariable("commentId") Long commentId){
+        deleteQuestionCommentUseCase.execute(writer, commentId);
     }
 
 }
