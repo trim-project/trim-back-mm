@@ -15,7 +15,6 @@ import trim.domains.comment.repository.QuestionCommentRepository;
 public class QuestionCommentDomainServiceImpl implements QuestionCommentDomainService {
 
     private final QuestionCommentRepository questionCommentRepository;
-    private final QuestionCommentValidator questionCommentValidator;
 
     @Override
     public Long createQuestionComment(Member writer, Question question, String content) {
@@ -29,7 +28,6 @@ public class QuestionCommentDomainServiceImpl implements QuestionCommentDomainSe
 
     @Override
     public void deleteQuestionComment(Member writer, QuestionComment questionComment) {
-        questionCommentValidator.checkCanDelete(writer, questionComment);
         questionCommentRepository.delete(questionComment);
     }
 }
