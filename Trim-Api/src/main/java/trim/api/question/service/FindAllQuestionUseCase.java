@@ -18,7 +18,7 @@ public class FindAllQuestionUseCase {
     public List<FindQuestionResponse> execute(){
         List<Question> questions = questionAdaptor.queryAll();
         return questions.stream()
-                .map(q -> FindQuestionResponse.of(q))
+                .map(q -> FindQuestionResponse.of(q))       //TODO use mapstruct mapper
                 .collect(Collectors.toList());
     }
 

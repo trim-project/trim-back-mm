@@ -69,24 +69,28 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+// 📌 Root build.gradle
+
 def modules = [
-		"Trim-Api": "api",
-		"Trim-Domain": "domain",
-		"Trim-Common": "common"
+		"Trim-Common": ["application-common.yml"],
+		"Trim-Domain": ["application-domain.yml", "application-common.yml"],
+		"Trim-Infra": ["application-infra.yml", "application-common.yml"],
+		"Trim-Api": ["application-api.yml", "application-domain.yml", "application-common.yml"]
 ]
 
-
-// 각 서브모듈에 YML 복사 태스크 추가
-modules.each { moduleName, configName ->
+// 각 서브모듈에 YAML 복사 태스크 추가
+modules.each { moduleName, configFiles ->
 	project(":${moduleName}") {
 		task copyYML(type: Copy) {
-			from "${rootProject.projectDir}/config/${configName}/"
-			include '*.yml'
-			into "${projectDir}/src/main/resources/"
+			configFiles.each { configFile ->
+				from "${rootProject.projectDir}/config/"
+				include configFile
+				into "${projectDir}/src/main/resources/"
+			}
 
 			doFirst {
 				file("${projectDir}/src/main/resources/").mkdirs()
-				println "Copying YAML files from config/${configName} to ${projectDir}/src/main/resources/"
+				println "Copying YAML files [${configFiles.join(', ')}] to ${projectDir}/src/main/resources/"
 			}
 		}
 
