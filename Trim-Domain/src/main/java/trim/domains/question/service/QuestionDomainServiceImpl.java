@@ -5,6 +5,7 @@ import trim.common.annotation.DomainService;
 import trim.domains.member.domain.Member;
 import trim.domains.question.adaptor.QuestionAdaptor;
 import trim.domains.question.domain.Question;
+import trim.domains.question.dto.QuestionDto;
 import trim.domains.question.dto.request.CreateQuestionRequest;
 import trim.domains.question.dto.request.EditQuestionRequest;
 import trim.domains.question.repository.QuestionRepository;
@@ -19,15 +20,17 @@ public class QuestionDomainServiceImpl implements QuestionDomainService{
     private final QuestionValidate questionValidate;
 
     @Override
-    public Long writeQuestion(Member member, CreateQuestionRequest dto) {
-        Question newQuestion = dto.from(member);
+    public Long writeQuestion(Member member, QuestionDto dto) {
+        Question newQuestion = Question.builder()
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .writer(member)
+                .build();
         return questionRepository.save(newQuestion).getId();
     }
 
     @Override
-    public void editQuestion(Member member, Long questionId, EditQuestionRequest dto) {
-        Question question = questionAdaptor.queryById(questionId);
-        questionValidate.checkIsWriter(member, question);
+    public void editQuestion(Question question, QuestionDto dto) {
         question.edit(dto);
     }
 
