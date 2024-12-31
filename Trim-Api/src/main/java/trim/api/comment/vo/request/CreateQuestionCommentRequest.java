@@ -1,9 +1,9 @@
-package trim.domains.comment.dto.request;
+package trim.api.comment.vo.request;
 
 import lombok.Getter;
+import trim.domains.comment.domain.QuestionComment;
 import trim.domains.member.domain.Member;
 import trim.domains.question.domain.Question;
-import trim.domains.comment.domain.QuestionComment;
 
 @Getter
 public class CreateQuestionCommentRequest {

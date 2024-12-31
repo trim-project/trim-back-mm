@@ -1,4 +1,4 @@
-package trim.domains.comment.dto.response;
+package trim.api.comment.vo.response;
 
 import lombok.Builder;
 import lombok.Getter;
