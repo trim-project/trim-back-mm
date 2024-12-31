@@ -1,4 +1,4 @@
-package trim.common.exception.code;
+package trim.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
