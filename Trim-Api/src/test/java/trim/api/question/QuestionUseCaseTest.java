@@ -1,7 +1,9 @@
 package trim.api.question;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -17,8 +19,10 @@ import trim.domains.question.dto.request.CreateQuestionRequest;
 import trim.domains.question.dto.request.EditQuestionRequest;
 import trim.domains.question.dto.response.FindQuestionResponse;
 import trim.domains.question.dto.response.QuestionResponse;
+import trim.domains.question.service.QuestionDomainService;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -35,43 +39,33 @@ public class QuestionUseCaseTest {
     @Mock
     private QuestionCommentAdaptor questionCommentAdaptor;
 
-    @MockitoBean
+    @InjectMocks
     private CreateQuestionUseCase createQuestionUseCase;
-    @MockitoBean
-    private EditQuestionUseCase editQuestionUseCase;
-    @MockitoBean
+    @InjectMocks
     private FindQuestionUseCase findQuestionUseCase;
-    @MockitoBean
+    @InjectMocks
     private FindAllQuestionUseCase findAllQuestionUseCase;
-    @MockitoBean
-    private DeleteQuestionUseCase deleteQuestionUseCase;
-
     @Mock
     private Member testMember;
 
-    @Mock
-    private Question testQuestion;
-
-    @Mock
-    private QuestionComment questionComment;
-
     private CreateQuestionRequest createRequest;
-    private EditQuestionRequest editRequest;
 
     @BeforeEach
     void setUp() {
+        testMember = Member.builder()
+                .id(1L)
+                .nickname("nickname")
+                .nicknameChangeChance(1).build();
+
         createRequest = CreateQuestionRequest.builder()
                 .title("Test Title")
                 .content("Test Content")
                 .build();
-        editRequest = EditQuestionRequest
-                .builder()
-                .title("Updated Title")
-                .content("Updated Content")
-                .build();
+
     }
 
     @Test
+    @DisplayName("질문 생성을 테스트합니다")
     void createQuestion_Success() throws Exception {
         //given
         when(createQuestionUseCase.execute(any(Member.class), any(CreateQuestionRequest.class)))
@@ -91,6 +85,7 @@ public class QuestionUseCaseTest {
     }
 
     @Test
+    @DisplayName("질문 단일 조회를 테스트합니다")
     void findQuestion_Success() throws Exception {
         //given
         Long questionId = 1L;
@@ -99,12 +94,17 @@ public class QuestionUseCaseTest {
                 .id(questionId)
                 .title("title")
                 .content("content")
+                .writer(testMember)
                 .build();
 
         when(questionAdaptor.queryById(questionId)).thenReturn(question);
+        when(questionCommentAdaptor.queryAllByQuestionId(questionId)).thenReturn(Collections.emptyList());
 
         // when: execute 메서드 호출
         QuestionResponse response = findQuestionUseCase.execute(questionId);
+
+        verify(questionAdaptor).queryById(questionId);
+        verify(questionCommentAdaptor).queryAllByQuestionId(questionId);
 
         // then
         assertThat(response).isNotNull();
@@ -114,28 +114,28 @@ public class QuestionUseCaseTest {
     }
 
     @Test
+    @DisplayName("질문 전체 조회(리스트)를 테스트합니다")
     void findAllQuestions_Success() throws Exception {
-        List<FindQuestionResponse> responses = Arrays.asList(
-                FindQuestionResponse.builder()
+        //given
+        List<Question> questions = Arrays.asList(
+                Question.builder()
                         .title("Title1")
-                        .nickname("Nickname1")
+                        .writer(testMember)
                         .build(),
-                FindQuestionResponse.builder()
+                Question.builder()
                         .title("Title2")
-                        .nickname("Nickname2")
+                        .writer(testMember)
                         .build()
                 );
-        when(findAllQuestionUseCase.execute()).thenReturn(responses);
+        when(questionAdaptor.queryAll()).thenReturn(questions);
+
+        //when
+        List<FindQuestionResponse> responses = findAllQuestionUseCase.execute();
+
+        //then
+        assertThat(responses.get(0).getTitle()).isEqualTo(questions.get(0).getTitle());
+        assertThat(responses.get(1).getTitle()).isEqualTo(questions.get(1).getTitle());
 
     }
 
-    @Test
-    void updateQuestion_Success() throws Exception {
-
-    }
-
-    @Test
-    void deleteQuestion_Success() throws Exception {
-
-    }
 }
