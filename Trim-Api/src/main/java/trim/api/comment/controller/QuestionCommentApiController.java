@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.comment.service.CreateQuestionCommentUseCase;
 import trim.api.comment.service.DeleteQuestionCommentUseCase;
-import trim.domains.comment.dto.request.CreateQuestionCommentRequest;
+import trim.api.comment.vo.request.CreateQuestionCommentRequest;
 import trim.domains.member.domain.Member;
 
 @RestController
