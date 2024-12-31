@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -35,9 +36,10 @@ import static org.mockito.Mockito.*;
 public class QuestionUseCaseTest {
     @Mock
     private QuestionAdaptor questionAdaptor;
-
     @Mock
     private QuestionCommentAdaptor questionCommentAdaptor;
+    @Mock
+    private QuestionDomainService questionDomainService;
 
     @InjectMocks
     private CreateQuestionUseCase createQuestionUseCase;
@@ -45,6 +47,7 @@ public class QuestionUseCaseTest {
     private FindQuestionUseCase findQuestionUseCase;
     @InjectMocks
     private FindAllQuestionUseCase findAllQuestionUseCase;
+
     @Mock
     private Member testMember;
 
@@ -68,20 +71,16 @@ public class QuestionUseCaseTest {
     @DisplayName("질문 생성을 테스트합니다")
     void createQuestion_Success() throws Exception {
         //given
-        when(createQuestionUseCase.execute(any(Member.class), any(CreateQuestionRequest.class)))
-                .thenAnswer(invocation -> {
-                    Question createdQuestion = Question.builder()
-                            .id(1L)
-                            .build();
-                    return createdQuestion.getId();
-                });
+        Long newQuestionId = 1L;
+        when(questionDomainService.writeQuestion(testMember, createRequest))
+                .thenReturn(newQuestionId);
 
         //when
         Long resultId = createQuestionUseCase.execute(testMember, createRequest);
 
         //then
-        assertThat(resultId).isEqualTo(1L);
-        verify(createQuestionUseCase, times(1)).execute(testMember, createRequest);
+        assertThat(resultId).isEqualTo(newQuestionId);
+        verify(questionDomainService).writeQuestion(testMember, createRequest);
     }
 
     @Test
@@ -100,17 +99,19 @@ public class QuestionUseCaseTest {
         when(questionAdaptor.queryById(questionId)).thenReturn(question);
         when(questionCommentAdaptor.queryAllByQuestionId(questionId)).thenReturn(Collections.emptyList());
 
+
+
         // when: execute 메서드 호출
         QuestionResponse response = findQuestionUseCase.execute(questionId);
 
-        verify(questionAdaptor).queryById(questionId);
-        verify(questionCommentAdaptor).queryAllByQuestionId(questionId);
 
         // then
         assertThat(response).isNotNull();
         assertThat(response.getTitle()).isEqualTo(question.getTitle());
         assertThat(response.getContent()).isEqualTo(question.getContent());
 
+        verify(questionAdaptor).queryById(questionId);
+        verify(questionCommentAdaptor).queryAllByQuestionId(questionId);
     }
 
     @Test
@@ -135,7 +136,7 @@ public class QuestionUseCaseTest {
         //then
         assertThat(responses.get(0).getTitle()).isEqualTo(questions.get(0).getTitle());
         assertThat(responses.get(1).getTitle()).isEqualTo(questions.get(1).getTitle());
-
+        verify(questionAdaptor).queryAll();
     }
 
 }
