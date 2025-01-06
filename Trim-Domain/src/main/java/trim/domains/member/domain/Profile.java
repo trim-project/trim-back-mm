@@ -19,5 +19,6 @@ public class Profile {
     private String email;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "social_type", length = 50)
     private SocialType socialType;
 }
