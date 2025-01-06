@@ -33,4 +33,9 @@ public enum SuccessStatus implements BaseCode{
                 .httpStatus(httpStatus)
                 .build();
     }
+
+    @Override
+    public String getExplainError() throws NoSuchFieldException {
+        return "";
+    }
 }
