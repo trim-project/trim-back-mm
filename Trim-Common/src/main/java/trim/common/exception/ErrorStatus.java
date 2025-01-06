@@ -22,7 +22,12 @@ public enum ErrorStatus implements BaseCode{
 
     // entity MEMBER (4050-4099)
     MEMBER_NOT_FOUND(NOT_FOUND, 4050, "회원을 찾을 수 없습니다."),
-    MEMBER_HAVE_ANY_CHANCE_OF_CONVERT_NICKNAME(BAD_REQUEST, 4051, "해당 회원은 사용할 수 있는 닉네임 변경 횟수를 모두 사용했습니다.");
+    MEMBER_HAVE_ANY_CHANCE_OF_CONVERT_NICKNAME(BAD_REQUEST, 4051, "해당 회원은 사용할 수 있는 닉네임 변경 횟수를 모두 사용했습니다."),
+
+    // entity QUESTION (4100-4149)
+    QUESTION_NOT_FOUND(NOT_FOUND, 4100, "질문 글을 찾을 수 없습니다."),
+    QUESTION_HAVE_ANY_ANSWER(BAD_REQUEST, 4101, "해당 질문글은 답변글을 가지지 않습니다."),
+    QUESTION_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4102, "질문글은 오로지 작성자에 의해 수정&삭제가 가능합니다.");
 
     private final HttpStatus httpStatus;
     private final Integer code;
