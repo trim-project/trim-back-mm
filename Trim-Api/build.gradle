@@ -29,6 +29,9 @@ dependencies {
 
     // Lombok Integration with MapStruct (optional, if using Lombok)
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+
+    //swagger
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
 }
 
 test {

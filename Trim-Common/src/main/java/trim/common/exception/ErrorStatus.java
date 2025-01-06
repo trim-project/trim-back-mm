@@ -3,15 +3,21 @@ package trim.common.exception;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import trim.common.annotation.ExplainError;
+
+import java.lang.reflect.Field;
+import java.util.Objects;
 
 import static org.springframework.http.HttpStatus.*;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorStatus implements BaseCode{
+public enum ErrorStatus implements BaseErrorCode{
 
     // 서버 오류
+    @ExplainError("500번대 알수없는 오류입니다. 서버 관리자에게 문의 주세요")
     _INTERNAL_SERVER_ERROR(INTERNAL_SERVER_ERROR, 5000, "서버 에러, 관리자에게 문의 바랍니다."),
+    @ExplainError("인증이 필요없는 api입니다.")
     _UNAUTHORIZED_LOGIN_DATA_RETRIEVAL_ERROR(INTERNAL_SERVER_ERROR, 5001, "서버 에러, 로그인이 필요없는 요청입니다."),
     _ASSIGNABLE_PARAMETER(BAD_REQUEST, 5002, "인증타입이 잘못되어 할당이 불가능합니다."),
 
@@ -55,5 +61,12 @@ public enum ErrorStatus implements BaseCode{
                 .isSuccess(false)
                 .httpStatus(httpStatus)
                 .build();
+    }
+
+    @Override
+    public String getExplainError() throws NoSuchFieldException {
+        Field field = this.getClass().getField(this.name());
+        ExplainError annotation = field.getAnnotation(ExplainError.class);
+        return Objects.nonNull(annotation) ? annotation.value() : this.getMessage();
     }
 }
