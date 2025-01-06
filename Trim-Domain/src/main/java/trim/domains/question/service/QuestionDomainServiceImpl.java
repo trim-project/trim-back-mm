@@ -6,8 +6,6 @@ import trim.domains.member.domain.Member;
 import trim.domains.question.adaptor.QuestionAdaptor;
 import trim.domains.question.domain.Question;
 import trim.domains.question.dto.QuestionDto;
-import trim.domains.question.dto.request.CreateQuestionRequest;
-import trim.domains.question.dto.request.EditQuestionRequest;
 import trim.domains.question.repository.QuestionRepository;
 import trim.domains.question.validate.QuestionValidate;
 

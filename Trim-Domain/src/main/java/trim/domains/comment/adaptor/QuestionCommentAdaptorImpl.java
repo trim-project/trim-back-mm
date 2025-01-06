@@ -3,6 +3,8 @@ package trim.domains.comment.adaptor;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
+import trim.common.exception.ErrorStatus;
+import trim.common.exception.QuestionCommentHandler;
 import trim.domains.comment.domain.QuestionComment;
 import trim.domains.comment.repository.QuestionCommentRepository;
 
@@ -17,7 +19,7 @@ public class QuestionCommentAdaptorImpl implements QuestionCommentAdaptor{
     @Override
     public QuestionComment queryById(Long questionCommentId) {
         return questionCommentRepository.findById(questionCommentId)
-                .orElseThrow(() -> new RuntimeException("not found questionComment"));
+                .orElseThrow(() -> new QuestionCommentHandler(ErrorStatus.QUESTION_COMMENT_NOT_FOUND));
     }
 
     @Override
