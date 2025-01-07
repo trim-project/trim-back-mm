@@ -3,8 +3,8 @@ package trim.domains.question.adaptor;
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.common.exception.ErrorStatus;
-import trim.common.exception.QuestionHandler;
 import trim.domains.question.domain.Question;
+import trim.domains.question.exception.QuestionHandler;
 import trim.domains.question.repository.QuestionRepository;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class QuestionAdaptorImpl implements QuestionAdaptor{
     @Override
     public Question queryById(Long questionId) {
         return questionRepository.findById(questionId)
-                .orElseThrow(() -> new QuestionHandler(ErrorStatus.QUESTION_NOT_FOUND));
+                .orElseThrow(() -> QuestionHandler.NOT_FOUND);
     }
 
     @Override
