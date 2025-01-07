@@ -34,8 +34,4 @@ public enum SuccessStatus implements BaseCode{
                 .build();
     }
 
-    @Override
-    public String getExplainError() throws NoSuchFieldException {
-        return "";
-    }
 }
