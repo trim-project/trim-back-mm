@@ -2,11 +2,15 @@ package trim.api.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.core.jackson.ModelResolver;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.media.Content;
+import io.swagger.v3.oas.models.media.MediaType;
+import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
@@ -18,14 +22,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.method.HandlerMethod;
+import trim.api.common.dto.ApiResponseDto;
 import trim.api.common.dto.ExampleHolder;
-import trim.common.exception.BaseCode;
-import trim.common.exception.Reason;
+import trim.common.annotation.ApiErrorCodeExample;
+import trim.common.annotation.ApiErrorExceptionsExample;
+import trim.common.annotation.DisableSwaggerSecurity;
+import trim.common.annotation.ExplainError;
+import trim.common.exception.*;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 /** Swagger 사용 환경을 위한 설정 파일 */
 @Configuration
@@ -41,15 +50,15 @@ public class SwaggerConfig {
         return new OpenAPI().servers(List.of(server)).components(authSetting()).info(swaggerInfo());
     }
 
-    private ProcessHandle.Info swaggerInfo() {
+    private Info swaggerInfo() {
         License license = new License();
-        license.setUrl("https://github.com/Gosrock/DuDoong-Backend");
-        license.setName("두둥");
+        license.setUrl("https://github.com/trim-project/trim-back-mm");
+        license.setName("TRIM");
 
         return new Info()
                 .version("v0.0.1")
-                .title("\"두둥 서버 API문서\"")
-                .description("두둥 서버의 API 문서 입니다.")
+                .title("\"TRIM 서버 API문서\"")
+                .description("TRIM 서버의 API 문서 입니다.")
                 .license(license);
     }
 
@@ -70,6 +79,11 @@ public class SwaggerConfig {
         return new ModelResolver(objectMapper);
     }
 
+    /**
+     * 핸들러 메서드들의 정보를 스웨거에 등록 및 설정
+     * @Operation
+     * @Tag
+     */
     @Bean
     public OperationCustomizer customize() {
         return (Operation operation, HandlerMethod handlerMethod) -> {
@@ -101,14 +115,15 @@ public class SwaggerConfig {
         };
     }
     /**
-     * BaseErrorCode 타입의 이넘값들을 문서화 시킵니다. ExplainError 어노테이션으로 부가설명을 붙일수있습니다. 필드들을 가져와서 예시 에러 객체를
+     * BaseErrorCode 타입의 이넘값들을 문서화 시킵니다. (-> ErrorStatus)
+     * ExplainError 어노테이션으로 부가설명을 붙일수있습니다. 필드들을 가져와서 예시 에러 객체를
      * 동적으로 생성해서 예시값으로 붙입니다.
      */
     private void generateErrorCodeResponseExample(
-            Operation operation, Class<? extends BaseCode> type) {
+            Operation operation, Class<? extends BaseErrorCode> type) {
         ApiResponses responses = operation.getResponses();
 
-        BaseCode[] errorCodes = type.getEnumConstants();
+        BaseErrorCode[] errorCodes = type.getEnumConstants();
 
         Map<Integer, List<ExampleHolder>> statusWithExampleHolders =
                 Arrays.stream(errorCodes)
@@ -121,8 +136,8 @@ public class SwaggerConfig {
                                                         getSwaggerExample(
                                                                 baseErrorCode.getExplainError(),
                                                                 errorReason))
-                                                .code(errorReason.getStatus())
-                                                .name(errorReason.getCode())
+                                                .code(errorReason.getCode())
+                                                .name(errorReason.getHttpStatus().name())
                                                 .build();
                                     } catch (NoSuchFieldException e) {
                                         throw new RuntimeException(e);
@@ -135,7 +150,7 @@ public class SwaggerConfig {
 
     /**
      * SwaggerExampleExceptions 타입의 클래스를 문서화 시킵니다. SwaggerExampleExceptions 타입의 클래스는 필드로
-     * DuDoongCodeException 타입을 가지며, DuDoongCodeException 의 errorReason 와,ExplainError 의 설명을
+     * GeneralException 타입을 가지며, GeneralException 의 errorReason 와,ExplainError 의 설명을
      * 문서화시킵니다.
      */
     private void generateExceptionResponseExample(Operation operation, Class<?> type) {
@@ -147,20 +162,20 @@ public class SwaggerConfig {
         Map<Integer, List<ExampleHolder>> statusWithExampleHolders =
                 Arrays.stream(declaredFields)
                         .filter(field -> field.getAnnotation(ExplainError.class) != null)
-                        .filter(field -> field.getType() == DuDoongCodeException.class)
+                        .filter(field -> field.getType() == GeneralException.class)
                         .map(
                                 field -> {
                                     try {
-                                        DuDoongCodeException exception =
-                                                (DuDoongCodeException) field.get(bean);
+                                        GeneralException exception =
+                                                (GeneralException) field.get(bean);
                                         ExplainError annotation =
                                                 field.getAnnotation(ExplainError.class);
                                         String value = annotation.value();
-                                        ErrorReason errorReason = exception.getErrorReason();
+                                        Reason errorReason = exception.getErrorReason();
                                         return ExampleHolder.builder()
                                                 .holder(getSwaggerExample(value, errorReason))
-                                                .code(errorReason.getStatus())
-                                                .name(field.getName())
+                                                .code(errorReason.getCode())
+                                                .name(errorReason.getHttpStatus().name())
                                                 .build();
                                     } catch (IllegalAccessException e) {
                                         throw new RuntimeException(e);
@@ -172,11 +187,10 @@ public class SwaggerConfig {
         addExamplesToResponses(responses, statusWithExampleHolders);
     }
 
-    private Example getSwaggerExample(String value, ErrorReason errorReason) {
-        ErrorResponse errorResponse = new ErrorResponse(errorReason, "요청시 패스정보입니다.");
+    private Example getSwaggerExample(String value, Reason errorReason) {
         Example example = new Example();
         example.description(value);
-        example.setValue(errorResponse);
+        example.setValue(ApiResponseDto.onFailure(errorReason.getCode(), errorReason.getMessage(), false));
         return example;
     }
 
@@ -200,14 +214,15 @@ public class SwaggerConfig {
 
     private static List<String> getTags(HandlerMethod handlerMethod) {
         List<String> tags = new ArrayList<>();
-
+        // get tag method name
         Tag[] methodTags = handlerMethod.getMethod().getAnnotationsByType(Tag.class);
         List<String> methodTagStrings =
                 Arrays.stream(methodTags).map(Tag::name).collect(Collectors.toList());
-
+        // get class name
         Tag[] classTags = handlerMethod.getClass().getAnnotationsByType(Tag.class);
         List<String> classTagStrings =
                 Arrays.stream(classTags).map(Tag::name).collect(Collectors.toList());
+
         tags.addAll(methodTagStrings);
         tags.addAll(classTagStrings);
         return tags;
