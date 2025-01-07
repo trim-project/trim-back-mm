@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class GeneralException extends RuntimeException{
-    private BaseCode code;
+    private BaseErrorCode code;
 
     @Override
     public String getMessage() {
@@ -20,4 +20,5 @@ public class GeneralException extends RuntimeException{
     public Reason getErrorReasonHttpStatus() {
         return this.code.getReasonHttpStatus();
     }
+
 }

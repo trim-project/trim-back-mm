@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.Adaptor;
 import trim.domains.member.domain.Member;
-import trim.domains.member.exception.handler.MemberNotFoundException;
+import trim.domains.member.exception.MemberHandler;
 import trim.domains.member.repository.MemberRepository;
 
 @Adaptor
@@ -16,19 +16,19 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     @Override
     public Member queryMember(Long memberId) {
         return memberRepository.findById(memberId)
-                .orElseThrow(() -> MemberNotFoundException.EXCEPTION);
+                .orElseThrow(() -> MemberHandler.NOT_FOUND);
     }
 
     @Override
     public Member queryMemberByUsername(String username) {
         return memberRepository.findByProfileUsername(username)
-                .orElseThrow(() -> MemberNotFoundException.EXCEPTION);
+                .orElseThrow(() -> MemberHandler.NOT_FOUND);
     }
 
     @Override
     public Member queryMemberByNickname(String nickname) {
         return memberRepository.findByNickname(nickname)
-                .orElseThrow(() -> MemberNotFoundException.EXCEPTION);
+                .orElseThrow(() -> MemberHandler.NOT_FOUND);
     }
 
 }
