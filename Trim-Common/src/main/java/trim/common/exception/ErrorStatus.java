@@ -26,9 +26,6 @@ public enum ErrorStatus implements BaseErrorCode{
     _UNAUTHORIZED(UNAUTHORIZED, 4001, "로그인이 필요합니다."),
     _FORBIDDEN(FORBIDDEN, 4002, "금지된 요청입니다."),
 
-    // entity MEMBER (4050-4099)
-    MEMBER_NOT_FOUND(NOT_FOUND, 4050, "회원을 찾을 수 없습니다."),
-    MEMBER_HAVE_ANY_CHANCE_OF_CONVERT_NICKNAME(BAD_REQUEST, 4051, "해당 회원은 사용할 수 있는 닉네임 변경 횟수를 모두 사용했습니다."),
 
     // entity QUESTION (4100-4149)
     QUESTION_NOT_FOUND(NOT_FOUND, 4100, "질문 글을 찾을 수 없습니다."),
