@@ -6,6 +6,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import trim.api.domains.member.vo.MemberRequest;
+import trim.common.util.EnumConvertUtil;
 import trim.domains.member.dao.domain.Profile;
 import trim.domains.member.dao.domain.SocialType;
 
@@ -19,7 +20,7 @@ public interface MemberMapper {
 
     @Named("stringToSocialType")
     default SocialType stringToSocialType(String socialType) {
-        return SocialType.converter(socialType);
+        return EnumConvertUtil.convert(SocialType.class, socialType);
     }
 
 }
