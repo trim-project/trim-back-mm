@@ -2,11 +2,11 @@ package trim.api.domains.comment.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.UseCase;
-import trim.domains.comment.adaptor.QuestionCommentAdaptor;
-import trim.domains.comment.domain.QuestionComment;
-import trim.domains.comment.service.QuestionCommentDomainService;
-import trim.domains.comment.validate.QuestionCommentValidator;
-import trim.domains.member.domain.Member;
+import trim.domains.comment.business.adaptor.QuestionCommentAdaptor;
+import trim.domains.comment.dao.domain.QuestionComment;
+import trim.domains.comment.business.service.QuestionCommentDomainService;
+import trim.domains.comment.business.validate.QuestionCommentValidator;
+import trim.domains.member.dao.domain.Member;
 
 @UseCase
 @RequiredArgsConstructor

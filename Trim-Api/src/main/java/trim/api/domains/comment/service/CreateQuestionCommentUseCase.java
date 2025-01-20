@@ -3,10 +3,10 @@ package trim.api.domains.comment.service;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.comment.vo.request.CreateQuestionCommentRequest;
 import trim.common.annotation.UseCase;
-import trim.domains.comment.service.QuestionCommentDomainService;
-import trim.domains.member.domain.Member;
-import trim.domains.question.adaptor.QuestionAdaptor;
-import trim.domains.question.domain.Question;
+import trim.domains.comment.business.service.QuestionCommentDomainService;
+import trim.domains.member.dao.domain.Member;
+import trim.domains.question.business.adaptor.QuestionAdaptor;
+import trim.domains.question.dao.domain.Question;
 
 @UseCase
 @RequiredArgsConstructor

@@ -7,7 +7,7 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.comment.service.CreateQuestionCommentUseCase;
 import trim.api.domains.comment.service.DeleteQuestionCommentUseCase;
 import trim.api.domains.comment.vo.request.CreateQuestionCommentRequest;
-import trim.domains.member.domain.Member;
+import trim.domains.member.dao.domain.Member;
 
 @RestController
 @RequiredArgsConstructor

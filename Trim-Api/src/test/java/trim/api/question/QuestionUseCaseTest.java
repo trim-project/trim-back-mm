@@ -14,11 +14,11 @@ import trim.api.domains.question.dto.response.QuestionResponse;
 import trim.api.domains.question.service.CreateQuestionUseCase;
 import trim.api.domains.question.service.FindAllQuestionUseCase;
 import trim.api.domains.question.service.FindQuestionUseCase;
-import trim.domains.comment.adaptor.QuestionCommentAdaptor;
-import trim.domains.member.domain.Member;
-import trim.domains.question.adaptor.QuestionAdaptor;
-import trim.domains.question.domain.Question;
-import trim.domains.question.service.QuestionDomainService;
+import trim.domains.comment.business.adaptor.QuestionCommentAdaptor;
+import trim.domains.member.dao.domain.Member;
+import trim.domains.question.business.adaptor.QuestionAdaptor;
+import trim.domains.question.dao.domain.Question;
+import trim.domains.question.business.service.QuestionDomainService;
 
 import java.util.Arrays;
 import java.util.Collections;

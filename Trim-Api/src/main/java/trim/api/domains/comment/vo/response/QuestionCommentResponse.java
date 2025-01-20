@@ -2,7 +2,7 @@ package trim.api.domains.comment.vo.response;
 
 import lombok.Builder;
 import lombok.Getter;
-import trim.domains.comment.domain.QuestionComment;
+import trim.domains.comment.dao.domain.QuestionComment;
 
 @Getter
 @Builder

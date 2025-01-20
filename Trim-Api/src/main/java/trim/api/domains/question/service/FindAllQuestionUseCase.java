@@ -3,8 +3,8 @@ package trim.api.domains.question.service;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.question.dto.response.FindQuestionResponse;
 import trim.common.annotation.UseCase;
-import trim.domains.question.adaptor.QuestionAdaptor;
-import trim.domains.question.domain.Question;
+import trim.domains.question.business.adaptor.QuestionAdaptor;
+import trim.domains.question.dao.domain.Question;
 
 
 import java.util.List;
