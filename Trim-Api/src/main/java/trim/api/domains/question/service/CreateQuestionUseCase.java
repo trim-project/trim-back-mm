@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.question.dto.request.QuestionRequest;
 import trim.common.annotation.UseCase;
-import trim.domains.member.domain.Member;
-import trim.domains.question.service.QuestionDomainService;
+import trim.domains.member.dao.domain.Member;
+import trim.domains.question.business.service.QuestionDomainService;
 
 
 @UseCase

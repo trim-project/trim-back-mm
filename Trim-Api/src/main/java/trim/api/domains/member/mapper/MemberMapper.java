@@ -6,8 +6,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import trim.api.domains.member.vo.MemberRequest;
-import trim.domains.member.domain.Profile;
-import trim.domains.member.domain.SocialType;
+import trim.domains.member.dao.domain.Profile;
+import trim.domains.member.dao.domain.SocialType;
 
 @Mapper(componentModel = "spring", builder = @Builder(disableBuilder = false))
 public interface MemberMapper {

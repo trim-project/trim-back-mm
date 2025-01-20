@@ -2,8 +2,6 @@ package trim.api.domains.member.vo;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import trim.domains.member.domain.Role;
-import trim.domains.member.domain.SocialType;
 
 @Getter
 @RequiredArgsConstructor

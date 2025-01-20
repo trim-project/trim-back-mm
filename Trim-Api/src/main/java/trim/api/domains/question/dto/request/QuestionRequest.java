@@ -2,8 +2,6 @@ package trim.api.domains.question.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
-import trim.domains.member.domain.Member;
-import trim.domains.question.domain.Question;
 import trim.domains.question.dto.QuestionDto;
 
 @Getter

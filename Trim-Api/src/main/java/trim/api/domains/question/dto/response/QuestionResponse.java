@@ -3,8 +3,8 @@ package trim.api.domains.question.dto.response;
 import lombok.Builder;
 import lombok.Getter;
 import trim.api.domains.comment.vo.response.QuestionCommentResponse;
-import trim.domains.comment.domain.QuestionComment;
-import trim.domains.question.domain.Question;
+import trim.domains.comment.dao.domain.QuestionComment;
+import trim.domains.question.dao.domain.Question;
 
 import java.util.List;
 import java.util.stream.Collectors;

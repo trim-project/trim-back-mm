@@ -9,7 +9,7 @@ import trim.api.domains.question.dto.request.QuestionRequest;
 import trim.api.domains.question.dto.response.FindQuestionResponse;
 import trim.api.domains.question.dto.response.QuestionResponse;
 import trim.api.domains.question.service.*;
-import trim.domains.member.domain.Member;
+import trim.domains.member.dao.domain.Member;
 
 
 import java.util.List;

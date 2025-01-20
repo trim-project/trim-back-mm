@@ -3,11 +3,11 @@ package trim.api.domains.question.service;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.question.dto.request.QuestionRequest;
 import trim.common.annotation.UseCase;
-import trim.domains.member.domain.Member;
-import trim.domains.question.adaptor.QuestionAdaptor;
-import trim.domains.question.domain.Question;
-import trim.domains.question.service.QuestionDomainService;
-import trim.domains.question.validate.QuestionValidate;
+import trim.domains.member.dao.domain.Member;
+import trim.domains.question.business.adaptor.QuestionAdaptor;
+import trim.domains.question.dao.domain.Question;
+import trim.domains.question.business.service.QuestionDomainService;
+import trim.domains.question.business.validate.QuestionValidate;
 
 @UseCase
 @RequiredArgsConstructor
