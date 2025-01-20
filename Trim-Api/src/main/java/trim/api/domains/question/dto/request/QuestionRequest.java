@@ -2,7 +2,7 @@ package trim.api.domains.question.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
-import trim.domains.question.dto.QuestionDto;
+import trim.domains.board.dto.QuestionDto;
 
 @Getter
 @Builder

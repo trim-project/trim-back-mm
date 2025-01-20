@@ -1,4 +1,4 @@
-package trim.domains.comment.exception;
+package trim.domains.board.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,11 +15,13 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Getter
 @AllArgsConstructor
-public enum CommentErrorStatus implements BaseErrorCode {
+public enum QuestionErrorStatus implements BaseErrorCode {
 
-    // entity COMMENT (4150-4199)
-    COMMENT_NOT_FOUND(NOT_FOUND, 4150, "질문게시글의 댓글을 찾을 수 없습니다."),
-    COMMENT_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4151, "질문의 댓글은 오로지 작성자에 의해 수정&삭제가 가능합니다.");
+    // entity QUESTION (4100-4149)
+    QUESTION_NOT_FOUND(NOT_FOUND, 4100, "질문 글을 찾을 수 없습니다."),
+    QUESTION_HAVE_ANY_ANSWER(BAD_REQUEST, 4101, "해당 질문글은 답변글을 가지지 않습니다."),
+    QUESTION_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4102, "질문글은 오로지 작성자에 의해 수정&삭제가 가능합니다.");
+
 
     private final HttpStatus httpStatus;
     private final Integer code;
