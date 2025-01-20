@@ -1,4 +1,4 @@
-package trim.domains.member.dao.domain;
+package trim.domains.board.dao.domain;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 @Getter
 @RequiredArgsConstructor
-public enum Role implements KeyedEnum {
+public enum ResolveStatus implements KeyedEnum {
 
-    GUEST("ROLE_GUEST"), USER("ROLE_USER"), DORMANT("ROLE_DORMANT"), ADMIN("ROLE_ADMIN");
+    RESOLVED("RESOLVED"), UNRESOLVED("UNRESOLVED");
 
     private final String key;
 

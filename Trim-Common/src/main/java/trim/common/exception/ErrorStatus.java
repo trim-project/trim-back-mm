@@ -26,6 +26,11 @@ public enum ErrorStatus implements BaseErrorCode{
     _UNAUTHORIZED(UNAUTHORIZED, 4001, "로그인이 필요합니다."),
     _FORBIDDEN(FORBIDDEN, 4002, "금지된 요청입니다.");
 
+    // entity MEMBER (4050-4099)
+    // entity QUESTION (4100-4149)
+    // entity COMMENT (4150-4199)
+    // entity FreeTalk (4200-4249)
+
     private final HttpStatus httpStatus;
     private final Integer code;
     private final String message;

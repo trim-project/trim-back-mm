@@ -1,4 +1,4 @@
-package trim.domains.comment.exception;
+package trim.domains.freetalk.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,16 +15,15 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Getter
 @AllArgsConstructor
-public enum CommentErrorStatus implements BaseErrorCode {
+public enum FreeTalkErrorStatus implements BaseErrorCode {
 
-    // entity COMMENT (4150-4199)
-    COMMENT_NOT_FOUND(NOT_FOUND, 4150, "질문게시글의 댓글을 찾을 수 없습니다."),
-    COMMENT_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4151, "질문의 댓글은 오로지 작성자에 의해 수정&삭제가 가능합니다.");
+    // entity FreeTalk (4200-4249)
+    FREE_TALK_NOT_FOUND(NOT_FOUND, 4200, "자유게시판을 찾을 수 없습니다."),
+    FREE_TALK_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4201, "자유게시판은 오로지 작성자에 의해 수정&삭제가 가능합니다..");
 
     private final HttpStatus httpStatus;
     private final Integer code;
     private final String message;
-
 
     @Override
     public Reason getReason() {
@@ -52,3 +51,4 @@ public enum CommentErrorStatus implements BaseErrorCode {
         return Objects.nonNull(annotation) ? annotation.value() : this.getMessage();
     }
 }
+
