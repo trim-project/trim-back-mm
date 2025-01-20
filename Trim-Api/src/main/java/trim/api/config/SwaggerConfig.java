@@ -127,7 +127,6 @@ public class SwaggerConfig {
                                 baseErrorCode -> {
                                     try {
                                         Reason errorReason = baseErrorCode.getReasonHttpStatus();
-                                        log.info("errorReason.getHttpStatus= {}", errorReason.getHttpStatus());
                                         return ExampleHolder.builder()
                                                 .holder(
                                                         getSwaggerExample(
@@ -168,7 +167,7 @@ public class SwaggerConfig {
                                         ExplainError annotation =
                                                 field.getAnnotation(ExplainError.class);
                                         String value = annotation.value();
-                                        Reason errorReason = exception.getErrorReason();
+                                        Reason errorReason = exception.getErrorReasonHttpStatus();
                                         return ExampleHolder.builder()
                                                 .holder(getSwaggerExample(value, errorReason))
                                                 .code(errorReason.getCode())
