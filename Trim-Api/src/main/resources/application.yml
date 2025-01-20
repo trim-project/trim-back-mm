@@ -5,3 +5,10 @@ spring:
   profiles:
     include:
       - domain
+
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: method
+    path: /swagger-ui.html
+  use-fqn: true

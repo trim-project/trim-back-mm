@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import trim.api.ApiPackageLocation;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.comment.controller.QuestionCommentApiController;
+import trim.api.domains.member.controller.MemberApiController;
+import trim.api.domains.question.controller.QuestionApiController;
 import trim.common.exception.ErrorStatus;
 import trim.common.exception.GeneralException;
 import trim.common.exception.Reason;
@@ -22,7 +26,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@RestControllerAdvice(annotations = {RestController.class})
+//@RestControllerAdvice(annotations = {RestController.class},
+//        basePackageClasses = ApiPackageLocation.class)
 public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
