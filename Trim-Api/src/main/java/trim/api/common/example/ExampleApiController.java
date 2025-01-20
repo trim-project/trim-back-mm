@@ -10,7 +10,6 @@ import trim.common.annotation.ApiErrorStatusExample;
 import trim.common.annotation.DisableSwaggerSecurity;
 import trim.common.exception.ErrorStatus;
 import trim.domains.member.exception.MemberErrorStatus;
-import trim.domains.board.exception.QuestionErrorStatus;
 
 @RestController
 @RequestMapping("/v1/api/examples")

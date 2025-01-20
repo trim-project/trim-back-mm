@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
 import trim.domains.board.dao.domain.Board;
+import trim.domains.board.dto.FreeTalkDto;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.board.dto.QuestionDto;
 
@@ -19,4 +20,7 @@ import trim.domains.board.dto.QuestionDto;
 @DiscriminatorValue("type_free_talk")
 public class FreeTalk extends Board {
 
+    public void edit(FreeTalkDto dto) {
+        super.edit(dto.getTitle(), dto.getContent());
+    }
 }

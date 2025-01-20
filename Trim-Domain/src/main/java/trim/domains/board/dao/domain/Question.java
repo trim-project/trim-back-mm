@@ -22,4 +22,7 @@ public class Question extends Board {
     @Enumerated(EnumType.STRING)
     private ResolveStatus resolveStatus;
 
+    public void edit(QuestionDto dto) {
+        super.edit(dto.getTitle(), dto.getContent());
+    }
 }
