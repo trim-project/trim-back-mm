@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.board.dao.repository.QuestionRepository;
-import trim.domains.board.exception.QuestionHandler;
 
 import java.util.List;
 
