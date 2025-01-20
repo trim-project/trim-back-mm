@@ -1,9 +1,8 @@
 package trim.api.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.v3.core.jackson.ModelResolver;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.examples.Example;
 import io.swagger.v3.oas.models.info.Info;
@@ -16,7 +15,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
-import io.swagger.v3.oas.models.OpenAPI;
+import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.customizers.OperationCustomizer;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.ApplicationContext;
@@ -24,7 +23,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.method.HandlerMethod;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.common.dto.ExampleHolder;
-import trim.common.annotation.ApiErrorCodeExample;
+import trim.common.annotation.ApiErrorStatusExample;
 import trim.common.annotation.ApiErrorExceptionsExample;
 import trim.common.annotation.DisableSwaggerSecurity;
 import trim.common.annotation.ExplainError;
@@ -37,6 +36,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 /** Swagger 사용 환경을 위한 설정 파일 */
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class SwaggerConfig {
@@ -74,10 +74,6 @@ public class SwaggerConfig {
                                 .name("Authorization"));
     }
 
-    @Bean
-    public ModelResolver modelResolver(ObjectMapper objectMapper) {
-        return new ModelResolver(objectMapper);
-    }
 
     /**
      * 핸들러 메서드들의 정보를 스웨거에 등록 및 설정
@@ -91,8 +87,8 @@ public class SwaggerConfig {
                     handlerMethod.getMethodAnnotation(DisableSwaggerSecurity.class);
             ApiErrorExceptionsExample apiErrorExceptionsExample =
                     handlerMethod.getMethodAnnotation(ApiErrorExceptionsExample.class);
-            ApiErrorCodeExample apiErrorCodeExample =
-                    handlerMethod.getMethodAnnotation(ApiErrorCodeExample.class);
+            ApiErrorStatusExample apiErrorStatusExample =
+                    handlerMethod.getMethodAnnotation(ApiErrorStatusExample.class);
 
             List<String> tags = getTags(handlerMethod);
             // DisableSecurity 어노테이션있을시 스웨거 시큐리티 설정 삭제
@@ -108,8 +104,8 @@ public class SwaggerConfig {
                 generateExceptionResponseExample(operation, apiErrorExceptionsExample.value());
             }
             // ApiErrorCodeExample 어노테이션 단 메소드 적용
-            if (apiErrorCodeExample != null) {
-                generateErrorCodeResponseExample(operation, apiErrorCodeExample.value());
+            if (apiErrorStatusExample != null) {
+                generateErrorStatusResponseExample(operation, apiErrorStatusExample.value());
             }
             return operation;
         };
@@ -119,7 +115,7 @@ public class SwaggerConfig {
      * ExplainError 어노테이션으로 부가설명을 붙일수있습니다. 필드들을 가져와서 예시 에러 객체를
      * 동적으로 생성해서 예시값으로 붙입니다.
      */
-    private void generateErrorCodeResponseExample(
+    private void generateErrorStatusResponseExample(
             Operation operation, Class<? extends BaseErrorCode> type) {
         ApiResponses responses = operation.getResponses();
 
@@ -130,7 +126,8 @@ public class SwaggerConfig {
                         .map(
                                 baseErrorCode -> {
                                     try {
-                                        Reason errorReason = baseErrorCode.getReason();
+                                        Reason errorReason = baseErrorCode.getReasonHttpStatus();
+                                        log.info("errorReason.getHttpStatus= {}", errorReason.getHttpStatus());
                                         return ExampleHolder.builder()
                                                 .holder(
                                                         getSwaggerExample(

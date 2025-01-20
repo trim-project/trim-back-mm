@@ -30,8 +30,12 @@ dependencies {
     // Lombok Integration with MapStruct (optional, if using Lombok)
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
-    //swagger
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
+
+    //swagger(+object mapper)
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+
 }
 
 test {
