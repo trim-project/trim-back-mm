@@ -1,10 +1,10 @@
-package trim.domains.question.business.validate;
+package trim.domains.board.business.validate;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainValidator;
-import trim.domains.answer.dao.repository.AnswerRepository;
+import trim.domains.board.dao.domain.Question;
+import trim.domains.board.dao.repository.AnswerRepository;
 import trim.domains.member.dao.domain.Member;
-import trim.domains.question.dao.domain.Question;
 import trim.domains.board.exception.QuestionHandler;
 
 @DomainValidator

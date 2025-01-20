@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import trim.api.domains.member.mapper.MemberMapper;
 import trim.api.domains.member.vo.MemberRequest;
 import trim.common.annotation.UseCase;
+import trim.common.util.EnumConvertUtil;
 import trim.domains.member.dao.domain.Profile;
 import trim.domains.member.dao.domain.Role;
 import trim.domains.member.business.service.MemberDomainService;
@@ -18,12 +19,9 @@ public class RegisterMemberUseCase {
 
     public Long execute(MemberRequest memberRequest) {
         Profile profile = MemberMapper.INSTANCE.toProfile(memberRequest);
-        log.info("profile email = {}", profile.getEmail());
-        log.info("profile username = {}", profile.getUsername());
-        log.info("profile socialType = {}", profile.getSocialType());
         return memberDomainService.registerMember(
                 profile,
-                Role.converter(memberRequest.getRole()),
+                EnumConvertUtil.convert(Role.class, memberRequest.getRole()),
                 memberRequest.getNickname()
         );
     }

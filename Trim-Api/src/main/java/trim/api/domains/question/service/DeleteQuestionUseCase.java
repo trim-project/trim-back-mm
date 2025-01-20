@@ -2,8 +2,8 @@ package trim.api.domains.question.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.UseCase;
+import trim.domains.board.business.service.QuestionDomainService;
 import trim.domains.member.dao.domain.Member;
-import trim.domains.question.business.service.QuestionDomainService;
 
 @UseCase
 @RequiredArgsConstructor

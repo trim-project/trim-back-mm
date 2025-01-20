@@ -1,13 +1,13 @@
-package trim.domains.question.business.service;
+package trim.domains.board.business.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
+import trim.domains.board.business.adaptor.QuestionAdaptor;
+import trim.domains.board.business.validate.QuestionValidate;
+import trim.domains.board.dao.domain.Question;
+import trim.domains.board.dao.repository.QuestionRepository;
 import trim.domains.member.dao.domain.Member;
-import trim.domains.question.business.adaptor.QuestionAdaptor;
-import trim.domains.question.dao.domain.Question;
 import trim.domains.board.dto.QuestionDto;
-import trim.domains.question.dao.repository.QuestionRepository;
-import trim.domains.question.business.validate.QuestionValidate;
 
 @DomainService
 @RequiredArgsConstructor

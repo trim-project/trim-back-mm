@@ -7,5 +7,5 @@ import trim.domains.board.dao.domain.Answer;
 
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
-    boolean existsByBoardId(Long boardId);
+    boolean existsByQuestionId(Long id);
 }

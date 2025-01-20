@@ -1,7 +1,7 @@
-package trim.domains.question.business.service;
+package trim.domains.board.business.service;
 
+import trim.domains.board.dao.domain.Question;
 import trim.domains.member.dao.domain.Member;
-import trim.domains.question.dao.domain.Question;
 import trim.domains.board.dto.QuestionDto;
 
 
