@@ -1,5 +1,6 @@
 package trim.api.common.advice;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
@@ -15,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import trim.api.ApiPackageLocation;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.common.example.ExampleApiController;
 import trim.api.domains.comment.controller.QuestionCommentApiController;
 import trim.api.domains.member.controller.MemberApiController;
 import trim.api.domains.question.controller.QuestionApiController;
@@ -26,8 +28,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
-//@RestControllerAdvice(annotations = {RestController.class},
-//        basePackageClasses = ApiPackageLocation.class)
+@Hidden
+@RestControllerAdvice(annotations = {RestController.class})
 public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler
