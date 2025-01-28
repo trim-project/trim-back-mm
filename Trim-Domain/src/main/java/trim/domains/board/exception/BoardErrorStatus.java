@@ -27,7 +27,11 @@ public enum BoardErrorStatus implements BaseErrorCode {
 
     // entity FreeTalk (4200-4249)
     FREE_TALK_NOT_FOUND(NOT_FOUND, 4200, "자유게시판을 찾을 수 없습니다."),
-    FREE_TALK_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4201, "자유게시판은 오로지 작성자에 의해 수정&삭제가 가능합니다..");
+    FREE_TALK_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4201, "자유게시판은 오로지 작성자에 의해 수정&삭제가 가능합니다."),
+
+    // entity ANSWER (4250-4299)
+    ANSWER_NOT_FOUND(NOT_FOUND, 4250, "답글을 찾을 수 없습니다."),
+    ANSWER_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4250, "답글은 오로지 작성자에 의해 수정&삭제가 가능합니다.");
 
     private final HttpStatus httpStatus;
     private final Integer code;
