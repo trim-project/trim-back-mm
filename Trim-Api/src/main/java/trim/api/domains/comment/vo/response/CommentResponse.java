@@ -6,12 +6,12 @@ import trim.domains.comment.dao.domain.Comment;
 
 @Getter
 @Builder
-public class QuestionCommentResponse {
+public class CommentResponse {
     private String content;
     private String nickname;
 
-    public static QuestionCommentResponse of(Comment comment){
-       return QuestionCommentResponse.builder()
+    public static CommentResponse of(Comment comment){
+       return CommentResponse.builder()
                .content(comment.getContent())
                .nickname(comment.getWriter().getNickname())
                .build();
