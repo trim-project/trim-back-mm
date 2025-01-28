@@ -16,8 +16,6 @@ import lombok.experimental.SuperBuilder;
 @DiscriminatorValue("type_answer")
 public class Answer extends Board {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id")
-    private Question question;
+    private Long questionId;
 
 }
