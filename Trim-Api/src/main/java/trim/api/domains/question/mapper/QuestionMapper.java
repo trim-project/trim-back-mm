@@ -15,7 +15,6 @@ public interface QuestionMapper {
     @Mapping(target = "title", source = "question.title")
     @Mapping(target = "content", source = "question.content")
     @Mapping(target = "createdAt", source = "question.createdAt")
-    @Mapping(target = "nickname", source = "question.writer.nickname")
     QuestionResponse toQuestionResponse(Question question);
 
 }

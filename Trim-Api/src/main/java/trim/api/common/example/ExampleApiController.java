@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import trim.common.annotation.ApiErrorStatusExample;
 import trim.common.annotation.DisableSwaggerSecurity;
 import trim.common.exception.ErrorStatus;
+import trim.domains.board.exception.BoardErrorStatus;
 import trim.domains.member.exception.MemberErrorStatus;
 
 @RestController
@@ -33,11 +34,6 @@ public class ExampleApiController {
 
     @GetMapping("/question")
     @Operation(summary = "질문게시글 도메인 관련 에러 코드 나열")
-    @ApiErrorStatusExample(QuestionErrorStatus.class)
-    public void getQuestionErrorCode() {}
-
-    @GetMapping("/question/comment")
-    @Operation(summary = "질문게시글 댓글 도메인 관련 에러 코드 나열")
-    @ApiErrorStatusExample(QuestionErrorStatus.class)
-    public void getQuestionCommentErrorCode() {}
+    @ApiErrorStatusExample(BoardErrorStatus.class)
+    public void getBoardErrorCode() {}
 }
