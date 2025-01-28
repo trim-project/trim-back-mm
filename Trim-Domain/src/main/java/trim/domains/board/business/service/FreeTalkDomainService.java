@@ -4,7 +4,7 @@ import trim.domains.board.dao.domain.FreeTalk;
 import trim.domains.board.dto.FreeTalkDto;
 import trim.domains.member.dao.domain.Member;
 
-public interface FreeTalkAdaptor {
+public interface FreeTalkDomainService {
 
     Long createFreeTalk(Member member, FreeTalkDto dto);
 

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.FreeTalk;
 import trim.domains.board.dao.repository.FreeTalkRepository;
-import trim.domains.freetalk.exception.FreeTalkHandler;
+import trim.domains.board.exception.BoardHandler;
 import trim.domains.member.dao.domain.Member;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class FreeTalkAdaptorImpl implements FreeTalkAdaptor{
 
     @Override
     public FreeTalk queryFreeTalkById(Long freeTalkId) {
-        return freeTalkRepository.findById(freeTalkId).orElseThrow(() -> FreeTalkHandler.NOT_FOUND);
+        return freeTalkRepository.findById(freeTalkId).orElseThrow(() -> BoardHandler.FREE_TALK_NOT_FOUND);
     }
 
     @Override
