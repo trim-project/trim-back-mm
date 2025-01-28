@@ -22,7 +22,7 @@ public class CommentApiController {
 
     @Operation(summary = "게시글의 모든 댓글을 조회합니다. 이때 게시글은 PK로 조회합니다.")
     @GetMapping("/{boardId}")
-    public ApiResponseDto<List<CommentResponse>> getCommentsByBoardId(@PathVariable Long boardId) {
+    public ApiResponseDto<List<CommentDetailResponse>> getCommentsByBoardId(@PathVariable Long boardId) {
         return ApiResponseDto.onSuccess(getCommentsOfBoardUseCase.execute(boardId));
     }
 
