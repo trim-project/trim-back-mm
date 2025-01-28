@@ -13,7 +13,6 @@ import trim.domains.member.dao.domain.Member;
 @Getter
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DiscriminatorColumn(name = "board_type")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Board extends BaseTimeEntity {
     @Id
@@ -33,7 +32,7 @@ public abstract class Board extends BaseTimeEntity {
     private String content;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "board_type")
+    @Column(name = "board_type", nullable = false)
     private BoardType boardType;
 
     protected void edit(String title, String content) {

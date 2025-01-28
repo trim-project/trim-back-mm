@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.comment.dao.domain.Comment;
 import trim.domains.comment.dao.repository.CommentRepository;
+import trim.domains.comment.exception.CommentHandler;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class CommentAdaptorImpl implements CommentAdaptor{
     @Override
     public Comment queryById(Long commentId) {
         return commentRepository.findById(commentId)
-                .orElseThrow(() -> QuestionCommentHandler.NOT_FOUND);
+                .orElseThrow(() -> CommentHandler.NOT_FOUND);
     }
 
     @Override

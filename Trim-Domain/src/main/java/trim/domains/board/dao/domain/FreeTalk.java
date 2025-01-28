@@ -16,7 +16,7 @@ import trim.domains.board.dto.QuestionDto;
 @Getter
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+//@AllArgsConstructor
 @DiscriminatorValue("type_free_talk")
 public class FreeTalk extends Board {
 

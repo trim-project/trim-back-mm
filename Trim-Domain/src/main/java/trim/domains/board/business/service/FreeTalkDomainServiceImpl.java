@@ -9,7 +9,7 @@ import trim.domains.member.dao.domain.Member;
 
 @Adaptor
 @RequiredArgsConstructor
-public class FreeTalkAdaptorImpl implements FreeTalkAdaptor{
+public class FreeTalkDomainServiceImpl implements FreeTalkDomainService {
 
     private final FreeTalkRepository freeTalkRepository;
 

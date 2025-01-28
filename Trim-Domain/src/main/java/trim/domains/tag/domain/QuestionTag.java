@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import trim.common.model.BaseTimeEntity;
-import trim.domains.question.dao.domain.Question;
+import trim.domains.board.dao.domain.Question;
 
 @Entity
 @Getter

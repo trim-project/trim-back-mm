@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.board.dao.repository.QuestionRepository;
+import trim.domains.board.exception.BoardHandler;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class QuestionAdaptorImpl implements QuestionAdaptor{
     @Override
     public Question queryById(Long questionId) {
         return questionRepository.findById(questionId)
-                .orElseThrow(() -> QuestionHandler.NOT_FOUND);
+                .orElseThrow(() -> BoardHandler.QUESTION_NOT_FOUND);
     }
 
     @Override
