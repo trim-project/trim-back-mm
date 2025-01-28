@@ -19,5 +19,7 @@ public class QuestionDetailResponse {
     private final MemberResponse memberResponse;
     @Builder.Default
     private final List<AnswerDetailResponse> answerDetailResponseList = new ArrayList<>();
+    @Builder.Default
+    private final List<String> tagList = new ArrayList<>();
 
 }

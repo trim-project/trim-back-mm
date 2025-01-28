@@ -14,7 +14,7 @@ import trim.domains.board.business.adaptor.AnswerAdaptor;
 import trim.domains.board.business.adaptor.QuestionAdaptor;
 import trim.domains.board.dao.domain.Answer;
 import trim.domains.board.dao.domain.Question;
-
+import trim.domains.tag.business.adaptor.TagAdaptor;
 
 
 import java.util.List;
@@ -26,6 +26,7 @@ public class FindAllQuestionUseCase {
 
     private final QuestionAdaptor questionAdaptor;
     private final AnswerAdaptor answerAdaptor;
+    private final TagAdaptor tagAdaptor;
 
     public List<QuestionDetailResponse> execute() {
         List<Question> questions = questionAdaptor.queryAll();
@@ -42,6 +43,7 @@ public class FindAllQuestionUseCase {
                 .memberResponse(MemberMapper.INSTANCE.toMemberResponse(question.getWriter()))
                 .questionResponse(QuestionMapper.INSTANCE.toQuestionResponse(question))
                 .answerDetailResponseList(mapToAnswerDetailResponseList(answers))
+                .tagList(tagAdaptor.queryNamesByBoardId(question.getId()))
                 .build();
     }
 
