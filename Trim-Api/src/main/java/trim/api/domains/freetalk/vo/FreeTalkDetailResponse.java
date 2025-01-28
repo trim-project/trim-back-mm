@@ -5,8 +5,12 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.comment.vo.response.CommentDetailResponse;
 import trim.api.domains.comment.vo.response.CommentResponse;
+import trim.api.domains.freetalk.mapper.FreeTalkMapper;
+import trim.api.domains.member.mapper.MemberMapper;
 import trim.api.domains.member.vo.MemberResponse;
+import trim.domains.board.dao.domain.FreeTalk;
 import trim.domains.board.dao.repository.FreeTalkRepository;
+import trim.domains.comment.dao.domain.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,4 +23,12 @@ public class FreeTalkDetailResponse {
     private final MemberResponse memberResponse;
     @Builder.Default
     private final List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
+
+    public static FreeTalkDetailResponse of(FreeTalk freeTalk, List<Comment> comments) {
+        return FreeTalkDetailResponse.builder()
+                .freeTalkResponse(FreeTalkMapper.INSTANCE.toFreeTalkResponse(freeTalk))
+                .memberResponse(MemberMapper.INSTANCE.toMemberResponse(freeTalk.getWriter()))
+                .commentDetailResponseList(comments.stream().map(CommentDetailResponse::of).toList())
+                .build();
+    }
 }

@@ -22,7 +22,7 @@ public class QuestionApiController {
 
     private final CreateQuestionUseCase createQuestionUseCase;
     private final EditQuestionUseCase editQuestionUseCase;
-    private final FindQuestionUseCase findQuestionUseCase;
+    private final FindSpecificQuestionUseCase findSpecificQuestionUseCase;
     private final FindAllQuestionUseCase findAllQuestionUseCase;
 
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
@@ -35,7 +35,7 @@ public class QuestionApiController {
     @Operation(summary = "질문 게시판 조회 메서드입니다. 질문 게시판의 pk를 통해 조회합니다.")
     @GetMapping("/{questionId}")
     public ApiResponseDto<QuestionDetailResponse> findQuestion(@PathVariable Long questionId){
-        return ApiResponseDto.onSuccess(findQuestionUseCase.execute(questionId));
+        return ApiResponseDto.onSuccess(findSpecificQuestionUseCase.execute(questionId));
     }
 
     @Operation(summary = "질문 게시판 리스트 조회 메서드입니다.")

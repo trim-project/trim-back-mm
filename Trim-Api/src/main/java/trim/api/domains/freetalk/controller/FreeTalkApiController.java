@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.freetalk.service.GetAllFreeTalkUseCase;
+import trim.api.domains.freetalk.service.GetSpecificFreeTalkUseCase;
 import trim.api.domains.freetalk.service.WriteFreeTalkUseCase;
 import trim.api.domains.freetalk.vo.FreeTalkDetailResponse;
 import trim.api.domains.freetalk.vo.FreeTalkRequest;
@@ -20,6 +21,7 @@ public class FreeTalkApiController {
 
     private final WriteFreeTalkUseCase writeFreeTalkUseCase;
     private final GetAllFreeTalkUseCase getAllFreeTalkUseCase;
+    private final GetSpecificFreeTalkUseCase getSpecificFreeTalkUseCase;
 
     @Operation(summary = "자유 게시판 글을 작성합니다.")
     @PostMapping("/members/{memberId}")
@@ -33,4 +35,11 @@ public class FreeTalkApiController {
     public ApiResponseDto<List<FreeTalkDetailResponse>> getAllFreeTalk() {
         return ApiResponseDto.onSuccess(getAllFreeTalkUseCase.execute());
     }
+
+    @Operation(summary = "특정 자유 게시판을 조회합니다.")
+    @GetMapping("/{freeTalkId}")
+    public ApiResponseDto<FreeTalkDetailResponse> getSpecificFreeTalk(@PathVariable Long freeTalkId) {
+        return ApiResponseDto.onSuccess(getSpecificFreeTalkUseCase.execute(freeTalkId));
+    }
+
 }

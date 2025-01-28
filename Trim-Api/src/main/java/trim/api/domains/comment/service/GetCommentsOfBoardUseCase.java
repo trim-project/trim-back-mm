@@ -24,14 +24,7 @@ public class GetCommentsOfBoardUseCase {
         List<Comment> comments = commentAdaptor.queryAllByBoardId(boardId);
 
         return comments.stream()
-                .map(this::mapToCommentDetailResponse)
+                .map(CommentDetailResponse::of)
                 .toList();
-    }
-
-    private CommentDetailResponse mapToCommentDetailResponse(Comment comment) {
-        return CommentDetailResponse.builder()
-                .memberResponse(MemberMapper.INSTANCE.toMemberResponse(comment.getWriter()))
-                .commentResponse(CommentMapper.INSTANCE.toResponse(comment))
-                .build();
     }
 }
