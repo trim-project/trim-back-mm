@@ -38,28 +38,9 @@ public class FindAllQuestionUseCase {
 
     private QuestionDetailResponse mapToQuestionDetailResponse(Question question) {
         List<Answer> answers = answerAdaptor.queryByQuestionId(question.getId());
+        List<String> tags = tagAdaptor.queryNamesByBoardId(question.getId());
 
-        return QuestionDetailResponse.builder()
-                .memberResponse(MemberMapper.INSTANCE.toMemberResponse(question.getWriter()))
-                .questionResponse(QuestionMapper.INSTANCE.toQuestionResponse(question))
-                .answerDetailResponseList(mapToAnswerDetailResponseList(answers))
-                .tagList(tagAdaptor.queryNamesByBoardId(question.getId()))
-                .build();
+        return QuestionDetailResponse.of(question, answers, tags);
     }
-
-
-    private List<AnswerDetailResponse> mapToAnswerDetailResponseList(List<Answer> answers) {
-        return answers.stream()
-                .map(this::mapToAnswerDetailResponse)
-                .collect(Collectors.toList());
-    }
-
-    private AnswerDetailResponse mapToAnswerDetailResponse(Answer answer) {
-        return AnswerDetailResponse.builder()
-                .answerResponse(AnswerMapper.INSTANCE.toAnswerResponse(answer))
-                .memberResponse(MemberMapper.INSTANCE.toMemberResponse(answer.getWriter()))
-                .build();
-    }
-
 
 }
