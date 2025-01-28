@@ -7,6 +7,8 @@ import trim.domains.member.dao.domain.Member;
 import trim.domains.member.exception.MemberHandler;
 import trim.domains.member.dao.repository.MemberRepository;
 
+import java.util.List;
+
 @Adaptor
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -29,6 +31,11 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     public Member queryMemberByNickname(String nickname) {
         return memberRepository.findByNickname(nickname)
                 .orElseThrow(() -> MemberHandler.NOT_FOUND);
+    }
+
+    @Override
+    public List<Member> queryAllMember() {
+        return memberRepository.findAll();
     }
 
 }
