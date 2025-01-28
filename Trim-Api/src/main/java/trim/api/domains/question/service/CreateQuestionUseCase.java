@@ -3,8 +3,10 @@ package trim.api.domains.question.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.question.dto.request.QuestionRequest;
+import trim.api.domains.question.mapper.QuestionMapper;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.service.QuestionDomainService;
+import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
 
 
@@ -12,10 +14,12 @@ import trim.domains.member.dao.domain.Member;
 @RequiredArgsConstructor
 public class CreateQuestionUseCase {
 
+    private final MemberAdaptor memberAdaptor;
     private final QuestionDomainService questionDomainService;
 
     @Transactional
-    public Long execute(Member writer, QuestionRequest questionRequest) {
+    public Long execute(Long memberId, QuestionRequest questionRequest) {
+        Member writer = memberAdaptor.queryMember(memberId);
         return questionDomainService.writeQuestion(writer, questionRequest.from());
     }
 

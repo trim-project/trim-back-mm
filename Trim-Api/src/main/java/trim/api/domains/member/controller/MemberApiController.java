@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.member.service.GetAllMemberUseCase;
 import trim.api.domains.member.service.RegisterMemberUseCase;
 import trim.api.domains.member.vo.MemberRequest;
 import trim.api.domains.member.vo.MemberResponse;

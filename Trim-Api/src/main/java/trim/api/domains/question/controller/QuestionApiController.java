@@ -28,9 +28,9 @@ public class QuestionApiController {
 
     /** 질문 등록 - 테스트용 **/
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
-    @PostMapping
-    public ApiResponseDto<Long> createQuestion(Member writer, @RequestBody QuestionRequest request){
-        return ApiResponseDto.onSuccess(createQuestionUseCase.execute(writer, request));
+    @PostMapping("/members/{memberId}")
+    public ApiResponseDto<Long> createQuestion(@PathVariable Long memberId, @RequestBody QuestionRequest request){
+        return ApiResponseDto.onSuccess(createQuestionUseCase.execute(memberId, request));
 
     }
 
