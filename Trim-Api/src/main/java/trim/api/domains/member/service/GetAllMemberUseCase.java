@@ -9,6 +9,7 @@ import trim.domains.member.business.adaptor.MemberAdaptor;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @UseCase
 @Transactional(readOnly = true)
@@ -19,7 +20,7 @@ public class GetAllMemberUseCase {
 
     public List<MemberResponse> execute() {
         return memberAdaptor.queryAllMember()
-                .stream().map(member -> MemberMapper.INSTANCE.toMemberResponse(member))
-                .collect(Collections.toList());
+                .stream().map(MemberMapper.INSTANCE::toMemberResponse)
+                .collect(Collectors.toList());
     }
 }
