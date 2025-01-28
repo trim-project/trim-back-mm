@@ -3,6 +3,7 @@ package trim.domains.comment.business.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.DomainService;
+import trim.domains.board.dao.domain.Board;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.comment.dao.domain.Comment;
 import trim.domains.comment.dao.repository.CommentRepository;
@@ -17,13 +18,13 @@ public class CommentDomainServiceImpl implements CommentDomainService {
     private final CommentRepository commentRepository;
 
     @Override
-    public Long createQuestionComment(Member writer, Question question, String content) {
+    public Comment createComment(Member writer, Long boardId, String content) {
         Comment questionComment = Comment.builder()
-                .boardId(question.getId())
+                .boardId(boardId)
                 .writer(writer)
                 .content(content)
                 .build();
-        return commentRepository.save(questionComment).getId();
+        return commentRepository.save(questionComment);
     }
 
     @Override
