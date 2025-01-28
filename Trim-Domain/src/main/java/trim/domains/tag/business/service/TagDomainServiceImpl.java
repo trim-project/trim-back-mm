@@ -8,6 +8,10 @@ import trim.domains.tag.dao.entity.Tag;
 import trim.domains.tag.dao.repository.BoardTagRepository;
 import trim.domains.tag.dao.repository.TagRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Adaptor
 @RequiredArgsConstructor
 public class TagDomainServiceImpl implements TagDomainService{
@@ -17,16 +21,16 @@ public class TagDomainServiceImpl implements TagDomainService{
 
 
     @Override
-    public Tag addTagInBoard(Long boardId, String content) {
-        Tag tag = Tag.builder()
-                .name(content)
-                .build();
-        tagRepository.save(tag);
-        BoardTag boardTag = BoardTag.builder()
-                .boardId(boardId)
-                .tagId(tag.getId())
-                .build();
-        boardTagRepository.save(boardTag);
-        return tag;
+    public List<Tag> addTagInBoard(Long boardId, List<String> tags) {
+        List<Tag> tagList = tags.stream().map(Tag::of).toList();
+        tagRepository.saveAll(tagList);
+        List<BoardTag> boardTagList = new ArrayList<>();
+        tagList.forEach(tag -> boardTagList.add(BoardTag.builder()
+                        .tagId(tag.getId())
+                        .boardId(boardId)
+                        .build())
+                );
+        boardTagRepository.saveAll(boardTagList);
+        return tagList;
     }
 }
