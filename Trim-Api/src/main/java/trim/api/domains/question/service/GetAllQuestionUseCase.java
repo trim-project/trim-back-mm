@@ -1,6 +1,7 @@
 package trim.api.domains.question.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.question.vo.response.QuestionDetailResponse;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.adaptor.AnswerAdaptor;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @UseCase
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class GetAllQuestionUseCase {
 

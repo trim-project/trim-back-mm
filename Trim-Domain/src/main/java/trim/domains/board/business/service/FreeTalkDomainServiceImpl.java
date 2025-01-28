@@ -2,6 +2,7 @@ package trim.domains.board.business.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
+import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.domain.FreeTalk;
 import trim.domains.board.dao.repository.FreeTalkRepository;
 import trim.domains.board.dto.FreeTalkDto;
@@ -19,6 +20,7 @@ public class FreeTalkDomainServiceImpl implements FreeTalkDomainService {
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .writer(member)
+                .boardType(BoardType.FREE_TALK)
                 .build();
         return freeTalkRepository.save(newFreeTalk);
     }
