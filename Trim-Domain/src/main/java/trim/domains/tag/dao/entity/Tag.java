@@ -24,6 +24,8 @@ public class Tag extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long boardId;
+
     @Column(nullable = false, length = MAX_TAG_LENGTH)
     private String name;
 
