@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
 import trim.domains.board.business.adaptor.QuestionAdaptor;
 import trim.domains.board.business.validate.BoardValidate;
+import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.domain.Question;
+import trim.domains.board.dao.domain.ResolveStatus;
 import trim.domains.board.dao.repository.QuestionRepository;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.board.dto.QuestionDto;
@@ -23,6 +25,8 @@ public class QuestionDomainServiceImpl implements QuestionDomainService{
         Question newQuestion = Question.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
+                .boardType(BoardType.QUESTION)
+                .resolveStatus(ResolveStatus.UNRESOLVED)
                 .writer(member)
                 .build();
         return questionRepository.save(newQuestion).getId();
