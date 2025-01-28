@@ -1,8 +1,8 @@
 package trim.domains.tag.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import trim.domains.tag.domain.QuestionTag;
+import trim.domains.tag.dao.entity.BoardTag;
 
-public interface QuestionTagRepository extends JpaRepository<QuestionTag, Long> {
+public interface QuestionTagRepository extends JpaRepository<BoardTag, Long> {
 
 }

@@ -1,5 +1,6 @@
 package trim.api.domains.answer.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ public class AnswerApiController {
 
     private final WriteAnswerUseCase writeAnswerUseCase;
 
+    @Operation(summary = "질문 게시글의 답글 게시글을 작성합니다.")
     @PostMapping("/questions/{questionId}/members/{memberId}")
     public ApiResponseDto<Long> writeAnswer(@PathVariable Long questionId,
                                             @PathVariable Long memberId,
