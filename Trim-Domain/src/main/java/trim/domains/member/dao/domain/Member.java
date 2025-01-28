@@ -44,18 +44,5 @@ public class Member extends BaseTimeEntity {
         this.nicknameChangeChance--;
     }
 
-//    @OneToMany(mappedBy = "writer")
-//    private List<Question> questionList = new ArrayList<>();
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return Collections.singleton(new SimpleGrantedAuthority(this.role.getKey()));
-//    }
-
-//    @Override
-//    public String getPassword() {
-//        return null;        //해당 항목 없음
-//    }
-
 
 }
