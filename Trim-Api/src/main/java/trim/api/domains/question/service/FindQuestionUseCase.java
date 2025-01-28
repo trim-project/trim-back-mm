@@ -15,6 +15,7 @@ import trim.domains.board.dao.domain.Answer;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.comment.business.adaptor.CommentAdaptor;
 import trim.domains.comment.dao.domain.Comment;
+import trim.domains.tag.business.adaptor.TagAdaptor;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +26,7 @@ public class FindQuestionUseCase {
 
     private final QuestionAdaptor questionAdaptor;
     private final AnswerAdaptor answerAdaptor;
+    private final TagAdaptor tagAdaptor;
 
     public QuestionDetailResponse execute(Long questionId) {
         Question question = questionAdaptor.queryById(questionId);
@@ -42,6 +44,7 @@ public class FindQuestionUseCase {
                                 )
                                 .collect(Collectors.toList())
                 )
+                .tagList(tagAdaptor.queryNamesByBoardId(questionId))
                 .build();
     }
 
