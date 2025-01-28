@@ -20,6 +20,10 @@ public class BoardHandler extends GeneralException {
   public static final GeneralException FREE_TALK_NOT_FOUND =
           new BoardHandler(BoardErrorStatus.FREE_TALK_NOT_FOUND);
 
+  //Answer
+  public static final GeneralException ANSWER_NOT_FOUND =
+          new BoardHandler(BoardErrorStatus.ANSWER_NOT_FOUND);
+
 
   public BoardHandler(BaseErrorCode baseErrorCode) {
         super(baseErrorCode);
