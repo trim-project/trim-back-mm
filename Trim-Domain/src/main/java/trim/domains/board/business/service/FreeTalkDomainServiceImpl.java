@@ -14,13 +14,13 @@ public class FreeTalkDomainServiceImpl implements FreeTalkDomainService {
     private final FreeTalkRepository freeTalkRepository;
 
     @Override
-    public Long createFreeTalk(Member member, FreeTalkDto dto) {
+    public FreeTalk createFreeTalk(Member member, FreeTalkDto dto) {
         FreeTalk newFreeTalk = FreeTalk.builder()
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .writer(member)
                 .build();
-        return freeTalkRepository.save(newFreeTalk).getId();
+        return freeTalkRepository.save(newFreeTalk);
     }
 
     @Override

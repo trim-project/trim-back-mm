@@ -6,7 +6,7 @@ import trim.domains.member.dao.domain.Member;
 
 public interface FreeTalkDomainService {
 
-    Long createFreeTalk(Member member, FreeTalkDto dto);
+    FreeTalk createFreeTalk(Member member, FreeTalkDto dto);
 
     Long editFreeTalk(FreeTalk freeTalk, FreeTalkDto dto);
 
