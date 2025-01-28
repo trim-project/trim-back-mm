@@ -20,7 +20,7 @@ public class QuestionDomainServiceImpl implements QuestionDomainService{
     private final BoardValidate boardValidate;
 
     @Override
-    public Long writeQuestion(Member member, QuestionDto dto) {
+    public Question writeQuestion(Member member, QuestionDto dto) {
         //TODO add Tag
         Question newQuestion = Question.builder()
                 .title(dto.getTitle())
@@ -29,7 +29,7 @@ public class QuestionDomainServiceImpl implements QuestionDomainService{
                 .resolveStatus(ResolveStatus.UNRESOLVED)
                 .writer(member)
                 .build();
-        return questionRepository.save(newQuestion).getId();
+        return questionRepository.save(newQuestion);
     }
 
     @Override

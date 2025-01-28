@@ -24,8 +24,13 @@ public class Tag extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = MAX_TAG_LENGTH)
+    @Column(nullable = false, length = MAX_TAG_LENGTH)
     private String name;
 
+    public static Tag of(String name) {
+        return Tag.builder()
+                .name(name)
+                .build();
+    }
 
 }

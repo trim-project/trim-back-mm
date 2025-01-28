@@ -7,7 +7,7 @@ import trim.domains.board.dto.QuestionDto;
 
 public interface QuestionDomainService {
 
-    Long writeQuestion(Member member, QuestionDto dto);
+    Question writeQuestion(Member member, QuestionDto dto);
 
     void editQuestion(Question question, QuestionDto dto);
 
