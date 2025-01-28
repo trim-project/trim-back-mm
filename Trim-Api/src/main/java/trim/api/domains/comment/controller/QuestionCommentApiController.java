@@ -8,7 +8,7 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.comment.service.CreateQuestionCommentUseCase;
 import trim.domains.member.dao.domain.Member;
 
-@Tag(name = "[질문 댓글 게시판]")
+@Tag(name = "[질문 댓글]")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/questions/{questionId}/comments")

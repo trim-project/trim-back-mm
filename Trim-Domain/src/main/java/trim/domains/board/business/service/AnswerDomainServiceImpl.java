@@ -3,6 +3,7 @@ package trim.domains.board.business.service;
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
 import trim.domains.board.dao.domain.Answer;
+import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.repository.AnswerRepository;
 import trim.domains.board.dto.AnswerDto;
 import trim.domains.member.dao.domain.Member;
@@ -20,6 +21,7 @@ public class AnswerDomainServiceImpl implements AnswerDomainService{
                 .content(dto.getContent())
                 .questionId(questionId)
                 .writer(member)
+                .boardType(BoardType.ANSWER)
                 .build();
         return answerRepository.save(answer);
     }

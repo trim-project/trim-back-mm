@@ -14,9 +14,7 @@ import trim.domains.board.business.adaptor.AnswerAdaptor;
 import trim.domains.board.business.adaptor.QuestionAdaptor;
 import trim.domains.board.dao.domain.Answer;
 import trim.domains.board.dao.domain.Question;
-import trim.domains.comment.business.adaptor.CommentAdaptor;
-import trim.domains.comment.dao.domain.Comment;
-import trim.domains.member.dao.domain.Member;
+
 
 
 import java.util.List;
