@@ -2,8 +2,7 @@ package trim.api.domains.question.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import trim.api.domains.question.dto.request.QuestionRequest;
-import trim.api.domains.question.mapper.QuestionMapper;
+import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.service.QuestionDomainService;
 import trim.domains.member.business.adaptor.MemberAdaptor;

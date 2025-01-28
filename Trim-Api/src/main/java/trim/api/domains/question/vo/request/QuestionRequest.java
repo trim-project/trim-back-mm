@@ -1,4 +1,4 @@
-package trim.api.domains.question.dto.request;
+package trim.api.domains.question.vo.request;
 
 import lombok.Builder;
 import lombok.Getter;
