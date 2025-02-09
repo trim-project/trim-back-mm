@@ -24,6 +24,6 @@ public class ClickLikeAtTheBoardUseCase {
             return LIKE_REMOVE_STATUS;
         }
         likeDomainService.createLike(boardId, memberId);
-        return LIKE_REMOVE_STATUS;
+        return LIKE_CREATE_STATUS;
     }
 }

@@ -15,8 +15,9 @@ import java.util.stream.Collectors;
 @Getter
 @Builder
 public class QuestionResponse {
-    private String title;
-    private String content;
-    private LocalDateTime createdAt;
-    private ResolveStatus resolveStatus;
+    private final Long questionId;
+    private final String title;
+    private final String content;
+    private final LocalDateTime createdAt;
+    private final ResolveStatus resolveStatus;
 }

@@ -1,11 +1,9 @@
-package trim.api.domains.freetalk.vo;
+package trim.api.domains.freetalk.vo.response;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.member.vo.MemberResponse;
-
-import java.time.LocalDate;
 
 @Getter
 @Builder

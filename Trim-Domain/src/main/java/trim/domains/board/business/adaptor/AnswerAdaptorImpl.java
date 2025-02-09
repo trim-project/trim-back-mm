@@ -24,4 +24,9 @@ public class AnswerAdaptorImpl implements AnswerAdaptor{
     public List<Answer> queryByQuestionId(Long questionId) {
         return answerRepository.findByQuestionId(questionId);
     }
+
+    @Override
+    public Long queryCountByQuestionId(Long questionId) {
+        return answerRepository.countByQuestionId(questionId);
+    }
 }

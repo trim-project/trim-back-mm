@@ -1,7 +1,6 @@
-package trim.api.domains.freetalk.vo;
+package trim.api.domains.freetalk.vo.response;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

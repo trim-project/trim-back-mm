@@ -9,4 +9,6 @@ public interface AnswerAdaptor {
     Answer queryById(Long answerId);
 
     List<Answer> queryByQuestionId(Long questionId);
+
+    Long queryCountByQuestionId(Long questionId);
 }
