@@ -13,8 +13,8 @@ import java.time.LocalDate;
 public class FreeTalkSummaryResponse {
     private final FreeTalkResponse freeTalkResponse;
     private final MemberResponse memberResponse;
-    private Long likeCount;
+    private final Long likeCount;
 //    private boolean isLiked; TODO
-    private Long commentCount;
+    private final Long commentCount;
 
 }

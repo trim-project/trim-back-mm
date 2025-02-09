@@ -13,6 +13,7 @@ import trim.domains.board.business.adaptor.FreeTalkAdaptor;
 import trim.domains.board.dao.domain.FreeTalk;
 import trim.domains.comment.business.adaptor.CommentAdaptor;
 import trim.domains.comment.dao.domain.Comment;
+import trim.domains.like.business.adaptor.LikeAdaptor;
 
 import java.util.List;
 
@@ -23,10 +24,13 @@ public class GetSpecificFreeTalkUseCase {
 
     private final FreeTalkAdaptor freeTalkAdaptor;
     private final CommentAdaptor commentAdaptor;
+    private final LikeAdaptor likeAdaptor;
 
     public FreeTalkDetailResponse execute(Long freeTalkId) {
         FreeTalk freeTalk = freeTalkAdaptor.queryFreeTalkById(freeTalkId);
         List<Comment> comments = commentAdaptor.queryAllByBoardId(freeTalkId);
-        return FreeTalkDetailResponse.of(freeTalk, comments);
+        Long likeCount = likeAdaptor.queryCountByBoard(freeTalkId);
+        Long commentCount = commentAdaptor.queryCountByBoardId(freeTalkId);
+        return FreeTalkDetailResponse.of(freeTalk, comments, likeCount, commentCount);
     }
 }
