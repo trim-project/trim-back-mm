@@ -19,7 +19,7 @@ import java.util.List;
 public class CommentApiController {
 
     private final GetCommentsOfBoardUseCase getCommentsOfBoardUseCase;
-    private final WriteQuestionCommentUseCase writeQuestionCommentUseCaseUseCase;
+    private final WriteQuestionCommentUseCase writeQuestionCommentUseCase;
     private final WriteFreeTalkCommentUseCase writeFreeTalkCommentUseCase;
 
     @Operation(summary = "게시글의 모든 댓글을 조회합니다. 이때 게시글은 PK로 조회합니다.")
@@ -33,7 +33,7 @@ public class CommentApiController {
     public ApiResponseDto<Long> writeQuestionComment(@PathVariable Long memberId,
                                                       @PathVariable Long questionId,
                                                       @RequestBody String content) {
-        return ApiResponseDto.onSuccess(writeQuestionCommentUseCaseUseCase.execute(memberId, questionId, content));
+        return ApiResponseDto.onSuccess(writeQuestionCommentUseCase.execute(memberId, questionId, content));
     }
     @Operation(summary = "자유 게시판의 댓글을 작성합니다.")
     @PostMapping("/free-talks/{freeTalkId}/members/{memberId}")
