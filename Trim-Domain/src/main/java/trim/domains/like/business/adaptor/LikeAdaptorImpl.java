@@ -16,8 +16,4 @@ public class LikeAdaptorImpl implements LikeAdaptor{
         return likeRepository.countByBoardId(boardId);
     }
 
-    @Override
-    public boolean queryExist(Long boardId, Long memberId) {
-        return likeRepository.existsByBoardIdAndMemberId(boardId, memberId);
-    }
 }

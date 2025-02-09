@@ -8,5 +8,7 @@ public interface LikeDomainService {
 
     void removeLike(Long likeId);
 
+    void removeLikeByBoardAndMember(Long boardId, Long memberId);
+
     void removeAllLikeByBoard(Long boardId);
 }

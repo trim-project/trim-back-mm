@@ -26,6 +26,11 @@ public class LikeDomainServiceImpl implements LikeDomainService{
     }
 
     @Override
+    public void removeLikeByBoardAndMember(Long boardId, Long memberId) {
+        likeRepository.deleteByBoardIdAndMemberId(boardId, memberId);
+    }
+
+    @Override
     public void removeAllLikeByBoard(Long boardId) {
         likeRepository.deleteAllByBoardId(boardId);
     }
