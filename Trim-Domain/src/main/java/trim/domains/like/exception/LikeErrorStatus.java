@@ -1,37 +1,24 @@
-package trim.common.exception;
+package trim.domains.like.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import trim.common.annotation.ExplainError;
+import trim.common.exception.BaseErrorCode;
+import trim.common.exception.Reason;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorStatus implements BaseErrorCode{
+public enum LikeErrorStatus implements BaseErrorCode {
 
-    // 서버 오류
-    @ExplainError("500번대 알수없는 오류입니다. 서버 관리자에게 문의 주세요")
-    _INTERNAL_SERVER_ERROR(INTERNAL_SERVER_ERROR, 5000, "서버 에러, 관리자에게 문의 바랍니다."),
-    @ExplainError("인증이 필요없는 api입니다.")
-    _UNAUTHORIZED_LOGIN_DATA_RETRIEVAL_ERROR(INTERNAL_SERVER_ERROR, 5001, "서버 에러, 로그인이 필요없는 요청입니다."),
-    _ASSIGNABLE_PARAMETER(BAD_REQUEST, 5002, "인증타입이 잘못되어 할당이 불가능합니다."),
-
-    // 일반적인 요청 오류
-    _BAD_REQUEST(BAD_REQUEST, 4000, "잘못된 요청입니다."),
-    _UNAUTHORIZED(UNAUTHORIZED, 4001, "로그인이 필요합니다."),
-    _FORBIDDEN(FORBIDDEN, 4002, "금지된 요청입니다.");
-
-    // entity MEMBER (4050-4099)
-    // entity QUESTION (4100-4149)
-    // entity COMMENT (4150-4199)
-    // entity FREE_TALK (4200-4249)
-    // entity ANSWER (4250-4299)
     // entity LIKE (4300-4349)
+    LIKE_ERROR(BAD_REQUEST, 4300, "좋아요 임시 에러");
+
 
     private final HttpStatus httpStatus;
     private final Integer code;
