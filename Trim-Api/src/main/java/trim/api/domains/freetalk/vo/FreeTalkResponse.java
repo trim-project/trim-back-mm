@@ -14,5 +14,5 @@ public class FreeTalkResponse {
     private final Long freeTalkId;
     private final String title;
     private final String content;
-    private LocalDate createdAt;
+    private final LocalDate createdAt;
 }

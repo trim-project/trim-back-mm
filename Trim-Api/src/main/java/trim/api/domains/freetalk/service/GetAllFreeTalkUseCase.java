@@ -33,12 +33,11 @@ public class GetAllFreeTalkUseCase {
         List<FreeTalk> freeTalks = freeTalkAdaptor.queryAllFreeTalk();
 
         return freeTalks.stream()
-                .map(this::mapToFreeTalkDetailResponse)
+                .map(this::mapToFreeTalkSummaryResponse)
                 .collect(Collectors.toList());
     }
 
-    private FreeTalkSummaryResponse mapToFreeTalkDetailResponse(FreeTalk freeTalk) {
-        List<Comment> comments = commentAdaptor.queryAllByBoardId(freeTalk.getId());
+    private FreeTalkSummaryResponse mapToFreeTalkSummaryResponse(FreeTalk freeTalk) {
         return FreeTalkSummaryResponse.builder()
                 .freeTalkResponse(FreeTalkMapper.INSTANCE.toFreeTalkResponse(freeTalk))
                 .memberResponse(MemberMapper.INSTANCE.toMemberResponse(freeTalk.getWriter()))
