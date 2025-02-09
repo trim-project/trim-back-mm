@@ -8,9 +8,9 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.freetalk.service.GetAllFreeTalkUseCase;
 import trim.api.domains.freetalk.service.GetSpecificFreeTalkUseCase;
 import trim.api.domains.freetalk.service.WriteFreeTalkUseCase;
-import trim.api.domains.freetalk.vo.FreeTalkDetailResponse;
-import trim.api.domains.freetalk.vo.FreeTalkRequest;
-import trim.api.domains.freetalk.vo.FreeTalkSummaryResponse;
+import trim.api.domains.freetalk.vo.response.FreeTalkDetailResponse;
+import trim.api.domains.freetalk.vo.request.FreeTalkRequest;
+import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
 
 import java.util.List;
 

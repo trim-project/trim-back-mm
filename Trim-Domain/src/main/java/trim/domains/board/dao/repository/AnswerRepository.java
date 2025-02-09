@@ -12,4 +12,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Long> {
     boolean existsByQuestionId(Long id);
 
     List<Answer> findByQuestionId(Long questionId);
+
+    Long countByQuestionId(Long questionId);
+
 }

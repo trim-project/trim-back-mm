@@ -12,6 +12,7 @@ import trim.domains.member.dao.domain.Member;
 
 @Entity
 @Getter
+@Table(name = "likes")
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor

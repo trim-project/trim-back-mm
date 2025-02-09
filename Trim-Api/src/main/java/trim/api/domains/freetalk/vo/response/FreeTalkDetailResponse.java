@@ -1,15 +1,13 @@
-package trim.api.domains.freetalk.vo;
+package trim.api.domains.freetalk.vo.response;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.comment.vo.response.CommentDetailResponse;
-import trim.api.domains.comment.vo.response.CommentResponse;
 import trim.api.domains.freetalk.mapper.FreeTalkMapper;
 import trim.api.domains.member.mapper.MemberMapper;
 import trim.api.domains.member.vo.MemberResponse;
 import trim.domains.board.dao.domain.FreeTalk;
-import trim.domains.board.dao.repository.FreeTalkRepository;
 import trim.domains.comment.dao.domain.Comment;
 
 import java.util.ArrayList;

@@ -12,6 +12,7 @@ public interface QuestionMapper {
 
     QuestionMapper INSTANCE = Mappers.getMapper(QuestionMapper.class);
 
+    @Mapping(target = "questionId", source = "question.id")
     @Mapping(target = "title", source = "question.title")
     @Mapping(target = "content", source = "question.content")
     @Mapping(target = "createdAt", source = "question.createdAt")

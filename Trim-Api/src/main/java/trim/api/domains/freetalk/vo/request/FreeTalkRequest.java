@@ -1,4 +1,4 @@
-package trim.api.domains.freetalk.vo;
+package trim.api.domains.freetalk.vo.request;
 
 import lombok.Builder;
 import lombok.Getter;

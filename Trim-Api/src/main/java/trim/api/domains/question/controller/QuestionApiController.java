@@ -8,6 +8,7 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.api.domains.question.vo.response.QuestionDetailResponse;
 import trim.api.domains.question.service.*;
+import trim.api.domains.question.vo.response.QuestionSummaryResponse;
 
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class QuestionApiController {
 
     @Operation(summary = "질문 게시판 리스트 조회 메서드입니다.")
     @GetMapping
-    public ApiResponseDto<List<QuestionDetailResponse>> getAllQuestions(){
+    public ApiResponseDto<List<QuestionSummaryResponse>> getAllQuestions(){
         return ApiResponseDto.onSuccess(getAllQuestionUseCase.execute());
     }
 

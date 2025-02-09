@@ -2,7 +2,7 @@ package trim.api.domains.freetalk.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import trim.api.domains.freetalk.vo.FreeTalkRequest;
+import trim.api.domains.freetalk.vo.request.FreeTalkRequest;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.service.FreeTalkDomainService;
 import trim.domains.member.business.adaptor.MemberAdaptor;
