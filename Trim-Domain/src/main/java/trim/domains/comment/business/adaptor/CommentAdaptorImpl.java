@@ -26,4 +26,9 @@ public class CommentAdaptorImpl implements CommentAdaptor{
         return commentRepository.findByBoardId(boardId);
     }
 
+    @Override
+    public Long queryCountByBoardId(Long boardId) {
+        return commentRepository.countByBoardId(boardId);
+    }
+
 }

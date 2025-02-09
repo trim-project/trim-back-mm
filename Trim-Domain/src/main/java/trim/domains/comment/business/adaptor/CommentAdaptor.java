@@ -11,4 +11,6 @@ public interface CommentAdaptor {
 
     List<Comment> queryAllByBoardId(Long boardId);
 
+    Long queryCountByBoardId(Long boardId);
+
 }
