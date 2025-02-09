@@ -10,6 +10,7 @@ import trim.api.domains.freetalk.service.GetSpecificFreeTalkUseCase;
 import trim.api.domains.freetalk.service.WriteFreeTalkUseCase;
 import trim.api.domains.freetalk.vo.FreeTalkDetailResponse;
 import trim.api.domains.freetalk.vo.FreeTalkRequest;
+import trim.api.domains.freetalk.vo.FreeTalkSummaryResponse;
 
 import java.util.List;
 
@@ -30,9 +31,9 @@ public class FreeTalkApiController {
         return ApiResponseDto.onSuccess(writeFreeTalkUseCase.execute(request, memberId));
     }
 
-    @Operation(summary = "자유 게시판 글을 모두 조회합니다.")
+    @Operation(summary = "자유 게시판 글을 모두 조회합니다. 이때 조회 형식은 요약본입니다.")
     @GetMapping
-    public ApiResponseDto<List<FreeTalkDetailResponse>> getAllFreeTalk() {
+    public ApiResponseDto<List<FreeTalkSummaryResponse>> getAllFreeTalk() {
         return ApiResponseDto.onSuccess(getAllFreeTalkUseCase.execute());
     }
 

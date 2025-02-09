@@ -14,7 +14,9 @@ public interface FreeTalkMapper {
 
     FreeTalkMapper INSTANCE = Mappers.getMapper(FreeTalkMapper.class);
 
+    @Mapping(target = "freeTalkId", source = "freeTalk.id")
     @Mapping(target = "title", source = "freeTalk.title")
     @Mapping(target = "content", source = "freeTalk.content")
+    @Mapping(target = "createdAt", source = "freeTalk.createdAt")
     FreeTalkResponse toFreeTalkResponse(FreeTalk freeTalk);
 }
