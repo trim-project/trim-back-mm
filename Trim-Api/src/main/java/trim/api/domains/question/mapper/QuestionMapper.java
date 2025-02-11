@@ -22,7 +22,6 @@ public interface QuestionMapper {
     @Mapping(target = "title", source = "question.title")
     @Mapping(target = "content", source = "question.content")
     @Mapping(target = "createdAt", source = "question.createdAt")
-    @Mapping(target = "majorType", source = "question.majorType")
     QuestionResponse toQuestionResponse(Question question);
 
     @Mapping(target = "majorType", qualifiedByName = "stringToMajorType")

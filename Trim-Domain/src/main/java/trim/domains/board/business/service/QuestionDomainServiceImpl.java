@@ -27,6 +27,7 @@ public class QuestionDomainServiceImpl implements QuestionDomainService{
                 .content(dto.getContent())
                 .boardType(BoardType.QUESTION)
                 .resolveStatus(ResolveStatus.UNRESOLVED)
+                .majorType(dto.getMajorType())
                 .writer(member)
                 .build();
         return questionRepository.save(newQuestion);
