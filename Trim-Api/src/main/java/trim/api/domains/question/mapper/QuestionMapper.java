@@ -5,6 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
+import trim.api.common.util.EnumMappingUtil;
 import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.api.domains.question.vo.response.QuestionResponse;
 import trim.common.util.EnumConvertUtil;
@@ -13,7 +14,7 @@ import trim.domains.board.dao.domain.Question;
 import trim.domains.board.dto.QuestionDto;
 import trim.domains.member.dao.domain.SocialType;
 
-@Mapper(componentModel = "spring", builder = @Builder(disableBuilder = false))
+@Mapper(componentModel = "spring", uses = EnumMappingUtil.class, builder = @Builder(disableBuilder = false))
 public interface QuestionMapper {
 
     QuestionMapper INSTANCE = Mappers.getMapper(QuestionMapper.class);
@@ -26,10 +27,5 @@ public interface QuestionMapper {
 
     @Mapping(target = "majorType", qualifiedByName = "stringToMajorType")
     QuestionDto toQuestionDto(QuestionRequest questionRequest);
-
-    @Named("stringToMajorType")
-    default MajorType stringToMajorType(String majorType) {
-        return EnumConvertUtil.convert(MajorType.class, majorType);
-    }
 
 }
