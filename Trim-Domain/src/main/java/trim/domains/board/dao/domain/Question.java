@@ -27,5 +27,6 @@ public class Question extends Board {
 
     public void edit(QuestionDto dto) {
         super.edit(dto.getTitle(), dto.getContent());
+        this.majorType = dto.getMajorType();
     }
 }

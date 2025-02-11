@@ -31,7 +31,11 @@ public enum BoardErrorStatus implements BaseErrorCode {
 
     // entity ANSWER (4250-4299)
     ANSWER_NOT_FOUND(NOT_FOUND, 4250, "답글을 찾을 수 없습니다."),
-    ANSWER_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4250, "답글은 오로지 작성자에 의해 수정&삭제가 가능합니다.");
+    ANSWER_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4250, "답글은 오로지 작성자에 의해 수정&삭제가 가능합니다."),
+
+    // entity KNOWLEDGE (4350-4399)
+    KNOWLEDGE_NOT_FOUND(NOT_FOUND, 4350, "지식 공유 글을 찾을 수 없습니다."),
+    KNOWLEDGE_COULD_BE_TOUCHED_BY_ONLY_WRITER(BAD_REQUEST, 4351, "지식 공유 글은 오로지 작성자에 의해 수정&삭제가 가능합니다.");
 
     private final HttpStatus httpStatus;
     private final Integer code;

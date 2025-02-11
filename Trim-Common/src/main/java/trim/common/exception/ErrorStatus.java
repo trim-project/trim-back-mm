@@ -32,6 +32,7 @@ public enum ErrorStatus implements BaseErrorCode{
     // entity FREE_TALK (4200-4249)
     // entity ANSWER (4250-4299)
     // entity LIKE (4300-4349)
+    // entity KNOWLEDGE (4350-4399)
 
     private final HttpStatus httpStatus;
     private final Integer code;
