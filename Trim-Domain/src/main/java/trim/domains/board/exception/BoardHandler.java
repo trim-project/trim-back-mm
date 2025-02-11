@@ -23,6 +23,9 @@ public class BoardHandler extends GeneralException {
   //Answer
   public static final GeneralException ANSWER_NOT_FOUND =
           new BoardHandler(BoardErrorStatus.ANSWER_NOT_FOUND);
+  //Knowledge
+  public static final GeneralException KNOWLEDGE_NOT_FOUND =
+          new BoardHandler(BoardErrorStatus.KNOWLEDGE_NOT_FOUND);
 
 
   public BoardHandler(BaseErrorCode baseErrorCode) {

@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import trim.domains.board.dto.KnowledgeDto;
 
 @Entity
 @Getter
@@ -16,8 +17,13 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @DiscriminatorValue("type_knowledge")
-public class Knowledge {
+public class Knowledge extends Board{
 
     @Enumerated(EnumType.STRING)
     private MajorType majorType;
+
+    public void edit(KnowledgeDto knowledgeDto) {
+        super.edit(knowledgeDto.getTitle(), knowledgeDto.getContent());
+        this.majorType = knowledgeDto.getMajorType();
+    }
 }
