@@ -1,6 +1,7 @@
 package trim.api.domains.question.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.question.mapper.QuestionMapper;
 import trim.api.domains.question.vo.request.QuestionRequest;
@@ -12,6 +13,7 @@ import trim.domains.member.dao.domain.Member;
 import trim.domains.tag.business.service.TagDomainService;
 
 
+@Slf4j
 @UseCase
 @Transactional
 @RequiredArgsConstructor
@@ -24,6 +26,7 @@ public class CreateQuestionUseCase {
     @Transactional
     public Long execute(Long memberId, QuestionRequest questionRequest) {
         Member writer = memberAdaptor.queryMember(memberId);
+        log.info("major type = {}", questionRequest.getMajorType());
         Question question = questionDomainService.writeQuestion(
                 writer,
                 QuestionMapper.INSTANCE.toQuestionDto(questionRequest)
