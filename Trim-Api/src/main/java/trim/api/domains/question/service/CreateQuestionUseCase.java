@@ -2,6 +2,7 @@ package trim.api.domains.question.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+import trim.api.domains.question.mapper.QuestionMapper;
 import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.service.QuestionDomainService;
@@ -23,7 +24,10 @@ public class CreateQuestionUseCase {
     @Transactional
     public Long execute(Long memberId, QuestionRequest questionRequest) {
         Member writer = memberAdaptor.queryMember(memberId);
-        Question question = questionDomainService.writeQuestion(writer, questionRequest.from());
+        Question question = questionDomainService.writeQuestion(
+                writer,
+                QuestionMapper.INSTANCE.toQuestionDto(questionRequest)
+        );
         tagDomainService.addTagsInBoard(question.getId(), questionRequest.getTags());
         return question.getId();
     }
