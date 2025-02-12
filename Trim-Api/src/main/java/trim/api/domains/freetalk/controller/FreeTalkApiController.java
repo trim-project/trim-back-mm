@@ -3,8 +3,11 @@ package trim.api.domains.freetalk.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.freetalk.service.GetAllFreeTalkByPaginationUseCase;
 import trim.api.domains.freetalk.service.GetAllFreeTalkUseCase;
 import trim.api.domains.freetalk.service.GetSpecificFreeTalkUseCase;
 import trim.api.domains.freetalk.service.WriteFreeTalkUseCase;
@@ -23,6 +26,7 @@ public class FreeTalkApiController {
     private final WriteFreeTalkUseCase writeFreeTalkUseCase;
     private final GetAllFreeTalkUseCase getAllFreeTalkUseCase;
     private final GetSpecificFreeTalkUseCase getSpecificFreeTalkUseCase;
+    private final GetAllFreeTalkByPaginationUseCase getAllFreeTalkByPaginationUseCase;
 
     @Operation(summary = "자유 게시판 글을 작성합니다.")
     @PostMapping("/members/{memberId}")
@@ -43,4 +47,12 @@ public class FreeTalkApiController {
         return ApiResponseDto.onSuccess(getSpecificFreeTalkUseCase.execute(freeTalkId));
     }
 
+    @Operation(summary = "자유 게시판 글을 모두 조회합니다. 이때 페이지네이션을 통해 n만큼의 개수만을 불러올 수 있습니다.")
+    @GetMapping("/page")
+    public ApiResponseDto<List<FreeTalkSummaryResponse>> getAllFreeTalkByPagination(
+            @RequestParam(defaultValue = "0") int currentPage,
+            @RequestParam int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        return ApiResponseDto.onSuccess(getAllFreeTalkByPaginationUseCase.execute(pageable));
+    }
 }
