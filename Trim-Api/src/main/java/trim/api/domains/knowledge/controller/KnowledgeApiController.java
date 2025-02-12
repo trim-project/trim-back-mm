@@ -6,8 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.knowledge.service.GetAllKnowledgeUseCase;
+import trim.api.domains.knowledge.service.GetSpecificKnowledgeUseCase;
 import trim.api.domains.knowledge.service.WriteKnowledgeUseCase;
 import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
+import trim.api.domains.knowledge.vo.response.KnowledgeDetailResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeSummaryResponse;
 
 import java.util.List;
@@ -20,6 +22,7 @@ public class KnowledgeApiController {
 
     private final WriteKnowledgeUseCase writeKnowledgeUseCase;
     private final GetAllKnowledgeUseCase getAllKnowledgeUseCase;
+    private final GetSpecificKnowledgeUseCase getSpecificKnowledgeUseCase;
 
     @Operation(summary = "지식 공유 게시글을 작성합니다.")
     @PostMapping("/members/{memberId}")
@@ -32,5 +35,11 @@ public class KnowledgeApiController {
     @GetMapping
     public ApiResponseDto<List<KnowledgeSummaryResponse>> getAllKnowledge() {
         return ApiResponseDto.onSuccess(getAllKnowledgeUseCase.execute());
+    }
+
+    @Operation(summary = "특정 지식 공유 게시글을 조회합니다. 조회 시 지식 공유의 랜덤난수 키값이 필요합니다.")
+    @GetMapping("/{knowledgeUuid}")
+    public ApiResponseDto<KnowledgeDetailResponse> getSpecificKnowledge(@PathVariable String knowledgeUuid) {
+        return ApiResponseDto.onSuccess(getSpecificKnowledgeUseCase.execute(knowledgeUuid));
     }
 }
