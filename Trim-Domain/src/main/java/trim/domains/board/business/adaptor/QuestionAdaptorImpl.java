@@ -1,6 +1,8 @@
 package trim.domains.board.business.adaptor;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.board.dao.repository.QuestionRepository;
@@ -27,5 +29,10 @@ public class QuestionAdaptorImpl implements QuestionAdaptor{
     @Override
     public List<Question> queryAll() {
         return questionRepository.findAll();
+    }
+
+    @Override
+    public Page<Question> queryAllQuestion(Pageable pageable) {
+        return questionRepository.findAll(pageable);
     }
 }
