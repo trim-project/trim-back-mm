@@ -1,6 +1,8 @@
 package trim.domains.board.business.adaptor;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Knowledge;
 import trim.domains.board.dao.repository.KnowledgeRepository;
@@ -29,5 +31,10 @@ public class KnowledgeAdaptorImpl implements KnowledgeAdaptor{
     @Override
     public List<Knowledge> queryAllKnowledge() {
         return knowledgeRepository.findAll();
+    }
+
+    @Override
+    public Page<Knowledge> queryAllKnowledge(Pageable pageable) {
+        return knowledgeRepository.findAll(pageable);
     }
 }
