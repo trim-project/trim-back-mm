@@ -9,8 +9,6 @@ public interface KnowledgeAdaptor {
 
     Knowledge queryKnowledgeById(Long knowledgeId);
 
-    Knowledge queryKnowledgeByUuid(String knowledgeUuid);
-
     List<Knowledge> queryKnowledgeByWriter(Member member);
 
     List<Knowledge> queryAllKnowledge();
