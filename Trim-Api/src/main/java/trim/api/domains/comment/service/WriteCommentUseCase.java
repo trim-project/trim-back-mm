@@ -9,14 +9,13 @@ import trim.domains.member.business.adaptor.MemberAdaptor;
 
 @UseCase
 @RequiredArgsConstructor
-public class WriteQuestionCommentUseCase {
+public class WriteCommentUseCase {
 
-    private final QuestionAdaptor questionAdaptor;
-    private final CommentDomainService questionCommentDomainService;
+    private final CommentDomainService commentDomainService;
     private final MemberAdaptor memberAdaptor;
 
     public Long execute(Long memberId, Long questionId, String content){
-        return questionCommentDomainService.createComment(
+        return commentDomainService.createComment(
                 memberAdaptor.queryMember(memberId),
                 questionId,
                 content

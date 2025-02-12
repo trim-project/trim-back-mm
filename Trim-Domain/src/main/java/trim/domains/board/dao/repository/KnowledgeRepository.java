@@ -9,6 +9,4 @@ import java.util.Optional;
 
 public interface KnowledgeRepository extends JpaRepository<Knowledge, Long> {
     List<Knowledge> findByWriter(Member writer);
-
-    Optional<Knowledge> findByKnowledgeUuid(String knowledgeUuid);
 }

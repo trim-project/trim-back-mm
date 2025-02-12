@@ -32,7 +32,7 @@ public abstract class Board extends BaseTimeEntity {
     private String content;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "board_type", nullable = false)
+    @Column(name = "board_type", nullable = false, length = 50)
     private BoardType boardType;
 
     protected void edit(String title, String content) {

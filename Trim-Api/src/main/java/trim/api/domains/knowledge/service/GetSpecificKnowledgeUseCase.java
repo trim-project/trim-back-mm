@@ -21,8 +21,8 @@ public class GetSpecificKnowledgeUseCase {
     private final CommentAdaptor commentAdaptor;
     private final TagAdaptor tagAdaptor;
 
-    public KnowledgeDetailResponse execute(String knowledgeUuid) {
-        Knowledge knowledge = knowledgeAdaptor.queryKnowledgeByUuid(knowledgeUuid);
+    public KnowledgeDetailResponse execute(Long knowledgeId) {
+        Knowledge knowledge = knowledgeAdaptor.queryKnowledgeById(knowledgeId);
         List<Comment> comments = commentAdaptor.queryAllByBoardId(knowledge.getId());
         List<String> tags = tagAdaptor.queryNamesByBoardId(knowledge.getId());
         return KnowledgeDetailResponse.of(knowledge, knowledge.getWriter(), comments, tags);

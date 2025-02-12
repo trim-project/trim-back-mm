@@ -38,8 +38,8 @@ public class KnowledgeApiController {
     }
 
     @Operation(summary = "특정 지식 공유 게시글을 조회합니다. 조회 시 지식 공유의 랜덤난수 키값이 필요합니다.")
-    @GetMapping("/{knowledgeUuid}")
-    public ApiResponseDto<KnowledgeDetailResponse> getSpecificKnowledge(@PathVariable String knowledgeUuid) {
-        return ApiResponseDto.onSuccess(getSpecificKnowledgeUseCase.execute(knowledgeUuid));
+    @GetMapping("/{knowledgeId}")
+    public ApiResponseDto<KnowledgeDetailResponse> getSpecificKnowledge(@PathVariable Long knowledgeId) {
+        return ApiResponseDto.onSuccess(getSpecificKnowledgeUseCase.execute(knowledgeId));
     }
 }

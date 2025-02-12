@@ -2,6 +2,7 @@ package trim.domains.board.business.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
+import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.domain.Knowledge;
 import trim.domains.board.dao.repository.KnowledgeRepository;
 import trim.domains.board.dto.KnowledgeDto;
@@ -20,6 +21,7 @@ public class KnowledgeDomainServiceImpl implements KnowledgeDomainService{
                 .title(knowledgeDto.getTitle())
                 .content(knowledgeDto.getContent())
                 .majorType(knowledgeDto.getMajorType())
+                .boardType(BoardType.KNOWLEDGE)
                 .build();
         return knowledgeRepository.save(newKnowledge);
     }

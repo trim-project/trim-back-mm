@@ -1,9 +1,6 @@
 package trim.domains.board.dao.domain;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +17,7 @@ import trim.domains.board.dto.KnowledgeDto;
 public class Knowledge extends Board{
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MajorType majorType;
 
     public void edit(KnowledgeDto knowledgeDto) {

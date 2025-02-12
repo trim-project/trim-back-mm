@@ -9,7 +9,8 @@ import trim.common.interfaces.KeyedEnum;
 public enum BoardType implements KeyedEnum {
     ANSWER("type_answer"),
     QUESTION("type_question"),
-    FREE_TALK("type_free_talk");
+    FREE_TALK("type_free_talk"),
+    KNOWLEDGE("type_knowledge");
 
     private final String key;
 }

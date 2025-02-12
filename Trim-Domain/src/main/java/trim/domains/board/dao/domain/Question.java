@@ -23,6 +23,7 @@ public class Question extends Board {
     private ResolveStatus resolveStatus;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private MajorType majorType;
 
     public void edit(QuestionDto dto) {

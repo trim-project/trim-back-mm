@@ -22,12 +22,6 @@ public class KnowledgeAdaptorImpl implements KnowledgeAdaptor{
     }
 
     @Override
-    public Knowledge queryKnowledgeByUuid(String knowledgeUuid) {
-        return knowledgeRepository.findByKnowledgeUuid(knowledgeUuid)
-                .orElseThrow(() -> BoardHandler.KNOWLEDGE_NOT_FOUND);
-    }
-
-    @Override
     public List<Knowledge> queryKnowledgeByWriter(Member member) {
         return knowledgeRepository.findByWriter(member);
     }
