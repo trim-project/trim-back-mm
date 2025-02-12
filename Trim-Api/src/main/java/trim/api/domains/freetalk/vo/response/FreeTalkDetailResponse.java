@@ -19,19 +19,14 @@ import java.util.List;
 public class FreeTalkDetailResponse {
     private final FreeTalkResponse freeTalkResponse;
     private final MemberResponse memberResponse;
-    private final Long likeCount;
-    //    private boolean isLiked; TODO
-    private final Long commentCount;
     @Builder.Default
     private final List<CommentDetailResponse> commentDetailResponseList = new ArrayList<>();
 
-    public static FreeTalkDetailResponse of(FreeTalk freeTalk, List<Comment> comments, Long likeCount, Long commentCount) {
+    public static FreeTalkDetailResponse of(FreeTalk freeTalk, List<Comment> comments) {
         return FreeTalkDetailResponse.builder()
                 .freeTalkResponse(FreeTalkMapper.INSTANCE.toFreeTalkResponse(freeTalk))
                 .memberResponse(MemberMapper.INSTANCE.toMemberResponse(freeTalk.getWriter()))
                 .commentDetailResponseList(comments.stream().map(CommentDetailResponse::of).toList())
-                .likeCount(likeCount)
-                .commentCount(commentCount)
                 .build();
     }
 }
