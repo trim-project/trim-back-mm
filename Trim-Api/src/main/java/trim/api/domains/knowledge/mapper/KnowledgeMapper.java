@@ -7,8 +7,10 @@ import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 import trim.api.common.util.EnumMappingUtil;
 import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
+import trim.api.domains.knowledge.vo.response.KnowledgeResponse;
 import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.common.util.EnumConvertUtil;
+import trim.domains.board.dao.domain.Knowledge;
 import trim.domains.board.dao.domain.MajorType;
 import trim.domains.board.dto.KnowledgeDto;
 import trim.domains.board.dto.QuestionDto;
@@ -22,4 +24,9 @@ public interface KnowledgeMapper {
     @Mapping(target = "majorType", qualifiedByName = "stringToMajorType")
     KnowledgeDto toKnowledgeDto(KnowledgeRequest knowledgeRequest);
 
+    @Mapping(target = "knowledgeId", source = "knowledge.id")
+    @Mapping(target = "title", source = "knowledge.title")
+    @Mapping(target = "content", source = "knowledge.content")
+    @Mapping(target = "createdAt", source = "knowledge.createdAt")
+    KnowledgeResponse toKnowledgeResponse(Knowledge knowledge);
 }

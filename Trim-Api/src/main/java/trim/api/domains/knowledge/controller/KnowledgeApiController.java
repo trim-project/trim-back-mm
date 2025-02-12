@@ -5,8 +5,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.knowledge.service.GetAllKnowledgeUseCase;
 import trim.api.domains.knowledge.service.WriteKnowledgeUseCase;
 import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
+import trim.api.domains.knowledge.vo.response.KnowledgeSummaryResponse;
+
+import java.util.List;
 
 @Tag(name = "[지식 공유]")
 @RestController
@@ -15,11 +19,18 @@ import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
 public class KnowledgeApiController {
 
     private final WriteKnowledgeUseCase writeKnowledgeUseCase;
+    private final GetAllKnowledgeUseCase getAllKnowledgeUseCase;
 
     @Operation(summary = "지식 공유 게시글을 작성합니다.")
     @PostMapping("/members/{memberId}")
     public ApiResponseDto<Long> writeKnowledge(@PathVariable Long memberId,
                                                @RequestBody KnowledgeRequest request) {
         return ApiResponseDto.onSuccess(writeKnowledgeUseCase.execute(memberId, request));
+    }
+
+    @Operation(summary = "지식 공유 게시글을 모두 조회합니다. 이때 형식은 요약입니다.")
+    @GetMapping
+    public ApiResponseDto<List<KnowledgeSummaryResponse>> getAllKnowledge() {
+        return ApiResponseDto.onSuccess(getAllKnowledgeUseCase.execute());
     }
 }
