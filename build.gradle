@@ -73,30 +73,24 @@ tasks.named('test') {
 
 // 📌 Root build.gradle
 
-def modules = [
-		"Trim-Common": ["application-common.yml"],
-		"Trim-Domain": ["application-domain.yml", "application-common.yml"],
-		"Trim-Infra": ["application-infra.yml", "application-common.yml"],
-		"Trim-Api": ["application-api.yml", "application-domain.yml", "application-common.yml"]
-]
+tasks.register("copyConfigFiles") {
+	def sourceDir = file("$rootDir/config")
+	def targetDirs = [
+			file("$rootDir/Trim-Domain/src/main/resources"),
+			file("$rootDir/Trim-Api/src/main/resources")
+	]
 
-// 각 서브모듈에 YAML 복사 태스크 추가
-modules.each { moduleName, configFiles ->
-	project(":${moduleName}") {
-		task copyYML(type: Copy) {
-			configFiles.each { configFile ->
-				from "${rootProject.projectDir}/config/"
-				include configFile
-				into "${projectDir}/src/main/resources/"
+	targetDirs.each { targetDir ->
+		doLast {
+			copy {
+				from sourceDir
+				include("*.yml")
+				into targetDir
 			}
-
-			doFirst {
-				file("${projectDir}/src/main/resources/").mkdirs()
-				println "Copying YAML files [${configFiles.join(', ')}] to ${projectDir}/src/main/resources/"
-			}
+			println "✅ YAML files copied to: ${targetDir.absolutePath}"
 		}
-
-		// processResources 전에 copyYML 태스크 실행
-		processResources.dependsOn copyYML
 	}
+
+	outputs.dirs(targetDirs) // Gradle에게 각 모듈의 리소스 폴더를 출력으로 설정
 }
+
