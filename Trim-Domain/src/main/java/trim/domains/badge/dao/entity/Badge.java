@@ -22,6 +22,7 @@ public class Badge {
 
     private int level;
 
+    @Column(unique = true)
     private String badgeTitle;
 
     private int goal;

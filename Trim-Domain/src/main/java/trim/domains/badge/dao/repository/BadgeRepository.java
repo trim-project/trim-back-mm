@@ -12,4 +12,9 @@ public interface BadgeRepository extends JpaRepository<Badge, Long> {
     @Query("SELECT DISTINCT m.badge FROM Mission m " +
             "WHERE m.member = :member")
     List<Badge> findBadgesByMember(@Param("member") Member member);
+
+    boolean existsByBadgeTitle(String badgeTitle);
+
+    @Query("SELECT b.badgeTitle FROM Badge b")
+    List<String> findAllBadgeTitles();
 }
