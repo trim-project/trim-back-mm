@@ -12,4 +12,6 @@ public interface BadgeAdaptor {
     Badge queryById(Long badgeId);
 
     List<Badge> queryCompletedBadgesByMember(Member member);
+
+    List<Badge> queryBadgesByLevel(int level);
 }

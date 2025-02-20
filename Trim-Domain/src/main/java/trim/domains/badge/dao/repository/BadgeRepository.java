@@ -17,4 +17,6 @@ public interface BadgeRepository extends JpaRepository<Badge, Long> {
 
     @Query("SELECT b.badgeTitle FROM Badge b")
     List<String> findAllBadgeTitles();
+
+    List<Badge> findByLevel(int level);
 }
