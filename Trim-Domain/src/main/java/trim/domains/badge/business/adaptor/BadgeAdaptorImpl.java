@@ -30,4 +30,9 @@ public class BadgeAdaptorImpl implements BadgeAdaptor{
     public List<Badge> queryCompletedBadgesByMember(Member member) {
         return badgeRepository.findBadgesByMember(member);
     }
+
+    @Override
+    public List<Badge> queryBadgesByLevel(int level) {
+        return badgeRepository.findByLevel(level);
+    }
 }
