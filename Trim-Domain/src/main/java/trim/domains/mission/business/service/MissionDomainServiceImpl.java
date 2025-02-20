@@ -23,11 +23,6 @@ public class MissionDomainServiceImpl implements MissionDomainService{
     }
 
     @Override
-    public void missionClear(Mission mission) {
-        mission.complete();
-    }
-
-    @Override
     public void countUp(Mission mission) {
         mission.countUp();
     }

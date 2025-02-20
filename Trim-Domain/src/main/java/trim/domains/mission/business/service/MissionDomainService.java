@@ -8,7 +8,5 @@ public interface MissionDomainService {
 
     Mission createMission(Badge badge, Member member);
 
-    void missionClear(Mission mission);
-
     void countUp(Mission mission);
 }
