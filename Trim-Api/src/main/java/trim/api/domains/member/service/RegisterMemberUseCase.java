@@ -8,6 +8,7 @@ import trim.common.annotation.UseCase;
 import trim.common.util.EnumConvertUtil;
 import trim.domains.badge.business.adaptor.BadgeAdaptor;
 import trim.domains.badge.dao.entity.Badge;
+import trim.domains.member.dao.domain.Member;
 import trim.domains.member.dao.domain.Profile;
 import trim.domains.member.dao.domain.Role;
 import trim.domains.member.business.service.MemberDomainService;
@@ -26,14 +27,15 @@ public class RegisterMemberUseCase {
 
     public Long execute(MemberRequest memberRequest) {
         Profile profile = MemberMapper.INSTANCE.toProfile(memberRequest);
-        memberDomainService.registerMember(
+        Member member = memberDomainService.registerMember(
                 profile,
                 EnumConvertUtil.convert(Role.class, memberRequest.getRole()),
                 memberRequest.getNickname()
-        )
-        List<Badge> badges = badgeAdaptor.queryBadgesByLevel(1);
+        );
+        //INIT MISSION(link badge and member)
+        badgeAdaptor.queryBadgesByLevel(1)
+                        .forEach(badge -> missionDomainService.createMission(badge, member));
 
-        missionDomainService.createMission()
-        return
+        return member.getId();
     }
 }
