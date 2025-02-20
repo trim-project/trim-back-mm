@@ -31,4 +31,7 @@ public class Badge {
     @Column(nullable = false)
     private BadgeContent badgeContent;
 
+    public void addNextBadge(Long nextBadgeId) {
+        this.nextBadgeId = nextBadgeId;
+    }
 }
