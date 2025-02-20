@@ -3,6 +3,7 @@ package trim.domains.badge.business.adaptor;
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.badge.dao.entity.Badge;
+import trim.domains.badge.dao.entity.BadgeContent;
 import trim.domains.badge.dao.repository.BadgeRepository;
 import trim.domains.badge.exception.BadgeHandler;
 import trim.domains.member.dao.domain.Member;
@@ -34,5 +35,11 @@ public class BadgeAdaptorImpl implements BadgeAdaptor{
     @Override
     public List<Badge> queryBadgesByLevel(int level) {
         return badgeRepository.findByLevel(level);
+    }
+
+    @Override
+    public Badge queryByContentAndLevel(BadgeContent badgeContent, int level) {
+        return badgeRepository.findByBadgeContentAndLevel(badgeContent, level)
+                .orElseThrow(() -> BadgeHandler.NOT_FOUND);
     }
 }
