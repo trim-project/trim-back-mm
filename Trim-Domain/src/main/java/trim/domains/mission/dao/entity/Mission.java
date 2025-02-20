@@ -1,10 +1,7 @@
 package trim.domains.mission.dao.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import trim.domains.badge.dao.entity.Badge;
 import trim.domains.member.dao.domain.Member;
@@ -30,10 +27,23 @@ public class Mission {
     @JoinColumn(name = "badge_id")
     private Badge badge;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MissionStatus missionStatus;
+    private MissionStatus missionStatus = MissionStatus.IN_PROGRESS;
 
-    private int goalCount;
+    @Builder.Default
+    private int goalCount = 0;
 
+
+    public void complete() {
+        this.missionStatus = MissionStatus.SUCCESS;
+    }
+
+    public void countUp() {
+        if (this.badge.getGoal() > this.goalCount) {
+            throw new RuntimeException("enough count");
+        }
+        this.goalCount++;
+    }
 }
