@@ -6,7 +6,12 @@ import trim.common.annotation.UseCase;
 import trim.domains.badge.business.adaptor.BadgeAdaptor;
 import trim.domains.badge.dao.entity.Badge;
 import trim.domains.member.business.adaptor.MemberAdaptor;
+import trim.domains.member.dao.domain.Member;
+import trim.domains.mission.business.adaptor.MissionAdaptor;
 import trim.domains.mission.business.service.MissionDomainService;
+import trim.domains.mission.business.validator.MissionValidator;
+import trim.domains.mission.dao.entity.Mission;
+import trim.domains.mission.exception.MissionHandler;
 
 @UseCase
 @Transactional
@@ -14,17 +19,21 @@ import trim.domains.mission.business.service.MissionDomainService;
 public class UpgradeBadgeLevelUseCase {
 
     private final BadgeAdaptor badgeAdaptor;
+    private final MissionAdaptor missionAdaptor;
+    private final MissionValidator missionValidator;
     private final MissionDomainService missionDomainService;
     private final MemberAdaptor memberAdaptor;
 
     public Integer execute(Long badgeId, Long memberId) {
-        Badge badge = badgeAdaptor.queryById(badgeId);
-        int nextLevel = badge.getLevel() + 1;
-        // TODO need to validate mission
+        Mission completedMission
+                = missionAdaptor.queryMissionByBadgeIdAndMemberId(badgeId, memberId);
+        int nextLevel = completedMission.getBadge().getLevel() + 1;
+        // VALIDATE MISSION IS COMPLETED
+        if(!missionValidator.isCompletedMission(completedMission)) throw MissionHandler.NOT_CLEARED;
         // GET NEXT BADGE
-        Badge nextBadge = badgeAdaptor.queryByContentAndLevel(badge.getBadgeContent(), nextLevel);
+        Badge nextBadge = badgeAdaptor.queryByContentAndLevel(completedMission.getBadge().getBadgeContent(), nextLevel);
         // CREATE NEXT MISSION
-        missionDomainService.createMission(nextBadge, memberAdaptor.queryMember(memberId));
+        missionDomainService.createMission(nextBadge, completedMission.getMember());
         return nextLevel;
     }
 }

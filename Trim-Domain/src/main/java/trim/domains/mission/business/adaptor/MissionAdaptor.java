@@ -7,4 +7,6 @@ import trim.domains.mission.dao.entity.Mission;
 public interface MissionAdaptor {
 
     Mission queryMissionByBadgeAndMember(Badge badge, Member member);
+
+    Mission queryMissionByBadgeIdAndMemberId(Long badgeId, Long memberId);
 }
