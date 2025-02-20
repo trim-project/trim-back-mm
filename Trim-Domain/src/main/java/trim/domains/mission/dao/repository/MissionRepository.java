@@ -9,4 +9,6 @@ import java.util.Optional;
 
 public interface MissionRepository extends JpaRepository<Mission, Long> {
     Optional<Mission> findByBadgeAndMember(Badge badge, Member member);
+
+    Optional<Mission> findByBadgeIdAndMemberId(Long badgeId, Long memberId);
 }

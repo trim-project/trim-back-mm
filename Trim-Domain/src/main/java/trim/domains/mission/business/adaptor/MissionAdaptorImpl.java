@@ -19,4 +19,10 @@ public class MissionAdaptorImpl implements MissionAdaptor{
         return missionRepository.findByBadgeAndMember(badge, member)
                 .orElseThrow(() -> BadgeHandler.NOT_FOUND);
     }
+
+    @Override
+    public Mission queryMissionByBadgeIdAndMemberId(Long badgeId, Long memberId) {
+        return missionRepository.findByBadgeIdAndMemberId(badgeId, memberId)
+                .orElseThrow(() -> BadgeHandler.NOT_FOUND);
+    }
 }
