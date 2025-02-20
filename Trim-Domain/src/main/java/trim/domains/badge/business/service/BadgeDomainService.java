@@ -6,6 +6,4 @@ import trim.domains.badge.dao.entity.BadgeContent;
 public interface BadgeDomainService {
 
     Badge createBadge(String title, BadgeContent badgeContent, int goal);
-
-    void addNextBadge(Badge badge, Long nextBadgeId);
 }

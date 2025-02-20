@@ -20,8 +20,7 @@ public class Badge {
     @Column(name = "badge_id")
     private Long id;
 
-    @Column(name = "next_badge_id")
-    private Long nextBadgeId;
+    private int level;
 
     private String badgeTitle;
 
@@ -31,7 +30,4 @@ public class Badge {
     @Column(nullable = false)
     private BadgeContent badgeContent;
 
-    public void addNextBadge(Long nextBadgeId) {
-        this.nextBadgeId = nextBadgeId;
-    }
 }

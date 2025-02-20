@@ -21,9 +21,4 @@ public class BadgeDomainServiceImpl implements BadgeDomainService{
                 .build();
         return badgeRepository.save(newBadge);
     }
-
-    @Override
-    public void addNextBadge(Badge badge, Long nextBadgeId) {
-        badge.addNextBadge(nextBadgeId);
-    }
 }

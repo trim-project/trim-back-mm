@@ -27,7 +27,8 @@ public class DataInitialize {
                     Badge.builder()
                             .badgeTitle("write question" + i)
                             .badgeContent(BadgeContent.WRITE_QUESTION)
-                            .goal(i * 4)
+                            .goal(i * 5)
+                            .level(i)
                             .build()
             );
         }
@@ -37,7 +38,8 @@ public class DataInitialize {
                     Badge.builder()
                             .badgeTitle("write answer" + i)
                             .badgeContent(BadgeContent.WRITE_ANSWER)
-                            .goal(i * 5)
+                            .goal(i * 7)
+                            .level(i)
                             .build()
             );
         }
@@ -48,6 +50,7 @@ public class DataInitialize {
                             .badgeTitle("write knowledge" + i)
                             .badgeContent(BadgeContent.WRITE_KNOWLEDGE)
                             .goal(i * 5)
+                            .level(i)
                             .build()
             );
         }
@@ -59,10 +62,24 @@ public class DataInitialize {
                             .badgeTitle("write free_talk" + i)
                             .badgeContent(BadgeContent.WRITE_FREE_TALK)
                             .goal(i * 5)
+                            .level(i)
                             .build()
             );
         }
-
-
+        //WRITE_COMMENT
+        for (int i = 1; i <= 10; i++) {
+            saveBadgeList.add(
+                    Badge.builder()
+                            .badgeTitle("write comment" + i)
+                            .badgeContent(BadgeContent.WRITE_COMMENT)
+                            .goal(i * 10)
+                            .level(i)
+                            .build()
+            );
+        }
+        //TODO GET_LIKE
+        //TODO GET_ADOPTED
+        //TODO PARTICIPATE_SURVEY
+        badgeRepository.saveAll(saveBadgeList);
     }
 }
