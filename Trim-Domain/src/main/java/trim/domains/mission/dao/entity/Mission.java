@@ -38,15 +38,18 @@ public class Mission {
 
 
     public void complete() {
-        if (this.badge.getGoal() == this.goalCount) {
-            this.missionStatus = MissionStatus.SUCCESS;
-        }
+        this.missionStatus = MissionStatus.SUCCESS;
     }
 
     public void countUp() {
-        if (this.badge.getGoal() > this.goalCount) {
+        if (this.goalCount >= this.badge.getGoal()) {
             throw MissionHandler.ALREADY_CLEAR;
         }
+
         this.goalCount++;
+
+        if (this.goalCount == this.badge.getGoal()) {
+            complete();
+        }
     }
 }
