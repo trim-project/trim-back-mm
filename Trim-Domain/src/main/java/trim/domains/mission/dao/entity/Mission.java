@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import trim.domains.badge.dao.entity.Badge;
 import trim.domains.member.dao.domain.Member;
+import trim.domains.mission.exception.MissionHandler;
 
 @Entity
 @Getter
@@ -37,12 +38,14 @@ public class Mission {
 
 
     public void complete() {
-        this.missionStatus = MissionStatus.SUCCESS;
+        if (this.badge.getGoal() == this.goalCount) {
+            this.missionStatus = MissionStatus.SUCCESS;
+        }
     }
 
     public void countUp() {
         if (this.badge.getGoal() > this.goalCount) {
-            throw new RuntimeException("enough count");
+            throw MissionHandler.ALREADY_CLEAR;
         }
         this.goalCount++;
     }
