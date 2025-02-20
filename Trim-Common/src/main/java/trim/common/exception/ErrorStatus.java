@@ -34,6 +34,7 @@ public enum ErrorStatus implements BaseErrorCode{
     // entity LIKE (4300-4349)
     // entity KNOWLEDGE (4350-4399)
     // entity MISSION (4400-4449)
+    // entity BADGE (4450-4499)
 
     private final HttpStatus httpStatus;
     private final Integer code;
