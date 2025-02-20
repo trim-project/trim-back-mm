@@ -27,5 +27,8 @@ public class Badge {
 
     private int goal;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private BadgeContent badgeContent;
 
 }
