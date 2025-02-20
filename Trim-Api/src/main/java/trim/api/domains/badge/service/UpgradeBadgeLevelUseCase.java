@@ -20,6 +20,7 @@ public class UpgradeBadgeLevelUseCase {
     public Integer execute(Long badgeId, Long memberId) {
         Badge badge = badgeAdaptor.queryById(badgeId);
         int nextLevel = badge.getLevel() + 1;
+        // TODO need to validate mission
         // GET NEXT BADGE
         Badge nextBadge = badgeAdaptor.queryByContentAndLevel(badge.getBadgeContent(), nextLevel);
         // CREATE NEXT MISSION

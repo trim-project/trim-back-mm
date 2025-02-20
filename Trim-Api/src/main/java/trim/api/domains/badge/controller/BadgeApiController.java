@@ -27,7 +27,7 @@ public class BadgeApiController {
     }
 
     @Operation(summary = "미션의 단계를 업그레이드 합니다. 현재 완성한 배지를 획득합니다.")
-    @PutMapping("/{badgeId}/members/{memberId}")
+    @PostMapping("/{badgeId}/members/{memberId}")
     public ApiResponseDto<Integer> upgradeBadgeLevel(@PathVariable Long badgeId,
                                                      @PathVariable Long memberId) {
         return ApiResponseDto.onSuccess(upgradeBadgeLevelUseCase.execute(badgeId, memberId));
