@@ -7,10 +7,13 @@ import trim.api.domains.member.vo.MemberRequest;
 import trim.common.annotation.UseCase;
 import trim.common.util.EnumConvertUtil;
 import trim.domains.badge.business.adaptor.BadgeAdaptor;
+import trim.domains.badge.dao.entity.Badge;
 import trim.domains.member.dao.domain.Profile;
 import trim.domains.member.dao.domain.Role;
 import trim.domains.member.business.service.MemberDomainService;
 import trim.domains.mission.business.service.MissionDomainService;
+
+import java.util.List;
 
 @Slf4j
 @UseCase
@@ -23,10 +26,14 @@ public class RegisterMemberUseCase {
 
     public Long execute(MemberRequest memberRequest) {
         Profile profile = MemberMapper.INSTANCE.toProfile(memberRequest);
-        return memberDomainService.registerMember(
+        memberDomainService.registerMember(
                 profile,
                 EnumConvertUtil.convert(Role.class, memberRequest.getRole()),
                 memberRequest.getNickname()
-        );
+        )
+        List<Badge> badges = badgeAdaptor.queryBadgesByLevel(1);
+
+        missionDomainService.createMission()
+        return
     }
 }

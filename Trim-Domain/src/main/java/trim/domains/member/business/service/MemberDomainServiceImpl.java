@@ -18,14 +18,14 @@ public class MemberDomainServiceImpl implements MemberDomainService {
     private final MemberAdaptor memberAdaptor;
 
     @Override
-    public Long registerMember(Profile profile, Role role, String nickname) {
+    public Member registerMember(Profile profile, Role role, String nickname) {
         Member newMember = Member.builder()
                 .profile(profile)
                 .role(role)
                 .nickname(nickname)
                 .nicknameChangeChance(1)
                 .build();
-        return memberRepository.save(newMember).getId();
+        return memberRepository.save(newMember);
     }
 
     @Override
