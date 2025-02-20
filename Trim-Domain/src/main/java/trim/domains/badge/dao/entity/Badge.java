@@ -25,7 +25,7 @@ public class Badge {
 
     private String badgeTitle;
 
-    private int goalCount;
+    private int goal;
 
 
 }
