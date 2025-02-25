@@ -16,4 +16,6 @@ public interface QuestionAdaptor {
     List<Question> queryAll();
 
     Page<Question> queryAllQuestion(Pageable pageable);
+
+    Page<Question> queryHotQuestions(Pageable pageable);
 }
