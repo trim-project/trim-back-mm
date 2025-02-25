@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.answer.service.CreateAnswerDummyDataUseCase;
 import trim.api.domains.freetalk.service.CreateFreeTalkDummyDataUseCase;
 import trim.api.domains.knowledge.service.CreateKnowledgeDummyDataUseCase;
 import trim.api.domains.member.service.CreateMemberDummyDataUseCase;
@@ -20,6 +21,7 @@ public class DataInitializeApiController {
     private final CreateQuestionDummyDataUseCase createQuestionDummyDataUseCase;
     private final CreateFreeTalkDummyDataUseCase createFreeTalkDummyDataUseCase;
     private final CreateKnowledgeDummyDataUseCase createKnowledgeDummyDataUseCase;
+    private final CreateAnswerDummyDataUseCase createAnswerDummyDataUseCase;
 
     @Operation(summary = "member 더미 데이터를 입력합니다. member count 는 입력할 데이터 개수입니다.")
     @PostMapping("/members")
@@ -49,5 +51,14 @@ public class DataInitializeApiController {
             @PathVariable Long memberId,
             @RequestParam int knowledgeCount) {
         return ApiResponseDto.onSuccess(createKnowledgeDummyDataUseCase.execute(memberId, knowledgeCount));
+    }
+
+    @Operation(summary = "answer 더미 데이터를 입력합니다. answer count 는 입력할 데이터 개수입니다.")
+    @PostMapping("/answers/questions/{questionId}/members/{memberId}")
+    public ApiResponseDto<Boolean> createAnswerDummyData(
+            @PathVariable Long questionId,
+            @PathVariable Long memberId,
+            @RequestParam int knowledgeCount) {
+        return ApiResponseDto.onSuccess(createAnswerDummyDataUseCase.execute(questionId, memberId, knowledgeCount));
     }
 }
