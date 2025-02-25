@@ -15,4 +15,12 @@ public interface KnowledgeRepository extends JpaRepository<Knowledge, Long> {
     List<Knowledge> findByWriter(Member writer);
 
     Page<Knowledge> findAll(Pageable pageable);
+
+    @Query("""
+            SELECT q FROM Question q 
+            LEFT JOIN Like l ON q.id = l.boardId 
+            GROUP BY q.id
+            ORDER BY COUNT(l) DESC, q.createdAt DESC
+            """)
+    Page<Knowledge> findHotKnowledge(Pageable pageable);
 }
