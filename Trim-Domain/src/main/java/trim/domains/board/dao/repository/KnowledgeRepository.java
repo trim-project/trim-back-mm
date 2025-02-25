@@ -17,10 +17,10 @@ public interface KnowledgeRepository extends JpaRepository<Knowledge, Long> {
     Page<Knowledge> findAll(Pageable pageable);
 
     @Query("""
-            SELECT q FROM Question q 
-            LEFT JOIN Like l ON q.id = l.boardId 
-            GROUP BY q.id
-            ORDER BY COUNT(l) DESC, q.createdAt DESC
+            SELECT k FROM Knowledge k 
+            LEFT JOIN Like l ON k.id = l.boardId 
+            GROUP BY k.id
+            ORDER BY COUNT(l) DESC, k.createdAt DESC
             """)
     Page<Knowledge> findHotKnowledge(Pageable pageable);
 }
