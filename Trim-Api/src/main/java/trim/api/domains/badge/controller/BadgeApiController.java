@@ -8,6 +8,7 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.badge.service.CountUpBadgeOfWritingBoardUseCase;
 import trim.api.domains.badge.service.GetAllBadgesUseCase;
 import trim.api.domains.badge.service.UpgradeBadgeLevelUseCase;
+import trim.api.domains.badge.vo.response.BadgeDetailResponse;
 import trim.api.domains.badge.vo.response.BadgeResponse;
 import trim.common.util.EnumConvertUtil;
 import trim.domains.badge.dao.entity.BadgeContent;
@@ -30,11 +31,11 @@ public class BadgeApiController {
         return ApiResponseDto.onSuccess(getAllBadgesUseCase.execute());
     }
 
-    @Operation(summary = "모든 뱃지를 조회합니다. 이때 사용자의 미션 상태를 반영하여 값을 가져옵니다.")
-    @GetMapping
-    public ApiResponseDto<List<BadgeResponse>> getAllBadges() {
-        return ApiResponseDto.onSuccess(getAllBadgesUseCase.execute());
-    }
+//    @Operation(summary = "모든 뱃지를 조회합니다. 이때 사용자의 미션 상태를 반영하여 값을 가져옵니다.")
+//    @GetMapping("/members/{memberId}")
+//    public ApiResponseDto<List<BadgeDetailResponse>> getAllBadgesByMember(@PathVariable Long memberId) {
+//        return ApiResponseDto.onSuccess(getAllBadgesByMemberUseCase.execute(memberId));
+//    }
 
     @Operation(summary = "미션의 단계를 업그레이드 합니다. 현재 완성한 배지를 획득합니다.")
     @PostMapping("/{badgeId}/members/{memberId}")
