@@ -22,4 +22,6 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             "AND b.badgeContent = :badgeContent")
     List<Mission> findByMemberAndBadgeContent(@Param("member") Member member,
                                               @Param("badgeContent") BadgeContent badgeContent);
+
+    List<Mission> findByMemberId(Long memberId);
 }
