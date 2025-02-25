@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/api/questions")
 public class QuestionApiController {
 
-    private final CreateQuestionUseCase createQuestionUseCase;
+    private final WriteQuestionUseCase writeQuestionUseCase;
     private final EditQuestionUseCase editQuestionUseCase;
     private final GetSpecificQuestionUseCase getSpecificQuestionUseCase;
     private final GetAllQuestionUseCase getAllQuestionUseCase;
@@ -30,7 +30,7 @@ public class QuestionApiController {
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
     @PostMapping("/members/{memberId}")
     public ApiResponseDto<Long> createQuestion(@PathVariable Long memberId, @RequestBody QuestionRequest request) {
-        return ApiResponseDto.onSuccess(createQuestionUseCase.execute(memberId, request));
+        return ApiResponseDto.onSuccess(writeQuestionUseCase.execute(memberId, request));
 
     }
 
