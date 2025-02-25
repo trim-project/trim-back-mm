@@ -27,7 +27,6 @@ public class WriteQuestionUseCase {
 
     public Long execute(Long memberId, QuestionRequest questionRequest) {
         Member writer = memberAdaptor.queryMember(memberId);
-        log.info("major type = {}", questionRequest.getMajorType());
         Question question = questionDomainService.writeQuestion(
                 writer,
                 QuestionMapper.INSTANCE.toQuestionDto(questionRequest)
