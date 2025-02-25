@@ -23,7 +23,6 @@ import static trim.domains.mission.dao.entity.MissionStatus.IN_PROGRESS;
 import static trim.domains.mission.dao.entity.MissionStatus.LOCKED;
 
 @UseCase
-@Transactional
 @RequiredArgsConstructor
 public class CreateMemberDummyDataUseCase {
 

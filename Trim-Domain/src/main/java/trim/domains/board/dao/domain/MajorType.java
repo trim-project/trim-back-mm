@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import trim.common.interfaces.KeyedEnum;
 
+import java.util.Random;
+
 @Getter
 @RequiredArgsConstructor
 public enum MajorType implements KeyedEnum {
@@ -44,4 +46,11 @@ public enum MajorType implements KeyedEnum {
     HOUSING_ENVIRONMENT("Housing Environment College");
 
     private final String key;
+
+    private static final Random RANDOM = new Random();
+    private static final MajorType[] VALUES = values();
+
+    public static MajorType getRandomMajor() {
+        return VALUES[RANDOM.nextInt(VALUES.length)];
+    }
 }
