@@ -37,4 +37,9 @@ public class KnowledgeAdaptorImpl implements KnowledgeAdaptor{
     public Page<Knowledge> queryAllKnowledge(Pageable pageable) {
         return knowledgeRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<Knowledge> queryHotKnowledge(Pageable pageable) {
+        return knowledgeRepository.findHotKnowledge(pageable);
+    }
 }

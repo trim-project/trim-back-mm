@@ -17,4 +17,6 @@ public interface KnowledgeAdaptor {
 
     Page<Knowledge> queryAllKnowledge(Pageable pageable);
 
+    Page<Knowledge> queryHotKnowledge(Pageable pageable);
+
 }
