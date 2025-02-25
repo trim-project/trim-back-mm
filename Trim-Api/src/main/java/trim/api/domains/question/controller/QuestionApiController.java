@@ -7,13 +7,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.common.util.PageUtil;
 import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.api.domains.question.vo.response.QuestionDetailResponse;
 import trim.api.domains.question.service.*;
 import trim.api.domains.question.vo.response.QuestionSummaryResponse;
+import trim.common.util.StaticValues;
 
 
 import java.util.List;
+
+import static trim.common.util.StaticValues.HOT_ISSUE_COUNT;
 
 @Tag(name = "[질문 게시판]")
 @RequiredArgsConstructor
@@ -62,6 +66,13 @@ public class QuestionApiController {
             @RequestParam int pageSize
     ) {
         Pageable pageable = PageRequest.of(currentPage, pageSize);
+        return ApiResponseDto.onSuccess(getAllQuestionByPaginationUseCase.execute(pageable));
+    }
+
+    @Operation(summary = "질문 게시판의 인기 게시글 6개를 조회합니다.")
+    @GetMapping("/hot-issue")
+    public ApiResponseDto<List<QuestionSummaryResponse>> getHotIssueQuestion() {
+        Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT, PageUtil.LATEST_SORTING);
         return ApiResponseDto.onSuccess(getAllQuestionByPaginationUseCase.execute(pageable));
     }
 }
