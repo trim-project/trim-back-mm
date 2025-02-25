@@ -15,9 +15,9 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     @Query("""
     SELECT q FROM Question q 
-    LEFT JOIN (SELECT l.boardId, COUNT(l) AS likeCount FROM Like l GROUP BY l.boardId) likes 
-    ON q.id = likes.boardId
-    ORDER BY COALESCE(likes.likeCount, 0) DESC, q.createdAt DESC
+    LEFT JOIN Like l ON q.id = l.boardId 
+    GROUP BY q.id
+    ORDER BY COUNT(l) DESC, q.createdAt DESC
     """)
     Page<Question> findHotQuestions(Pageable pageable);
 }
