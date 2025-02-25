@@ -14,8 +14,11 @@ import trim.api.domains.freetalk.service.WriteFreeTalkUseCase;
 import trim.api.domains.freetalk.vo.response.FreeTalkDetailResponse;
 import trim.api.domains.freetalk.vo.request.FreeTalkRequest;
 import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
+import trim.api.domains.question.vo.response.QuestionSummaryResponse;
 
 import java.util.List;
+
+import static trim.common.util.StaticValues.HOT_ISSUE_COUNT;
 
 @Tag(name = "[자유 게시판]")
 @RequiredArgsConstructor
@@ -27,6 +30,7 @@ public class FreeTalkApiController {
     private final GetAllFreeTalkUseCase getAllFreeTalkUseCase;
     private final GetSpecificFreeTalkUseCase getSpecificFreeTalkUseCase;
     private final GetAllFreeTalkByPaginationUseCase getAllFreeTalkByPaginationUseCase;
+    private final GetHotFreeTalksUseCase getHotFreeTalksUseCase;
 
     @Operation(summary = "자유 게시판 글을 작성합니다.")
     @PostMapping("/members/{memberId}")
@@ -54,5 +58,12 @@ public class FreeTalkApiController {
             @RequestParam int pageSize) {
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         return ApiResponseDto.onSuccess(getAllFreeTalkByPaginationUseCase.execute(pageable));
+    }
+
+    @Operation(summary = "자유 게시판의 인기 게시글 6개를 조회합니다.")
+    @GetMapping("/hot-issue")
+    public ApiResponseDto<List<QuestionSummaryResponse>> getHotQuestions() {
+        Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT);
+        return ApiResponseDto.onSuccess(getHotFreeTalksUseCase.execute(pageable));
     }
 }

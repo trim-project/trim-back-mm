@@ -18,14 +18,13 @@ import java.util.List;
 @UseCase
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class GetAllFreeTalkByPaginationUseCase {
-
+public class GetHotFreeTalksUseCase {
     private final FreeTalkAdaptor freeTalkAdaptor;
     private final CommentAdaptor commentAdaptor;
     private final LikeAdaptor likeAdaptor;
 
     public List<FreeTalkSummaryResponse> execute(Pageable pageable) {
-        Page<FreeTalk> freeTalks = freeTalkAdaptor.queryAllFreeTalk(pageable);
+        Page<FreeTalk> freeTalks = freeTalkAdaptor.queryHotFreeTalks(pageable);
         return freeTalks.getContent().stream()
                 .map(this::mapToFreeTalkSummaryResponse)
                 .toList();
