@@ -30,6 +30,7 @@ public class QuestionApiController {
     private final GetSpecificQuestionUseCase getSpecificQuestionUseCase;
     private final GetAllQuestionUseCase getAllQuestionUseCase;
     private final GetAllQuestionByPaginationUseCase getAllQuestionByPaginationUseCase;
+    private final GetHotQuestionsUseCase getHotQuestionsUseCase;
 
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
     @PostMapping("/members/{memberId}")
@@ -71,8 +72,8 @@ public class QuestionApiController {
 
     @Operation(summary = "질문 게시판의 인기 게시글 6개를 조회합니다.")
     @GetMapping("/hot-issue")
-    public ApiResponseDto<List<QuestionSummaryResponse>> getHotIssueQuestion() {
+    public ApiResponseDto<List<QuestionSummaryResponse>> getHotQuestions() {
         Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT, PageUtil.LATEST_SORTING);
-        return ApiResponseDto.onSuccess(getAllQuestionByPaginationUseCase.execute(pageable));
+        return ApiResponseDto.onSuccess(getHotQuestionsUseCase.execute(pageable));
     }
 }

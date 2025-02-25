@@ -35,4 +35,9 @@ public class QuestionAdaptorImpl implements QuestionAdaptor{
     public Page<Question> queryAllQuestion(Pageable pageable) {
         return questionRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<Question> queryHotQuestions(Pageable pageable) {
+        return questionRepository.findHotQuestions(pageable);
+    }
 }
