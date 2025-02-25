@@ -7,15 +7,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
-import trim.api.domains.knowledge.service.GetAllKnowledgeByPaginationUseCase;
-import trim.api.domains.knowledge.service.GetAllKnowledgeUseCase;
-import trim.api.domains.knowledge.service.GetSpecificKnowledgeUseCase;
-import trim.api.domains.knowledge.service.WriteKnowledgeUseCase;
+import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
+import trim.api.domains.knowledge.service.*;
 import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
 import trim.api.domains.knowledge.vo.response.KnowledgeDetailResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeSummaryResponse;
 
 import java.util.List;
+
+import static trim.common.util.StaticValues.HOT_ISSUE_COUNT;
 
 @Tag(name = "[지식 공유]")
 @RestController
@@ -27,6 +27,7 @@ public class KnowledgeApiController {
     private final GetAllKnowledgeUseCase getAllKnowledgeUseCase;
     private final GetSpecificKnowledgeUseCase getSpecificKnowledgeUseCase;
     private final GetAllKnowledgeByPaginationUseCase getAllKnowledgeByPaginationUseCase;
+    private final GetHotKnowledgeUseCase getHotKnowledgeUseCase;
 
     @Operation(summary = "지식 공유 게시글을 작성합니다.")
     @PostMapping("/members/{memberId}")
@@ -55,5 +56,12 @@ public class KnowledgeApiController {
     ) {
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         return ApiResponseDto.onSuccess(getAllKnowledgeByPaginationUseCase.execute(pageable));
+    }
+
+    @Operation(summary = "지식 공유 게시판의 인기 게시글 6개를 조회합니다.")
+    @GetMapping("/hot-issue")
+    public ApiResponseDto<List<KnowledgeSummaryResponse>> getHotKnowledge() {
+        Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT);
+        return ApiResponseDto.onSuccess(getHotKnowledgeUseCase.execute(pageable));
     }
 }
