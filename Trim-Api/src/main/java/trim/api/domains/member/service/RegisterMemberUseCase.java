@@ -13,8 +13,11 @@ import trim.domains.member.dao.domain.Profile;
 import trim.domains.member.dao.domain.Role;
 import trim.domains.member.business.service.MemberDomainService;
 import trim.domains.mission.business.service.MissionDomainService;
+import trim.domains.mission.dao.entity.MissionStatus;
 
 import java.util.List;
+
+import static trim.domains.mission.dao.entity.MissionStatus.*;
 
 @Slf4j
 @UseCase
@@ -34,7 +37,10 @@ public class RegisterMemberUseCase {
         );
         //INIT MISSION(link badge and member)
         List<Badge> badges = badgeAdaptor.queryAllBadge();
-        badges.forEach(badge -> missionDomainService.createMission(badge, member));
+        badges.forEach(badge -> {
+            MissionStatus missionStatus = badge.getLevel() == 1 ? IN_PROGRESS : LOCKED;
+            missionDomainService.createMission(badge, member, missionStatus);
+        });
 
         return member.getId();
     }

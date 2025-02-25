@@ -33,7 +33,7 @@ public class Mission {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MissionStatus missionStatus = IN_PROGRESS;
+    private MissionStatus missionStatus = LOCKED;
 
     @Builder.Default
     private int goalCount = 0;

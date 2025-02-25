@@ -9,6 +9,8 @@ import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.dao.entity.Mission;
 import trim.domains.mission.dao.repository.MissionRepository;
 
+import java.util.List;
+
 @Adaptor
 @RequiredArgsConstructor
 public class MissionAdaptorImpl implements MissionAdaptor{
@@ -28,8 +30,7 @@ public class MissionAdaptorImpl implements MissionAdaptor{
     }
 
     @Override
-    public Mission queryMissionByBadgeContentAndMember(BadgeContent badgeContent, Member member) {
-        return missionRepository.findByMemberAndBadgeContent(member, badgeContent)
-                .orElseThrow(() -> BadgeHandler.NOT_FOUND);
+    public List<Mission> queryMissionByBadgeContentAndMember(BadgeContent badgeContent, Member member) {
+        return missionRepository.findByMemberAndBadgeContent(member, badgeContent);
     }
 }
