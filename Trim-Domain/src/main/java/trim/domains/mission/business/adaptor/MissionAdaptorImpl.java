@@ -3,6 +3,7 @@ package trim.domains.mission.business.adaptor;
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.badge.dao.entity.Badge;
+import trim.domains.badge.dao.entity.BadgeContent;
 import trim.domains.badge.exception.BadgeHandler;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.dao.entity.Mission;
@@ -23,6 +24,12 @@ public class MissionAdaptorImpl implements MissionAdaptor{
     @Override
     public Mission queryMissionByBadgeIdAndMemberId(Long badgeId, Long memberId) {
         return missionRepository.findByBadgeIdAndMemberId(badgeId, memberId)
+                .orElseThrow(() -> BadgeHandler.NOT_FOUND);
+    }
+
+    @Override
+    public Mission queryMissionByBadgeContentAndMember(BadgeContent badgeContent, Member member) {
+        return missionRepository.findByMemberAndBadgeContent(member, badgeContent)
                 .orElseThrow(() -> BadgeHandler.NOT_FOUND);
     }
 }
