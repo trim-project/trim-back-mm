@@ -30,6 +30,12 @@ public class BadgeApiController {
         return ApiResponseDto.onSuccess(getAllBadgesUseCase.execute());
     }
 
+    @Operation(summary = "모든 뱃지를 조회합니다. 이때 사용자의 미션 상태를 반영하여 값을 가져옵니다.")
+    @GetMapping
+    public ApiResponseDto<List<BadgeResponse>> getAllBadges() {
+        return ApiResponseDto.onSuccess(getAllBadgesUseCase.execute());
+    }
+
     @Operation(summary = "미션의 단계를 업그레이드 합니다. 현재 완성한 배지를 획득합니다.")
     @PostMapping("/{badgeId}/members/{memberId}")
     public ApiResponseDto<Integer> upgradeBadgeLevel(@PathVariable Long badgeId,
