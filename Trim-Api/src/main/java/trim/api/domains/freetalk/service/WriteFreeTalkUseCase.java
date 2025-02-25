@@ -16,7 +16,7 @@ public class WriteFreeTalkUseCase {
     private final FreeTalkDomainService freeTalkDomainService;
     private final MemberAdaptor memberAdaptor;
 
-    public Long execute(FreeTalkRequest request, Long memberId) {
+    public Long execute(Long memberId, FreeTalkRequest request) {
         Member member = memberAdaptor.queryMember(memberId);
         return freeTalkDomainService.createFreeTalk(member, request.from()).getId();
     }
