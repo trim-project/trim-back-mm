@@ -17,9 +17,9 @@ public class CreateQuestionDummyDataUseCase {
     public Boolean execute(Long memberId, int questionCount) {
         for (int i = 0; i < questionCount; i++) {
             QuestionRequest request = QuestionRequest.builder()
-                    .content("content" + i)
+                    .content("content Question" + i +"by" + memberId)
                     .majorType(MajorType.getRandomMajor().getKey())
-                    .title("title" + i)
+                    .title("title Question" + i +"by" + memberId)
                     .tags(List.of("dummy1", "dummy2", "dummy3"))
                     .build();
             writeQuestionUseCase.execute(memberId, request);

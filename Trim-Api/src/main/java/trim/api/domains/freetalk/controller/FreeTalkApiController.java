@@ -32,7 +32,7 @@ public class FreeTalkApiController {
     @PostMapping("/members/{memberId}")
     public ApiResponseDto<Long> writeFreeTalk(@PathVariable Long memberId,
                                               @RequestBody FreeTalkRequest request) {
-        return ApiResponseDto.onSuccess(writeFreeTalkUseCase.execute(request, memberId));
+        return ApiResponseDto.onSuccess(writeFreeTalkUseCase.execute(memberId, request));
     }
 
     @Operation(summary = "자유 게시판 글을 모두 조회합니다. 이때 조회 형식은 요약본입니다.")
