@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.common.util.PageUtil;
 import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
 import trim.api.domains.knowledge.service.*;
 import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
@@ -54,7 +55,7 @@ public class KnowledgeApiController {
             @RequestParam(defaultValue = "0") int currentPage,
             @RequestParam int pageSize
     ) {
-        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        Pageable pageable = PageRequest.of(currentPage, pageSize, PageUtil.LATEST_SORTING);
         return ApiResponseDto.onSuccess(getAllKnowledgeByPaginationUseCase.execute(pageable));
     }
 
