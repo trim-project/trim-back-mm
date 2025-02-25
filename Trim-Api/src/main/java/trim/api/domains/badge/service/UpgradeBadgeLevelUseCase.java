@@ -31,8 +31,8 @@ public class UpgradeBadgeLevelUseCase {
         if(!missionValidator.isCompletedMission(completedMission)) throw MissionHandler.NOT_CLEARED;
         // GET NEXT BADGE
         Badge nextBadge = badgeAdaptor.queryByContentAndLevel(completedMission.getBadge().getBadgeContent(), nextLevel);
-        // CREATE NEXT MISSION
-        missionDomainService.createMission(nextBadge, completedMission.getMember());
+        Mission mission = missionAdaptor.queryMissionByBadgeIdAndMemberId(nextBadge.getId(), memberId);
+        mission.unlocked();
         return nextLevel;
     }
 }

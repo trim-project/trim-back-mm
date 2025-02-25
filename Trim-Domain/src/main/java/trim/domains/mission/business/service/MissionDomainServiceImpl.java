@@ -21,9 +21,4 @@ public class MissionDomainServiceImpl implements MissionDomainService{
                 .build();
         return missionRepository.save(newMission);
     }
-
-    @Override
-    public void countUp(Mission mission) {
-        mission.countUp();
-    }
 }

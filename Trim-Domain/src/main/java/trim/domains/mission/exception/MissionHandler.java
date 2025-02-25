@@ -11,6 +11,8 @@ public class MissionHandler extends GeneralException {
             new MissionHandler(MissionErrorStatus.MISSION_ALREADY_CLEAR);
     public static final GeneralException NOT_CLEARED =
             new MissionHandler(MissionErrorStatus.MISSION_NOT_CLEARED);
+    public static final GeneralException WRONG_STATUS =
+            new MissionHandler(MissionErrorStatus.MISSION_WRONG_STATUS);
 
     public MissionHandler(BaseErrorCode baseErrorCode) {
         super(baseErrorCode);

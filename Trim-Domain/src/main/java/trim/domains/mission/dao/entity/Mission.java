@@ -7,6 +7,8 @@ import trim.domains.badge.dao.entity.Badge;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.exception.MissionHandler;
 
+import static trim.domains.mission.dao.entity.MissionStatus.*;
+
 @Entity
 @Getter
 @Table(name = "mission")
@@ -31,14 +33,14 @@ public class Mission {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MissionStatus missionStatus = MissionStatus.IN_PROGRESS;
+    private MissionStatus missionStatus = IN_PROGRESS;
 
     @Builder.Default
     private int goalCount = 0;
 
 
     public void complete() {
-        this.missionStatus = MissionStatus.SUCCESS;
+        this.missionStatus = SUCCESS;
     }
 
     public void countUp() {
@@ -51,5 +53,12 @@ public class Mission {
         if (this.goalCount == this.badge.getGoal()) {
             complete();
         }
+    }
+
+    public void unlocked() {
+        if (!this.missionStatus.equals(LOCKED)) {
+            throw MissionHandler.WRONG_STATUS;
+        }
+        this.missionStatus = IN_PROGRESS;
     }
 }

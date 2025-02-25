@@ -18,7 +18,8 @@ public enum MissionErrorStatus implements BaseErrorCode {
     // entity MISSION (4400-4449)
     MISSION_NOT_FOUND(NOT_FOUND, 4400, "해당 미션을 찾을 수 없습니다."),
     MISSION_ALREADY_CLEAR(BAD_REQUEST, 4401, "미션을 이미 클리어하였습니다."),
-    MISSION_NOT_CLEARED(BAD_REQUEST, 4402, "미션을 아직 클리어하지 못했습니다");
+    MISSION_NOT_CLEARED(BAD_REQUEST, 4402, "미션을 아직 클리어하지 못했습니다"),
+    MISSION_WRONG_STATUS(BAD_REQUEST, 4403, "미션의 상태값이 예상값과 다릅니다");
 
     private final HttpStatus httpStatus;
     private final Integer code;
