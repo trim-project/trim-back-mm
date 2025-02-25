@@ -22,7 +22,6 @@ public class UpgradeBadgeLevelUseCase {
     private final MissionAdaptor missionAdaptor;
     private final MissionValidator missionValidator;
     private final MissionDomainService missionDomainService;
-    private final MemberAdaptor memberAdaptor;
 
     public Integer execute(Long badgeId, Long memberId) {
         Mission completedMission
