@@ -66,7 +66,7 @@ public class QuestionApiController {
             @RequestParam(defaultValue = "0") int currentPage,
             @RequestParam int pageSize
     ) {
-        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        Pageable pageable = PageRequest.of(currentPage, pageSize, PageUtil.LATEST_SORTING);
         return ApiResponseDto.onSuccess(getAllQuestionByPaginationUseCase.execute(pageable));
     }
 
