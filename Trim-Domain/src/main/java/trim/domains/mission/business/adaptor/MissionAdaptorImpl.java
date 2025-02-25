@@ -33,4 +33,9 @@ public class MissionAdaptorImpl implements MissionAdaptor{
     public List<Mission> queryMissionByBadgeContentAndMember(BadgeContent badgeContent, Member member) {
         return missionRepository.findByMemberAndBadgeContent(member, badgeContent);
     }
+
+    @Override
+    public List<Mission> queryMissionByMemberId(Long memberId) {
+        return missionRepository.findByMemberId(memberId);
+    }
 }

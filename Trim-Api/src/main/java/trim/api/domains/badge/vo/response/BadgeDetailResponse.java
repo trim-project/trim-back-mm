@@ -14,14 +14,12 @@ import java.util.Optional;
 public class BadgeDetailResponse {
 
     private final BadgeResponse badgeResponse;
-    private final MissionStatusResponse missionStatusResponse;
+    private final MissionStatus missionStatus;
 
-    public static BadgeDetailResponse of(Badge badge, MissionStatusResponse missionStatusResponse) {
+    public static BadgeDetailResponse of(Mission mission) {
         return BadgeDetailResponse.builder()
-                .badgeResponse(BadgeMapper.INSTANCE.toResponseBadge(badge))
-                .missionStatusResponse(
-                        missionStatusResponse
-                )
+                .badgeResponse(BadgeMapper.INSTANCE.toResponseBadge(mission.getBadge()))
+                .missionStatus(mission.getMissionStatus())
                 .build();
     }
 }

@@ -14,4 +14,6 @@ public interface MissionAdaptor {
     Mission queryMissionByBadgeIdAndMemberId(Long badgeId, Long memberId);
 
     List<Mission> queryMissionByBadgeContentAndMember(BadgeContent badgeContent, Member member);
+
+    List<Mission> queryMissionByMemberId(Long memberId);
 }
