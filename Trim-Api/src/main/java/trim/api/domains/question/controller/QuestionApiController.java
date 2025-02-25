@@ -73,7 +73,7 @@ public class QuestionApiController {
     @Operation(summary = "질문 게시판의 인기 게시글 6개를 조회합니다.")
     @GetMapping("/hot-issue")
     public ApiResponseDto<List<QuestionSummaryResponse>> getHotQuestions() {
-        Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT, PageUtil.LATEST_SORTING);
+        Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT);
         return ApiResponseDto.onSuccess(getHotQuestionsUseCase.execute(pageable));
     }
 }
