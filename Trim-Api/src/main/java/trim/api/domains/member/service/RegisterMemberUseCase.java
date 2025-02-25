@@ -33,8 +33,8 @@ public class RegisterMemberUseCase {
                 memberRequest.getNickname()
         );
         //INIT MISSION(link badge and member)
-        badgeAdaptor.queryBadgesByLevel(1)
-                        .forEach(badge -> missionDomainService.createMission(badge, member));
+        List<Badge> badges = badgeAdaptor.queryAllBadge();
+        badges.forEach(badge -> missionDomainService.createMission(badge, member));
 
         return member.getId();
     }
