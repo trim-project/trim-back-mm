@@ -8,6 +8,7 @@ import trim.domains.badge.dao.entity.BadgeContent;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.dao.entity.Mission;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface MissionRepository extends JpaRepository<Mission, Long> {
@@ -19,6 +20,6 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             "JOIN m.badge b " +
             "WHERE m.member = :member " +
             "AND b.badgeContent = :badgeContent")
-    Optional<Mission> findByMemberAndBadgeContent(@Param("member") Member member,
-                                                  @Param("badgeContent") BadgeContent badgeContent);
+    List<Mission> findByMemberAndBadgeContent(@Param("member") Member member,
+                                              @Param("badgeContent") BadgeContent badgeContent);
 }

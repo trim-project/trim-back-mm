@@ -5,6 +5,7 @@ import trim.common.annotation.DomainService;
 import trim.domains.badge.dao.entity.Badge;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.dao.entity.Mission;
+import trim.domains.mission.dao.entity.MissionStatus;
 import trim.domains.mission.dao.repository.MissionRepository;
 
 @DomainService
@@ -18,6 +19,16 @@ public class MissionDomainServiceImpl implements MissionDomainService{
         Mission newMission = Mission.builder()
                 .badge(badge)
                 .member(member)
+                .build();
+        return missionRepository.save(newMission);
+    }
+
+    @Override
+    public Mission createMission(Badge badge, Member member, MissionStatus missionStatus) {
+        Mission newMission = Mission.builder()
+                .badge(badge)
+                .member(member)
+                .missionStatus(missionStatus)
                 .build();
         return missionRepository.save(newMission);
     }
