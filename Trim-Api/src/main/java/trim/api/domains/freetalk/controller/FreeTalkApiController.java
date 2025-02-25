@@ -7,10 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
-import trim.api.domains.freetalk.service.GetAllFreeTalkByPaginationUseCase;
-import trim.api.domains.freetalk.service.GetAllFreeTalkUseCase;
-import trim.api.domains.freetalk.service.GetSpecificFreeTalkUseCase;
-import trim.api.domains.freetalk.service.WriteFreeTalkUseCase;
+import trim.api.domains.freetalk.service.*;
 import trim.api.domains.freetalk.vo.response.FreeTalkDetailResponse;
 import trim.api.domains.freetalk.vo.request.FreeTalkRequest;
 import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
@@ -62,7 +59,7 @@ public class FreeTalkApiController {
 
     @Operation(summary = "자유 게시판의 인기 게시글 6개를 조회합니다.")
     @GetMapping("/hot-issue")
-    public ApiResponseDto<List<QuestionSummaryResponse>> getHotQuestions() {
+    public ApiResponseDto<List<FreeTalkSummaryResponse>> getHotFreeTalks() {
         Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT);
         return ApiResponseDto.onSuccess(getHotFreeTalksUseCase.execute(pageable));
     }
