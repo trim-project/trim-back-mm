@@ -11,6 +11,6 @@ import java.util.List;
 @Builder
 @RequiredArgsConstructor
 public class SurveyRequest {
-    private String title;
-    private List<SurveyQuestion> surveyQuestionList;
+    private final String title;
+    private final List<SurveyQuestion> surveyQuestionList;
 }

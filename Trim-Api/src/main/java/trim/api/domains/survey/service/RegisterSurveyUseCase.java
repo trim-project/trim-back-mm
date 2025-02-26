@@ -1,11 +1,13 @@
 package trim.api.domains.survey.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import trim.api.domains.survey.vo.request.SurveyRequest;
 import trim.common.annotation.UseCase;
 import trim.doc.survey.business.service.SurveyDomainService;
 import trim.doc.survey.dao.entity.Survey;
 
+@Slf4j
 @UseCase
 @RequiredArgsConstructor
 public class RegisterSurveyUseCase {
