@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.member.mapper.MemberMapper;
 import trim.api.domains.question.mapper.QuestionMapper;
+import trim.api.domains.question.vo.response.QuestionListResponse;
 import trim.api.domains.question.vo.response.QuestionSummaryResponse;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.adaptor.AnswerAdaptor;
@@ -26,11 +27,17 @@ public class GetAllQuestionByPaginationUseCase {
     private final LikeAdaptor likeAdaptor;
     private final AnswerAdaptor answerAdaptor;
 
-    public List<QuestionSummaryResponse> execute(Pageable pageable) {
+    public QuestionListResponse execute(Pageable pageable) {
         Page<Question> questions = questionAdaptor.queryAllQuestion(pageable);
-        return questions.getContent().stream()
-                .map(this::mapToQuestionSummaryResponse)
-                .toList();
+        return QuestionListResponse.builder()
+                .questionResponseList(
+                        questions.getContent().stream()
+                                .map(this::mapToQuestionSummaryResponse)
+                                .toList()
+                )
+                .page(questions.getNumber())
+                .totalPages(questions.getTotalPages())
+                .build();
     }
     private QuestionSummaryResponse mapToQuestionSummaryResponse(Question question) {
         List<String> tags = tagAdaptor.queryNamesByBoardId(question.getId());
