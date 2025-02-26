@@ -1,4 +1,4 @@
-package trim.domains.survey.dao.entity;
+package trim.doc.survey.dao.entity;
 
 public class AnswerStatistics {
     private String choiceId;  // 선택지 ID

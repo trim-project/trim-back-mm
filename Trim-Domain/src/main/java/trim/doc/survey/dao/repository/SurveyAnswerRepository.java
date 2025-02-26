@@ -1,15 +1,13 @@
-package trim.domains.survey.dao.repository;
+package trim.doc.survey.dao.repository;
 
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Repository;
-import trim.domains.survey.dao.entity.AnswerStatistics;
-import trim.domains.survey.dao.entity.SurveyAnswer;
+import trim.doc.survey.dao.entity.AnswerStatistics;
+import trim.doc.survey.dao.entity.SurveyAnswer;
 
 import java.util.List;
 
-@Repository
 public interface SurveyAnswerRepository extends MongoRepository<SurveyAnswer, String> {
     // 특정 유저(respondent)의 설문 응답 조회
     @Query("{ 'surveyId': ?0, 'respondentId': ?1 }")
