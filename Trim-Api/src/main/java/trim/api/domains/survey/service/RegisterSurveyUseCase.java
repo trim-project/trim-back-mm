@@ -9,7 +9,6 @@ import trim.domains.survey.business.service.SurveyDomainService;
 import trim.domains.survey.dao.entity.Survey;
 
 @UseCase
-@Transactional
 @RequiredArgsConstructor
 public class RegisterSurveyUseCase {
 
