@@ -12,6 +12,7 @@ import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
 import trim.api.domains.knowledge.service.*;
 import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
 import trim.api.domains.knowledge.vo.response.KnowledgeDetailResponse;
+import trim.api.domains.knowledge.vo.response.KnowledgeListResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeSummaryResponse;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class KnowledgeApiController {
 
     @Operation(summary = "지식 공유 게시글을 모두 조회합니다. 이때 페이지네이션을 통해 n만큼의 개수만을 불러올 수 있습니다.")
     @GetMapping("/page")
-    public ApiResponseDto<List<KnowledgeSummaryResponse>> getAllKnowledgeByPagination(
+    public ApiResponseDto<KnowledgeListResponse> getAllKnowledgeByPagination(
             @RequestParam(defaultValue = "0") int currentPage,
             @RequestParam int pageSize
     ) {
