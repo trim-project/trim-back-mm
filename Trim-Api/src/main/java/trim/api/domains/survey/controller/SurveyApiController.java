@@ -6,10 +6,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.survey.service.GetAllSurveyUseCase;
 import trim.api.domains.survey.service.GetSpecificSurveyUseCase;
 import trim.api.domains.survey.service.RegisterSurveyUseCase;
 import trim.api.domains.survey.vo.request.SurveyRequest;
 import trim.domains.survey.dao.entity.Survey;
+
+import java.util.List;
 
 @Tag(name = "[설문조사]")
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ public class SurveyApiController {
 
     private final RegisterSurveyUseCase registerSurveyUseCase;
     private final GetSpecificSurveyUseCase getSpecificSurveyUseCase;
+    private final GetAllSurveyUseCase getAllSurveyUseCase;
 
     @Operation(summary = "설문조사를 등록합니다.")
     @PostMapping("/members/{memberId}")
@@ -31,5 +35,11 @@ public class SurveyApiController {
     @GetMapping("/{surveyId}")
     public ApiResponseDto<Survey> getSpecificSurvey(@PathVariable String surveyId) {
         return ApiResponseDto.onSuccess(getSpecificSurveyUseCase.execute(surveyId));
+    }
+
+    @Operation(summary = "모든 설문조사를 조회합니다.")
+    @GetMapping
+    public ApiResponseDto<List<Survey>> getAllSurvey() {
+        return ApiResponseDto.onSuccess(getAllSurveyUseCase.execute());
     }
 }
