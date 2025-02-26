@@ -1,4 +1,4 @@
-package trim;
+package trim.domains;
 
 public interface DomainPackageLocation {
 }
