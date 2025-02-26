@@ -1,11 +1,13 @@
 package trim.domains.survey.dao.entity;
 
 import jakarta.persistence.Id;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
 import trim.common.model.BaseTimeEntity;
 
 import java.util.Map;
 
+@SuperBuilder
 @Document(collection = "survey_answer")
 public class SurveyAnswer extends BaseTimeEntity {
     @Id
