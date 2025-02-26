@@ -11,6 +11,7 @@ import trim.api.common.util.PageUtil;
 import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.api.domains.question.vo.response.QuestionDetailResponse;
 import trim.api.domains.question.service.*;
+import trim.api.domains.question.vo.response.QuestionListResponse;
 import trim.api.domains.question.vo.response.QuestionSummaryResponse;
 import trim.common.util.StaticValues;
 
@@ -62,7 +63,7 @@ public class QuestionApiController {
 
     @Operation(summary = "질문 게시판을 모두 조회합니다. 이때 페이지네이션을 통해 n만큼의 개수만을 불러올 수 있습니다.")
     @GetMapping("/page")
-    public ApiResponseDto<List<QuestionSummaryResponse>> getAllQuestionByPagination(
+    public ApiResponseDto<QuestionListResponse> getAllQuestionByPagination(
             @RequestParam(defaultValue = "0") int currentPage,
             @RequestParam int pageSize
     ) {
