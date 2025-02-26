@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
+import trim.api.domains.knowledge.vo.response.KnowledgeListResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeSummaryResponse;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.adaptor.KnowledgeAdaptor;
@@ -24,17 +25,24 @@ public class GetAllKnowledgeByPaginationUseCase {
     private final LikeAdaptor likeAdaptor;
     private final TagAdaptor tagAdaptor;
 
-    public List<KnowledgeSummaryResponse> execute(Pageable pageable) {
+    public KnowledgeListResponse execute(Pageable pageable) {
         Page<Knowledge> knowledgePage = knowledgeAdaptor.queryAllKnowledge(pageable);
-        return knowledgePage.getContent().stream()
-                .map(knowledge ->
-                        KnowledgeSummaryResponse.of(
-                                knowledge,
-                                knowledge.getWriter(),
-                                likeAdaptor.queryCountByBoard(knowledge.getId()),
-                                commentAdaptor.queryCountByBoardId(knowledge.getId()),
-                                tagAdaptor.queryNamesByBoardId(knowledge.getId())))
-                .toList();
+
+        return KnowledgeListResponse.builder()
+                .knowledgeResponseList(
+                        knowledgePage.getContent().stream()
+                                .map(knowledge ->
+                                        KnowledgeSummaryResponse.of(
+                                                knowledge,
+                                                knowledge.getWriter(),
+                                                likeAdaptor.queryCountByBoard(knowledge.getId()),
+                                                commentAdaptor.queryCountByBoardId(knowledge.getId()),
+                                                tagAdaptor.queryNamesByBoardId(knowledge.getId())))
+                                .toList()
+                )
+                .page(knowledgePage.getNumber())
+                .totalPages(knowledgePage.getTotalPages())
+                .build();
 
     }
 }
