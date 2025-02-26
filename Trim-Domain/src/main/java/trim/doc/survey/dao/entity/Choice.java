@@ -1,4 +1,4 @@
-package trim.domains.survey.dao.entity;
+package trim.doc.survey.dao.entity;
 
 import lombok.Data;
 

@@ -1,8 +1,7 @@
-package trim.domains.survey.dao.repository;
+package trim.doc.survey.dao.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
-import trim.domains.survey.dao.entity.Survey;
+import trim.doc.survey.dao.entity.Survey;
 
 import java.util.Optional;
 

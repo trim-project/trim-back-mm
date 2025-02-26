@@ -1,6 +1,6 @@
-package trim.domains.survey.business.adaptor;
+package trim.doc.survey.business.adaptor;
 
-import trim.domains.survey.dao.entity.Survey;
+import trim.doc.survey.dao.entity.Survey;
 
 import java.util.List;
 

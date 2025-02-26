@@ -1,10 +1,9 @@
-package trim.domains.survey.dao.entity;
+package trim.doc.survey.dao.entity;
 
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
-import trim.common.model.BaseTimeEntity;
 import trim.common.model.MongoTimeEntity;
 
 import java.util.List;

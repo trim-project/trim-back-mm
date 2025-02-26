@@ -1,10 +1,10 @@
-package trim.domains.survey.business.service;
+package trim.doc.survey.business.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
-import trim.domains.survey.dao.entity.Survey;
-import trim.domains.survey.dao.repository.SurveyAnswerRepository;
-import trim.domains.survey.dao.repository.SurveyRepository;
+import trim.doc.survey.dao.entity.Survey;
+import trim.doc.survey.dao.repository.SurveyAnswerRepository;
+import trim.doc.survey.dao.repository.SurveyRepository;
 
 @DomainService
 @RequiredArgsConstructor

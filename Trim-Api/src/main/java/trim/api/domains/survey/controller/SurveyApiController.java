@@ -2,7 +2,6 @@ package trim.api.domains.survey.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
@@ -10,7 +9,7 @@ import trim.api.domains.survey.service.GetAllSurveyUseCase;
 import trim.api.domains.survey.service.GetSpecificSurveyUseCase;
 import trim.api.domains.survey.service.RegisterSurveyUseCase;
 import trim.api.domains.survey.vo.request.SurveyRequest;
-import trim.domains.survey.dao.entity.Survey;
+import trim.doc.survey.dao.entity.Survey;
 
 import java.util.List;
 

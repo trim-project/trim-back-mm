@@ -1,10 +1,10 @@
-package trim.domains.survey.business.adaptor;
+package trim.doc.survey.business.adaptor;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
-import trim.domains.survey.dao.entity.Survey;
-import trim.domains.survey.dao.repository.SurveyAnswerRepository;
-import trim.domains.survey.dao.repository.SurveyRepository;
+import trim.doc.survey.dao.entity.Survey;
+import trim.doc.survey.dao.repository.SurveyAnswerRepository;
+import trim.doc.survey.dao.repository.SurveyRepository;
 
 import java.util.List;
 
