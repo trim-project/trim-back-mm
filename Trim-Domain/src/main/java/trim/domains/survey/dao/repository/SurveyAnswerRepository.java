@@ -9,7 +9,6 @@ import trim.domains.survey.dao.entity.SurveyAnswer;
 
 import java.util.List;
 
-@Repository
 public interface SurveyAnswerRepository extends MongoRepository<SurveyAnswer, String> {
     // 특정 유저(respondent)의 설문 응답 조회
     @Query("{ 'surveyId': ?0, 'respondentId': ?1 }")

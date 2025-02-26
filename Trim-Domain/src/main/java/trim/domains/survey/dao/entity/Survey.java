@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
 import trim.common.model.BaseTimeEntity;
+import trim.common.model.MongoTimeEntity;
 
 import java.util.List;
 
 @Getter
 @SuperBuilder
 @Document(collection = "survey")
-public class Survey extends BaseTimeEntity {
+public class Survey extends MongoTimeEntity {
     @Id
     private String id;
     private String registerMemberId;

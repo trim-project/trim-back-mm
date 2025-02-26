@@ -4,12 +4,13 @@ import jakarta.persistence.Id;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
 import trim.common.model.BaseTimeEntity;
+import trim.common.model.MongoTimeEntity;
 
 import java.util.Map;
 
 @SuperBuilder
 @Document(collection = "survey_answer")
-public class SurveyAnswer extends BaseTimeEntity {
+public class SurveyAnswer extends MongoTimeEntity {
     @Id
     private String id;
     private String surveyId;
