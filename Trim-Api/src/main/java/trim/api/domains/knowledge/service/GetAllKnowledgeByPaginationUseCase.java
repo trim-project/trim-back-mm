@@ -43,6 +43,5 @@ public class GetAllKnowledgeByPaginationUseCase {
                 .page(knowledgePage.getNumber())
                 .totalPages(knowledgePage.getTotalPages())
                 .build();
-
     }
 }
