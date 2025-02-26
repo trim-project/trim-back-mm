@@ -11,6 +11,7 @@ import trim.api.common.util.PageUtil;
 import trim.api.domains.freetalk.service.*;
 import trim.api.domains.freetalk.vo.response.FreeTalkDetailResponse;
 import trim.api.domains.freetalk.vo.request.FreeTalkRequest;
+import trim.api.domains.freetalk.vo.response.FreeTalkListResponse;
 import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
 import trim.api.domains.question.vo.response.QuestionSummaryResponse;
 
@@ -51,7 +52,7 @@ public class FreeTalkApiController {
 
     @Operation(summary = "자유 게시판 글을 모두 조회합니다. 이때 페이지네이션을 통해 n만큼의 개수만을 불러올 수 있습니다.")
     @GetMapping("/page")
-    public ApiResponseDto<List<FreeTalkSummaryResponse>> getAllFreeTalkByPagination(
+    public ApiResponseDto<FreeTalkListResponse> getAllFreeTalkByPagination(
             @RequestParam(defaultValue = "0") int currentPage,
             @RequestParam int pageSize) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, PageUtil.LATEST_SORTING);

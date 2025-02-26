@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.freetalk.mapper.FreeTalkMapper;
+import trim.api.domains.freetalk.vo.response.FreeTalkListResponse;
 import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
 import trim.api.domains.member.mapper.MemberMapper;
 import trim.common.annotation.UseCase;
@@ -24,11 +25,17 @@ public class GetAllFreeTalkByPaginationUseCase {
     private final CommentAdaptor commentAdaptor;
     private final LikeAdaptor likeAdaptor;
 
-    public List<FreeTalkSummaryResponse> execute(Pageable pageable) {
+    public FreeTalkListResponse execute(Pageable pageable) {
         Page<FreeTalk> freeTalks = freeTalkAdaptor.queryAllFreeTalk(pageable);
-        return freeTalks.getContent().stream()
-                .map(this::mapToFreeTalkSummaryResponse)
-                .toList();
+
+        return FreeTalkListResponse.builder()
+                .freeTalkResponseList(
+                        freeTalks.getContent().stream()
+                                .map(this::mapToFreeTalkSummaryResponse)
+                                .toList())
+                .page(freeTalks.getNumber())
+                .totalPages(freeTalks.getTotalPages())
+                .build();
     }
 
     private FreeTalkSummaryResponse mapToFreeTalkSummaryResponse(FreeTalk freeTalk) {
