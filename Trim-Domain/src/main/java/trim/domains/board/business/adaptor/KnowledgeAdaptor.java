@@ -19,4 +19,6 @@ public interface KnowledgeAdaptor {
 
     Page<Knowledge> queryHotKnowledge(Pageable pageable);
 
+    Page<Knowledge> queryKnowledgeByBoardIds(List<Long> boardIds, Pageable pageable);
+
 }

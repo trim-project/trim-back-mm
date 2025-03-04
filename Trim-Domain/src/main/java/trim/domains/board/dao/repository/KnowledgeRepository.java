@@ -24,5 +24,5 @@ public interface KnowledgeRepository extends JpaRepository<Knowledge, Long> {
     Page<Knowledge> findHotKnowledge(Pageable pageable);
 
     @Query("SELECT k FROM Knowledge k WHERE k.id IN :boardIds")
-    Page<Knowledge> findKnowledgeByBoardIds(@Param("boardIds") List<Long> boardIds);
+    Page<Knowledge> findKnowledgeByBoardIds(@Param("boardIds") List<Long> boardIds, Pageable pageable);
 }
