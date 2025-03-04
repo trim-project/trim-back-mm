@@ -21,7 +21,7 @@ public class EnumMappingUtil {
     }
 
     @Named("localDateTimeToLong")
-    static Long localDateTimeToLong(LocalDateTime createdAt) {
+    public static Long localDateTimeToLong(LocalDateTime createdAt) {
         return createdAt != null ? createdAt.toInstant(ZoneOffset.UTC).toEpochMilli() : null;
     }
 }
