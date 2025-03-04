@@ -25,5 +25,5 @@ public interface FreeTalkRepository extends JpaRepository<FreeTalk, Long> {
     Page<FreeTalk> findHotFreeTalks(Pageable pageable);
 
     @Query("SELECT f FROM FreeTalk f WHERE f.id IN :boardIds")
-    List<FreeTalk> findFreeTalksByBoardIds(@Param("boardIds") List<Long> boardIds);
+    Page<FreeTalk> findFreeTalksByBoardIds(@Param("boardIds") List<Long> boardIds, Pageable pageable);
 }

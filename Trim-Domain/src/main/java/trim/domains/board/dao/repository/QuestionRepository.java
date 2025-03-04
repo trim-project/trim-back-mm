@@ -23,5 +23,5 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     Page<Question> findHotQuestions(Pageable pageable);
 
     @Query("SELECT q FROM Question q WHERE q.id IN :boardIds")
-    List<Question> findQuestionsByBoardIds(@Param("boardIds") List<Long> boardIds);
+    Page<Question> findQuestionsByBoardIds(@Param("boardIds") List<Long> boardIds);
 }
