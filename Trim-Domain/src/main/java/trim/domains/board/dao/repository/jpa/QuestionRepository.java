@@ -4,12 +4,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import trim.domains.board.dao.domain.Question;
+import trim.domains.board.dao.repository.querydsl.QuestionQueryRepository;
 
 import java.util.List;
 
-public interface QuestionRepository extends JpaRepository<Question, Long> {
+public interface QuestionRepository extends JpaRepository<Question, Long>, QuestionQueryRepository {
     List<Question> findByWriterProfileUsername(String username);
 
     Page<Question> findAll(Pageable pageable);
@@ -21,7 +21,4 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     ORDER BY COUNT(l) DESC, q.createdAt DESC
     """)
     Page<Question> findHotQuestions(Pageable pageable);
-
-    @Query("SELECT q FROM Question q WHERE q.id IN :boardIds")
-    Page<Question> findQuestionsByBoardIds(@Param("boardIds") List<Long> boardIds, Pageable pageable);
 }

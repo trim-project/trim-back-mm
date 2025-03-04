@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import trim.domains.board.dao.domain.Knowledge;
 import trim.domains.member.dao.domain.Member;
 
@@ -23,6 +22,4 @@ public interface KnowledgeRepository extends JpaRepository<Knowledge, Long> {
             """)
     Page<Knowledge> findHotKnowledge(Pageable pageable);
 
-    @Query("SELECT k FROM Knowledge k WHERE k.id IN :boardIds")
-    Page<Knowledge> findKnowledgeByBoardIds(@Param("boardIds") List<Long> boardIds, Pageable pageable);
 }
