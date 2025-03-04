@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Board;
-import trim.domains.board.dao.repository.BoardRepository;
+import trim.domains.board.dao.repository.jpa.BoardRepository;
 
 @Adaptor
 @RequiredArgsConstructor

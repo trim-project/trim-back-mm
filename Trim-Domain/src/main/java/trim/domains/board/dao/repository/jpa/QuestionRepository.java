@@ -1,4 +1,4 @@
-package trim.domains.board.dao.repository;
+package trim.domains.board.dao.repository.jpa;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

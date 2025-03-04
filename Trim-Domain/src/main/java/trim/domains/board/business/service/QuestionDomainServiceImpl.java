@@ -7,7 +7,7 @@ import trim.domains.board.business.validate.BoardValidate;
 import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.board.dao.domain.ResolveStatus;
-import trim.domains.board.dao.repository.QuestionRepository;
+import trim.domains.board.dao.repository.jpa.QuestionRepository;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.board.dto.QuestionDto;
 

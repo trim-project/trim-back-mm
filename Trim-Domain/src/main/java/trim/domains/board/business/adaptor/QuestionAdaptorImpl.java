@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Question;
-import trim.domains.board.dao.repository.QuestionRepository;
+import trim.domains.board.dao.repository.jpa.QuestionRepository;
 import trim.domains.board.exception.BoardHandler;
 
 import java.util.List;

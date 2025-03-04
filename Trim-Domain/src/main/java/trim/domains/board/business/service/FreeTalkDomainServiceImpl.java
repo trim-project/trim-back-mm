@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.domain.FreeTalk;
-import trim.domains.board.dao.repository.FreeTalkRepository;
+import trim.domains.board.dao.repository.jpa.FreeTalkRepository;
 import trim.domains.board.dto.FreeTalkDto;
 import trim.domains.member.dao.domain.Member;
 

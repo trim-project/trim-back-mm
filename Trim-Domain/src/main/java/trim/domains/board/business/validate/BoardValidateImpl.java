@@ -5,7 +5,7 @@ import trim.common.annotation.DomainValidator;
 import trim.domains.board.dao.domain.Board;
 import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.domain.Question;
-import trim.domains.board.dao.repository.AnswerRepository;
+import trim.domains.board.dao.repository.jpa.AnswerRepository;
 import trim.domains.board.exception.BoardHandler;
 import trim.domains.member.dao.domain.Member;
 
