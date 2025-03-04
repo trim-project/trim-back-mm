@@ -42,4 +42,9 @@ public class KnowledgeAdaptorImpl implements KnowledgeAdaptor{
     public Page<Knowledge> queryHotKnowledge(Pageable pageable) {
         return knowledgeRepository.findHotKnowledge(pageable);
     }
+
+    @Override
+    public Page<Knowledge> queryKnowledgeByBoardIds(List<Long> boardIds, Pageable pageable) {
+        return knowledgeRepository.findKnowledgeByBoardIds(boardIds, pageable);
+    }
 }
