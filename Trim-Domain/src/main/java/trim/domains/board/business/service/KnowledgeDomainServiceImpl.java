@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
 import trim.domains.board.dao.domain.BoardType;
 import trim.domains.board.dao.domain.Knowledge;
-import trim.domains.board.dao.repository.KnowledgeRepository;
+import trim.domains.board.dao.repository.jpa.KnowledgeRepository;
 import trim.domains.board.dto.KnowledgeDto;
 import trim.domains.member.dao.domain.Member;
 

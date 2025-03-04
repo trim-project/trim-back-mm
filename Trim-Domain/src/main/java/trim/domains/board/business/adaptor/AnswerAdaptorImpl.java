@@ -3,7 +3,7 @@ package trim.domains.board.business.adaptor;
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Answer;
-import trim.domains.board.dao.repository.AnswerRepository;
+import trim.domains.board.dao.repository.jpa.AnswerRepository;
 import trim.domains.board.exception.BoardHandler;
 
 import java.util.List;

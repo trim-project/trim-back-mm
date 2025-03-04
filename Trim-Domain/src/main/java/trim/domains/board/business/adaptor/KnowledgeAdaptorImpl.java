@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Knowledge;
-import trim.domains.board.dao.repository.KnowledgeRepository;
+import trim.domains.board.dao.repository.jpa.KnowledgeRepository;
 import trim.domains.board.exception.BoardHandler;
 import trim.domains.member.dao.domain.Member;
 
