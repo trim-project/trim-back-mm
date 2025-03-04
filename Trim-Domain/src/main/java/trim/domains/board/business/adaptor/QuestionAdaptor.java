@@ -18,4 +18,6 @@ public interface QuestionAdaptor {
     Page<Question> queryAllQuestion(Pageable pageable);
 
     Page<Question> queryHotQuestions(Pageable pageable);
+
+    Page<Question> queryQuestionsByBoardIds(List<Long> boardIds, Pageable pageable);
 }
