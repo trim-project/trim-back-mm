@@ -40,4 +40,9 @@ public class FreeTalkAdaptorImpl implements FreeTalkAdaptor{
     public Page<FreeTalk> queryHotFreeTalks(Pageable pageable) {
         return freeTalkRepository.findHotFreeTalks(pageable);
     }
+
+    @Override
+    public Page<FreeTalk> queryFreeTalksByBoardIds(List<Long> boardIds, Pageable pageable) {
+        return freeTalkRepository.findFreeTalksByBoardIds(boardIds, pageable);
+    }
 }

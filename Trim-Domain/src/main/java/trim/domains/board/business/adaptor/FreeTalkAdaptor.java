@@ -3,7 +3,6 @@ package trim.domains.board.business.adaptor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import trim.domains.board.dao.domain.FreeTalk;
-import trim.domains.board.dao.domain.Question;
 import trim.domains.member.dao.domain.Member;
 
 import java.util.List;
@@ -19,4 +18,6 @@ public interface FreeTalkAdaptor {
     Page<FreeTalk> queryAllFreeTalk(Pageable pageable);
 
     Page<FreeTalk> queryHotFreeTalks(Pageable pageable);
+
+    Page<FreeTalk> queryFreeTalksByBoardIds(List<Long> boardIds, Pageable pageable);
 }
