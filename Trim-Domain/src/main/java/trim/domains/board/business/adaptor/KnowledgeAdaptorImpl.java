@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Knowledge;
+import trim.domains.board.dao.domain.MajorType;
 import trim.domains.board.dao.repository.jpa.KnowledgeRepository;
 import trim.domains.board.exception.BoardHandler;
 import trim.domains.member.dao.domain.Member;
@@ -44,7 +45,8 @@ public class KnowledgeAdaptorImpl implements KnowledgeAdaptor{
     }
 
     @Override
-    public Page<Knowledge> queryKnowledgeByBoardIds(List<Long> boardIds, Pageable pageable) {
-        return knowledgeRepository.findKnowledgeByBoardIds(boardIds, pageable);
+    public Page<Knowledge> queryKnowledgeBySearch(MajorType majorType, List<String> keywordList, Pageable pageable) {
+        return knowledgeRepository.searchKnowledge(majorType, keywordList, pageable);
     }
+
 }
