@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import trim.common.annotation.Adaptor;
+import trim.domains.board.dao.domain.MajorType;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.board.dao.repository.jpa.QuestionRepository;
 import trim.domains.board.exception.BoardHandler;
@@ -42,7 +43,8 @@ public class QuestionAdaptorImpl implements QuestionAdaptor{
     }
 
     @Override
-    public Page<Question> queryQuestionsByBoardIds(List<Long> boardIds, Pageable pageable) {
-        return questionRepository.findQuestionsByBoardIds(boardIds, pageable);
+    public Page<Question> queryQuestionsBySearch(MajorType majorType, List<String> keywordList, Pageable pageable) {
+        return questionRepository.searchQuestions(majorType, keywordList, pageable);
     }
+
 }
