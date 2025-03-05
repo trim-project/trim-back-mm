@@ -18,6 +18,4 @@ public interface FreeTalkAdaptor {
     Page<FreeTalk> queryAllFreeTalk(Pageable pageable);
 
     Page<FreeTalk> queryHotFreeTalks(Pageable pageable);
-
-    Page<FreeTalk> queryFreeTalksByBoardIds(List<Long> boardIds, Pageable pageable);
 }
