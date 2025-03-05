@@ -8,13 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.common.util.PageUtil;
+import trim.api.domains.question.service.*;
 import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.api.domains.question.vo.response.QuestionDetailResponse;
-import trim.api.domains.question.service.*;
 import trim.api.domains.question.vo.response.QuestionListResponse;
 import trim.api.domains.question.vo.response.QuestionSummaryResponse;
-import trim.common.util.StaticValues;
-
 
 import java.util.List;
 
@@ -32,6 +30,7 @@ public class QuestionApiController {
     private final GetAllQuestionUseCase getAllQuestionUseCase;
     private final GetAllQuestionByPaginationUseCase getAllQuestionByPaginationUseCase;
     private final GetHotQuestionsUseCase getHotQuestionsUseCase;
+    private final SearchQuestionsUseCase searchQuestionsUseCase;
 
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
     @PostMapping("/members/{memberId}")
@@ -76,5 +75,16 @@ public class QuestionApiController {
     public ApiResponseDto<List<QuestionSummaryResponse>> getHotQuestions() {
         Pageable pageable = PageRequest.of(0, HOT_ISSUE_COUNT);
         return ApiResponseDto.onSuccess(getHotQuestionsUseCase.execute(pageable));
+    }
+
+    @Operation(summary = "질문 게시글을 검색합니다. 이때 사용되는 항목은 학과 계열과 키워드 리스트입니다" +
+            "키워드 리스트는 태그, 제목, 컨텐츠의 내용을 확인합니다.")
+    @GetMapping("/search")
+    public ApiResponseDto<QuestionListResponse> searchQuestions(@RequestParam String majorType,
+                                                                @RequestParam List<String> keyword,
+                                                                @RequestParam(defaultValue = "0") int currentPage,
+                                                                @RequestParam int pageSize) {
+        Pageable pageable = PageRequest.of(currentPage, pageSize, PageUtil.LATEST_SORTING);
+        return ApiResponseDto.onSuccess(searchQuestionsUseCase.execute(majorType, keyword, pageable));
     }
 }
