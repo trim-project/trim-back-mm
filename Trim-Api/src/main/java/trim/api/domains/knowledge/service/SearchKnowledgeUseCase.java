@@ -28,7 +28,10 @@ public class SearchKnowledgeUseCase {
     private final TagAdaptor tagAdaptor;
 
     public KnowledgeListResponse execute(String majorType, List<String> keyword, Pageable pageable) {
-        MajorType convertedMajorType = EnumConvertUtil.convert(MajorType.class, majorType);
+        MajorType convertedMajorType = null;
+        if (majorType != null) {
+            convertedMajorType = EnumConvertUtil.convert(MajorType.class, majorType);
+        }
         Page<Knowledge> knowledgePage = knowledgeAdaptor.queryKnowledgeBySearch(convertedMajorType, keyword, pageable);
 
         return KnowledgeListResponse.builder()
