@@ -38,7 +38,7 @@ public class KnowledgeQueryRepositoryImpl implements KnowledgeQueryRepository{
             for (String keyword : keywordList) {
                 keywordBuilder.or(knowledge.title.contains(keyword));
                 keywordBuilder.or(knowledge.content.contains(keyword));
-                keywordBuilder.or(tag.name.eq(keyword));  // 태그도 동일하게 검색어 적용
+                keywordBuilder.or(tag.name.contains(keyword));  // 태그도 동일하게 검색어 적용
             }
 
             builder.and(keywordBuilder);
