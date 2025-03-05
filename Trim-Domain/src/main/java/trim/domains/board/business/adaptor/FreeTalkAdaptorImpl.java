@@ -41,8 +41,4 @@ public class FreeTalkAdaptorImpl implements FreeTalkAdaptor{
         return freeTalkRepository.findHotFreeTalks(pageable);
     }
 
-    @Override
-    public Page<FreeTalk> queryFreeTalksByBoardIds(List<Long> boardIds, Pageable pageable) {
-        return freeTalkRepository.findFreeTalksByBoardIds(boardIds, pageable);
-    }
 }
