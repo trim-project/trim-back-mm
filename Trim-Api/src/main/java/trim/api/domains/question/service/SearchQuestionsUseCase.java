@@ -30,7 +30,10 @@ public class SearchQuestionsUseCase {
     private final AnswerAdaptor answerAdaptor;
 
     public QuestionListResponse execute(String majorType, List<String> keyword, Pageable pageable) {
-        MajorType convertedMajorType = EnumConvertUtil.convert(MajorType.class, majorType);
+        MajorType convertedMajorType = null;
+        if (majorType != null) {
+            convertedMajorType = EnumConvertUtil.convert(MajorType.class, majorType);
+        }
         Page<Question> questions = questionAdaptor.queryQuestionsBySearch(convertedMajorType, keyword, pageable);
         return QuestionListResponse.builder()
                 .questionResponseList(
