@@ -8,13 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.common.util.PageUtil;
-import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
 import trim.api.domains.knowledge.service.*;
 import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
 import trim.api.domains.knowledge.vo.response.KnowledgeDetailResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeListResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeSummaryResponse;
-import trim.api.domains.question.vo.response.QuestionListResponse;
 
 import java.util.List;
 
