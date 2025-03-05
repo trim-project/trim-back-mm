@@ -50,6 +50,7 @@ public class KnowledgeQueryRepositoryImpl implements KnowledgeQueryRepository{
                 .from(knowledge)
                 .leftJoin(tag).on(tag.boardId.eq(knowledge.id))
                 .where(builder)
+                .orderBy(knowledge.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetchResults();

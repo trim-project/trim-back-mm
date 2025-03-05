@@ -60,6 +60,7 @@ public class QuestionQueryRepositoryImpl implements QuestionQueryRepository{
                 .from(question)
                 .leftJoin(tag).on(tag.boardId.eq(question.id))
                 .where(builder)
+                .orderBy(question.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetchResults();
