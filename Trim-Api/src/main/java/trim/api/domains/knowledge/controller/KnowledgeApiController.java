@@ -2,6 +2,7 @@ package trim.api.domains.knowledge.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
 import trim.api.domains.knowledge.vo.response.KnowledgeDetailResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeListResponse;
 import trim.api.domains.knowledge.vo.response.KnowledgeSummaryResponse;
+import trim.common.annotation.RequestParamList;
 
 import java.util.List;
 
@@ -71,7 +73,7 @@ public class KnowledgeApiController {
             "키워드 리스트는 태그, 제목, 컨텐츠의 내용을 확인합니다.")
     @GetMapping("/search")
     public ApiResponseDto<KnowledgeListResponse> searchKnowledge(@RequestParam(required = false) String majorType,
-                                                                 @RequestParam(required = false) List<String> keyword,
+                                                                 @Nullable @RequestParamList(value = "keyword") List<String> keyword,
                                                                  @RequestParam(defaultValue = "0") int currentPage,
                                                                  @RequestParam int pageSize) {
 
