@@ -4,8 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.question.service.EditQuestionUseCase;
@@ -36,10 +34,10 @@ public class QuestionApiController {
 
     @Operation(summary = "질문 게시판 수정 메서드입니다. 작성자가 질문 게시판 pk를 통해 수정을 할 수 있습니다.")
     @PatchMapping("/{questionId}")
-    public ApiResponseDto<Boolean> updateQuestion(@AuthenticationPrincipal UserDetails userDetails,
+    public ApiResponseDto<Boolean> updateQuestion(@AuthUser Member member,
                                                   @PathVariable Long questionId,
                                                   @RequestBody QuestionRequest request) {
-        editQuestionUseCase.execute(userDetails.getUsername(), questionId, request);
+        editQuestionUseCase.execute(member, questionId, request);
         return ApiResponseDto.onSuccess(true);
     }
 
