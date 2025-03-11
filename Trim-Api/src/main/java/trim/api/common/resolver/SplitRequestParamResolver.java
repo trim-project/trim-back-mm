@@ -2,6 +2,7 @@ package trim.api.common.resolver;
 
 
 import org.springframework.core.MethodParameter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -11,6 +12,7 @@ import trim.common.annotation.RequestParamList;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class SplitRequestParamResolver implements HandlerMethodArgumentResolver {
 
     @Override

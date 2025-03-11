@@ -3,6 +3,7 @@ package trim.api.domains.question.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,13 @@ import trim.api.domains.question.vo.request.QuestionRequest;
 import trim.api.domains.question.vo.response.QuestionDetailResponse;
 import trim.api.domains.question.vo.response.QuestionListResponse;
 import trim.api.domains.question.vo.response.QuestionSummaryResponse;
+import trim.common.annotation.RequestParamList;
 
 import java.util.List;
 
 import static trim.common.util.StaticValues.HOT_ISSUE_COUNT;
 
+@Slf4j
 @Tag(name = "[질문 게시판]")
 @RequiredArgsConstructor
 @RestController
@@ -81,9 +84,10 @@ public class QuestionApiController {
             "키워드 리스트는 태그, 제목, 컨텐츠의 내용을 확인합니다.")
     @GetMapping("/search")
     public ApiResponseDto<QuestionListResponse> searchQuestions(@RequestParam(required = false) String majorType,
-                                                                @RequestParam(required = false) List<String> keyword,
+                                                                @RequestParamList("keyword") List<String> keyword,
                                                                 @RequestParam(defaultValue = "0") int currentPage,
                                                                 @RequestParam int pageSize) {
+        keyword.forEach(key -> log.info("keyword = {}", key));
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         return ApiResponseDto.onSuccess(searchQuestionsUseCase.execute(majorType, keyword, pageable));
     }
