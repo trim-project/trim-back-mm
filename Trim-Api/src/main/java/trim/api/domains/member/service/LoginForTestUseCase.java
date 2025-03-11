@@ -13,7 +13,6 @@ public class LoginForTestUseCase {
 
     private final TokenService tokenService;
 
-
     public JwtToken execute(String username) {
         return tokenService.login(username);
     }
