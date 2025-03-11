@@ -4,13 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.answer.mapper.AnswerMapper;
-import trim.api.domains.comment.vo.response.CommentResponse;
 import trim.api.domains.member.mapper.MemberMapper;
-import trim.api.domains.member.vo.MemberResponse;
+import trim.api.domains.member.vo.response.MemberResponse;
 import trim.domains.board.dao.domain.Answer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Builder

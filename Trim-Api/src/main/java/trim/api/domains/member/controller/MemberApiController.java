@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.member.service.GetAllMemberUseCase;
 import trim.api.domains.member.service.RegisterMemberUseCase;
-import trim.api.domains.member.vo.MemberRequest;
-import trim.api.domains.member.vo.MemberResponse;
+import trim.api.domains.member.vo.request.MemberRequest;
+import trim.api.domains.member.vo.response.MemberResponse;
 
 import java.util.List;
 

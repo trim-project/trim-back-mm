@@ -14,10 +14,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import trim.api.common.dto.JwtToken;
+import trim.api.domains.member.vo.auth.CustomUserDetails;
 import trim.common.exception.ErrorStatus;
 import trim.common.exception.GeneralException;
+import trim.common.service.RedisService;
 import trim.domains.member.business.adaptor.MemberAdaptor;
-import trim.domains.member.dao.domain.Member;
 
 import java.security.Key;
 import java.util.Arrays;
@@ -31,25 +32,25 @@ public class TokenServiceImpl implements TokenService{
     private final Key key;      //security yml 파일 생성 후 app.jwt.secret에 값 넣어주기(보안을 위해 따로 연락주세요)
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final Environment env;
-//    private final RedisService redisService;
+    private final RedisService redisService;
     private final MemberAdaptor memberAdaptor;
 
     public TokenServiceImpl(AuthenticationManagerBuilder authenticationManagerBuilder,
                             Environment env,
-//                            RedisService redisService,
+                            RedisService redisService,
                             MemberAdaptor memberAdaptor) {
         this.env = env;
         byte[] keyBytes = Decoders.BASE64.decode(env.getProperty("token.secret"));
         this.key = Keys.hmacShaKeyFor(keyBytes);
         this.authenticationManagerBuilder = authenticationManagerBuilder;
-//        this.redisService = redisService;
+        this.redisService = redisService;
         this.memberAdaptor = memberAdaptor;
     }
     @Override       //TODO oauth2적용시 필요 없음
     public JwtToken login(String username) {
-        Member member = memberAdaptor.queryMemberByUsername(username);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(member, "",
-                member.getAuthorities());
+        CustomUserDetails customUserDetails = new CustomUserDetails(memberAdaptor.queryMemberByUsername(username));
+        Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, "",
+                customUserDetails.getAuthorities());
         return generateToken(authentication);
     }
 
@@ -61,14 +62,14 @@ public class TokenServiceImpl implements TokenService{
         }
 
         // 이전 리프레시 토큰 삭제
-//        redisService.deleteValue(refreshToken);
+        redisService.deleteValue(refreshToken);
 
         // 새로운 Authentication 객체 생성
         Claims claims = parseClaims(refreshToken);
         String username = claims.getSubject();
-        Member member = memberAdaptor.queryMemberByUsername(username);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(member, "",
-                member.getAuthorities());
+        CustomUserDetails customUserDetails = new CustomUserDetails(memberAdaptor.queryMemberByUsername(username));
+        Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, "",
+                customUserDetails.getAuthorities());
 
         // 새 토큰 생성
         JwtToken newTokens = generateToken(authentication);
@@ -103,7 +104,7 @@ public class TokenServiceImpl implements TokenService{
                 .compact();
 
         // 새 리프레시 토큰을 Redis에 저장
-//        redisService.setValue(refreshToken, authentication.getName());
+        redisService.setValue(refreshToken, authentication.getName());
 
         return JwtToken.builder()
                 .grantType("Bearer")
@@ -157,13 +158,13 @@ public class TokenServiceImpl implements TokenService{
 
     @Override
     public boolean logout(String refreshToken) {
-//        redisService.deleteValue(refreshToken);
+        redisService.deleteValue(refreshToken);
         return true;
     }
 
     @Override
     public boolean existsRefreshToken(String refreshToken) {
-//        return redisService.getValue(refreshToken) != null;
+        return redisService.getValue(refreshToken) != null;
     }
 
     @Override

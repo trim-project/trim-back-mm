@@ -3,11 +3,10 @@ package trim.api.domains.member.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.member.mapper.MemberMapper;
-import trim.api.domains.member.vo.MemberResponse;
+import trim.api.domains.member.vo.response.MemberResponse;
 import trim.common.annotation.UseCase;
 import trim.domains.member.business.adaptor.MemberAdaptor;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
