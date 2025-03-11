@@ -10,4 +10,5 @@ import java.lang.annotation.Target;
 public @interface RequestParamList {
     String value(); // 원래 `@RequestParam`에서 쓰이는 값
     String delimiter() default ","; // 기본 구분자 `+`
+    boolean nullable() default true;
 }

@@ -2,6 +2,7 @@ package trim.api.domains.question.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -84,10 +85,9 @@ public class QuestionApiController {
             "키워드 리스트는 태그, 제목, 컨텐츠의 내용을 확인합니다.")
     @GetMapping("/search")
     public ApiResponseDto<QuestionListResponse> searchQuestions(@RequestParam(required = false) String majorType,
-                                                                @RequestParamList("keyword") List<String> keyword,
+                                                                @Nullable @RequestParamList(value = "keyword") List<String> keyword,
                                                                 @RequestParam(defaultValue = "0") int currentPage,
                                                                 @RequestParam int pageSize) {
-        keyword.forEach(key -> log.info("keyword = {}", key));
         Pageable pageable = PageRequest.of(currentPage, pageSize);
         return ApiResponseDto.onSuccess(searchQuestionsUseCase.execute(majorType, keyword, pageable));
     }

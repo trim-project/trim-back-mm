@@ -36,8 +36,8 @@ public class SplitRequestParamResolver implements HandlerMethodArgumentResolver 
         String rawValue = webRequest.getParameter(paramName);
 
         // 값이 없으면 빈 리스트 반환
-        if (rawValue == null || rawValue.isEmpty()) {
-            return List.of();
+        if (rawValue == null) {
+            return annotation.nullable() ? null : List.of();
         }
 
         // 지정된 delimiter로 문자열을 분할하여 리스트로 변환
