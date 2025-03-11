@@ -6,8 +6,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
-import trim.api.domains.question.service.*;
+import trim.api.domains.question.service.EditQuestionUseCase;
+import trim.api.domains.question.service.WriteQuestionUseCase;
 import trim.api.domains.question.vo.request.QuestionRequest;
+import trim.common.annotation.AuthUser;
+import trim.domains.member.dao.domain.Member;
 
 @Slf4j
 @Tag(name = "[질문 게시판🔑]")
@@ -21,21 +24,21 @@ public class QuestionApiController {
 
 
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
-    @PostMapping("/members/{memberId}")
-    public ApiResponseDto<Long> createQuestion(@PathVariable Long memberId, @RequestBody QuestionRequest request) {
-        return ApiResponseDto.onSuccess(writeQuestionUseCase.execute(memberId, request));
+    @PostMapping
+    public ApiResponseDto<Long> createQuestion(@AuthUser Member member,
+                                               @RequestBody QuestionRequest request) {
+        return ApiResponseDto.onSuccess(writeQuestionUseCase.execute(member, request));
 
     }
 
 
     @Operation(summary = "질문 게시판 수정 메서드입니다. 작성자가 질문 게시판 pk를 통해 수정을 할 수 있습니다.")
-    @PatchMapping("/{questionId}/members/{memberId}")
-    public ApiResponseDto<Boolean> updateQuestion(@PathVariable Long memberId,
+    @PatchMapping("/{questionId}")
+    public ApiResponseDto<Boolean> updateQuestion(@AuthUser Member member,
                                                   @PathVariable Long questionId,
                                                   @RequestBody QuestionRequest request) {
-        editQuestionUseCase.execute(memberId, questionId, request);
+        editQuestionUseCase.execute(member, questionId, request);
         return ApiResponseDto.onSuccess(true);
     }
-
 
 }

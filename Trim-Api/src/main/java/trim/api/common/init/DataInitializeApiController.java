@@ -14,7 +14,7 @@ import trim.api.domains.member.service.CreateQuestionDummyDataUseCase;
 @Tag(name = "[더미 데이터 입력]")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/dummy")
+@RequestMapping("/api/access/dummy")
 public class DataInitializeApiController {
 
     private final CreateMemberDummyDataUseCase createMemberDummyDataUseCase;

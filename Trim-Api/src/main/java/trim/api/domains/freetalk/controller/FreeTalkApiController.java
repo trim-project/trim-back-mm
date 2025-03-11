@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.freetalk.service.*;
 import trim.api.domains.freetalk.vo.request.FreeTalkRequest;
+import trim.common.annotation.AuthUser;
+import trim.domains.member.dao.domain.Member;
 
 @Tag(name = "[자유 게시판🔑]")
 @RequiredArgsConstructor
@@ -17,10 +19,10 @@ public class FreeTalkApiController {
     private final WriteFreeTalkUseCase writeFreeTalkUseCase;
 
     @Operation(summary = "자유 게시판 글을 작성합니다.")
-    @PostMapping("/members/{memberId}")
-    public ApiResponseDto<Long> writeFreeTalk(@PathVariable Long memberId,
+    @PostMapping
+    public ApiResponseDto<Long> writeFreeTalk(@AuthUser Member member,
                                               @RequestBody FreeTalkRequest request) {
-        return ApiResponseDto.onSuccess(writeFreeTalkUseCase.execute(memberId, request));
+        return ApiResponseDto.onSuccess(writeFreeTalkUseCase.execute(member, request));
     }
 
 
