@@ -11,7 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import trim.api.common.security.filter.JwtAuthenticationFilter;
 
 import static trim.common.util.StaticValues.*;
 
@@ -20,13 +21,15 @@ import static trim.common.util.StaticValues.*;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         configureCorsAndSecurity(httpSecurity);
         configureAuth(httpSecurity);
 //        configureOAuth2(httpSecurity);
 //        configureExceptionHandling(httpSecurity);
-//        addFilter(httpSecurity);
+        addFilter(httpSecurity);
 
         return httpSecurity.build();
     }
@@ -56,10 +59,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequest -> {
                     authorizeRequest
-                            .requestMatchers((RequestMatcher) DEFAULT_URL).permitAll()
-                            .requestMatchers((RequestMatcher) PERMIT_URL).permitAll()
-                            .requestMatchers((RequestMatcher) SWAGGER_URL).permitAll()
+                            .requestMatchers(DEFAULT_URL.toArray(new String[0])).permitAll()
+                            .requestMatchers(PERMIT_URL.toArray(new String[0])).permitAll()
+                            .requestMatchers(SWAGGER_URL.toArray(new String[0])).permitAll()
                             .anyRequest().authenticated();
                 });
+    }
+
+    private void addFilter(HttpSecurity httpSecurity) {
+        httpSecurity
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//                .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class);
     }
 }
