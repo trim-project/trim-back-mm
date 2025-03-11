@@ -1,7 +1,7 @@
-package trim.api.common.service;
+package trim.api.common.security.service;
 
 import org.springframework.security.core.Authentication;
-import trim.api.common.dto.JwtToken;
+import trim.api.common.security.dto.JwtToken;
 
 import java.util.Date;
 

@@ -2,8 +2,8 @@ package trim.api.domains.member.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import trim.api.common.dto.JwtToken;
-import trim.api.common.service.TokenService;
+import trim.api.common.security.dto.JwtToken;
+import trim.api.common.security.service.TokenService;
 import trim.common.annotation.UseCase;
 
 @UseCase

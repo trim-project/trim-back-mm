@@ -1,4 +1,4 @@
-package trim.api.domains.member.vo.auth;
+package trim.api.common.security.vo.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
