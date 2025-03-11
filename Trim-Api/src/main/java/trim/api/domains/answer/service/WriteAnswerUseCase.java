@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import trim.api.domains.answer.vo.AnswerRequest;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.service.AnswerDomainService;
-import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
 
 @UseCase
@@ -12,10 +11,8 @@ import trim.domains.member.dao.domain.Member;
 public class WriteAnswerUseCase {
 
     private final AnswerDomainService answerDomainService;
-    private final MemberAdaptor memberAdaptor;
 
-    public Long execute(Long questionId, Long memberId, AnswerRequest request) {
-        Member member = memberAdaptor.queryMember(memberId);
+    public Long execute(Long questionId, Member member, AnswerRequest request) {
         return answerDomainService.writeAnswer(request.from(), member, questionId).getId();
     }
 }
