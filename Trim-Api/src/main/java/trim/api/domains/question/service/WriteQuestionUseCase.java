@@ -10,8 +10,6 @@ import trim.domains.board.business.service.QuestionDomainService;
 import trim.domains.board.dao.domain.Question;
 import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
-import trim.domains.mission.business.adaptor.MissionAdaptor;
-import trim.domains.mission.business.service.MissionDomainService;
 import trim.domains.tag.business.service.TagDomainService;
 
 
@@ -25,8 +23,8 @@ public class WriteQuestionUseCase {
     private final QuestionDomainService questionDomainService;
     private final TagDomainService tagDomainService;
 
-    public Long execute(Long memberId, QuestionRequest questionRequest) {
-        Member writer = memberAdaptor.queryMember(memberId);
+    public Long execute(String username, QuestionRequest questionRequest) {
+        Member writer = memberAdaptor.queryMemberByUsername(username);
         Question question = questionDomainService.writeQuestion(
                 writer,
                 QuestionMapper.INSTANCE.toQuestionDto(questionRequest)
