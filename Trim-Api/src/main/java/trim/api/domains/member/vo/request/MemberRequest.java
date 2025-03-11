@@ -1,4 +1,4 @@
-package trim.api.domains.member.vo;
+package trim.api.domains.member.vo.request;
 
 import lombok.Builder;
 import lombok.Getter;

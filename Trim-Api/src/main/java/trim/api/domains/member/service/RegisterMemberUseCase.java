@@ -3,7 +3,7 @@ package trim.api.domains.member.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import trim.api.domains.member.mapper.MemberMapper;
-import trim.api.domains.member.vo.MemberRequest;
+import trim.api.domains.member.vo.request.MemberRequest;
 import trim.common.annotation.UseCase;
 import trim.common.util.EnumConvertUtil;
 import trim.domains.badge.business.adaptor.BadgeAdaptor;

@@ -3,11 +3,9 @@ package trim.api.domains.question.vo.response;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import trim.api.domains.answer.vo.AnswerDetailResponse;
 import trim.api.domains.member.mapper.MemberMapper;
-import trim.api.domains.member.vo.MemberResponse;
+import trim.api.domains.member.vo.response.MemberResponse;
 import trim.api.domains.question.mapper.QuestionMapper;
-import trim.domains.board.dao.domain.Answer;
 import trim.domains.board.dao.domain.Question;
 
 import java.util.ArrayList;

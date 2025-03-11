@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.knowledge.mapper.KnowledgeMapper;
 import trim.api.domains.member.mapper.MemberMapper;
-import trim.api.domains.member.vo.MemberResponse;
+import trim.api.domains.member.vo.response.MemberResponse;
 import trim.domains.board.dao.domain.Knowledge;
 import trim.domains.member.dao.domain.Member;
 

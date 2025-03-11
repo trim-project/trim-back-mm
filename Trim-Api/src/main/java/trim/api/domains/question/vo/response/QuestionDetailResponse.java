@@ -4,14 +4,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import trim.api.domains.answer.vo.AnswerDetailResponse;
-import trim.api.domains.answer.vo.AnswerResponse;
-import trim.api.domains.comment.vo.response.CommentResponse;
 import trim.api.domains.member.mapper.MemberMapper;
-import trim.api.domains.member.vo.MemberResponse;
+import trim.api.domains.member.vo.response.MemberResponse;
 import trim.api.domains.question.mapper.QuestionMapper;
 import trim.domains.board.dao.domain.Answer;
 import trim.domains.board.dao.domain.Question;
-import trim.domains.tag.dao.entity.Tag;
 
 import java.util.ArrayList;
 import java.util.List;

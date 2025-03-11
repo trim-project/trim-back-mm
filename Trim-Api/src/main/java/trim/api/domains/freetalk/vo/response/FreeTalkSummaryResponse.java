@@ -3,7 +3,7 @@ package trim.api.domains.freetalk.vo.response;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import trim.api.domains.member.vo.MemberResponse;
+import trim.api.domains.member.vo.response.MemberResponse;
 
 @Getter
 @Builder
