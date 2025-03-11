@@ -7,7 +7,6 @@ import trim.api.domains.knowledge.vo.request.KnowledgeRequest;
 import trim.common.annotation.UseCase;
 import trim.domains.board.business.service.KnowledgeDomainService;
 import trim.domains.board.dao.domain.Knowledge;
-import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.tag.business.service.TagDomainService;
 
@@ -18,10 +17,8 @@ public class WriteKnowledgeUseCase {
 
     private final KnowledgeDomainService knowledgeDomainService;
     private final TagDomainService tagDomainService;
-    private final MemberAdaptor memberAdaptor;
 
-    public Long execute(Long memberId, KnowledgeRequest knowledgeRequest) {
-        Member member = memberAdaptor.queryMember(memberId);
+    public Long execute(Member member, KnowledgeRequest knowledgeRequest) {
         Knowledge knowledge = knowledgeDomainService
                 .createKnowledge(member, KnowledgeMapper.INSTANCE.toKnowledgeDto(knowledgeRequest));
         tagDomainService.addTagsInBoard(knowledge.getId(), knowledgeRequest.getTags());
