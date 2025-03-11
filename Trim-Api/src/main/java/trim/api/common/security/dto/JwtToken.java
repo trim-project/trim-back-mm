@@ -1,4 +1,4 @@
-package trim.api.common.dto;
+package trim.api.common.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

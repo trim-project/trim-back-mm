@@ -1,4 +1,4 @@
-package trim.api.common.service;
+package trim.api.common.security.service;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -13,8 +13,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import trim.api.common.dto.JwtToken;
-import trim.api.domains.member.vo.auth.CustomUserDetails;
+import trim.api.common.security.dto.JwtToken;
+import trim.api.common.security.vo.auth.CustomUserDetails;
 import trim.common.exception.ErrorStatus;
 import trim.common.exception.GeneralException;
 import trim.common.service.RedisService;
