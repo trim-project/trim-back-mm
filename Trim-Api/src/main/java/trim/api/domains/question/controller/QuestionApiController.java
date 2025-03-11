@@ -11,6 +11,8 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.question.service.EditQuestionUseCase;
 import trim.api.domains.question.service.WriteQuestionUseCase;
 import trim.api.domains.question.vo.request.QuestionRequest;
+import trim.common.annotation.AuthUser;
+import trim.domains.member.dao.domain.Member;
 
 @Slf4j
 @Tag(name = "[질문 게시판🔑]")
@@ -25,9 +27,9 @@ public class QuestionApiController {
 
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
     @PostMapping
-    public ApiResponseDto<Long> createQuestion(@AuthenticationPrincipal UserDetails userDetails,
+    public ApiResponseDto<Long> createQuestion(@AuthUser Member member,
                                                @RequestBody QuestionRequest request) {
-        return ApiResponseDto.onSuccess(writeQuestionUseCase.execute(userDetails.getUsername(), request));
+        return ApiResponseDto.onSuccess(writeQuestionUseCase.execute(member, request));
 
     }
 

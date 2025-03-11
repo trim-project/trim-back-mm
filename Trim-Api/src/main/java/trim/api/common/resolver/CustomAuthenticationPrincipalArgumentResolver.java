@@ -3,9 +3,9 @@ package trim.api.common.resolver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
-import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -15,9 +15,10 @@ import trim.common.annotation.AuthUser;
 import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
 
-import java.lang.annotation.Annotation;
+import static trim.common.util.AnnotationUtil.findMethodAnnotation;
 
 @Slf4j
+@Component
 @RequiredArgsConstructor
 public final class CustomAuthenticationPrincipalArgumentResolver implements HandlerMethodArgumentResolver {
 
@@ -51,18 +52,5 @@ public final class CustomAuthenticationPrincipalArgumentResolver implements Hand
         return member;
     }
 
-    private <T extends Annotation> T findMethodAnnotation(Class<T> annotationClass, MethodParameter parameter) {
-        T annotation = parameter.getParameterAnnotation(annotationClass);
-        if (annotation != null) {
-            return annotation;
-        }
-        Annotation[] annotationsToSearch = parameter.getParameterAnnotations();
-        for (Annotation toSearch : annotationsToSearch) {
-            annotation = AnnotationUtils.findAnnotation(toSearch.annotationType(), annotationClass);
-            if (annotation != null) {
-                return annotation;
-            }
-        }
-        return null;
-    }
+
 }

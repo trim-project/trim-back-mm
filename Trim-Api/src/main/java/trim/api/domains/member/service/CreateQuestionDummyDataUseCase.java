@@ -26,7 +26,7 @@ public class CreateQuestionDummyDataUseCase {
                     .title("title Question" + i +"by" + memberId)
                     .tags(List.of("dummy1", "dummy2", "dummy3"))
                     .build();
-            writeQuestionUseCase.execute(member.getProfile().getUsername(), request);
+            writeQuestionUseCase.execute(member, request);
         }
         return true;
     }
