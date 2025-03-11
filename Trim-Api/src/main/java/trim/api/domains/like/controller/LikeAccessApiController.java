@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.like.service.GetLikeCountUseCase;
 
-@Tag(name = "[좋아요🔑]")
+@Tag(name = "[좋아요]")
 @RestController
 @RequestMapping("/api/access/likes")
 @RequiredArgsConstructor
