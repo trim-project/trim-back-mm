@@ -7,53 +7,46 @@ import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.badge.service.CountUpBadgeOfWritingBoardUseCase;
 import trim.api.domains.badge.service.GetAllBadgesByMemberUseCase;
-import trim.api.domains.badge.service.GetAllBadgesUseCase;
 import trim.api.domains.badge.service.UpgradeBadgeLevelUseCase;
 import trim.api.domains.badge.vo.response.BadgeDetailResponse;
-import trim.api.domains.badge.vo.response.BadgeResponse;
+import trim.common.annotation.AuthUser;
 import trim.common.util.EnumConvertUtil;
 import trim.domains.badge.dao.entity.BadgeContent;
+import trim.domains.member.dao.domain.Member;
 
 import java.util.List;
 
-@Tag(name = "[뱃지]")
+@Tag(name = "[뱃지🔑]")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/badges")
 public class BadgeApiController {
 
-    private final GetAllBadgesUseCase getAllBadgesUseCase;
     private final UpgradeBadgeLevelUseCase upgradeBadgeLevelUseCase;
     private final CountUpBadgeOfWritingBoardUseCase countUpBadgeOfWritingBoardUseCase;
     private final GetAllBadgesByMemberUseCase getAllBadgesByMemberUseCase;
 
-    @Operation(summary = "모든 뱃지를 조회합니다.")
-    @GetMapping
-    public ApiResponseDto<List<BadgeResponse>> getAllBadges() {
-        return ApiResponseDto.onSuccess(getAllBadgesUseCase.execute());
-    }
 
     @Operation(summary = "모든 뱃지를 조회합니다. 이때 사용자의 미션 상태를 반영하여 값을 가져옵니다.")
-    @GetMapping("/members/{memberId}")
+    @GetMapping
     public ApiResponseDto<List<BadgeDetailResponse>> getAllBadgesByMember(@PathVariable Long memberId) {
         return ApiResponseDto.onSuccess(getAllBadgesByMemberUseCase.execute(memberId));
     }
 
     @Operation(summary = "미션의 단계를 업그레이드 합니다. 현재 완성한 배지를 획득합니다.")
-    @PostMapping("/{badgeId}/members/{memberId}")
-    public ApiResponseDto<Integer> upgradeBadgeLevel(@PathVariable Long badgeId,
-                                                     @PathVariable Long memberId) {
-        return ApiResponseDto.onSuccess(upgradeBadgeLevelUseCase.execute(badgeId, memberId));
+    @PostMapping("/{badgeId}")
+    public ApiResponseDto<Integer> upgradeBadgeLevel(@AuthUser Member member,
+                                                     @PathVariable Long badgeId) {
+        return ApiResponseDto.onSuccess(upgradeBadgeLevelUseCase.execute(badgeId, member));
     }
 
     @Operation(summary = "게시글 작성을 함으로써 미션의 카운트를 하나 올려줍니다.")
-    @PutMapping("/boards/members/{memberId}")
-    public ApiResponseDto<Long> countUpBadgeOfWritingBoard(@PathVariable Long memberId,
+    @PatchMapping("/boards")
+    public ApiResponseDto<Long> countUpBadgeOfWritingBoard(@AuthUser Member member,
                                                            @RequestParam String badgeContentKey) {
         BadgeContent badgeContent = EnumConvertUtil.convert(BadgeContent.class, badgeContentKey);
         return ApiResponseDto.onSuccess(countUpBadgeOfWritingBoardUseCase
-                .execute(badgeContent, memberId));
+                .execute(badgeContent, member));
     }
-
 
 }

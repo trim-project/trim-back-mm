@@ -22,4 +22,7 @@ public class StaticValues {
             List.of(
                     "/", "/.well-known/**", "/css/**", "/*.ico", "/error", "/images/**"
             );
+    public static final String JWT = "JWT";
+    public static final String BEARER = "Bearer";
+    public static final String AUTHORIZATION = "Authorization";
 }
