@@ -8,7 +8,7 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.answer.service.WriteAnswerUseCase;
 import trim.api.domains.answer.vo.AnswerRequest;
 
-@Tag(name = "[답글 게시판]")
+@Tag(name = "[답글 게시판🔑]")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/answers")
