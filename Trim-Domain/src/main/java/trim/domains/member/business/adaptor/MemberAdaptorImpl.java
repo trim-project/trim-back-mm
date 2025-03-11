@@ -25,8 +25,6 @@ public class MemberAdaptorImpl implements MemberAdaptor {
 
     @Override
     public Member queryMemberByUsername(String username) {
-        Boolean test = memberRepository.existsByProfileUsername(username);
-        log.info("test = {}", test);
         return memberRepository.findByProfileUsername(username)
                 .orElseThrow(() -> MemberHandler.NOT_FOUND);
     }
