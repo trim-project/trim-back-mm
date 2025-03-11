@@ -5,7 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.UseCase;
 import trim.domains.badge.business.adaptor.BadgeAdaptor;
 import trim.domains.badge.dao.entity.Badge;
-import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.business.adaptor.MissionAdaptor;
 import trim.domains.mission.business.service.MissionDomainService;
@@ -23,15 +22,15 @@ public class UpgradeBadgeLevelUseCase {
     private final MissionValidator missionValidator;
     private final MissionDomainService missionDomainService;
 
-    public Integer execute(Long badgeId, Long memberId) {
+    public Integer execute(Long badgeId, Member member) {
         Mission completedMission
-                = missionAdaptor.queryMissionByBadgeIdAndMemberId(badgeId, memberId);
+                = missionAdaptor.queryMissionByBadgeIdAndMemberId(badgeId, member.getId());
         int nextLevel = completedMission.getBadge().getLevel() + 1;
         // VALIDATE MISSION IS COMPLETED
         if(!missionValidator.isCompletedMission(completedMission)) throw MissionHandler.NOT_CLEARED;
         // GET NEXT BADGE
         Badge nextBadge = badgeAdaptor.queryByContentAndLevel(completedMission.getBadge().getBadgeContent(), nextLevel);
-        Mission mission = missionAdaptor.queryMissionByBadgeIdAndMemberId(nextBadge.getId(), memberId);
+        Mission mission = missionAdaptor.queryMissionByBadgeIdAndMemberId(nextBadge.getId(), member.getId());
         mission.unlocked();
         return nextLevel;
     }

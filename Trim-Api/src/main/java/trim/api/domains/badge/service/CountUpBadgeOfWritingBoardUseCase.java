@@ -6,13 +6,9 @@ import trim.common.annotation.UseCase;
 import trim.common.exception.ErrorStatus;
 import trim.common.exception.GeneralException;
 import trim.domains.badge.dao.entity.BadgeContent;
-import trim.domains.board.dao.domain.BoardType;
-import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.business.adaptor.MissionAdaptor;
-import trim.domains.mission.business.service.MissionDomainService;
 import trim.domains.mission.dao.entity.Mission;
-import trim.domains.mission.dao.entity.MissionStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,12 +21,8 @@ import static trim.domains.mission.dao.entity.MissionStatus.IN_PROGRESS;
 public class CountUpBadgeOfWritingBoardUseCase {
 
     private final MissionAdaptor missionAdaptor;
-    private final MissionDomainService missionDomainService;
-    private final MemberAdaptor memberAdaptor;
 
-
-    public Long execute(BadgeContent badgeContent, Long memberId) {
-        Member member = memberAdaptor.queryMember(memberId);
+    public Long execute(BadgeContent badgeContent, Member member) {
         List<Mission> missions = missionAdaptor.queryMissionByBadgeContentAndMember(badgeContent, member);
         Optional<Mission> inProgressMission = missions.stream()
                 .filter(mission -> mission.getMissionStatus().equals(IN_PROGRESS))
