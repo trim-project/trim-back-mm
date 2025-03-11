@@ -22,7 +22,7 @@ public class CreateFreeTalkDummyDataUseCase {
                     .title("title of FreeTalk" + i + "by" + memberId)
                     .content("content of FreeTalk" + i + "by" + memberId)
                     .build();
-            writeFreeTalkUseCase.execute(memberId, request);
+            writeFreeTalkUseCase.execute(member, request);
         }
         return true;
     }
