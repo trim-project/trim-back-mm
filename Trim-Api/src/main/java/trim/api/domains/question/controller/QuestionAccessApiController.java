@@ -21,7 +21,7 @@ import java.util.List;
 import static trim.common.util.StaticValues.HOT_ISSUE_COUNT;
 
 @Slf4j
-@Tag(name = "[질문 게시판🔑]")
+@Tag(name = "[질문 게시판]")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/access/questions")
