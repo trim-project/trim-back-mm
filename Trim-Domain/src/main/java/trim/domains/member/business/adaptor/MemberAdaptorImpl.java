@@ -1,6 +1,7 @@
 package trim.domains.member.business.adaptor;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.Adaptor;
 import trim.domains.member.dao.domain.Member;
@@ -9,6 +10,7 @@ import trim.domains.member.dao.repository.MemberRepository;
 
 import java.util.List;
 
+@Slf4j
 @Adaptor
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -23,6 +25,8 @@ public class MemberAdaptorImpl implements MemberAdaptor {
 
     @Override
     public Member queryMemberByUsername(String username) {
+        Boolean test = memberRepository.existsByProfileUsername(username);
+        log.info("test = {}", test);
         return memberRepository.findByProfileUsername(username)
                 .orElseThrow(() -> MemberHandler.NOT_FOUND);
     }

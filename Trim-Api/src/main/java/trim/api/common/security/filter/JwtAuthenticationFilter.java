@@ -15,6 +15,9 @@ import trim.api.common.security.service.TokenService;
 
 import java.io.IOException;
 
+import static trim.common.util.StaticValues.AUTHORIZATION;
+import static trim.common.util.StaticValues.BEARER;
+
 @Slf4j
 @RequiredArgsConstructor
 @Component
@@ -49,9 +52,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
+        String bearerToken = request.getHeader(AUTHORIZATION);
 
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")) {
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER)) {
             return bearerToken.substring(7);
         }
         return null;

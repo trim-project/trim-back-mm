@@ -24,6 +24,7 @@ public class WriteQuestionUseCase {
     private final TagDomainService tagDomainService;
 
     public Long execute(String username, QuestionRequest questionRequest) {
+        log.info("username = {}", username);
         Member writer = memberAdaptor.queryMemberByUsername(username);
         Question question = questionDomainService.writeQuestion(
                 writer,

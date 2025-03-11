@@ -11,29 +11,33 @@ import io.swagger.v3.oas.models.media.Content;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import jakarta.servlet.ServletContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springdoc.core.customizers.OperationCustomizer;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.common.dto.ExampleHolder;
-import trim.common.annotation.ApiErrorStatusExample;
 import trim.common.annotation.ApiErrorExceptionsExample;
+import trim.common.annotation.ApiErrorStatusExample;
 import trim.common.annotation.DisableSwaggerSecurity;
 import trim.common.annotation.ExplainError;
-import trim.common.exception.*;
+import trim.common.exception.BaseErrorCode;
+import trim.common.exception.GeneralException;
+import trim.common.exception.Reason;
 
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
+import static trim.common.util.StaticValues.*;
 
 /** Swagger 사용 환경을 위한 설정 파일 */
 @Slf4j
@@ -47,7 +51,11 @@ public class SwaggerConfig {
     public OpenAPI openAPI(ServletContext servletContext) {
         String contextPath = servletContext.getContextPath();
         Server server = new Server().url(contextPath);
-        return new OpenAPI().servers(List.of(server)).components(authSetting()).info(swaggerInfo());
+        return new OpenAPI()
+                .servers(List.of(server))
+                .components(authSetting())
+                .addSecurityItem(new SecurityRequirement().addList(JWT))
+                .info(swaggerInfo());
     }
 
     private Info swaggerInfo() {
@@ -65,13 +73,13 @@ public class SwaggerConfig {
     private Components authSetting() {
         return new Components()
                 .addSecuritySchemes(
-                        "access-token",
+                        JWT,
                         new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)
-                                .scheme("bearer")
-                                .bearerFormat("JWT")
+                                .scheme(BEARER)
+                                .bearerFormat(AUTHORIZATION)
                                 .in(SecurityScheme.In.HEADER)
-                                .name("Authorization"));
+                                .name(JWT));
     }
 
 
