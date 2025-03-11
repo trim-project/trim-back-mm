@@ -18,4 +18,8 @@ public class StaticValues {
                     "/v3/api-docs/**",
                     "/profile"
             );
+    public final static List<String> DEFAULT_URL =
+            List.of(
+                    "/", "/.well-known/**", "/css/**", "/*.ico", "/error", "/images/**"
+            );
 }

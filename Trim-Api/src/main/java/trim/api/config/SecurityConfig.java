@@ -13,8 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import static trim.common.util.StaticValues.PERMIT_URL;
-import static trim.common.util.StaticValues.SWAGGER_URL;
+import static trim.common.util.StaticValues.*;
 
 @RequiredArgsConstructor
 @Configuration
@@ -57,7 +56,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeRequest -> {
                     authorizeRequest
-                            .requestMatchers("/", "/.well-known/**", "/css/**", "/*.ico", "/error", "/images/**").permitAll()
+                            .requestMatchers((RequestMatcher) DEFAULT_URL).permitAll()
                             .requestMatchers((RequestMatcher) PERMIT_URL).permitAll()
                             .requestMatchers((RequestMatcher) SWAGGER_URL).permitAll()
                             .anyRequest().authenticated();
