@@ -23,11 +23,9 @@ public class WriteQuestionUseCase {
     private final QuestionDomainService questionDomainService;
     private final TagDomainService tagDomainService;
 
-    public Long execute(String username, QuestionRequest questionRequest) {
-        log.info("username = {}", username);
-        Member writer = memberAdaptor.queryMemberByUsername(username);
+    public Long execute(Member member, QuestionRequest questionRequest) {
         Question question = questionDomainService.writeQuestion(
-                writer,
+                member,
                 QuestionMapper.INSTANCE.toQuestionDto(questionRequest)
         );
         tagDomainService.addTagsInBoard(question.getId(), questionRequest.getTags());
