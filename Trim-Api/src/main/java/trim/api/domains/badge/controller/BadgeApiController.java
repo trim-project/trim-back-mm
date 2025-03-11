@@ -1,6 +1,7 @@
 package trim.api.domains.badge.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -29,20 +30,20 @@ public class BadgeApiController {
 
     @Operation(summary = "모든 뱃지를 조회합니다. 이때 사용자의 미션 상태를 반영하여 값을 가져옵니다.")
     @GetMapping
-    public ApiResponseDto<List<BadgeDetailResponse>> getAllBadgesByMember(@PathVariable Long memberId) {
-        return ApiResponseDto.onSuccess(getAllBadgesByMemberUseCase.execute(memberId));
+    public ApiResponseDto<List<BadgeDetailResponse>> getAllBadgesByMember(@Parameter(hidden = true) @AuthUser Member member) {
+        return ApiResponseDto.onSuccess(getAllBadgesByMemberUseCase.execute(member));
     }
 
     @Operation(summary = "미션의 단계를 업그레이드 합니다. 현재 완성한 배지를 획득합니다.")
     @PostMapping("/{badgeId}")
-    public ApiResponseDto<Integer> upgradeBadgeLevel(@AuthUser Member member,
+    public ApiResponseDto<Integer> upgradeBadgeLevel(@Parameter(hidden = true) @AuthUser Member member,
                                                      @PathVariable Long badgeId) {
         return ApiResponseDto.onSuccess(upgradeBadgeLevelUseCase.execute(badgeId, member));
     }
 
     @Operation(summary = "게시글 작성을 함으로써 미션의 카운트를 하나 올려줍니다.")
     @PatchMapping("/boards")
-    public ApiResponseDto<Long> countUpBadgeOfWritingBoard(@AuthUser Member member,
+    public ApiResponseDto<Long> countUpBadgeOfWritingBoard(@Parameter(hidden = true) @AuthUser Member member,
                                                            @RequestParam String badgeContentKey) {
         BadgeContent badgeContent = EnumConvertUtil.convert(BadgeContent.class, badgeContentKey);
         return ApiResponseDto.onSuccess(countUpBadgeOfWritingBoardUseCase

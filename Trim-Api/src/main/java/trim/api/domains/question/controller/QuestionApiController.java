@@ -1,6 +1,7 @@
 package trim.api.domains.question.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,7 @@ public class QuestionApiController {
 
     @Operation(summary = "질문 게시판 작성 메서드입니다.")
     @PostMapping
-    public ApiResponseDto<Long> createQuestion(@AuthUser Member member,
+    public ApiResponseDto<Long> createQuestion(@Parameter(hidden = true) @AuthUser Member member,
                                                @RequestBody QuestionRequest request) {
         return ApiResponseDto.onSuccess(writeQuestionUseCase.execute(member, request));
 
@@ -34,7 +35,7 @@ public class QuestionApiController {
 
     @Operation(summary = "질문 게시판 수정 메서드입니다. 작성자가 질문 게시판 pk를 통해 수정을 할 수 있습니다.")
     @PatchMapping("/{questionId}")
-    public ApiResponseDto<Boolean> updateQuestion(@AuthUser Member member,
+    public ApiResponseDto<Boolean> updateQuestion(@Parameter(hidden = true) @AuthUser Member member,
                                                   @PathVariable Long questionId,
                                                   @RequestBody QuestionRequest request) {
         editQuestionUseCase.execute(member, questionId, request);

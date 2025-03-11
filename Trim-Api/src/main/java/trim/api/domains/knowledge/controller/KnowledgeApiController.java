@@ -1,6 +1,7 @@
 package trim.api.domains.knowledge.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class KnowledgeApiController {
 
     @Operation(summary = "지식 공유 게시글을 작성합니다.")
     @PostMapping
-    public ApiResponseDto<Long> writeKnowledge(@AuthUser Member member,
+    public ApiResponseDto<Long> writeKnowledge(@Parameter(hidden = true) @AuthUser Member member,
                                                @RequestBody KnowledgeRequest request) {
         return ApiResponseDto.onSuccess(writeKnowledgeUseCase.execute(member, request));
     }

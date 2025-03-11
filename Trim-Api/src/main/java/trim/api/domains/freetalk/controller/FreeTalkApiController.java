@@ -1,6 +1,7 @@
 package trim.api.domains.freetalk.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class FreeTalkApiController {
 
     @Operation(summary = "자유 게시판 글을 작성합니다.")
     @PostMapping
-    public ApiResponseDto<Long> writeFreeTalk(@AuthUser Member member,
+    public ApiResponseDto<Long> writeFreeTalk(@Parameter(hidden = true) @AuthUser Member member,
                                               @RequestBody FreeTalkRequest request) {
         return ApiResponseDto.onSuccess(writeFreeTalkUseCase.execute(member, request));
     }

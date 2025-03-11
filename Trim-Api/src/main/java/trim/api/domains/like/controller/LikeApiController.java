@@ -1,6 +1,7 @@
 package trim.api.domains.like.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,7 @@ public class LikeApiController {
     @Operation(summary = "해당 게시글에 좋아요를 누릅니다.이미 존재하는 좋아요라면 취소합니다.")
     @PostMapping("/boards/{boardId}")
     public ApiResponseDto<String> clickLikeAtTheBoard(
-            @AuthUser Member member,
+            @Parameter(hidden = true) @AuthUser Member member,
             @PathVariable Long boardId) {
         return ApiResponseDto.onSuccess(clickLikeAtTheBoardUseCase.execute(boardId, member));
     }
