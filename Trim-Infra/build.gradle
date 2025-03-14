@@ -3,7 +3,7 @@ jar { enabled = true }
 dependencies {
     api project(':Trim-Common')
     api 'io.github.openfeign:feign-httpclient'
-    api platform('org.springframework.cloud:spring-cloud-dependencies:2022.0.4')
+    api platform('org.springframework.cloud:spring-cloud-dependencies:2023.0.0')
     api "org.springframework.cloud:spring-cloud-starter-openfeign"
     api 'io.github.openfeign:feign-jackson' // JacksonDecoder 지원
     api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
