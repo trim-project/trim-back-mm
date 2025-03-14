@@ -5,7 +5,8 @@ dependencies {
     api 'io.github.openfeign:feign-httpclient'
     api platform('org.springframework.cloud:spring-cloud-dependencies:2022.0.4')
     api "org.springframework.cloud:spring-cloud-starter-openfeign"
-    api 'com.fasterxml.jackson.core:jackson-databind'
+    api 'io.github.openfeign:feign-jackson' // JacksonDecoder 지원
     api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    api 'io.github.openfeign:feign-slf4j'
 
 }
