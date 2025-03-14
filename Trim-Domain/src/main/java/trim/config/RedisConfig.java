@@ -12,6 +12,7 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+//TODO move to INFRA module
 @RequiredArgsConstructor
 @EnableRedisRepositories
 @Configuration
