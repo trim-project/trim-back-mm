@@ -1,16 +1,15 @@
-package trim.outer.api.test.client;
+package trim.outer.test.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import trim.outer.test.dto.TestDto;
 
 @FeignClient(
         name = "testClient",
-        url = "http:8080//api/access/check")
-public class TestClient {
-
+        url = "http://localhost:8080/api/access/test"
+)
+public interface TestClient {
     @GetMapping
-    public String feignTest(@RequestParam String message) {
-        return message;
-    }
+    TestDto testMessage(@RequestParam String message);
 }
