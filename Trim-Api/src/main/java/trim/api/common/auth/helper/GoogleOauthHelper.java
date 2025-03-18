@@ -8,6 +8,7 @@ import trim.common.util.StaticValues;
 import trim.domains.member.dao.domain.SocialType;
 import trim.outer.oauth.google.client.GoogleInfoClient;
 import trim.outer.oauth.google.client.GoogleOauthClient;
+import trim.outer.oauth.google.vo.request.GoogleTokenRequest;
 import trim.outer.oauth.google.vo.response.GoogleInformationResponse;
 import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 
@@ -21,8 +22,12 @@ public class GoogleOauthHelper {
 
     public GoogleTokenResponse getGoogleOauthToken(String code) {
         return googleOauthClient.googleOauth(
-                environment.getProperty("oauth2.google.client_id"),
-                StaticValues.GOOGLE_REDIRECT_URL_LOCAL
+                GoogleTokenRequest.builder()
+                        .clientId(environment.getProperty("oauth2.google.client_id"))
+                        .clientSecret(environment.getProperty("oauth2.google.client_secret"))
+                        .code(code)
+                        .redirectUrl(StaticValues.GOOGLE_REDIRECT_URL_LOCAL)
+                        .build()
         );
     }
 
