@@ -3,7 +3,7 @@ package trim.api.auth.service.helper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
-import trim.api.auth.dto.GoogleUserInfoDto;
+import trim.api.auth.dto.UserInfoDto;
 import trim.common.annotation.Helper;
 import trim.common.util.StaticValues;
 import trim.domains.member.dao.domain.SocialType;
@@ -26,15 +26,15 @@ public class GoogleOauthHelper {
                 StaticValues.GRANT_TYPE,
                 environment.getProperty("oauth2.google.client_id"),
                 environment.getProperty("oauth2.google.client_secret"),
-                StaticValues.GOOGLE_REDIRECT_URL_LOCAL,
+                environment.getProperty("oauth2.google.redirect_callback"),
                 code
         );
     }
 
-    public GoogleUserInfoDto getGoogleUserInfo(String oauthAccessToken) {
+    public UserInfoDto getGoogleUserInfo(String oauthAccessToken) {
         GoogleInformationResponse googleInformationResponse =
                 googleInfoClient.googleUserInfo(StaticValues.BEARER + oauthAccessToken);
-        return GoogleUserInfoDto.builder()
+        return UserInfoDto.builder()
                 .email(googleInformationResponse.getEmail())
                 .oauthId(googleInformationResponse.getId())
                 .oauthProvider(SocialType.GOOGLE)

@@ -93,7 +93,7 @@ tasks.register("copyDomainConfig") {
 	outputs.dirs(targetDirs) // Gradle에게 각 모듈의 리소스 폴더를 출력으로 설정
 }
 
-tasks.register("copyInfraConfig") {
+tasks.register("copyOauthConfig") {
 	def sourceDir = file("$rootDir/config")
 	def targetDirs = [
 			file("$rootDir/Trim-Api/src/main/resources")
@@ -103,7 +103,7 @@ tasks.register("copyInfraConfig") {
 		doLast {
 			copy {
 				from sourceDir
-				include("application-infra.yml")
+				include("application-oauth.yml")
 				into targetDir
 			}
 			println "✅ YAML files copied to: ${targetDir.absolutePath}"
