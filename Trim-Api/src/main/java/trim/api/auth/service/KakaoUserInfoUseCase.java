@@ -1,4 +1,4 @@
-package trim.api.auth.service.kakao;
+package trim.api.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.api.auth.dto.UserInfoDto;
