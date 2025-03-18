@@ -8,7 +8,7 @@ import trim.domains.member.dao.domain.SocialType;
 @Getter
 @Builder
 @RequiredArgsConstructor
-public class GoogleUserInfoResponse {
+public class OauthUserInfoResponse {
     private final String oauthId;
     private final String email;
     private final SocialType oauthProvider;

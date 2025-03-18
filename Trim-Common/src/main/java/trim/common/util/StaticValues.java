@@ -27,6 +27,5 @@ public class StaticValues {
     public static final String JWT = "JWT";
     public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
-    public static final String GOOGLE_REDIRECT_URL_LOCAL = "http://localhost:8080/oauth/google/callback";
     public static final String GRANT_TYPE = "authorization_code";
 }

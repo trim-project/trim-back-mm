@@ -26,7 +26,7 @@ public class GoogleOauthHelper {
                 StaticValues.GRANT_TYPE,
                 environment.getProperty("oauth2.google.client_id"),
                 environment.getProperty("oauth2.google.client_secret"),
-                StaticValues.GOOGLE_REDIRECT_URL_LOCAL,
+                environment.getProperty("oauth2.google.redirect_callback"),
                 code
         );
     }
