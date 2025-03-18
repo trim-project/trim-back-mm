@@ -1,4 +1,4 @@
-package trim.api.common.auth.dto;
+package trim.api.auth.dto;
 
 import lombok.Builder;
 import lombok.Data;

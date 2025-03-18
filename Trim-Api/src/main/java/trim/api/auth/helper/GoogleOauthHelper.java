@@ -1,9 +1,9 @@
-package trim.api.common.auth.helper;
+package trim.api.auth.helper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
-import trim.api.common.auth.dto.GoogleUserInfoDto;
+import trim.api.auth.dto.GoogleUserInfoDto;
 import trim.common.annotation.Helper;
 import trim.common.util.StaticValues;
 import trim.domains.member.dao.domain.SocialType;
@@ -22,9 +22,6 @@ public class GoogleOauthHelper {
     private final GoogleOauthClient googleOauthClient;
 
     public GoogleTokenResponse getGoogleOauthToken(String code) {
-        log.info("client_id = {}", environment.getProperty("oauth2.google.client_id"));
-        log.info("client_secret = {}", environment.getProperty("oauth2.google.client_secret"));
-        log.info("code = {}", code);
         return googleOauthClient.googleOauth(
                 StaticValues.GRANT_TYPE,
                 environment.getProperty("oauth2.google.client_id"),
