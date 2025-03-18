@@ -1,4 +1,4 @@
-package trim.api.auth.service;
+package trim.api.auth.service.google;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
