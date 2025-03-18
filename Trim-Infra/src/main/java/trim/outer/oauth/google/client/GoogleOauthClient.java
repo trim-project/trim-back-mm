@@ -1,9 +1,9 @@
 package trim.outer.oauth.google.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import trim.outer.oauth.google.vo.request.GoogleTokenRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 
 @FeignClient(
@@ -12,6 +12,12 @@ import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 )
 public interface GoogleOauthClient {
 
-    @PostMapping("/token")
-    GoogleTokenResponse googleOauth(@RequestBody GoogleTokenRequest googleTokenRequest);
+    @PostMapping(value = "/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    GoogleTokenResponse googleOauth(
+            @RequestParam("grant_type") String grantType,
+            @RequestParam("client_id") String clientId,
+            @RequestParam("client_secret") String clientSecret,
+            @RequestParam("redirect_uri") String redirectUri,
+            @RequestParam("code") String code
+    );
 }
