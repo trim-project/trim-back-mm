@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import trim.api.auth.service.google.GoogleSocialLoginUseCase;
 import trim.api.auth.service.google.GoogleSocialRegisterUserUseCase;
 import trim.api.auth.service.google.GoogleUserInfoUseCase;
+import trim.api.auth.service.kakao.KakaoUserInfoUseCase;
 import trim.api.auth.vo.GoogleRegisterUserRequest;
 import trim.api.auth.vo.OauthUserInfoResponse;
 import trim.api.common.dto.ApiResponseDto;
