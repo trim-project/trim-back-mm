@@ -3,6 +3,7 @@ package trim.domains.member.business.validate;
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainValidator;
 import trim.domains.member.dao.domain.Member;
+import trim.domains.member.dao.domain.SocialType;
 import trim.domains.member.exception.MemberHandler;
 import trim.domains.member.dao.repository.MemberRepository;
 
@@ -23,5 +24,10 @@ public class MemberValidatorImpl implements MemberValidator{
         if (member.getNicknameChangeChance() == 0) {
             throw MemberHandler.HAVE_ANY_CHANCE_OF_CONVERT_NICKNAME;
         }
+    }
+
+    @Override
+    public boolean isExistsByEmailAndProvider(String email, SocialType provider) {
+        return memberRepository.existsByProfileEmailAndProfileSocialType(email, provider);
     }
 }
