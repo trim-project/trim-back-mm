@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import trim.api.auth.dto.GoogleUserInfoDto;
 import trim.api.auth.service.helper.GoogleOauthHelper;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.common.security.dto.JwtToken;
+import trim.domains.member.business.validate.MemberValidator;
 import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 
 @Slf4j
@@ -21,8 +23,7 @@ public class OAuthAccessApiController {
     private final GoogleOauthHelper googleOauthHelper;
 
     @GetMapping("/google")
-    public ApiResponseDto<GoogleUserInfoDto> testGoogleOauth(@RequestParam("code") String code) {
-        GoogleTokenResponse googleOauthToken = googleOauthHelper.getGoogleOauthToken(code);
-        return ApiResponseDto.onSuccess(googleOauthHelper.getGoogleUserInfo(googleOauthToken.getAccessToken()));
+    public ApiResponseDto<JwtToken> testGoogleOauth(@RequestParam("code") String code) {
+
     }
 }
