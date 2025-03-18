@@ -1,4 +1,4 @@
-package trim.api.auth.helper;
+package trim.api.auth.service.helper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

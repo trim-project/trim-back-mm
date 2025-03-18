@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trim.api.auth.dto.GoogleUserInfoDto;
-import trim.api.auth.helper.GoogleOauthHelper;
+import trim.api.auth.service.helper.GoogleOauthHelper;
 import trim.api.common.dto.ApiResponseDto;
 import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 
