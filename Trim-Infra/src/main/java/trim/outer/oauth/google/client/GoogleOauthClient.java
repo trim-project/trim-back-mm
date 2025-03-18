@@ -1,19 +1,17 @@
 package trim.outer.oauth.google.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import trim.outer.oauth.google.vo.request.GoogleTokenRequest;
 import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 
 @FeignClient(
         value = "googleOauthClient",
-        url = "https://accounts.google.com/o/oauth2/auth"
+        url = "https://oauth2.googleapis.com"
 )
 public interface GoogleOauthClient {
 
-    @PostMapping(
-            "?client_id={CLIENT_ID}&redirect_uri={REDIRECT_URI}&response_type=code&scope=email")
-    GoogleTokenResponse googleOauth(
-            @PathVariable("CLIENT_ID") String clientId,
-            @PathVariable("REDIRECT_URI") String redirectUri);
+    @PostMapping("/token")
+    GoogleTokenResponse googleOauth(@RequestBody GoogleTokenRequest googleTokenRequest);
 }
