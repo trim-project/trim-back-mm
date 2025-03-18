@@ -22,11 +22,10 @@ public class KakaoOauthHelper {
 
     public KakaoTokenResponse getKakaoOauthToken(String code) {
         return kakaoOauthClient.kakaoOauth(
-                StaticValues.GRANT_TYPE,
                 environment.getProperty("oauth2.kakao.client_id"),
-                environment.getProperty("oauth2.kakao.client_secret"),
                 environment.getProperty("oauth2.kakao.redirect_callback"),
-                code
+                code,
+                environment.getProperty("oauth2.kakao.client_secret")
         );
     }
 
@@ -34,7 +33,7 @@ public class KakaoOauthHelper {
         KakaoInformationResponse kakaoInformationResponse =
                 kakaoInfoClient.kakaoUserInfo(StaticValues.BEARER + oauthAccessToken);
         return UserInfoDto.builder()
-                .email(kakaoInformationResponse.getEmail())
+                .email(kakaoInformationResponse.getKakaoAccount().getEmail())
                 .oauthId(kakaoInformationResponse.getId())
                 .oauthProvider(SocialType.KAKAO)
                 .build();
