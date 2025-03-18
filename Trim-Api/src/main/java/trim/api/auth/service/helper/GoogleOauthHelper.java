@@ -3,7 +3,7 @@ package trim.api.auth.service.helper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
-import trim.api.auth.dto.GoogleUserInfoDto;
+import trim.api.auth.dto.UserInfoDto;
 import trim.common.annotation.Helper;
 import trim.common.util.StaticValues;
 import trim.domains.member.dao.domain.SocialType;
@@ -31,10 +31,10 @@ public class GoogleOauthHelper {
         );
     }
 
-    public GoogleUserInfoDto getGoogleUserInfo(String oauthAccessToken) {
+    public UserInfoDto getGoogleUserInfo(String oauthAccessToken) {
         GoogleInformationResponse googleInformationResponse =
                 googleInfoClient.googleUserInfo(StaticValues.BEARER + oauthAccessToken);
-        return GoogleUserInfoDto.builder()
+        return UserInfoDto.builder()
                 .email(googleInformationResponse.getEmail())
                 .oauthId(googleInformationResponse.getId())
                 .oauthProvider(SocialType.GOOGLE)

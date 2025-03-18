@@ -3,40 +3,40 @@ package trim.api.auth.service.helper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
-import trim.api.auth.dto.GoogleUserInfoDto;
+import trim.api.auth.dto.UserInfoDto;
 import trim.common.annotation.Helper;
 import trim.common.util.StaticValues;
 import trim.domains.member.dao.domain.SocialType;
-import trim.outer.oauth.google.client.GoogleInfoClient;
-import trim.outer.oauth.google.client.GoogleOauthClient;
-import trim.outer.oauth.google.vo.response.GoogleInformationResponse;
-import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
+import trim.outer.oauth.kakao.client.KakaoInfoClient;
+import trim.outer.oauth.kakao.client.KakaoOauthClient;
+import trim.outer.oauth.kakao.vo.response.KakaoInformationResponse;
+import trim.outer.oauth.kakao.vo.response.KakaoTokenResponse;
 
 @Slf4j
 @Helper
 @RequiredArgsConstructor
 public class KakaoOauthHelper {
     private final Environment environment;
-    private final GoogleInfoClient googleInfoClient;
-    private final GoogleOauthClient googleOauthClient;
+    private final KakaoInfoClient kakaoInfoClient;
+    private final KakaoOauthClient kakaoOauthClient;
 
-    public GoogleTokenResponse getKakaoOauthToken(String code) {
-        return googleOauthClient.googleOauth(
+    public KakaoTokenResponse getKakaoOauthToken(String code) {
+        return kakaoOauthClient.kakaoOauth(
                 StaticValues.GRANT_TYPE,
-                environment.getProperty("oauth2.google.client_id"),
-                environment.getProperty("oauth2.google.client_secret"),
-                environment.getProperty("oauth2.google.redirect_callback"),
+                environment.getProperty("oauth2.kakao.client_id"),
+                environment.getProperty("oauth2.kakao.client_secret"),
+                environment.getProperty("oauth2.kakao.redirect_callback"),
                 code
         );
     }
 
-    public GoogleUserInfoDto getKakaoUserInfo(String oauthAccessToken) {
-        GoogleInformationResponse googleInformationResponse =
-                googleInfoClient.googleUserInfo(StaticValues.BEARER + oauthAccessToken);
-        return GoogleUserInfoDto.builder()
-                .email(googleInformationResponse.getEmail())
-                .oauthId(googleInformationResponse.getId())
-                .oauthProvider(SocialType.GOOGLE)
+    public UserInfoDto getKakaoUserInfo(String oauthAccessToken) {
+        KakaoInformationResponse kakaoInformationResponse =
+                kakaoInfoClient.kakaoUserInfo(StaticValues.BEARER + oauthAccessToken);
+        return UserInfoDto.builder()
+                .email(kakaoInformationResponse.getEmail())
+                .oauthId(kakaoInformationResponse.getId())
+                .oauthProvider(SocialType.KAKAO)
                 .build();
     }
 }

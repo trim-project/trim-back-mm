@@ -1,7 +1,7 @@
 package trim.api.auth.service.google;
 
 import lombok.RequiredArgsConstructor;
-import trim.api.auth.dto.GoogleUserInfoDto;
+import trim.api.auth.dto.UserInfoDto;
 import trim.api.auth.service.helper.GoogleOauthHelper;
 import trim.api.auth.vo.OauthUserInfoResponse;
 import trim.common.annotation.UseCase;
@@ -16,7 +16,7 @@ public class GoogleUserInfoUseCase {
 
     public OauthUserInfoResponse execute(String code) {
         GoogleTokenResponse googleOauthToken = googleOauthHelper.getGoogleOauthToken(code);
-        GoogleUserInfoDto googleUserInfo = googleOauthHelper.getGoogleUserInfo(googleOauthToken.getAccessToken());
+        UserInfoDto googleUserInfo = googleOauthHelper.getGoogleUserInfo(googleOauthToken.getAccessToken());
         return googleUserInfo.toResponse(
                 memberValidator.isExistsByEmailAndProvider(googleUserInfo.getEmail(), googleUserInfo.getOauthProvider()));
     }

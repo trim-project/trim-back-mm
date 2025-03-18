@@ -1,6 +1,7 @@
 package trim.api.auth.service.kakao;
 
 import lombok.RequiredArgsConstructor;
+import trim.api.auth.service.helper.KakaoOauthHelper;
 import trim.api.auth.vo.OauthUserInfoResponse;
 import trim.common.annotation.UseCase;
 import trim.domains.member.business.validate.MemberValidator;
