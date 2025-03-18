@@ -96,7 +96,7 @@ tasks.register("copyDomainConfig") {
 tasks.register("copyInfraConfig") {
 	def sourceDir = file("$rootDir/config")
 	def targetDirs = [
-			file("$rootDir/Trim-Infra/src/main/resources")
+			file("$rootDir/Trim-Api/src/main/resources")
 	]
 
 	targetDirs.each { targetDir ->

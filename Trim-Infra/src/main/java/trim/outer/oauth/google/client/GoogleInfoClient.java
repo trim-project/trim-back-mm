@@ -8,7 +8,7 @@ import trim.outer.oauth.google.dto.GoogleRequestAccessTokenDto;
 
 @FeignClient(
         value = "googleInfoClient",
-        url="https://oauth2.googleapis.com"
+        url = "https://oauth2.googleapis.com"
 )
 public interface GoogleInfoClient {
 
