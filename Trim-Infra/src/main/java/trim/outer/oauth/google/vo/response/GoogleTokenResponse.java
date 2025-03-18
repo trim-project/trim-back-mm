@@ -1,4 +1,4 @@
-package trim.outer.oauth.google.dto;
+package trim.outer.oauth.google.vo.response;
 
 import lombok.Data;
 

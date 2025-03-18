@@ -3,7 +3,7 @@ package trim.outer.oauth.google.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import trim.outer.oauth.google.dto.GoogleTokenResponse;
+import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 
 @FeignClient(
         value = "googleOauthClient",
