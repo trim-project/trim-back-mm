@@ -13,7 +13,7 @@ import trim.outer.oauth.google.vo.response.GoogleTokenResponse;
 public interface KakaoOauthClient {
 
     @PostMapping(value = "/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    GoogleTokenResponse googleOauth(
+    GoogleTokenResponse kakaoOauth(
             @RequestParam("grant_type") String grantType,
             @RequestParam("client_id") String clientId,
             @RequestParam("client_secret") String clientSecret,
