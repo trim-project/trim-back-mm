@@ -1,4 +1,4 @@
-package trim.api.auth.service.google;
+package trim.api.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.api.auth.dto.UserInfoDto;

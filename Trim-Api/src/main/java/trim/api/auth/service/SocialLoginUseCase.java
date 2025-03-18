@@ -1,4 +1,4 @@
-package trim.api.auth.service.google;
+package trim.api.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import trim.domains.member.dao.domain.SocialType;
 @UseCase
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class GoogleSocialLoginUseCase {
+public class SocialLoginUseCase {
 
     private final MemberAdaptor memberAdaptor;
     private final TokenService tokenService;
