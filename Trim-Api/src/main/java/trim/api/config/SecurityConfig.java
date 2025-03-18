@@ -62,6 +62,7 @@ public class SecurityConfig {
                             .requestMatchers(DEFAULT_URL.toArray(new String[0])).permitAll()
                             .requestMatchers(PERMIT_URL.toArray(new String[0])).permitAll()
                             .requestMatchers(SWAGGER_URL.toArray(new String[0])).permitAll()
+                            .requestMatchers(OAUTH_URL.toArray(new String[0])).permitAll()
                             .anyRequest().authenticated();
                 });
     }

@@ -9,10 +9,10 @@ import static trim.common.util.StaticValues.AUTHORIZATION;
 
 @FeignClient(
         value = "googleInfoClient",
-        url = "https://oauth2.googleapis.com"
+        url = "https://www.googleapis.com"
 )
 public interface GoogleInfoClient {
 
-    @GetMapping("/token")
+    @GetMapping("/oauth2/v2/userinfo")
     GoogleInformationResponse googleUserInfo(@RequestHeader(AUTHORIZATION) String requestDto);
 }
