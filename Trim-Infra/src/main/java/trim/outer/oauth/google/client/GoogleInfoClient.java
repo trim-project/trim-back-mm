@@ -1,10 +1,11 @@
 package trim.outer.oauth.google.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import trim.outer.oauth.google.dto.GoogleRequestAccessTokenDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import trim.outer.oauth.google.vo.response.GoogleInformationResponse;
+
+import static trim.common.util.StaticValues.AUTHORIZATION;
 
 @FeignClient(
         value = "googleInfoClient",
@@ -12,6 +13,6 @@ import trim.outer.oauth.google.dto.GoogleRequestAccessTokenDto;
 )
 public interface GoogleInfoClient {
 
-    @PostMapping("/token")
-    ResponseEntity<String> getAccessToken(@RequestBody GoogleRequestAccessTokenDto requestDto);
+    @GetMapping("/token")
+    GoogleInformationResponse googleUserInfo(@RequestHeader(AUTHORIZATION) String requestDto);
 }
