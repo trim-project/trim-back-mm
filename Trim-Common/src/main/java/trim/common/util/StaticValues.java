@@ -22,7 +22,11 @@ public class StaticValues {
             List.of(
                     "/", "/.well-known/**", "/css/**", "/*.ico", "/error", "/images/**"
             );
-    public static final String JWT = "JWT";
-    public static final String BEARER = "Bearer";
+    public final static List<String> OAUTH_URL =
+            List.of("oauth/**");
+    public static final String SWAGGER_JWT = "JWT";
+    public static final String SWAGGER_BEARER = "Bearer";
+    public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
+    public static final String GRANT_TYPE = "authorization_code";
 }

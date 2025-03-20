@@ -11,10 +11,12 @@ import trim.common.model.BaseTimeEntity;
 @Entity
 @Getter
 @SuperBuilder
-@Table(name = "member", indexes = {
-        @Index(name = "idx_username", columnList = "username"),
-        @Index(name = "idx_nickname", columnList = "nickname")
-})
+@Table(
+        name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "unique_email_social", columnNames = {"email", "social_type"})
+        }
+)
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseTimeEntity {

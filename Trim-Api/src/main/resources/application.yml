@@ -5,6 +5,7 @@ spring:
   profiles:
     include:
       - domain
+      - oauth
 
 springdoc:
   swagger-ui:
