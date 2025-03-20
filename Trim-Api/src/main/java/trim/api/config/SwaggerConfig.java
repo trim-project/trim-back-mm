@@ -54,7 +54,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .servers(List.of(server))
                 .components(authSetting())
-                .addSecurityItem(new SecurityRequirement().addList(JWT))
+                .addSecurityItem(new SecurityRequirement().addList(SWAGGER_JWT))
                 .info(swaggerInfo());
     }
 
@@ -73,13 +73,13 @@ public class SwaggerConfig {
     private Components authSetting() {
         return new Components()
                 .addSecuritySchemes(
-                        JWT,
+                        SWAGGER_JWT,
                         new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)
-                                .scheme(BEARER)
+                                .scheme(SWAGGER_BEARER)
                                 .bearerFormat(AUTHORIZATION)
                                 .in(SecurityScheme.In.HEADER)
-                                .name(JWT));
+                                .name(SWAGGER_JWT));
     }
 
 
