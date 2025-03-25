@@ -22,6 +22,9 @@ public class GoogleOauthHelper {
     private final GoogleOauthClient googleOauthClient;
 
     public GoogleTokenResponse getGoogleOauthToken(String code) {
+        log.info("client_id = {}", environment.getProperty("oauth2.google.client_id"));
+        log.info("client_id = {}", environment.getProperty("oauth2.google.client_secret"));
+        log.info("client_id = {}", environment.getProperty("oauth2.google.redirect_callback"));
         return googleOauthClient.googleOauth(
                 StaticValues.GRANT_TYPE,
                 environment.getProperty("oauth2.google.client_id"),
