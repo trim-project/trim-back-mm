@@ -12,7 +12,7 @@ import trim.common.model.BaseTimeEntity;
 @Getter
 @SuperBuilder
 @Table(
-        name = "users",
+        name = "member",
         uniqueConstraints = {
                 @UniqueConstraint(name = "unique_email_social", columnNames = {"email", "social_type"})
         }
