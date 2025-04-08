@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.comment.service.WriteCommentUseCase;
-import trim.api.domains.comment.vo.request.CommentRequest;
 import trim.common.annotation.AuthUser;
 import trim.domains.member.dao.domain.Member;
 
@@ -23,8 +22,8 @@ public class CommentApiController {
     @PostMapping("/boards/{boardId}")
     public ApiResponseDto<Long> writeComment(@Parameter(hidden = true) @AuthUser Member member,
                                              @PathVariable Long boardId,
-                                             @RequestBody CommentRequest request) {
-        return ApiResponseDto.onSuccess(writeCommentUseCase.execute(member, boardId, request.getContent()));
+                                             @RequestParam String content) {
+        return ApiResponseDto.onSuccess(writeCommentUseCase.execute(member, boardId, content));
     }
 
 
