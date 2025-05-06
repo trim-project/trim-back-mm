@@ -11,9 +11,15 @@ import trim.domains.avatar.dao.entity.item.Hair;
 
 @Entity
 @Getter
+@SuperBuilder
+@Table(
+        name = "hair_parts",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "color_hair", columnNames = {"hair_color", "hair_id"})
+        }
+)
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 public class HairParts extends BaseTimeEntity {
 
     @Id
@@ -22,7 +28,7 @@ public class HairParts extends BaseTimeEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true, columnDefinition = "varchar(50)")
+    @Column(nullable = false, columnDefinition = "varchar(50)")
     private HairColor hairColor;
 
     @ManyToOne(fetch = FetchType.LAZY)
