@@ -113,3 +113,23 @@ tasks.register("copyOauthConfig") {
 	outputs.dirs(targetDirs) // Gradle에게 각 모듈의 리소스 폴더를 출력으로 설정
 }
 
+tasks.register("copyStorageConfig") {
+	def sourceDir = file("$rootDir/config")
+	def targetDirs = [
+			file("$rootDir/Trim-Api/src/main/resources")
+	]
+
+	targetDirs.each { targetDir ->
+		doLast {
+			copy {
+				from sourceDir
+				include("application-storage.yml", "trim-455507-505dacd4947d.json")
+				into targetDir
+			}
+			println "✅ YAML files copied to: ${targetDir.absolutePath}"
+		}
+	}
+
+	outputs.dirs(targetDirs) // Gradle에게 각 모듈의 리소스 폴더를 출력으로 설정
+}
+

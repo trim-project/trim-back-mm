@@ -5,6 +5,7 @@ dependencies {
     api 'io.github.openfeign:feign-httpclient'
     api platform('org.springframework.cloud:spring-cloud-dependencies:2023.0.0')
     api "org.springframework.cloud:spring-cloud-starter-openfeign"
+    api 'com.google.cloud:google-cloud-storage:2.39.0'
     api 'io.github.openfeign:feign-jackson' // JacksonDecoder 지원
     api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
     api 'io.github.openfeign:feign-slf4j'
