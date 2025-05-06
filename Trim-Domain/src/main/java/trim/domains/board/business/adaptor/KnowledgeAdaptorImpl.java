@@ -7,6 +7,7 @@ import trim.common.annotation.Adaptor;
 import trim.domains.board.dao.domain.Knowledge;
 import trim.domains.board.dao.domain.MajorType;
 import trim.domains.board.dao.repository.jpa.KnowledgeRepository;
+import trim.domains.board.dto.KnowledgeSummaryQueryDto;
 import trim.domains.board.exception.BoardHandler;
 import trim.domains.member.dao.domain.Member;
 
@@ -32,6 +33,11 @@ public class KnowledgeAdaptorImpl implements KnowledgeAdaptor{
     @Override
     public List<Knowledge> queryAllKnowledge() {
         return knowledgeRepository.findAll();
+    }
+
+    @Override
+    public List<KnowledgeSummaryQueryDto> queryAllKnowledgeSummaryDtoList() {
+        return knowledgeRepository.findAllKnowledgeSummaries();
     }
 
     @Override

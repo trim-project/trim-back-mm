@@ -2,6 +2,8 @@ package trim.domains.board.dao.repository.querydsl;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.QueryResults;
+import com.querydsl.core.Tuple;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -10,10 +12,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import trim.domains.board.dao.domain.Knowledge;
 import trim.domains.board.dao.domain.MajorType;
+import trim.domains.board.dto.KnowledgeSummaryQueryDto;
 
 import java.util.List;
 
 import static trim.domains.board.dao.domain.QKnowledge.knowledge;
+import static trim.domains.comment.dao.domain.QComment.comment;
+import static trim.domains.like.dao.entity.QLike.like;
+import static trim.domains.member.dao.domain.QMember.member;
 import static trim.domains.tag.dao.entity.QTag.tag;
 
 @Repository
@@ -56,5 +62,55 @@ public class KnowledgeQueryRepositoryImpl implements KnowledgeQueryRepository{
                 .fetchResults();
 
         return new PageImpl<>(results.getResults(), pageable, results.getTotal());
+    }
+
+    @Override
+    public List<KnowledgeSummaryQueryDto> findAllKnowledgeSummaries() {
+        List<Tuple> tuples = queryFactory
+                .select(
+                        knowledge.id,
+                        knowledge.title,
+                        knowledge.content,
+                        knowledge.createdAt,
+                        knowledge.majorType.stringValue(),
+
+                        member.id,
+                        member.profile.email,
+                        member.nickname,
+                        member.role.stringValue(),
+                        member.profile.socialType.stringValue(),
+
+                        JPAExpressions
+                                .select(like.count())
+                                .from(like)
+                                .where(like.boardId.eq(knowledge.id)),
+
+                        JPAExpressions
+                                .select(comment.count())
+                                .from(comment)
+                                .where(comment.boardId.eq(knowledge.id))
+                )
+                .from(knowledge)
+                .join(knowledge.writer, member)
+                .fetch();
+
+        return tuples.stream()
+                .map(t -> KnowledgeSummaryQueryDto.builder()
+                        .knowledgeId(t.get(knowledge.id))
+                        .title(t.get(knowledge.title))
+                        .content(t.get(knowledge.content))
+                        .createdAt(t.get(knowledge.createdAt))
+                        .majorType(t.get(knowledge.majorType))
+
+                        .writerId(t.get(member.id))
+                        .email(t.get(member.profile.email))
+                        .nickname(t.get(member.nickname))
+                        .role(t.get(member.role))
+                        .socialType(t.get(member.profile.socialType))
+
+                        .likeCount(t.get(10, Long.class))
+                        .commentCount(t.get(11, Long.class))
+                        .build())
+                .toList();
     }
 }

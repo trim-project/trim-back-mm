@@ -22,16 +22,21 @@ public class GetAllKnowledgeUseCase {
     private final LikeAdaptor likeAdaptor;
     private final CommentAdaptor commentAdaptor;
 
+//    public List<KnowledgeSummaryResponse> execute() {
+//        List<Knowledge> knowledgeList = knowledgeAdaptor.queryAllKnowledge();
+//        return knowledgeList.stream()
+//                .map(knowledge ->
+//                        KnowledgeSummaryResponse.of(
+//                                knowledge,
+//                                knowledge.getWriter(),
+//                                likeAdaptor.queryCountByBoard(knowledge.getId()),
+//                                commentAdaptor.queryCountByBoardId(knowledge.getId()),
+//                                tagAdaptor.queryNamesByBoardId(knowledge.getId())))
+//                .toList();
+//    }
     public List<KnowledgeSummaryResponse> execute() {
-        List<Knowledge> knowledgeList = knowledgeAdaptor.queryAllKnowledge();
-        return knowledgeList.stream()
-                .map(knowledge ->
-                        KnowledgeSummaryResponse.of(
-                                knowledge,
-                                knowledge.getWriter(),
-                                likeAdaptor.queryCountByBoard(knowledge.getId()),
-                                commentAdaptor.queryCountByBoardId(knowledge.getId()),
-                                tagAdaptor.queryNamesByBoardId(knowledge.getId())))
+        return knowledgeAdaptor.queryAllKnowledgeSummaryDtoList().stream()
+                .map(knowledgeDto -> KnowledgeSummaryResponse.of(knowledgeDto))
                 .toList();
     }
 }
