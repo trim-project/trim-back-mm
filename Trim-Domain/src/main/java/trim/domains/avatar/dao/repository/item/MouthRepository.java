@@ -1,7 +1,7 @@
-package trim.domains.avatar.dao.repository;
+package trim.domains.avatar.dao.repository.item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import trim.domains.avatar.dao.entity.Mouth;
+import trim.domains.avatar.dao.entity.item.Mouth;
 import trim.domains.avatar.dao.entity.enums.MouthAvatarNumber;
 
 import java.util.Optional;

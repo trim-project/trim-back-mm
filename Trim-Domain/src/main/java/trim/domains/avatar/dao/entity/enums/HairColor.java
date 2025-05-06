@@ -24,11 +24,5 @@ public enum HairColor implements KeyedEnum {
 
     private final String key;
 
-    public static HairColor from(String key) {
-        return Arrays.stream(values())
-                .filter(color -> color.getKey().equalsIgnoreCase(key))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid HairColor key: " + key));
-    }
 }
 

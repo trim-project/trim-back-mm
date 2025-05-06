@@ -1,29 +1,32 @@
-package trim.domains.avatar.dao.entity;
+package trim.domains.avatar.dao.entity.parts;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import trim.common.model.BaseTimeEntity;
 import trim.domains.avatar.dao.entity.enums.HairColor;
+import trim.domains.avatar.dao.entity.item.Hair;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class HairParts {
+@SuperBuilder
+public class HairParts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // hair_parts_id
+    @Column(name = "hair_parts_id")
+    private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, columnDefinition = "varchar(50)")
     private HairColor hairColor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hair_id", nullable = false)
+    @JoinColumn(name = "hair_id")
     private Hair hair;
 
     @Column(nullable = false)

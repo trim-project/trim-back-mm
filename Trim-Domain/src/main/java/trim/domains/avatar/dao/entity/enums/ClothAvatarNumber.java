@@ -15,10 +15,4 @@ public enum ClothAvatarNumber implements KeyedEnum {
 
     private final String key;
 
-    public static ClothAvatarNumber from(String key) {
-        return Arrays.stream(values())
-                .filter(value -> value.getKey().equalsIgnoreCase(key))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ClothAvatarNumber key: " + key));
-    }
 }

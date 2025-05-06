@@ -24,10 +24,4 @@ public enum MouthAvatarNumber implements KeyedEnum {
 
     private final String key;
 
-    public static MouthAvatarNumber from(String key) {
-        return Arrays.stream(values())
-                .filter(m -> m.getKey().equalsIgnoreCase(key))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid MouthAvatarNumber key: " + key));
-    }
 }

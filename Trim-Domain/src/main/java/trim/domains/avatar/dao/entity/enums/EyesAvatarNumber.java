@@ -24,10 +24,4 @@ public enum EyesAvatarNumber implements KeyedEnum {
 
     private final String key;
 
-    public static EyesAvatarNumber from(String key) {
-        return Arrays.stream(values())
-                .filter(e -> e.getKey().equalsIgnoreCase(key))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid EyesAvatarNumber key: " + key));
-    }
 }

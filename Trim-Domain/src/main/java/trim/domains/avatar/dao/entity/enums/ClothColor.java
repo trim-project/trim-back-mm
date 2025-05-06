@@ -24,10 +24,4 @@ public enum ClothColor implements KeyedEnum {
 
     private final String key;
 
-    public static ClothColor from(String key) {
-        return Arrays.stream(values())
-                .filter(color -> color.getKey().equalsIgnoreCase(key))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ClothColor key: " + key));
-    }
 }

@@ -30,11 +30,5 @@ public enum HairAvatarNumber implements KeyedEnum {
 
     private final String key;
 
-    public static HairAvatarNumber from(String key) {
-        return Arrays.stream(values())
-                .filter(h -> h.getKey().equalsIgnoreCase(key))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid HairAvatarNumber key: " + key));
-    }
 }
 
