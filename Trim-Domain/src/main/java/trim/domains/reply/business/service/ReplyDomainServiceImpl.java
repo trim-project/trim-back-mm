@@ -13,7 +13,6 @@ import trim.domains.reply.dao.repository.ReplyRepository;
 public class ReplyDomainServiceImpl implements ReplyDomainService{
 
     private final ReplyRepository replyRepository;
-    private final MemberRepository memberRepository;
 
     @Override
     public Reply writeReplyOfComment(Comment comment,
