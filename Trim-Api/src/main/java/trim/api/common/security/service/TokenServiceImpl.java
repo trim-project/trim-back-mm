@@ -27,8 +27,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-import static trim.common.util.StaticValues.ONE_MINUTE;
-import static trim.common.util.StaticValues.SEVEN_DAYS;
+import static trim.common.util.StaticValues.*;
 
 @Slf4j
 @Service
@@ -91,7 +90,7 @@ public class TokenServiceImpl implements TokenService{
         long now = (new Date()).getTime();
 
         // Access Token 생성
-        Date accessTokenExpiresIn = new Date(now + ONE_MINUTE);   // 30분(deploy)
+        Date accessTokenExpiresIn = new Date(now + HALF_HOUR);   // 30분(deploy)
         log.info("date = {}", accessTokenExpiresIn);
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
