@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import trim.common.model.BaseTimeEntity;
 import trim.domains.comment.dao.domain.Comment;
 import trim.domains.member.dao.domain.Member;
 
@@ -15,7 +16,7 @@ import trim.domains.member.dao.domain.Member;
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Reply {
+public class Reply extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
