@@ -116,7 +116,8 @@ tasks.register("copyOauthConfig") {
 tasks.register("copyStorageConfig") {
 	def sourceDir = file("$rootDir/config")
 	def targetDirs = [
-			file("$rootDir/Trim-Api/src/main/resources")
+			file("$rootDir/Trim-Api/src/main/resources"),
+			file("$rootDir/Trim-Infra/src/main/resources")
 	]
 
 	targetDirs.each { targetDir ->

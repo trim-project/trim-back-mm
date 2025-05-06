@@ -6,6 +6,7 @@ spring:
     include:
       - domain
       - oauth
+      - storage
 
 springdoc:
   swagger-ui:

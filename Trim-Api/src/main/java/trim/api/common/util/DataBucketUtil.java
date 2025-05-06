@@ -8,9 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import trim.common.util.StaticValues;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import static trim.common.util.StaticValues.STORAGE_PREFIX;
 
 @Slf4j
 @Component
@@ -22,7 +25,7 @@ public class DataBucketUtil {
 
     private final Storage storage;
 
-    public String uploadImage(MultipartFile file) throws IOException {
+    public String uploadImage(MultipartFile file){
 
         // 이미지 uuid와 파일 형식
         String uuid = UUID.randomUUID().toString();
@@ -34,8 +37,18 @@ public class DataBucketUtil {
                 .setContentType(ext)
                 .build();
         log.info("blobInfo: {}", blobInfo);
-        Blob blob = storage.create(blobInfo, file.getBytes());
+        Blob blob = null;
+        try {
+            blob = storage.create(blobInfo, file.getBytes());
+        } catch (IOException e) {
+            //TODO edit exception class
+            throw new RuntimeException(e);
+        }
         log.info("blob: {}", blob);
         return bucketName + "/" + uuid;
+    }
+
+    public String appendPrefix(String url) {
+        return STORAGE_PREFIX + url;
     }
 }

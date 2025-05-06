@@ -29,4 +29,5 @@ public class StaticValues {
     public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
     public static final String GRANT_TYPE = "authorization_code";
+    public static final String STORAGE_PREFIX = "https://storage.googleapis.com/";
 }
