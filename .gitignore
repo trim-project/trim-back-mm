@@ -48,3 +48,6 @@ Trim-Common/src/main/resources/application-*.yml
 Trim-Domain/src/main/resources/application-*.yml
 Trim-Infra/src/main/resources/application-*.yml
 Trim-Api/src/main/resources/application-*.yml
+
+### json ###
+*.json

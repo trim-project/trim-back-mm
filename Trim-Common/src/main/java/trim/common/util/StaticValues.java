@@ -29,7 +29,9 @@ public class StaticValues {
     public static final String BEARER = "Bearer ";
     public static final String AUTHORIZATION = "Authorization";
     public static final String GRANT_TYPE = "authorization_code";
+    public static final String STORAGE_PREFIX = "https://storage.googleapis.com/";
     public static final int HALF_HOUR = 1800000;
     public static final int ONE_MINUTE = 60000;
     public static final int SEVEN_DAYS = 604800000;
+
 }
