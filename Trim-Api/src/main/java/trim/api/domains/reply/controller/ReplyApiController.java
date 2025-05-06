@@ -11,7 +11,7 @@ import trim.common.annotation.AuthUser;
 import trim.domains.member.dao.domain.Member;
 
 @Slf4j
-@Tag(name = "[질문 게시판🔑]")
+@Tag(name = "[대댓글🔑]")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/replies")
