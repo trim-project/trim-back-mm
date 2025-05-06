@@ -1,13 +1,14 @@
 package trim.domains.avatar.dao.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import trim.domains.avatar.dao.entity.enums.ClothAvatarNumber;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class Cloth {
 
     @Id
@@ -15,10 +16,12 @@ public class Cloth {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(50)")
     private ClothAvatarNumber avatarNumber;
 
     @Column(nullable = false)
-    private int price;
+    @Builder.Default
+    private int price = 10;
+
 }
 

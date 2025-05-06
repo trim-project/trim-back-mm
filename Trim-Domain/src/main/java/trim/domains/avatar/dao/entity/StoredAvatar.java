@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import trim.domains.avatar.dao.entity.enums.BackgroundColor;
-import trim.domains.avatar.dao.entity.enums.ClothColor;
-import trim.domains.avatar.dao.entity.enums.HairColor;
 
 @Entity
 @Getter

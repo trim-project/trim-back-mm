@@ -14,7 +14,7 @@ public enum ClothColor implements KeyedEnum {
     ORANGE("orange"),
     YELLOW("yellow"),
     YELLOW_GREEN("yellow_green"),
-    AMERALD_GREEN("amerald_green"),
+    EMERALD_GREEN("emerald_green"),
     SKY_BLUE("sky_blue"),
     LAVENDER("lavender"),
     PURPLE("purple"),

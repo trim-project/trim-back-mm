@@ -1,6 +1,8 @@
 package trim.domains.avatar.dao.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import trim.domains.avatar.dao.entity.enums.ClothColor;
@@ -8,6 +10,8 @@ import trim.domains.avatar.dao.entity.enums.ClothColor;
 @Entity
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ClothParts {
 
     @Id
