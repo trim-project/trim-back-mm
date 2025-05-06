@@ -18,6 +18,7 @@ import trim.api.common.security.vo.auth.CustomUserDetails;
 import trim.common.exception.ErrorStatus;
 import trim.common.exception.GeneralException;
 import trim.common.service.RedisService;
+import trim.common.util.StaticValues;
 import trim.domains.member.business.adaptor.MemberAdaptor;
 
 import java.security.Key;
@@ -25,6 +26,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
+
+import static trim.common.util.StaticValues.*;
 
 @Slf4j
 @Service
@@ -87,7 +90,7 @@ public class TokenServiceImpl implements TokenService{
         long now = (new Date()).getTime();
 
         // Access Token 생성
-        Date accessTokenExpiresIn = new Date(now + 1800000);   // 30분
+        Date accessTokenExpiresIn = new Date(now + HALF_HOUR);   // 30분(deploy)
         log.info("date = {}", accessTokenExpiresIn);
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
@@ -99,7 +102,7 @@ public class TokenServiceImpl implements TokenService{
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
                 .setSubject(authentication.getName())
-                .setExpiration(new Date(now + 604800000))    // 7일
+                .setExpiration(new Date(now + SEVEN_DAYS))    // 7일
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 

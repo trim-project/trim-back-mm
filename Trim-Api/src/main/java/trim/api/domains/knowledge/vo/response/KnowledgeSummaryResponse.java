@@ -7,6 +7,7 @@ import trim.api.domains.knowledge.mapper.KnowledgeMapper;
 import trim.api.domains.member.mapper.MemberMapper;
 import trim.api.domains.member.vo.response.MemberResponse;
 import trim.domains.board.dao.domain.Knowledge;
+import trim.domains.board.dto.KnowledgeSummaryQueryDto;
 import trim.domains.member.dao.domain.Member;
 
 import java.util.ArrayList;
@@ -32,6 +33,31 @@ public class KnowledgeSummaryResponse {
                 .likeCount(likeCount)
                 .commentCount(commentCount)
                 .tagList(tags)
+                .build();
+    }
+
+    public static KnowledgeSummaryResponse of(KnowledgeSummaryQueryDto dto) {
+        return KnowledgeSummaryResponse.builder()
+                .knowledgeResponse(
+                        KnowledgeResponse.builder()
+                                .knowledgeId(dto.getKnowledgeId())
+                                .title(dto.getTitle())
+                                .content(dto.getContent())
+                                .createdAt(dto.getCreatedAt().toLocalDate().toEpochDay())
+                                .majorType(dto.getMajorType())
+                                .build()
+                )
+                .memberResponse(
+                        MemberResponse.builder()
+                                .memberId(dto.getWriterId())
+                                .socialType(dto.getSocialType())
+                                .role(dto.getRole())
+                                .email(dto.getEmail())
+                                .nickname(dto.getNickname())
+                                .build()
+                )
+                .likeCount(dto.getLikeCount())
+                .commentCount(dto.getCommentCount())
                 .build();
     }
 }
