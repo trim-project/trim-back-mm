@@ -32,7 +32,7 @@ public class HairParts extends BaseTimeEntity {
     private HairColor hairColor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hair_id")
+    @JoinColumn(name = "hair_id", nullable = false)
     private Hair hair;
 
     @Column(nullable = false)

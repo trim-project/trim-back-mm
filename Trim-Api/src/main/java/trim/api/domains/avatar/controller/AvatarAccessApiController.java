@@ -26,4 +26,6 @@ public class AvatarAccessApiController {
     public List<HairPartsResponse> getHairPartsByColor(@RequestParam("color") HairColor color) {
         return getHairPartsByColorUseCase.execute(color);
     }
+
+    
 }

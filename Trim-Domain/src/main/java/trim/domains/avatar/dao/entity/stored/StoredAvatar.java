@@ -32,19 +32,19 @@ public class StoredAvatar extends BaseTimeEntity {
     private BackgroundColor backgroundColorNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hair_parts_id")
+    @JoinColumn(name = "hair_parts_id", nullable = false)
     private HairParts hairParts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "eyes_parts_id")
+    @JoinColumn(name = "eyes_parts_id", nullable = false)
     private EyesParts eyesParts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mouth_parts_id")
+    @JoinColumn(name = "mouth_parts_id", nullable = false)
     private MouthParts mouthParts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cloth_parts_id")
+    @JoinColumn(name = "cloth_parts_id", nullable = false)
     private ClothParts clothParts;
 }
 

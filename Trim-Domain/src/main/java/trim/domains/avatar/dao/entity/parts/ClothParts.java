@@ -32,7 +32,7 @@ public class ClothParts extends BaseTimeEntity {
     private ClothColor clothColor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cloth_id")
+    @JoinColumn(name = "cloth_id", nullable = false)
     private Cloth cloth;
 
     private String imageUrl;
