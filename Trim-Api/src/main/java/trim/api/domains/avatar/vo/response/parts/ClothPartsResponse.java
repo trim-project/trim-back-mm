@@ -8,6 +8,6 @@ import trim.domains.avatar.dao.entity.enums.ClothColor;
 @RequiredArgsConstructor
 public class ClothPartsResponse {
     private final Long clothId;
-    private final ClothColor clothColor;
     private final int price;
+    private final String imageUrl;
 }

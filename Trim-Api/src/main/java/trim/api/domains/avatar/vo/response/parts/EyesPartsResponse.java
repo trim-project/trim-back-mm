@@ -8,4 +8,5 @@ import lombok.RequiredArgsConstructor;
 public class EyesPartsResponse {
     private final Long eyesId;
     private final int price;
+    private final String imageUrl;
 }

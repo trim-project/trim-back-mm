@@ -6,5 +6,7 @@ import trim.domains.avatar.dao.entity.parts.HairParts;
 import java.util.List;
 
 public interface HairPartsAdaptor {
+
     List<HairParts> queryHairPartsByColor(HairColor color);
+
 }

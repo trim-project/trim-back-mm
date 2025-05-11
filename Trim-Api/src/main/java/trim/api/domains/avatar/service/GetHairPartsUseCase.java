@@ -5,9 +5,9 @@ import org.springframework.transaction.annotation.Transactional;
 import trim.api.domains.avatar.mapper.parts.HairPartsMapper;
 import trim.api.domains.avatar.vo.response.parts.HairPartsResponse;
 import trim.common.annotation.UseCase;
+import trim.domains.avatar.business.adaptor.parts.HairPartsAdaptor;
 import trim.domains.avatar.dao.entity.enums.HairColor;
 import trim.domains.avatar.dao.entity.parts.HairParts;
-import trim.domains.avatar.dao.repository.parts.HairPartsRepository;
 
 import java.util.List;
 
@@ -16,10 +16,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetHairPartsUseCase {
 
-    private final HairPartsRepository hairPartsRepository;
+    private final HairPartsAdaptor hairPartsAdaptor;
 
     public List<HairPartsResponse> execute(HairColor hairColor) {
-        List<HairParts> parts = hairPartsRepository.findAllByHairColor(hairColor);
+        List<HairParts> parts = hairPartsAdaptor.queryHairPartsByColor(hairColor);
         return parts.stream()
                 .map(HairPartsMapper.INSTANCE::toResponse)
                 .toList();
