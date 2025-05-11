@@ -22,11 +22,11 @@ public class PossessedHair extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hair_id")
+    @JoinColumn(name = "hair_id", nullable = false)
     private Hair hair;
 }
 

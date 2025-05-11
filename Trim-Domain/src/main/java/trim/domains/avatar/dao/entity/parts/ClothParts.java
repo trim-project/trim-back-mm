@@ -11,9 +11,15 @@ import trim.domains.avatar.dao.entity.item.Cloth;
 
 @Entity
 @Getter
+@SuperBuilder
+@Table(
+        name = "cloth_parts",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "color_cloth", columnNames = {"cloth_color", "cloth_id"})
+        }
+)
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
 public class ClothParts extends BaseTimeEntity {
 
     @Id
@@ -22,11 +28,11 @@ public class ClothParts extends BaseTimeEntity {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, unique = true, columnDefinition = "varchar(50)")
+    @Column(nullable = false, columnDefinition = "varchar(50)")
     private ClothColor clothColor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cloth_id")
+    @JoinColumn(name = "cloth_id", nullable = false)
     private Cloth cloth;
 
     private String imageUrl;

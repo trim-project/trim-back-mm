@@ -21,7 +21,7 @@ public class MouthParts extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mouth_id")
+    @JoinColumn(name = "mouth_id", nullable = false)
     private Mouth mouth;
 
     private String imageUrl;
