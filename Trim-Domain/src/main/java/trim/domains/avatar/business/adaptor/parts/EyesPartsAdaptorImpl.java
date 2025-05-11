@@ -1,13 +1,13 @@
 package trim.domains.avatar.business.adaptor.parts;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import trim.common.annotation.Adaptor;
 import trim.domains.avatar.dao.entity.parts.EyesParts;
 import trim.domains.avatar.dao.repository.parts.EyesPartsRepository;
 
 import java.util.List;
 
-@Component
+@Adaptor
 @RequiredArgsConstructor
 public class EyesPartsAdaptorImpl implements EyesPartsAdaptor {
 

@@ -1,13 +1,13 @@
 package trim.domains.avatar.business.adaptor.parts;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import trim.common.annotation.Adaptor;
 import trim.domains.avatar.dao.entity.parts.MouthParts;
 import trim.domains.avatar.dao.repository.parts.MouthPartsRepository;
 
 import java.util.List;
 
-@Component
+@Adaptor
 @RequiredArgsConstructor
 public class MouthPartsAdaptorImpl implements MouthPartsAdaptor {
 

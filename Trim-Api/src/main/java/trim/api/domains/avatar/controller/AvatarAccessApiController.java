@@ -35,25 +35,25 @@ public class AvatarAccessApiController {
     @Operation(summary = "구매에 상관없이 모든 아바타의 헤어 요소를 조회합니다.")
     @GetMapping("/hair-parts")
     public ApiResponseDto<List<HairPartsResponse>> getHairPartsByColor(@RequestParam("color") HairColor color) {
-        return ApiResponseDto.onSuccess (getHairPartsByColorUseCase.execute (color));
+        return ApiResponseDto.onSuccess(getHairPartsByColorUseCase.execute(color));
     }
 
     @Operation(summary = "구매에 상관없이 모든 아바타의 의상 요소를 조회합니다.")
     @GetMapping("/cloth-parts")
     public ApiResponseDto<List<ClothPartsResponse>> getClothPartsByColor(@RequestParam("color") ClothColor color) {
-        return ApiResponseDto.onSuccess (getClothPartsUseCase.execute (color));
+        return ApiResponseDto.onSuccess(getClothPartsUseCase.execute(color));
     }
 
     @Operation(summary = "구매에 상관없이 모든 아바타의 눈 요소를 조회합니다. ")
     @GetMapping("/eyes-parts")
     public ApiResponseDto<List<EyesPartsResponse>> getEyesPartsByColor() {
-        return ApiResponseDto.onSuccess (getEyesPartsUseCase.execute());
+        return ApiResponseDto.onSuccess(getEyesPartsUseCase.execute());
     }
 
     @Operation(summary = "구매에 상관없이 모든 아바타의 입 요소를 조회합니다. ")
     @GetMapping("/mouth-parts")
     public ApiResponseDto<List<MouthPartsResponse>> getMouthPartsByColor() {
-        return ApiResponseDto.onSuccess (getMouthPartsUseCase.execute());
+        return ApiResponseDto.onSuccess(getMouthPartsUseCase.execute());
     }
 }
 
