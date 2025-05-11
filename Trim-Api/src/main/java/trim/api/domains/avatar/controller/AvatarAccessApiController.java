@@ -11,9 +11,11 @@ import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.avatar.service.GetClothPartsUseCase;
 import trim.api.domains.avatar.service.GetEyesPartsUseCase;
 import trim.api.domains.avatar.service.GetHairPartsUseCase;
+import trim.api.domains.avatar.service.GetMouthPartsUseCase;
 import trim.api.domains.avatar.vo.response.parts.ClothPartsResponse;
 import trim.api.domains.avatar.vo.response.parts.EyesPartsResponse;
 import trim.api.domains.avatar.vo.response.parts.HairPartsResponse;
+import trim.api.domains.avatar.vo.response.parts.MouthPartsResponse;
 import trim.domains.avatar.dao.entity.enums.ClothColor;
 import trim.domains.avatar.dao.entity.enums.HairColor;
 
@@ -28,6 +30,7 @@ public class AvatarAccessApiController {
     private final GetHairPartsUseCase getHairPartsByColorUseCase;
     private final GetClothPartsUseCase getClothPartsUseCase;
     private final GetEyesPartsUseCase getEyesPartsUseCase;
+    private final GetMouthPartsUseCase getMouthPartsUseCase;
 
     @Operation(summary = "구매에 상관없이 모든 아바타의 헤어 요소를 조회합니다.")
     @GetMapping("/hair-parts")
@@ -46,4 +49,11 @@ public class AvatarAccessApiController {
     public ApiResponseDto<List<EyesPartsResponse>> getEyesPartsByColor() {
         return ApiResponseDto.onSuccess (getEyesPartsUseCase.execute());
     }
+
+    @Operation(summary = "구매에 상관없이 모든 아바타의 입 요소를 조회합니다. ")
+    @GetMapping("/mouth-parts")
+    public ApiResponseDto<List<MouthPartsResponse>> getMouthPartsByColor() {
+        return ApiResponseDto.onSuccess (getMouthPartsUseCase.execute());
+    }
 }
+
