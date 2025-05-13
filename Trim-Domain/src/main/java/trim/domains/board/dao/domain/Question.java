@@ -26,6 +26,9 @@ public class Question extends Board {
     @Column(nullable = false)
     private MajorType majorType;
 
+    @Column(nullable = false)
+    private String title;
+
     public void edit(QuestionDto dto) {
         super.edit(dto.getTitle(), dto.getContent());
         this.majorType = dto.getMajorType();

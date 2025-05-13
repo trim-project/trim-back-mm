@@ -20,6 +20,9 @@ public class Knowledge extends Board{
     @Column(nullable = false)
     private MajorType majorType;
 
+    @Column(nullable = false)
+    private String title;
+
     public void edit(KnowledgeDto knowledgeDto) {
         super.edit(knowledgeDto.getTitle(), knowledgeDto.getContent());
         this.majorType = knowledgeDto.getMajorType();
