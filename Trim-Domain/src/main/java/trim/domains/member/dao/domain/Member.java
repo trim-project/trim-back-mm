@@ -1,10 +1,7 @@
 package trim.domains.member.dao.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
 
@@ -37,6 +34,9 @@ public class Member extends BaseTimeEntity {
 
     // 변경될 수 있음
     private int nicknameChangeChance;
+
+    @Builder.Default
+    private int point = 0;
 
     public void updateNickname(String nickname) {
         this.nickname = nickname;
