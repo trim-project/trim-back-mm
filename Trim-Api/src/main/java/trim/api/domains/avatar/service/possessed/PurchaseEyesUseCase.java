@@ -5,7 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.UseCase;
 import trim.domains.avatar.business.service.item.EyesDomainService;
 import trim.domains.avatar.dao.entity.possessed.PossessedEyes;
-import trim.domains.member.business.adaptor.MemberAdaptor;
 import trim.domains.member.dao.domain.Member;
 
 @UseCase
