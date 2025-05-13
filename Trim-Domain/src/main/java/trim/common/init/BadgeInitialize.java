@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import trim.common.util.StaticValues;
 import trim.domains.badge.dao.entity.Badge;
 import trim.domains.badge.dao.entity.BadgeContent;
 import trim.domains.badge.dao.repository.BadgeRepository;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static trim.common.util.StaticValues.*;
 
 @Component
 @Transactional
@@ -28,60 +31,60 @@ public class BadgeInitialize {
         List<Badge> saveBadgeList = new ArrayList<>();
 
         //WRITE_QUESTION
-        for (int i = 1; i <= 10; i++) {
-            String title = "write question" + i;
-            if (!existingBadgeTitles.contains(title)) {
+        for (int i = 0; i < 5; i++) {
+            if (!existingBadgeTitles.contains(QUESTION_BADGE_TITLE.get(i))) {
                 saveBadgeList.add(
                         Badge.builder()
-                                .badgeTitle(title)
+                                .badgeTitle(QUESTION_BADGE_TITLE.get(i))
                                 .badgeContent(BadgeContent.WRITE_QUESTION)
-                                .goal(i * 5)
-                                .level(i)
+                                .goal(5 + 5 * i)
+                                .point(5 + 5 * i)
+                                .level(i + 1)
                                 .build()
                 );
             }
         }
 
         //WRITE_ANSWER
-        for (int i = 1; i <= 10; i++) {
-            String title = "write answer" + i;
-            if (!existingBadgeTitles.contains(title)) {
+        for (int i = 0; i < 5; i++) {
+            if (!existingBadgeTitles.contains(ANSWER_BADGE_TITLE.get(i))) {
                 saveBadgeList.add(
                         Badge.builder()
-                                .badgeTitle(title)
+                                .badgeTitle(ANSWER_BADGE_TITLE.get(i))
                                 .badgeContent(BadgeContent.WRITE_ANSWER)
-                                .goal(i * 7)
-                                .level(i)
+                                .goal(5 + 5 * i)
+                                .point(5 + 5 * i)
+                                .level(i + 1)
                                 .build()
                 );
             }
         }
 
         //WRITE_KNOWLEDGE
-        for (int i = 1; i <= 10; i++) {
-            String title = "write knowledge" + i;
-            if (!existingBadgeTitles.contains(title)) {
+        for (int i = 0; i < 5; i++) {
+            if (!existingBadgeTitles.contains(KNOWLEDGE_BADGE_TITLE.get(i))) {
                 saveBadgeList.add(
                         Badge.builder()
-                                .badgeTitle(title)
+                                .badgeTitle(KNOWLEDGE_BADGE_TITLE.get(i))
                                 .badgeContent(BadgeContent.WRITE_KNOWLEDGE)
-                                .goal(i * 5)
-                                .level(i)
+                                .goal(5 + 5 * i)
+                                .point(5 + 5 * i)
+                                .level(i + 1)
                                 .build()
                 );
             }
         }
 
         //WRITE_FREE_TALK
-        for (int i = 1; i <= 10; i++) {
-            String title = "write free_talk" + i;
-            if (!existingBadgeTitles.contains(title)) {
+        for (int i = 0; i < 5; i++) {
+            if (!existingBadgeTitles.contains(FREE_TALK_BADGE_TITLE.get(i))) {
                 saveBadgeList.add(
                         Badge.builder()
-                                .badgeTitle(title)
+                                .badgeTitle(FREE_TALK_BADGE_TITLE.get(i))
                                 .badgeContent(BadgeContent.WRITE_FREE_TALK)
-                                .goal(i * 5)
-                                .level(i)
+                                .goal(5 + 5 * i)
+                                .point(5 + 5 * i)
+                                .level(i + 1)
                                 .build()
                 );
             }
@@ -89,14 +92,14 @@ public class BadgeInitialize {
 
         //WRITE_COMMENT
         for (int i = 1; i <= 10; i++) {
-            String title = "write comment" + i;
-            if (!existingBadgeTitles.contains(title)) {
+            if (!existingBadgeTitles.contains(COMMENT_BADGE_TITLE.get(i))) {
                 saveBadgeList.add(
                         Badge.builder()
-                                .badgeTitle(title)
+                                .badgeTitle(COMMENT_BADGE_TITLE.get(i))
                                 .badgeContent(BadgeContent.WRITE_COMMENT)
-                                .goal(i * 10)
-                                .level(i)
+                                .goal(5 + 5 * i)
+                                .point(5 + 5 * i)
+                                .level(i + 1)
                                 .build()
                 );
             }
