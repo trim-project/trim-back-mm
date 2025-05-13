@@ -32,8 +32,7 @@ public abstract class Board extends BaseTimeEntity {
     @Column(name = "board_type", nullable = false, length = 50)
     private BoardType boardType;
 
-    protected void edit(String title, String content) {
-        this.title = title;
+    protected void edit(String content) {
         this.content = content;
     }
 }

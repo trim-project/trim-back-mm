@@ -19,7 +19,6 @@ public class CreateAnswerDummyDataUseCase {
         Member member = memberAdaptor.queryMember(memberId);
         for (int i = 0; i < knowledgeCount; i++) {
             AnswerRequest request = AnswerRequest.builder()
-                    .title("title of answer" + i + "by" + memberId)
                     .content("content of answer" + i + "by" + memberId)
                     .build();
             writeAnswerUseCase.execute(questionId, member, request);

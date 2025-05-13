@@ -24,6 +24,7 @@ public class FreeTalk extends Board {
     private String title;
 
     public void edit(FreeTalkDto dto) {
-        super.edit(dto.getTitle(), dto.getContent());
+        super.edit(dto.getContent());
+        this.title = dto.getTitle();
     }
 }

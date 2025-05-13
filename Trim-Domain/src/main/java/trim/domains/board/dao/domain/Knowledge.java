@@ -24,7 +24,8 @@ public class Knowledge extends Board{
     private String title;
 
     public void edit(KnowledgeDto knowledgeDto) {
-        super.edit(knowledgeDto.getTitle(), knowledgeDto.getContent());
+        super.edit(knowledgeDto.getContent());
+        this.title = knowledgeDto.getTitle();
         this.majorType = knowledgeDto.getMajorType();
     }
 }

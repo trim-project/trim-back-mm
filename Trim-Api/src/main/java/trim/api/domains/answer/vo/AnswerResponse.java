@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @RequiredArgsConstructor
 public class AnswerResponse {
-    private final String title;
     private final String content;
     private final Long questionId;
     private final Long createdAt;

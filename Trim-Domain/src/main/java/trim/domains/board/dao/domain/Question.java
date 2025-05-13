@@ -30,7 +30,8 @@ public class Question extends Board {
     private String title;
 
     public void edit(QuestionDto dto) {
-        super.edit(dto.getTitle(), dto.getContent());
+        super.edit(dto.getContent());
+        this.title = dto.getTitle();
         this.majorType = dto.getMajorType();
     }
 }

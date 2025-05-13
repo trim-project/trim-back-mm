@@ -17,7 +17,6 @@ public class AnswerDomainServiceImpl implements AnswerDomainService{
     @Override
     public Answer writeAnswer(AnswerDto dto, Member member, Long questionId) {
         Answer answer = Answer.builder()
-                .title(dto.getTitle())
                 .content(dto.getContent())
                 .questionId(questionId)
                 .writer(member)
