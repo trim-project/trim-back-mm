@@ -1,10 +1,7 @@
 package trim.domains.badge.dao.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Entity
@@ -26,6 +23,9 @@ public class Badge {
     private String badgeTitle;
 
     private int goal;
+
+    @Builder.Default
+    private int point = 10;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
