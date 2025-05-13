@@ -40,7 +40,7 @@ public class BadgeApiController {
         return ApiResponseDto.onSuccess(upgradeBadgeLevelUseCase.execute(badgeId, member));
     }
 
-    @Operation(summary = "여러 종류의 미션의 카운트를 하나 올려줍니다.")
+    @Operation(summary = "여러 종류의 미션의 카운트를 하나 올려줍니다.(좋아요 제외)")
     @PatchMapping
     public ApiResponseDto<Long> countUpBadge(@Parameter(hidden = true) @AuthUser Member member,
                                              @RequestParam BadgeContent badgeContent) {
