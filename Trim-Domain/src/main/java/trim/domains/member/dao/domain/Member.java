@@ -38,6 +38,10 @@ public class Member extends BaseTimeEntity {
     @Builder.Default
     private int point = 0;
 
+    public void updatePoint(int point) {
+        this.point += point;
+    }
+
     public void updateNickname(String nickname) {
         this.nickname = nickname;
     }
@@ -45,6 +49,5 @@ public class Member extends BaseTimeEntity {
     public void countConvertNicknameChance() {
         this.nicknameChangeChance--;
     }
-
 
 }

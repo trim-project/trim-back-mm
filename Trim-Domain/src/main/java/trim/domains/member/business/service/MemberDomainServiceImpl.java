@@ -40,4 +40,9 @@ public class MemberDomainServiceImpl implements MemberDomainService {
     public void withdrawMember(String username) {
 
     }
+
+    @Override
+    public void getPoint(Member member, int point) {
+        member.updatePoint(point);
+    }
 }
