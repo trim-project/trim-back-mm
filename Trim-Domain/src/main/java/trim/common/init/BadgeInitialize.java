@@ -91,7 +91,7 @@ public class BadgeInitialize {
         }
 
         //WRITE_COMMENT
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (!existingBadgeTitles.contains(COMMENT_BADGE_TITLE.get(i))) {
                 saveBadgeList.add(
                         Badge.builder()
