@@ -41,20 +41,12 @@ public class BadgeApiController {
         return ApiResponseDto.onSuccess(upgradeBadgeLevelUseCase.execute(badgeId, member));
     }
 
-    @Operation(summary = "게시글 작성을 함으로써 미션의 카운트를 하나 올려줍니다.")
-    @PatchMapping("/boards")
+    @Operation(summary = "여러 종류의 미션의 카운트를 하나 올려줍니다.")
+    @PatchMapping
     public ApiResponseDto<Long> countUpBadgeOfWritingBoard(@Parameter(hidden = true) @AuthUser Member member,
-                                                           @RequestParam String badgeContentKey) {
-        BadgeContent badgeContent = EnumConvertUtil.convert(BadgeContent.class, badgeContentKey);
+                                                           @RequestParam BadgeContent badgeContent) {
         return ApiResponseDto.onSuccess(countUpBadgeOfWritingBoardUseCase
                 .execute(badgeContent, member));
-    }
-
-    @Operation(summary = "게시글 작성을 함으로써 미션의 카운트를 하나 올려줍니다.")
-    @PatchMapping("/comments")
-    public ApiResponseDto<Long> countUpBadgeOfWritingComment(@Parameter(hidden = true) @AuthUser Member member) {
-        return ApiResponseDto.onSuccess(countUpBadgeOfWritingBoardUseCase
-                .execute(BadgeContent.WRITE_COMMENT, member));
     }
 
 }
