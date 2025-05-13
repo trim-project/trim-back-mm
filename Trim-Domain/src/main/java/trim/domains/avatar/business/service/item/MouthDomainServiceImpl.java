@@ -17,10 +17,7 @@ public class MouthDomainServiceImpl implements MouthDomainService{
     private final MouthRepository mouthRepository;
 
     @Override
-    public PossessedMouth purchaseMouth(Member member, Long mouthId) {
-
-        Mouth mouth = mouthRepository.findById(mouthId)
-                .orElseThrow(() -> new IllegalArgumentException(AvatarHandler.AVATAR_MOUTH_NOT_FOUND));
+    public PossessedMouth purchaseMouth(Member member, Mouth mouth) {
 
         //포인트 관련 구매 로직 추가 예정입니다.
 

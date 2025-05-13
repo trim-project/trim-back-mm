@@ -14,15 +14,9 @@ import trim.domains.member.dao.domain.Member;
 public class ClothDomainServiceImpl implements ClothDomainService {
 
     private final PossessedClothRepository possessedClothRepository;
-    private final ClothRepository clothRepository;
 
     @Override
-    public PossessedCloth purchaseCloth(Member member, Long clothId) {
-
-        Cloth cloth = clothRepository.findById(clothId)
-                .orElseThrow(() -> new IllegalArgumentException(AvatarHandler.AVATAR_CLOTH_NOT_FOUND));
-
-        //포인트 관련 구매 로직 추가 예정입니다.
+    public PossessedCloth purchaseCloth(Member member, Cloth cloth) {
 
         PossessedCloth possessedCloth = PossessedCloth.builder()
                 .member(member)

@@ -17,10 +17,7 @@ public class EyesDomainServiceImpl implements EyesDomainService {
     private final EyesRepository eyesRepository;
 
     @Override
-    public PossessedEyes purchaseEyes(Member member, Long eyesId) {
-
-        Eyes eyes = eyesRepository.findById(eyesId)
-                .orElseThrow(() -> new IllegalArgumentException(AvatarHandler.AVATAR_EYES_NOT_FOUND));
+    public PossessedEyes purchaseEyes(Member member, Eyes eyes) {
 
         //포인트 관련 구매 로직 추가 예정입니다.
 

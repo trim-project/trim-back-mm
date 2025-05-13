@@ -14,13 +14,9 @@ import trim.domains.member.dao.domain.Member;
 public class HairDomainServiceImpl implements HairDomainService {
 
     private final PossessedHairRepository possessedHairRepository;
-    private final HairRepository hairRepository;
 
     @Override
-    public PossessedHair purchaseHair(Member member, Long hairId) {
-
-        Hair hair = hairRepository.findById(hairId)
-                .orElseThrow(() -> new IllegalArgumentException(AvatarHandler.AVATAR_HAIR_NOT_FOUND));
+    public PossessedHair purchaseHair(Member member, Hair hair) {
 
         //포인트 관련 구매 로직 추가 예정입니다.
 
