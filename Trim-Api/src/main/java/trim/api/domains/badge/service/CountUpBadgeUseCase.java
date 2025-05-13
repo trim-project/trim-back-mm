@@ -18,7 +18,7 @@ import static trim.domains.mission.dao.entity.MissionStatus.IN_PROGRESS;
 @UseCase
 @Transactional
 @RequiredArgsConstructor
-public class CountUpBadgeOfWritingBoardUseCase {
+public class CountUpBadgeUseCase {
 
     private final MissionAdaptor missionAdaptor;
 
