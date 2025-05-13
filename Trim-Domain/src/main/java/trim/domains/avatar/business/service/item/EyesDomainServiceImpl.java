@@ -6,6 +6,7 @@ import trim.domains.avatar.dao.entity.item.Eyes;
 import trim.domains.avatar.dao.entity.possessed.PossessedEyes;
 import trim.domains.avatar.dao.repository.item.EyesRepository;
 import trim.domains.avatar.dao.repository.possessed.PossessedEyesRepository;
+import trim.domains.avatar.exception.AvatarHandler;
 import trim.domains.member.dao.domain.Member;
 
 @DomainService
@@ -19,7 +20,7 @@ public class EyesDomainServiceImpl implements EyesDomainService {
     public PossessedEyes purchaseEyes(Member member, Long eyesId) {
 
         Eyes eyes = eyesRepository.findById(eyesId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 Hair입니다.")); //예외처리 수정 예정입니다.
+                .orElseThrow(() -> new IllegalArgumentException(AvatarHandler.AVATAR_EYES_NOT_FOUND));
 
         //포인트 관련 구매 로직 추가 예정입니다.
 

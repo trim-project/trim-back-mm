@@ -6,6 +6,7 @@ import trim.domains.avatar.dao.entity.item.Cloth;
 import trim.domains.avatar.dao.entity.possessed.PossessedCloth;
 import trim.domains.avatar.dao.repository.item.ClothRepository;
 import trim.domains.avatar.dao.repository.possessed.PossessedClothRepository;
+import trim.domains.avatar.exception.AvatarHandler;
 import trim.domains.member.dao.domain.Member;
 
 @DomainService
@@ -19,7 +20,7 @@ public class ClothDomainServiceImpl implements ClothDomainService {
     public PossessedCloth purchaseCloth(Member member, Long clothId) {
 
         Cloth cloth = clothRepository.findById(clothId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 Cloth입니다.")); //예외처리 수정 예정입니다.
+                .orElseThrow(() -> new IllegalArgumentException(AvatarHandler.AVATAR_CLOTH_NOT_FOUND));
 
         //포인트 관련 구매 로직 추가 예정입니다.
 

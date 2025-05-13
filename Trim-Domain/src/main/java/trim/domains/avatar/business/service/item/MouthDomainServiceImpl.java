@@ -6,6 +6,7 @@ import trim.domains.avatar.dao.entity.item.Mouth;
 import trim.domains.avatar.dao.entity.possessed.PossessedMouth;
 import trim.domains.avatar.dao.repository.item.MouthRepository;
 import trim.domains.avatar.dao.repository.possessed.PossessedMouthRepository;
+import trim.domains.avatar.exception.AvatarHandler;
 import trim.domains.member.dao.domain.Member;
 
 @DomainService
@@ -19,7 +20,7 @@ public class MouthDomainServiceImpl implements MouthDomainService{
     public PossessedMouth purchaseMouth(Member member, Long mouthId) {
 
         Mouth mouth = mouthRepository.findById(mouthId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 Hair입니다.")); //예외처리 수정 예정입니다.
+                .orElseThrow(() -> new IllegalArgumentException(AvatarHandler.AVATAR_MOUTH_NOT_FOUND));
 
         //포인트 관련 구매 로직 추가 예정입니다.
 
