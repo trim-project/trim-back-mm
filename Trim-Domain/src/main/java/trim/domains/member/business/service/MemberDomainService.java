@@ -11,4 +11,7 @@ public interface MemberDomainService {
 
     void withdrawMember(String username);
 
+    void getPoint(Member member, int point);
+
+
 }
