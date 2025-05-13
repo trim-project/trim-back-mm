@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import trim.api.common.dto.ApiResponseDto;
-import trim.api.domains.avatar.service.GetClothPartsUseCase;
-import trim.api.domains.avatar.service.GetEyesPartsUseCase;
-import trim.api.domains.avatar.service.GetHairPartsUseCase;
-import trim.api.domains.avatar.service.GetMouthPartsUseCase;
+import trim.api.domains.avatar.service.parts.GetClothPartsUseCase;
+import trim.api.domains.avatar.service.parts.GetEyesPartsUseCase;
+import trim.api.domains.avatar.service.parts.GetHairPartsUseCase;
+import trim.api.domains.avatar.service.parts.GetMouthPartsUseCase;
 import trim.api.domains.avatar.vo.response.parts.ClothPartsResponse;
 import trim.api.domains.avatar.vo.response.parts.EyesPartsResponse;
 import trim.api.domains.avatar.vo.response.parts.HairPartsResponse;
@@ -24,7 +24,7 @@ import java.util.List;
 @Tag(name = "[아바타]")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/access/avatar")
+@RequestMapping("/api/access/avatars")
 public class AvatarAccessApiController {
 
     private final GetHairPartsUseCase getHairPartsByColorUseCase;
