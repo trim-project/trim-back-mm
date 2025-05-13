@@ -16,7 +16,7 @@ import java.util.Set;
 @Component
 @Transactional
 @RequiredArgsConstructor
-public class DataInitialize {
+public class BadgeInitialize {
 
     private final BadgeRepository badgeRepository;
 
