@@ -6,12 +6,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
-import trim.api.domains.badge.service.CountUpBadgeOfWritingBoardUseCase;
+import trim.api.domains.badge.service.CountUpBadgeUseCase;
 import trim.api.domains.badge.service.GetAllBadgesByMemberUseCase;
 import trim.api.domains.badge.service.UpgradeBadgeLevelUseCase;
 import trim.api.domains.badge.vo.response.BadgeDetailResponse;
 import trim.common.annotation.AuthUser;
-import trim.common.util.EnumConvertUtil;
 import trim.domains.badge.dao.entity.BadgeContent;
 import trim.domains.member.dao.domain.Member;
 
@@ -24,7 +23,7 @@ import java.util.List;
 public class BadgeApiController {
 
     private final UpgradeBadgeLevelUseCase upgradeBadgeLevelUseCase;
-    private final CountUpBadgeOfWritingBoardUseCase countUpBadgeOfWritingBoardUseCase;
+    private final CountUpBadgeUseCase countUpBadgeUseCase;
     private final GetAllBadgesByMemberUseCase getAllBadgesByMemberUseCase;
 
 
@@ -43,10 +42,9 @@ public class BadgeApiController {
 
     @Operation(summary = "여러 종류의 미션의 카운트를 하나 올려줍니다.")
     @PatchMapping
-    public ApiResponseDto<Long> countUpBadgeOfWritingBoard(@Parameter(hidden = true) @AuthUser Member member,
-                                                           @RequestParam BadgeContent badgeContent) {
-        return ApiResponseDto.onSuccess(countUpBadgeOfWritingBoardUseCase
-                .execute(badgeContent, member));
+    public ApiResponseDto<Long> countUpBadge(@Parameter(hidden = true) @AuthUser Member member,
+                                             @RequestParam BadgeContent badgeContent) {
+        return ApiResponseDto.onSuccess(countUpBadgeUseCase.execute(badgeContent, member));
     }
 
 }
