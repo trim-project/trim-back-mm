@@ -50,4 +50,11 @@ public class BadgeApiController {
                 .execute(badgeContent, member));
     }
 
+    @Operation(summary = "게시글 작성을 함으로써 미션의 카운트를 하나 올려줍니다.")
+    @PatchMapping("/comments")
+    public ApiResponseDto<Long> countUpBadgeOfWritingComment(@Parameter(hidden = true) @AuthUser Member member) {
+        return ApiResponseDto.onSuccess(countUpBadgeOfWritingBoardUseCase
+                .execute(BadgeContent.WRITE_COMMENT, member));
+    }
+
 }
