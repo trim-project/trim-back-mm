@@ -8,5 +8,6 @@ import trim.domains.comment.dao.domain.Comment;
 @Builder
 public class CommentResponse {
     private Long boardId;
+    private Long commentId;
     private String content;
 }
