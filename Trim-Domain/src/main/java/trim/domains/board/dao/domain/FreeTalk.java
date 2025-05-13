@@ -20,7 +20,11 @@ import trim.domains.board.dto.QuestionDto;
 @DiscriminatorValue("type_free_talk")
 public class FreeTalk extends Board {
 
+    @Column(nullable = false)
+    private String title;
+
     public void edit(FreeTalkDto dto) {
-        super.edit(dto.getTitle(), dto.getContent());
+        super.edit(dto.getContent());
+        this.title = dto.getTitle();
     }
 }

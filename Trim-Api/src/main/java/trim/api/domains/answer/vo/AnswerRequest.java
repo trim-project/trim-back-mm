@@ -9,12 +9,10 @@ import trim.domains.board.dto.AnswerDto;
 @Builder
 @RequiredArgsConstructor
 public class AnswerRequest {
-    private final String title;
     private final String content;
 
     public AnswerDto from() {
         return AnswerDto.builder()
-                .title(this.title)
                 .content(this.content)
                 .build();
     }

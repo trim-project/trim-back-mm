@@ -24,9 +24,6 @@ public abstract class Board extends BaseTimeEntity {
     @JoinColumn(name = "writer_id")
     private Member writer;
 
-    @Column(nullable = false)
-    private String title;
-
     @Lob
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -35,8 +32,7 @@ public abstract class Board extends BaseTimeEntity {
     @Column(name = "board_type", nullable = false, length = 50)
     private BoardType boardType;
 
-    protected void edit(String title, String content) {
-        this.title = title;
+    protected void edit(String content) {
         this.content = content;
     }
 }
