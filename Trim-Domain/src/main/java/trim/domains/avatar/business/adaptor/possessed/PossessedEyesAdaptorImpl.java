@@ -1,4 +1,20 @@
 package trim.domains.avatar.business.adaptor.possessed;
 
-public class PossessedEyesAdaptorImpl {
+import lombok.RequiredArgsConstructor;
+import trim.common.annotation.Adaptor;
+import trim.domains.avatar.dao.entity.possessed.PossessedEyes;
+import trim.domains.avatar.dao.repository.possessed.PossessedEyesRepository;
+import trim.domains.member.dao.domain.Member;
+
+@Adaptor
+@RequiredArgsConstructor
+public class PossessedEyesAdaptorImpl implements PossessedEyesAdaptor{
+
+    private final PossessedEyesRepository possessedEyesRepository;
+
+    @Override
+    public PossessedEyes queryByPossessedEyesId(Long EyesId, Member member) {
+        return possessedEyesRepository.findPossessedEyesAndMember(EyesId, member);
+    }
+
 }

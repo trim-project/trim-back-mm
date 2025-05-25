@@ -15,5 +15,6 @@ public class HairAdaptorImpl implements HairAdaptor {
     @Override
     public Hair queryByHairId(Long hairid) {
         return hairRepository.findById(hairid)
-                .orElseThrow(() -> AvatarHandler.AVATAR_HAIR_NOT_FOUND);}
+                .orElseThrow(() -> AvatarHandler.AVATAR_HAIR_NOT_FOUND);
+    }
 }
