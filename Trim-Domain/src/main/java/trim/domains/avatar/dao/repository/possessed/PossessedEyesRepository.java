@@ -5,5 +5,5 @@ import trim.domains.avatar.dao.entity.possessed.PossessedEyes;
 import trim.domains.member.dao.domain.Member;
 
 public interface PossessedEyesRepository extends JpaRepository<PossessedEyes, Long> {
-    PossessedEyes findPossessedEyesAndMember(Long EyesId, Member member);
+    PossessedEyes findByEyes_IdAndMember(Long EyesId, Member member);
 }

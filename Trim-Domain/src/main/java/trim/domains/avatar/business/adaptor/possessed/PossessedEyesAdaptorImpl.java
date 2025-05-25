@@ -15,7 +15,7 @@ public class PossessedEyesAdaptorImpl implements PossessedEyesAdaptor{
 
     @Override
     public PossessedEyes queryByPossessedEyesId(Eyes eyes, Member member) {
-        return possessedEyesRepository.findPossessedEyesAndMember(eyes.getId(), member);
+        return possessedEyesRepository.findByEyes_IdAndMember(eyes.getId(), member);
     }
 
 }

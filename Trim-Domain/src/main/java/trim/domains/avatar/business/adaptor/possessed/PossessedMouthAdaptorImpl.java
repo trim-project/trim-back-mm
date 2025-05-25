@@ -15,6 +15,6 @@ public class PossessedMouthAdaptorImpl implements PossessedMouthAdaptor{
 
     @Override
     public PossessedMouth queryByPossessedMouthId(Mouth mouth, Member member) {
-        return possessedMouthRepository.findPossessedMouthAndMember(mouth.getId(), member);
+        return possessedMouthRepository.findByMouth_IdAndMember(mouth.getId(), member);
     }
 }

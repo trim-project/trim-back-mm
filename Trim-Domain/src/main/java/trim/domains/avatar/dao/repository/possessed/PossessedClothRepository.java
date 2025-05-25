@@ -5,5 +5,5 @@ import trim.domains.avatar.dao.entity.possessed.PossessedCloth;
 import trim.domains.member.dao.domain.Member;
 
 public interface PossessedClothRepository extends JpaRepository<PossessedCloth, Long> {
-    PossessedCloth findPossessedClothAndMember(Long ClothId, Member member);
+    PossessedCloth findByCloth_IdAndMember(Long ClothId, Member member);
 }

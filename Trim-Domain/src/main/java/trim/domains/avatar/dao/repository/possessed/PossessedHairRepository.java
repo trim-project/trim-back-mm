@@ -5,5 +5,5 @@ import trim.domains.avatar.dao.entity.possessed.PossessedHair;
 import trim.domains.member.dao.domain.Member;
 
 public interface PossessedHairRepository extends JpaRepository<PossessedHair, Long> {
-    PossessedHair findPossessedHairAndMember(Long HairId, Member member);
+    PossessedHair findByHair_IdAndMember(Long HairId, Member member);
 }
