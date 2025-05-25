@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.UseCase;
 import trim.domains.avatar.business.adaptor.item.HairAdaptor;
+import trim.domains.avatar.business.adaptor.possessed.PossessedHairAdaptor;
 import trim.domains.avatar.business.service.item.HairDomainService;
 import trim.domains.avatar.business.validate.item.HairValidator;
 import trim.domains.avatar.dao.entity.item.Hair;
@@ -17,9 +18,13 @@ public class PurchaseHairUseCase {
 
     private final HairDomainService hairDomainService;
     private final HairAdaptor hairAdaptor;
+    private final PossessedHairAdaptor possessedHairAdaptor;
 
     public Long execute(Member member, Long hairId) {
         Hair hair = hairAdaptor.queryByHairId(hairId);
+        if(possessedHairAdaptor.queryByPossessedHairId(hair, member)==null) {
+            member.usePoint(hair.getPrice());
+        }
         PossessedHair possessedHair = hairDomainService.purchaseHair(member, hair);
         return possessedHair.getId();
     }
