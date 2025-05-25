@@ -8,7 +8,9 @@ import trim.domains.avatar.business.adaptor.possessed.PossessedMouthAdaptor;
 import trim.domains.avatar.business.service.item.MouthDomainService;
 import trim.domains.avatar.dao.entity.item.Mouth;
 import trim.domains.avatar.dao.entity.possessed.PossessedMouth;
+import trim.domains.avatar.exception.AvatarHandler;
 import trim.domains.member.dao.domain.Member;
+import trim.domains.member.exception.MemberHandler;
 
 @UseCase
 @Transactional
@@ -21,10 +23,16 @@ public class PurchaseMouthUseCase {
 
     public Long execute(Member member, Long mouthId) {
         Mouth mouth = mouthAdaptor.queryByMouthId(mouthId);
-        if(possessedMouthAdaptor.queryByPossessedMouthId(mouth, member)==null) {
-            member.usePoint(mouth.getPrice());
+        if(possessedMouthAdaptor.queryByPossessedMouthId(mouth, member).isEmpty()) {
+            if(member.getPoint()<mouth.getPrice()) {
+                throw MemberHandler.MEMBER_NOT_ENOUGH_POINT;
+            }
+            else{
+                member.usePoint(mouth.getPrice());
+                PossessedMouth possessedMouth = mouthDomainService.purchaseMouth(member, mouth);
+                return possessedMouth.getId();
+            }
         }
-        PossessedMouth possessedMouth = mouthDomainService.purchaseMouth(member, mouth);
-        return possessedMouth.getId();
+        throw AvatarHandler.AVATAR_ALREADY_PURCHASED_MOUTH;
     }
 }

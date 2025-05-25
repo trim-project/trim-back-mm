@@ -7,6 +7,8 @@ import trim.domains.avatar.dao.entity.possessed.PossessedCloth;
 import trim.domains.avatar.dao.repository.possessed.PossessedClothRepository;
 import trim.domains.member.dao.domain.Member;
 
+import java.util.List;
+
 @Adaptor
 @RequiredArgsConstructor
 public class PossessedClothAdaptorImpl implements PossessedClothAdaptor{
@@ -14,7 +16,7 @@ public class PossessedClothAdaptorImpl implements PossessedClothAdaptor{
     private final PossessedClothRepository possessedClothRepository;
 
     @Override
-    public PossessedCloth queryByPossessedClothId(Cloth cloth, Member member) {
+    public List<PossessedCloth> queryByPossessedClothId(Cloth cloth, Member member) {
         return possessedClothRepository.findByCloth_IdAndMember(cloth.getId(), member);
     }
 }

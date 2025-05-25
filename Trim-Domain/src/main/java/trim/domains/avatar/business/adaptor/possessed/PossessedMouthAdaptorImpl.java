@@ -7,6 +7,8 @@ import trim.domains.avatar.dao.entity.possessed.PossessedMouth;
 import trim.domains.avatar.dao.repository.possessed.PossessedMouthRepository;
 import trim.domains.member.dao.domain.Member;
 
+import java.util.List;
+
 @Adaptor
 @RequiredArgsConstructor
 public class PossessedMouthAdaptorImpl implements PossessedMouthAdaptor{
@@ -14,7 +16,7 @@ public class PossessedMouthAdaptorImpl implements PossessedMouthAdaptor{
     private final PossessedMouthRepository possessedMouthRepository;
 
     @Override
-    public PossessedMouth queryByPossessedMouthId(Mouth mouth, Member member) {
+    public List<PossessedMouth> queryByPossessedMouthId(Mouth mouth, Member member) {
         return possessedMouthRepository.findByMouth_IdAndMember(mouth.getId(), member);
     }
 }

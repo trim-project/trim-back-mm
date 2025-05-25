@@ -7,6 +7,8 @@ import trim.domains.avatar.dao.entity.possessed.PossessedHair;
 import trim.domains.avatar.dao.repository.possessed.PossessedHairRepository;
 import trim.domains.member.dao.domain.Member;
 
+import java.util.List;
+
 @Adaptor
 @RequiredArgsConstructor
 public class PossessedHairAdaptorimpl implements PossessedHairAdaptor{
@@ -14,7 +16,7 @@ public class PossessedHairAdaptorimpl implements PossessedHairAdaptor{
     private final PossessedHairRepository possessedHairRepository;
 
     @Override
-    public PossessedHair queryByPossessedHairId (Hair hair, Member member) {
+    public List<PossessedHair> queryByPossessedHairId (Hair hair, Member member) {
         return possessedHairRepository.findByHair_IdAndMember(hair.getId(), member);
     }
 }

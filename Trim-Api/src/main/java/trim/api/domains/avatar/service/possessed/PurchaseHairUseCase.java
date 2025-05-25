@@ -9,7 +9,9 @@ import trim.domains.avatar.business.service.item.HairDomainService;
 import trim.domains.avatar.business.validate.item.HairValidator;
 import trim.domains.avatar.dao.entity.item.Hair;
 import trim.domains.avatar.dao.entity.possessed.PossessedHair;
+import trim.domains.avatar.exception.AvatarHandler;
 import trim.domains.member.dao.domain.Member;
+import trim.domains.member.exception.MemberHandler;
 
 @UseCase
 @Transactional
@@ -22,11 +24,17 @@ public class PurchaseHairUseCase {
 
     public Long execute(Member member, Long hairId) {
         Hair hair = hairAdaptor.queryByHairId(hairId);
-        if(possessedHairAdaptor.queryByPossessedHairId(hair, member)==null) {
-            member.usePoint(hair.getPrice());
+        if(possessedHairAdaptor.queryByPossessedHairId(hair, member).isEmpty()) {
+            if(member.getPoint()<hair.getPrice()) {
+                throw MemberHandler.MEMBER_NOT_ENOUGH_POINT;
+            }
+            else{
+                member.usePoint(hair.getPrice());
+                PossessedHair possessedHair = hairDomainService.purchaseHair(member, hair);
+                return possessedHair.getId();
+            }
         }
-        PossessedHair possessedHair = hairDomainService.purchaseHair(member, hair);
-        return possessedHair.getId();
+        throw AvatarHandler.AVATAR_ALREADY_PURCHASED_HAIR;
     }
 }
 

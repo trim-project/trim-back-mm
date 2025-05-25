@@ -4,6 +4,8 @@ import trim.domains.avatar.dao.entity.item.Cloth;
 import trim.domains.avatar.dao.entity.possessed.PossessedCloth;
 import trim.domains.member.dao.domain.Member;
 
+import java.util.List;
+
 public interface PossessedClothAdaptor {
-    PossessedCloth queryByPossessedClothId(Cloth cloth, Member member);
+    List<PossessedCloth> queryByPossessedClothId(Cloth cloth, Member member);
 }
