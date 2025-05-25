@@ -19,8 +19,6 @@ public class EyesDomainServiceImpl implements EyesDomainService {
     @Override
     public PossessedEyes purchaseEyes(Member member, Eyes eyes) {
 
-        //포인트 관련 구매 로직 추가 예정입니다.
-
         PossessedEyes possessedEyes = PossessedEyes.builder()
                 .member(member)
                 .eyes(eyes)

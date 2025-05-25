@@ -50,4 +50,6 @@ public class Member extends BaseTimeEntity {
         this.nicknameChangeChance--;
     }
 
+    public void usePoint(int point) {this.point -= point;}
+
 }

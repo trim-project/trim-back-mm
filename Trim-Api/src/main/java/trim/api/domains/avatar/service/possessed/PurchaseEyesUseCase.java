@@ -22,7 +22,7 @@ public class PurchaseEyesUseCase {
     public Long execute(Member member, Long eyesId) {
         Eyes eyes = eyesAdaptor.queryByEyesId(eyesId);
         if(possessedEyesAdaptor.queryByPossessedEyesId(eyes, member)==null) {
-
+            member.usePoint(eyes.getPrice());
         }
         PossessedEyes possessedEyes = eyesDomainService.purchaseEyes(member, eyes);
         return possessedEyes.getId();
