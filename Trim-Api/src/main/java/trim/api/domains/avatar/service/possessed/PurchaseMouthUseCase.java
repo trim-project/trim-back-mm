@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import trim.common.annotation.UseCase;
 import trim.domains.avatar.business.adaptor.item.MouthAdaptor;
+import trim.domains.avatar.business.adaptor.possessed.PossessedMouthAdaptor;
 import trim.domains.avatar.business.service.item.MouthDomainService;
 import trim.domains.avatar.dao.entity.item.Mouth;
 import trim.domains.avatar.dao.entity.possessed.PossessedMouth;
@@ -16,9 +17,13 @@ public class PurchaseMouthUseCase {
 
     private final MouthDomainService mouthDomainService;
     private final MouthAdaptor mouthAdaptor;
+    private final PossessedMouthAdaptor possessedMouthAdaptor;
 
     public Long execute(Member member, Long mouthId) {
         Mouth mouth = mouthAdaptor.queryByMouthId(mouthId);
+        if(possessedMouthAdaptor.queryByPossessedMouthId(mouth, member)==null) {
+            member.usePoint(mouth.getPrice());
+        }
         PossessedMouth possessedMouth = mouthDomainService.purchaseMouth(member, mouth);
         return possessedMouth.getId();
     }
