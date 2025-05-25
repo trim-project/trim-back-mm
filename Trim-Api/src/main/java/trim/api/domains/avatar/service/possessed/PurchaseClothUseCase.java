@@ -6,6 +6,7 @@ import trim.common.annotation.UseCase;
 import trim.domains.avatar.business.adaptor.item.ClothAdaptor;
 import trim.domains.avatar.business.adaptor.possessed.PossessedClothAdaptor;
 import trim.domains.avatar.business.service.item.ClothDomainService;
+import trim.domains.avatar.business.validate.possessed.PossessedClothValidator;
 import trim.domains.avatar.dao.entity.item.Cloth;
 import trim.domains.avatar.dao.entity.possessed.PossessedCloth;
 import trim.domains.avatar.exception.AvatarHandler;
@@ -19,20 +20,19 @@ public class PurchaseClothUseCase {
 
     private final ClothDomainService clothDomainService;
     private final ClothAdaptor clothAdaptor;
-    private final PossessedClothAdaptor possessedClothAdaptor;
+    private final PossessedClothValidator possessedClothValidator;
 
     public Long execute(Member member, Long clothId) {
         Cloth cloth = clothAdaptor.queryByClothId(clothId);
-        if(possessedClothAdaptor.queryByPossessedClothId(cloth, member).isEmpty()) {
-            if(member.getPoint()<cloth.getPrice()) {
+
+        possessedClothValidator.checkPossessedClothExists(cloth, member);
+
+        if (member.getPoint() < cloth.getPrice()) {
             throw MemberHandler.MEMBER_NOT_ENOUGH_POINT;
-            }
-            else {
-                member.usePoint(cloth.getPrice());
-                PossessedCloth possessedCloth = clothDomainService.purchaseCloth(member, cloth);
-                return possessedCloth.getId();
-            }
         }
-        throw AvatarHandler.AVATAR_ALREADY_PURCHASED_CLOTH;
+
+        member.usePoint(cloth.getPrice());
+        PossessedCloth possessedCloth = clothDomainService.purchaseCloth(member, cloth);
+        return possessedCloth.getId();
     }
 }
