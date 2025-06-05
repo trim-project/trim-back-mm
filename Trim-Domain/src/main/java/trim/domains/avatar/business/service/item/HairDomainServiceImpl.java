@@ -18,8 +18,6 @@ public class HairDomainServiceImpl implements HairDomainService {
     @Override
     public PossessedHair purchaseHair(Member member, Hair hair) {
 
-        //포인트 관련 구매 로직 추가 예정입니다.
-
         PossessedHair possessedHair = PossessedHair.builder()
                 .member(member)
                 .hair(hair)

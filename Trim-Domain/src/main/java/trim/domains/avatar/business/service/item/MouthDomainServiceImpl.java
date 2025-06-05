@@ -19,8 +19,6 @@ public class MouthDomainServiceImpl implements MouthDomainService{
     @Override
     public PossessedMouth purchaseMouth(Member member, Mouth mouth) {
 
-        //포인트 관련 구매 로직 추가 예정입니다.
-
         PossessedMouth possessedMouth = PossessedMouth.builder()
                 .member(member)
                 .mouth(mouth)
