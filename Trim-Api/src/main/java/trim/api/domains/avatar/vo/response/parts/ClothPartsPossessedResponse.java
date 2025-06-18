@@ -11,6 +11,6 @@ import trim.domains.avatar.dao.entity.enums.ClothForURL;
 public class ClothPartsPossessedResponse {
     private final Long clothId;
     private final int price;
-    private final ClothForURL clothForURL;
+    private final String clothForURL;
     private final boolean purchased;
 }

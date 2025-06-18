@@ -35,7 +35,7 @@ public class GetPurchasedHairPartsUseCase {
                 .map(part -> HairPartsPossessedResponse.builder()
                         .hairId(part.getHair().getId())
                         .price(part.getHair().getPrice())
-                        .hairForURL(part.getImageUrl())
+                        .hairForURL(part.getImageUrl().getKey())
                         .purchased(possessedHairIds.contains(part.getHair().getId()))
                         .build())
                 .toList();

@@ -11,6 +11,6 @@ import trim.domains.avatar.dao.entity.enums.MouthForURL;
 public class MouthPartsPossessedResponse {
     private final Long mouthId;
     private final int price;
-    private final MouthForURL mouthForURL;
+    private final String mouthForURL;
     private final boolean purchased;
 }

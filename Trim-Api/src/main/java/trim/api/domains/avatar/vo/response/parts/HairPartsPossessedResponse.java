@@ -11,6 +11,6 @@ import trim.domains.avatar.dao.entity.enums.HairForURL;
 public class HairPartsPossessedResponse {
     private final Long hairId;
     private final int price;
-    private final HairForURL hairForURL;
+    private final String hairForURL;
     private final boolean purchased;
 }

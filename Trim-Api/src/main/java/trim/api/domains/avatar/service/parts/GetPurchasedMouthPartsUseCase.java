@@ -35,7 +35,7 @@ public class GetPurchasedMouthPartsUseCase {
                 .map(part -> MouthPartsPossessedResponse.builder()
                         .mouthId(part.getMouth().getId())
                         .price(part.getMouth().getPrice())
-                        .mouthForURL(part.getImageUrl())
+                        .mouthForURL(part.getImageUrl().getKey())
                         .purchased(possessedMouthIds.contains(part.getMouth().getId()))
                         .build())
                 .toList();
