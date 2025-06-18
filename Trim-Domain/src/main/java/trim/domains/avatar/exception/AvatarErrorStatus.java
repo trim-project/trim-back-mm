@@ -1,5 +1,6 @@
-package trim.domains.member.exception;
+package trim.domains.avatar.exception;
 
+import com.google.rpc.BadRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -15,14 +16,18 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Getter
 @AllArgsConstructor
-public enum MemberErrorStatus implements BaseErrorCode {
+public enum AvatarErrorStatus implements BaseErrorCode {
 
-    // entity MEMBER (4050-4099)
-    MEMBER_NOT_FOUND(NOT_FOUND, 4050, "회원을 찾을 수 없습니다."),
-    MEMBER_HAVE_ANY_CHANCE_OF_CONVERT_NICKNAME(BAD_REQUEST, 4051, "해당 회원은 사용할 수 있는 닉네임 변경 횟수를 모두 사용했습니다."),
+    //entity AVATAR (4500-4549)
+    AVATAR_HAIR_NOT_FOUND(NOT_FOUND, 4500, "헤어 요소를 찾을 수 없습니다." ),
+    AVATAR_MOUTH_NOT_FOUND(NOT_FOUND, 4501, "입 요소를 찾을 수 없습니다."),
+    AVATAR_EYES_NOT_FOUND(NOT_FOUND, 4502, "눈 요소를 찾을 수 없습니다."),
+    AVATAR_CLOTH_NOT_FOUND(NOT_FOUND, 4503, "옷 요소를 찾을 수 없습니다."),
 
-    MEMBER_NOT_ENOUGH_POINT(BAD_REQUEST, 4052, "포인트가 부족합니다.");
-
+    AVATAR_ALREADY_PURCHASED_HAIR(BAD_REQUEST, 4504, "이미 구매한 머리입니다."),
+    AVATAR_ALREADY_PURCHASED_MOUTH(BAD_REQUEST, 4505, "이미 구매한 입입니다."),
+    AVATAR_ALREADY_PURCHASED_EYES(BAD_REQUEST, 4506, "이미 구매한 눈입니다."),
+    AVATAR_ALREADY_PURCHASED_CLOTH(BAD_REQUEST, 4507, "이미 구매한 옷입니다.");
     private final HttpStatus httpStatus;
     private final Integer code;
     private final String message;
@@ -52,4 +57,5 @@ public enum MemberErrorStatus implements BaseErrorCode {
         ExplainError annotation = field.getAnnotation(ExplainError.class);
         return Objects.nonNull(annotation) ? annotation.value() : this.getMessage();
     }
+
 }

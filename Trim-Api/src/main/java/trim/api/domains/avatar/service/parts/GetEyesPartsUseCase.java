@@ -1,4 +1,4 @@
-package trim.api.domains.avatar.service;
+package trim.api.domains.avatar.service.parts;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;

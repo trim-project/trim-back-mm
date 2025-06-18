@@ -8,7 +8,8 @@ public class MemberHandler extends GeneralException {
             new MemberHandler(MemberErrorStatus.MEMBER_HAVE_ANY_CHANCE_OF_CONVERT_NICKNAME);
     public static final GeneralException NOT_FOUND =
             new MemberHandler(MemberErrorStatus.MEMBER_NOT_FOUND);
-
+    public static final GeneralException MEMBER_NOT_ENOUGH_POINT =
+            new MemberHandler(MemberErrorStatus.MEMBER_NOT_ENOUGH_POINT);
     public MemberHandler(BaseErrorCode code) {
         super(code);
     }
