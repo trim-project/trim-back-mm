@@ -36,7 +36,7 @@ public class GetPurchasedClothPartsUseCase {
                 .map(part -> ClothPartsPossessedResponse.builder()
                         .clothId(part.getCloth().getId())
                         .price(part.getCloth().getPrice())
-                        .clothForURL(part.getImageUrl().getKey())
+                        .imageUrl(part.getImageUrl().getKey())
                         .purchased(possessedClothIds.contains(part.getCloth().getId()))
                         .build())
                 .toList();

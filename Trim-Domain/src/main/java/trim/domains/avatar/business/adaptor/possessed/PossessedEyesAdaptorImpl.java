@@ -20,4 +20,10 @@ public class PossessedEyesAdaptorImpl implements PossessedEyesAdaptor{
         return possessedEyesRepository.findByEyes_IdAndMember(eyes.getId(), member);
     }
 
+    @Override
+    public List<PossessedEyes> queryByMember(Member member) {
+        return possessedEyesRepository.findByMember(member);
+    }
+
+
 }

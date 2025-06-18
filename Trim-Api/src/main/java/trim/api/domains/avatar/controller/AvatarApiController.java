@@ -8,15 +8,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.avatar.service.parts.GetPurchasedClothPartsUseCase;
+import trim.api.domains.avatar.service.parts.GetPurchasedEyesPartsUseCase;
 import trim.api.domains.avatar.service.parts.GetPurchasedHairPartsUseCase;
 import trim.api.domains.avatar.service.parts.GetPurchasedMouthPartsUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseClothUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseEyesUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseHairUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseMouthUseCase;
-import trim.api.domains.avatar.vo.response.parts.ClothPartsPossessedResponse;
-import trim.api.domains.avatar.vo.response.parts.HairPartsPossessedResponse;
-import trim.api.domains.avatar.vo.response.parts.MouthPartsPossessedResponse;
+import trim.api.domains.avatar.vo.response.parts.*;
 import trim.common.annotation.AuthUser;
 import trim.domains.avatar.dao.entity.enums.ClothColor;
 import trim.domains.avatar.dao.entity.enums.HairColor;
@@ -37,6 +36,7 @@ public class AvatarApiController {
     private final GetPurchasedHairPartsUseCase getPurchasedHairPartsUseCase;
     private final GetPurchasedClothPartsUseCase getPurchasedClothPartsUseCase;
     private final GetPurchasedMouthPartsUseCase getPurchasedMouthPartsUseCase;
+    private final GetPurchasedEyesPartsUseCase getPurchaseEyesPartsUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
     @PostMapping("/cloths/{clothId}")
@@ -84,5 +84,11 @@ public class AvatarApiController {
     @GetMapping("/mouth-parts/possessed")
     public ApiResponseDto<List<MouthPartsPossessedResponse>> getPossessedMouthParts(@Parameter(hidden = true) @AuthUser Member member) {
         return ApiResponseDto.onSuccess(getPurchasedMouthPartsUseCase.execute(member));
+    }
+
+    @Operation(summary = "모든 눈 요소를 구매 여부와 함께 조회합니다.")
+    @GetMapping("/eyes-parts/possessed")
+    public ApiResponseDto<List<EyesPartsPossessedResponse>> getPossessedEyesParts(@Parameter(hidden = true) @AuthUser Member member) {
+        return ApiResponseDto.onSuccess(getPurchaseEyesPartsUseCase.execute(member));
     }
 }

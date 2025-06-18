@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @Builder
 @RequiredArgsConstructor
-public class HairPartsPossessedResponse {
-    private final Long hairId;
+public class EyesPartsPossessedResponse {
+    private final Long eyesId;
     private final int price;
     private final String imageUrl;
     private final boolean purchased;
