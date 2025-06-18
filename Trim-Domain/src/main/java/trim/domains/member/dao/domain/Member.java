@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
+import trim.domains.member.dto.MemberProfileDto;
 
 @Entity
 @Getter
@@ -60,4 +61,12 @@ public class Member extends BaseTimeEntity {
     }
 
     public void usePoint(int point) {this.point -= point;}
+
+    public void updateProfileInfo(MemberProfileDto dto) {
+        this.nickname = dto.getNickname();
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+        this.major = dto.getMajor();
+        this.university = dto.getUniversity();
+    }
 }
