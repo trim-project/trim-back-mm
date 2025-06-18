@@ -1,5 +1,6 @@
 package trim.api.domains.avatar.controller;
 
+import feign.Param;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,12 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.avatar.service.parts.GetPurchasedClothPartsUseCase;
 import trim.api.domains.avatar.service.parts.GetPurchasedHairPartsUseCase;
+import trim.api.domains.avatar.service.parts.GetPurchasedMouthPartsUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseClothUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseEyesUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseHairUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseMouthUseCase;
 import trim.api.domains.avatar.vo.response.parts.ClothPartsPossessedResponse;
 import trim.api.domains.avatar.vo.response.parts.HairPartsPossessedResponse;
+import trim.api.domains.avatar.vo.response.parts.MouthPartsPossessedResponse;
 import trim.common.annotation.AuthUser;
 import trim.domains.avatar.dao.entity.enums.ClothColor;
 import trim.domains.avatar.dao.entity.enums.HairColor;
@@ -33,6 +36,7 @@ public class AvatarApiController {
     private final PurchaseMouthUseCase purchaseMouthUseCase;
     private final GetPurchasedHairPartsUseCase getPurchasedHairPartsUseCase;
     private final GetPurchasedClothPartsUseCase getPurchasedClothPartsUseCase;
+    private final GetPurchasedMouthPartsUseCase getPurchasedMouthPartsUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
     @PostMapping("/cloths/{clothId}")
@@ -76,4 +80,9 @@ public class AvatarApiController {
         return ApiResponseDto.onSuccess(getPurchasedClothPartsUseCase.execute(member, color));
     }
 
+    @Operation(summary = "모든 입 요소를 구매 여부와 함께 조회합니다.")
+    @GetMapping("/mouth-parts/possessed")
+    public ApiResponseDto<List<MouthPartsPossessedResponse>> getPossessedMouthParts(@Parameter(hidden = true) @AuthUser Member member) {
+        return ApiResponseDto.onSuccess(getPurchasedMouthPartsUseCase.execute(member));
+    }
 }
