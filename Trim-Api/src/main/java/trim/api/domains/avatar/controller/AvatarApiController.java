@@ -25,30 +25,30 @@ public class AvatarApiController {
     private final PurchaseMouthUseCase purchaseMouthUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
-    @PostMapping("/cloths")
+    @PostMapping("/cloths/{clothId}")
     public ApiResponseDto<Long> purchaseCloth(@Parameter(hidden = true) @AuthUser Member member,
-                                                     @RequestParam Long clothId) {
+                                                     @PathVariable Long clothId) {
         return ApiResponseDto.onSuccess(purchaseClothUseCase.execute(member, clothId));
     }
 
     @Operation(summary = "눈 요소를 구매합니다.")
-    @PostMapping("/eyes")
+    @PostMapping("/eyes/{eyesId}")
     public ApiResponseDto<Long> purchaseEyes(@Parameter(hidden = true) @AuthUser Member member,
-                                             @RequestParam Long eyesId) {
+                                             @PathVariable Long eyesId) {
         return ApiResponseDto.onSuccess(purchaseEyesUseCase.execute(member, eyesId));
     }
 
     @Operation(summary = "헤어 요소를 구매합니다.")
-    @PostMapping("/hairs")
+    @PostMapping("/hairs/{hairId}")
     public ApiResponseDto<Long> purchaseHair(@Parameter(hidden = true) @AuthUser Member member,
-                                             @RequestParam Long hairId) {
+                                             @PathVariable Long hairId) {
         return ApiResponseDto.onSuccess(purchaseHairUseCase.execute(member, hairId));
     }
 
     @Operation(summary = "입 요소를 구매합니다.")
-    @PostMapping("/mouths")
+    @PostMapping("/mouths/{mouthId}")
     public ApiResponseDto<Long> purchaseMouth(@Parameter(hidden = true) @AuthUser Member member,
-                                             @RequestParam Long mouthId) {
+                                             @PathVariable Long mouthId) {
         return ApiResponseDto.onSuccess(purchaseMouthUseCase.execute(member, mouthId));
     }
 
