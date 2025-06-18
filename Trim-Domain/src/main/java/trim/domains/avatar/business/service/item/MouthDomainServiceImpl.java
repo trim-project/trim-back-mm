@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
 import trim.domains.avatar.dao.entity.item.Mouth;
 import trim.domains.avatar.dao.entity.possessed.PossessedMouth;
-import trim.domains.avatar.dao.repository.item.MouthRepository;
 import trim.domains.avatar.dao.repository.possessed.PossessedMouthRepository;
 import trim.domains.member.dao.domain.Member;
 
