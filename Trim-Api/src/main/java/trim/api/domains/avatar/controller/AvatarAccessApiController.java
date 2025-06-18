@@ -55,5 +55,12 @@ public class AvatarAccessApiController {
     public ApiResponseDto<List<MouthPartsResponse>> getMouthPartsByColor() {
         return ApiResponseDto.onSuccess(getMouthPartsUseCase.execute());
     }
+
+    @Operation(summary = "모든 헤어 요소를 구매 여부와 함께 조회합니다.")
+    @GetMapping("/hair-parts/possessed")
+    public ApiResponseDto<List<HairPartsPossessedResponse>> getPossessedHairParts() {
+        return ApiResponseDto.onSuccess(getPossessedHairPartsUseCase.execute());
+    }
+
 }
 
