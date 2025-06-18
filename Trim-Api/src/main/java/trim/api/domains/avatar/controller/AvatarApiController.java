@@ -6,13 +6,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.avatar.service.parts.GetPurchasedClothPartsUseCase;
 import trim.api.domains.avatar.service.parts.GetPurchasedHairPartsUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseClothUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseEyesUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseHairUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseMouthUseCase;
+import trim.api.domains.avatar.vo.response.parts.ClothPartsPossessedResponse;
 import trim.api.domains.avatar.vo.response.parts.HairPartsPossessedResponse;
 import trim.common.annotation.AuthUser;
+import trim.domains.avatar.dao.entity.enums.ClothColor;
 import trim.domains.avatar.dao.entity.enums.HairColor;
 import trim.domains.member.dao.domain.Member;
 
@@ -29,6 +32,7 @@ public class AvatarApiController {
     private final PurchaseEyesUseCase purchaseEyesUseCase;
     private final PurchaseMouthUseCase purchaseMouthUseCase;
     private final GetPurchasedHairPartsUseCase getPurchasedHairPartsUseCase;
+    private final GetPurchasedClothPartsUseCase getPurchasedClothPartsUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
     @PostMapping("/cloths/{clothId}")
@@ -63,6 +67,13 @@ public class AvatarApiController {
     public ApiResponseDto<List<HairPartsPossessedResponse>> getPossessedHairParts(@Parameter(hidden = true) @AuthUser Member member,
                                                                                   @RequestParam("color") HairColor color) {
         return ApiResponseDto.onSuccess(getPurchasedHairPartsUseCase.execute(member, color));
+    }
+
+    @Operation(summary = "모든 의상 요소를 구매 여부와 함께 조회합니다.")
+    @GetMapping("/cloth-parts/possessed")
+    public ApiResponseDto<List<ClothPartsPossessedResponse>> getPossessedClothParts(@Parameter(hidden = true) @AuthUser Member member,
+                                                                                    @RequestParam("color") ClothColor color) {
+        return ApiResponseDto.onSuccess(getPurchasedClothPartsUseCase.execute(member, color));
     }
 
 }

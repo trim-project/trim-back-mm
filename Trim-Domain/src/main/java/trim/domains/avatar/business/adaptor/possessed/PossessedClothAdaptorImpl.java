@@ -19,4 +19,9 @@ public class PossessedClothAdaptorImpl implements PossessedClothAdaptor{
     public List<PossessedCloth> queryByPossessedClothId(Cloth cloth, Member member) {
         return possessedClothRepository.findByCloth_IdAndMember(cloth.getId(), member);
     }
+
+    @Override
+    public List<PossessedCloth> queryByMember(Member member) {
+        return possessedClothRepository.findByMember(member);
+    }
 }
