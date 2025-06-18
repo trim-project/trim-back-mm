@@ -24,6 +24,7 @@ import trim.domains.avatar.dao.repository.parts.EyesPartsRepository;
 import trim.domains.avatar.dao.repository.parts.HairPartsRepository;
 import trim.domains.avatar.dao.repository.parts.MouthPartsRepository;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -70,12 +71,16 @@ public class AvatarPartsInitialize {
                                 .price(10)
                                 .build()));
 
-                String url = "/images/hair/" + avatarNumber.name().toLowerCase() + "_" + color.getKey() + ".svg";
+                // enum 이름 조합: HAIR_1_DARK_BROWN
+                String enumName = "HAIR_" + avatarNumber.name().replace("HAIR_", "") + "_" + color.name();
+                HairForURL imageEnum = HairForURL.valueOf(enumName);
+
                 HairParts part = HairParts.builder()
                         .hair(hair)
                         .hairColor(color)
-                        .imageUrl(url)
+                        .imageUrl(imageEnum)
                         .build();
+
                 hairPartsRepository.save(part);
             }
         }
@@ -95,11 +100,14 @@ public class AvatarPartsInitialize {
                             .price(10)
                             .build()));
 
-            String url = "/images/eyes/" + avatarNumber.name().toLowerCase() + ".svg";
+            String enumName = "EYES_" + avatarNumber.name().replace("EYES_", "");
+            EyesForURL imageEnum = EyesForURL.valueOf(enumName);
+
             EyesParts part = EyesParts.builder()
                     .eyes(eyes)
-                    .imageUrl(url)
+                    .imageUrl(imageEnum)
                     .build();
+
             eyesPartsRepository.save(part);
         }
     }
@@ -118,11 +126,14 @@ public class AvatarPartsInitialize {
                             .price(10)
                             .build()));
 
-            String url = "/images/mouth/" + avatarNumber.name().toLowerCase() + ".svg";
+            String enumName = "MOUTH_" + avatarNumber.name().replace("MOUTH_", "");
+            MouthForURL imageEnum = MouthForURL.valueOf(enumName);
+
             MouthParts part = MouthParts.builder()
                     .mouth(mouth)
-                    .imageUrl(url)
+                    .imageUrl(imageEnum)
                     .build();
+
             mouthPartsRepository.save(part);
         }
     }
@@ -143,14 +154,19 @@ public class AvatarPartsInitialize {
                                 .price(10)
                                 .build()));
 
-                String url = "/images/cloth/" + avatarNumber.name().toLowerCase() + "_" + color.getKey() + ".svg";
+                // enum 이름 예시: RED_R1
+                String enumName = color.name() + "_" + avatarNumber.name().replace("CLOTH_", "");
+                ClothForURL imageEnum = ClothForURL.valueOf(enumName);
+
                 ClothParts part = ClothParts.builder()
                         .cloth(cloth)
                         .clothColor(color)
-                        .imageUrl(url)
+                        .imageUrl(imageEnum)
                         .build();
+
                 clothPartsRepository.save(part);
             }
         }
     }
+
 }
