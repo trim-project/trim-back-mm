@@ -9,11 +9,11 @@ import java.util.Arrays;
 @Getter
 @RequiredArgsConstructor
 public enum HairAvatarNumber implements KeyedEnum {
-    HAIR_1("hair_6"),
-    HAIR_2("hair_7"),
-    HAIR_3("hair_8"),
-    HAIR_4("hair_9"),
-    HAIR_5("hair_10"),
+    HAIR_1("hair_1"),
+    HAIR_2("hair_2"),
+    HAIR_3("hair_3"),
+    HAIR_4("hair_4"),
+    HAIR_5("hair_5"),
     HAIR_6("hair_6"),
     HAIR_7("hair_7"),
     HAIR_8("hair_8"),

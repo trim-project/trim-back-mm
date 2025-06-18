@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
+import trim.domains.avatar.dao.entity.enums.MouthForURL;
 import trim.domains.avatar.dao.entity.item.Mouth;
 
 @Entity
@@ -24,5 +25,6 @@ public class MouthParts extends BaseTimeEntity {
     @JoinColumn(name = "mouth_id", nullable = false)
     private Mouth mouth;
 
-    private String imageUrl;
+    @Enumerated(EnumType.STRING)
+    private MouthForURL imageUrl;
 }
