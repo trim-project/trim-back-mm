@@ -25,6 +25,7 @@ public class EyesParts extends BaseTimeEntity {
     @JoinColumn(name = "eyes_id", nullable = false)
     private Eyes eyes;
 
+    @Enumerated(EnumType.STRING)
     private EyesForURL imageUrl;
 }
 

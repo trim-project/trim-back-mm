@@ -36,5 +36,6 @@ public class HairParts extends BaseTimeEntity {
     @JoinColumn(name = "hair_id", nullable = false)
     private Hair hair;
 
+    @Enumerated(EnumType.STRING)
     private HairForURL imageUrl;
 }

@@ -25,5 +25,6 @@ public class MouthParts extends BaseTimeEntity {
     @JoinColumn(name = "mouth_id", nullable = false)
     private Mouth mouth;
 
+    @Enumerated(EnumType.STRING)
     private MouthForURL imageUrl;
 }

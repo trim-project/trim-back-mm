@@ -36,5 +36,6 @@ public class ClothParts extends BaseTimeEntity {
     @JoinColumn(name = "cloth_id", nullable = false)
     private Cloth cloth;
 
+    @Enumerated(EnumType.STRING)
     private ClothForURL imageUrl;
 }
