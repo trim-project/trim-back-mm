@@ -10,4 +10,5 @@ import java.util.List;
 public interface PossessedHairRepository extends JpaRepository<PossessedHair, Long> {
     List<PossessedHair> findByHair_IdAndMember(Long HairId, Member member);
     boolean existsByHairAndMember(Hair hair, Member member);
+    List<PossessedHair> findByMember(Member member);
 }
