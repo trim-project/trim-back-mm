@@ -32,6 +32,15 @@ public class Member extends BaseTimeEntity {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    private String name;
+
+    private String major;
+
+    private String university;
+
+    private String description;
+
+
     // 변경될 수 있음
     private int nicknameChangeChance;
 
@@ -51,5 +60,4 @@ public class Member extends BaseTimeEntity {
     }
 
     public void usePoint(int point) {this.point -= point;}
-
 }
