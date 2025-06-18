@@ -25,7 +25,7 @@ public class AvatarApiController {
     private final PurchaseMouthUseCase purchaseMouthUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
-    @PostMapping("/cloth")
+    @PostMapping("/cloths")
     public ApiResponseDto<Long> purchaseCloth(@Parameter(hidden = true) @AuthUser Member member,
                                                      @RequestParam Long clothId) {
         return ApiResponseDto.onSuccess(purchaseClothUseCase.execute(member, clothId));
@@ -39,14 +39,14 @@ public class AvatarApiController {
     }
 
     @Operation(summary = "헤어 요소를 구매합니다.")
-    @PostMapping("/hair")
+    @PostMapping("/hairs")
     public ApiResponseDto<Long> purchaseHair(@Parameter(hidden = true) @AuthUser Member member,
                                              @RequestParam Long hairId) {
         return ApiResponseDto.onSuccess(purchaseHairUseCase.execute(member, hairId));
     }
 
     @Operation(summary = "입 요소를 구매합니다.")
-    @PostMapping("/mouth")
+    @PostMapping("/mouths")
     public ApiResponseDto<Long> purchaseMouth(@Parameter(hidden = true) @AuthUser Member member,
                                              @RequestParam Long mouthId) {
         return ApiResponseDto.onSuccess(purchaseMouthUseCase.execute(member, mouthId));
