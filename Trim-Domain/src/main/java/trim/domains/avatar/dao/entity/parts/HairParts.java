@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
 import trim.domains.avatar.dao.entity.enums.HairColor;
+import trim.domains.avatar.dao.entity.enums.HairForURL;
 import trim.domains.avatar.dao.entity.item.Hair;
 
 @Entity
@@ -35,6 +36,5 @@ public class HairParts extends BaseTimeEntity {
     @JoinColumn(name = "hair_id", nullable = false)
     private Hair hair;
 
-    @Column(nullable = false)
-    private String imageUrl;
+    private HairForURL imageUrl;
 }

@@ -6,7 +6,7 @@ import trim.common.interfaces.KeyedEnum;
 
 @Getter
 @RequiredArgsConstructor
-public enum HairWithColor implements KeyedEnum {
+public enum HairForURL implements KeyedEnum {
     HAIR_1_NAVY("hair_1_navy"),
     HAIR_2_NAVY("hair_2_navy"),
     HAIR_3_NAVY("hair_3_navy"),

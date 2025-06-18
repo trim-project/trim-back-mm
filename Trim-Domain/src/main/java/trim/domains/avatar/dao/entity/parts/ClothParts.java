@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
 import trim.domains.avatar.dao.entity.enums.ClothColor;
+import trim.domains.avatar.dao.entity.enums.ClothForURL;
 import trim.domains.avatar.dao.entity.item.Cloth;
 
 @Entity
@@ -35,5 +36,5 @@ public class ClothParts extends BaseTimeEntity {
     @JoinColumn(name = "cloth_id", nullable = false)
     private Cloth cloth;
 
-    private String imageUrl;
+    private ClothForURL imageUrl;
 }

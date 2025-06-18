@@ -6,7 +6,7 @@ import trim.common.interfaces.KeyedEnum;
 
 @Getter
 @RequiredArgsConstructor
-public enum ClothWithColor implements KeyedEnum {
+public enum ClothForURL implements KeyedEnum {
     RED_R1("red_r1"),
     RED_R2("red_r2"),
     RED_R3("red_r3"),

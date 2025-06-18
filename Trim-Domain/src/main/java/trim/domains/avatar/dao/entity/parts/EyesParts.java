@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
+import trim.domains.avatar.dao.entity.enums.EyesForURL;
 import trim.domains.avatar.dao.entity.item.Eyes;
 
 @Entity
@@ -24,6 +25,6 @@ public class EyesParts extends BaseTimeEntity {
     @JoinColumn(name = "eyes_id", nullable = false)
     private Eyes eyes;
 
-    private String imageUrl;
+    private EyesForURL imageUrl;
 }
 
