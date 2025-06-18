@@ -6,7 +6,6 @@ import trim.domains.avatar.dao.entity.item.Mouth;
 import trim.domains.avatar.dao.entity.possessed.PossessedMouth;
 import trim.domains.avatar.dao.repository.item.MouthRepository;
 import trim.domains.avatar.dao.repository.possessed.PossessedMouthRepository;
-import trim.domains.avatar.exception.AvatarHandler;
 import trim.domains.member.dao.domain.Member;
 
 @DomainService
@@ -14,7 +13,6 @@ import trim.domains.member.dao.domain.Member;
 public class MouthDomainServiceImpl implements MouthDomainService{
 
     private final PossessedMouthRepository possessedMouthRepository;
-    private final MouthRepository mouthRepository;
 
     @Override
     public PossessedMouth purchaseMouth(Member member, Mouth mouth) {

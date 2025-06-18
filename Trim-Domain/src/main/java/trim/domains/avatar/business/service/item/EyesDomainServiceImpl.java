@@ -14,7 +14,6 @@ import trim.domains.member.dao.domain.Member;
 public class EyesDomainServiceImpl implements EyesDomainService {
 
     private final PossessedEyesRepository possessedEyesRepository;
-    private final EyesRepository eyesRepository;
 
     @Override
     public PossessedEyes purchaseEyes(Member member, Eyes eyes) {
