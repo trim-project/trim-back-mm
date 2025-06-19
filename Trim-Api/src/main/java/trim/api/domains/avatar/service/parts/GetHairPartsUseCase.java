@@ -21,7 +21,11 @@ public class GetHairPartsUseCase {
     public List<HairPartsResponse> execute(HairColor hairColor) {
         List<HairParts> parts = hairPartsAdaptor.queryHairPartsByColor(hairColor);
         return parts.stream()
-                .map(HairPartsMapper.INSTANCE::toResponse)
+                .map(part-> new HairPartsResponse(
+                        part.getHair().getId(),
+                        part.getHair().getPrice(),
+                        part.getImageUrl().getKey()
+                ))
                 .toList();
     }
 }

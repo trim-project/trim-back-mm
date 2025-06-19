@@ -21,7 +21,11 @@ public class GetClothPartsUseCase {
     public List<ClothPartsResponse> execute(ClothColor clothColor) {
         List<ClothParts> parts = clothPartsAdaptor.queryClothPartsByColor(clothColor);
         return parts.stream()
-                .map(ClothPartsMapper.INSTANCE::toResponse)
+                .map(part -> new ClothPartsResponse(
+                        part.getCloth().getId(),
+                        part.getCloth().getPrice(),
+                        part.getImageUrl().getKey()
+                ))
                 .toList();
     }
 }
