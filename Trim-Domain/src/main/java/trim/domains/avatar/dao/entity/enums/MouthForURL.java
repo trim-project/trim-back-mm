@@ -8,18 +8,19 @@ import trim.common.interfaces.KeyedEnum;
 @RequiredArgsConstructor
 public enum MouthForURL implements KeyedEnum {
 
-    MOUTH_1("mouth_1_image_url"),
-    MOUTH_2("mouth_2_image_url"),
-    MOUTH_3("mouth_3_image_url"),
-    MOUTH_4("mouth_4_image_url"),
-    MOUTH_5("mouth_5_image_url"),
-    MOUTH_6("mouth_6_image_url"),
-    MOUTH_7("mouth_7_image_url"),
-    MOUTH_8("mouth_8_image_url"),
-    MOUTH_9("mouth_9_image_url"),
-    MOUTH_10("mouth_10_image_url"),
-    MOUTH_11("mouth_11_image_url"),
-    MOUTH_12("mouth_12_image_url");
+    MOUTH_1("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_1.svg"),
+    MOUTH_2("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_2.svg"),
+    MOUTH_3("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_3.svg"),
+    MOUTH_4("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_4.svg"),
+    MOUTH_5("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_5.svg"),
+    MOUTH_6("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_6.svg"),
+    MOUTH_7("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_7.svg"),
+    MOUTH_8("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_8.svg"),
+    MOUTH_9("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_9.svg"),
+    MOUTH_10("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_10.svg"),
+    MOUTH_11("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_11.svg"),
+    MOUTH_12("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_12.svg");
+
 
     private final String key;
 
