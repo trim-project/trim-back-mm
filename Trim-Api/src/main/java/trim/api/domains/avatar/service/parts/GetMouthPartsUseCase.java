@@ -20,7 +20,11 @@ public class GetMouthPartsUseCase {
     public List<MouthPartsResponse> execute() {
         List<MouthParts> parts = mouthPartsAdaptor.queryMouthParts();
         return parts.stream()
-                .map(MouthPartsMapper.INSTANCE::toResponse)
+                .map(part -> new MouthPartsResponse(
+                        part.getMouth().getId(),
+                        part.getMouth().getPrice(),
+                        part.getImageUrl().getKey()
+                ))
                 .toList();
     }
 }

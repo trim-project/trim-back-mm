@@ -55,5 +55,6 @@ public class AvatarAccessApiController {
     public ApiResponseDto<List<MouthPartsResponse>> getMouthPartsByColor() {
         return ApiResponseDto.onSuccess(getMouthPartsUseCase.execute());
     }
+
 }
 

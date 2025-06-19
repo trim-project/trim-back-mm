@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PossessedEyesAdaptor {
     List<PossessedEyes> queryByPossessedEyesId(Eyes eyes, Member member);
-
+    List<PossessedEyes> queryByMember(Member member);
 }

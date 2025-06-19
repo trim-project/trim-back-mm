@@ -10,4 +10,5 @@ import java.util.List;
 public interface PossessedMouthRepository extends JpaRepository<PossessedMouth, Long> {
     List<PossessedMouth> findByMouth_IdAndMember(Long MouthId, Member member);
     boolean existsByMouthAndMember(Mouth mouth, Member member);
+    List<PossessedMouth> findByMember(Member member);
 }

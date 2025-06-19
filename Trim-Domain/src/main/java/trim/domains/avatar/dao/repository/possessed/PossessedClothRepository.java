@@ -10,4 +10,5 @@ import java.util.List;
 public interface PossessedClothRepository extends JpaRepository<PossessedCloth, Long> {
     List<PossessedCloth> findByCloth_IdAndMember(Long ClothId, Member member);
     boolean existsByClothAndMember(Cloth cloth, Member member);
+    List<PossessedCloth> findByMember(Member member);
 }

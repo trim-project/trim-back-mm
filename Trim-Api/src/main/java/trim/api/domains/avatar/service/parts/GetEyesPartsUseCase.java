@@ -19,8 +19,13 @@ public class GetEyesPartsUseCase {
 
     public List<EyesPartsResponse> execute() {
         List<EyesParts> parts = eyesPartsAdaptor.queryEyesParts();
+
         return parts.stream()
-                .map(EyesPartsMapper.INSTANCE::toResponse)
+                .map(part -> new EyesPartsResponse(
+                        part.getEyes().getId(),
+                        part.getEyes().getPrice(),
+                        part.getImageUrl().getKey()
+                ))
                 .toList();
     }
 }

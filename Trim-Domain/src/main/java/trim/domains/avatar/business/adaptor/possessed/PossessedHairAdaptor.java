@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface PossessedHairAdaptor {
     List<PossessedHair> queryByPossessedHairId(Hair hair, Member member);
+    List<PossessedHair> queryByMember(Member member);
 }

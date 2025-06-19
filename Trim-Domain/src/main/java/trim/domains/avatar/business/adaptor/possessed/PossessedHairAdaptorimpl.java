@@ -19,4 +19,9 @@ public class PossessedHairAdaptorimpl implements PossessedHairAdaptor{
     public List<PossessedHair> queryByPossessedHairId (Hair hair, Member member) {
         return possessedHairRepository.findByHair_IdAndMember(hair.getId(), member);
     }
+
+    @Override
+    public List<PossessedHair> queryByMember (Member member) {
+        return possessedHairRepository.findByMember(member);
+    }
 }

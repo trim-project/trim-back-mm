@@ -10,4 +10,5 @@ import java.util.List;
 public interface PossessedEyesRepository extends JpaRepository<PossessedEyes, Long> {
     List<PossessedEyes> findByEyes_IdAndMember(Long EyesId, Member member);
     boolean existsByEyesAndMember(Eyes eyes, Member member);
+    List<PossessedEyes> findByMember(Member member);
 }

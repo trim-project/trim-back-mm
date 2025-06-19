@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface PossessedMouthAdaptor {
     List<PossessedMouth> queryByPossessedMouthId(Mouth mouth, Member member);
+    List<PossessedMouth> queryByMember(Member member);
 }

@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface PossessedClothAdaptor {
     List<PossessedCloth> queryByPossessedClothId(Cloth cloth, Member member);
+    List<PossessedCloth> queryByMember(Member member);
 }
