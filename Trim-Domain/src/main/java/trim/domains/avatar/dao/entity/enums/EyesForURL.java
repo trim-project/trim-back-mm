@@ -21,5 +21,6 @@ public enum EyesForURL implements KeyedEnum {
     EYES_11("https://storage.googleapis.com/trim-cloud-bucket/Avatar_eyes_11.svg"),
     EYES_12("https://storage.googleapis.com/trim-cloud-bucket/Avatar_eyes_12.svg");
 
+
     private final String key;
 }

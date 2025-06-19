@@ -142,5 +142,6 @@ public enum ClothForURL implements KeyedEnum {
     BLACK_R11("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesB_11.svg"),
     BLACK_R12("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesB_12.svg");
 
+
     private final String key;
 }

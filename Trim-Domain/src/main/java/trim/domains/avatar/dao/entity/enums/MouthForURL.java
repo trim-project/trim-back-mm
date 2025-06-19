@@ -21,6 +21,7 @@ public enum MouthForURL implements KeyedEnum {
     MOUTH_11("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_11.svg"),
     MOUTH_12("https://storage.googleapis.com/trim-cloud-bucket/Avatar_mouth_12.svg");
 
+
     private final String key;
 
 }

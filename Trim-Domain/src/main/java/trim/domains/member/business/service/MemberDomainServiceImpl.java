@@ -8,6 +8,7 @@ import trim.domains.member.dao.domain.Member;
 import trim.domains.member.dao.domain.Profile;
 import trim.domains.member.dao.domain.Role;
 import trim.domains.member.dao.repository.MemberRepository;
+import trim.domains.member.dto.MemberProfileDto;
 
 @DomainService
 @Transactional
@@ -44,5 +45,11 @@ public class MemberDomainServiceImpl implements MemberDomainService {
     @Override
     public void getPoint(Member member, int point) {
         member.updatePoint(point);
+    }
+
+    @Override
+    public Long updateProfile(Member member, MemberProfileDto dto) {
+        member.updateProfileInfo(dto);
+        return member.getId();
     }
 }
