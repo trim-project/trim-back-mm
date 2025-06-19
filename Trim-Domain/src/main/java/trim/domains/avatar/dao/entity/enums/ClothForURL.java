@@ -7,16 +7,16 @@ import trim.common.interfaces.KeyedEnum;
 @Getter
 @RequiredArgsConstructor
 public enum ClothForURL implements KeyedEnum {
-    RED_R1("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_1.svg"),
-    RED_R2("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_2.svg"),
-    RED_R3("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_3.svg"),
-    RED_R4("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_4.svg"),
-    RED_R5("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_5.svg"),
-    RED_R7("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_7.svg"),
-    RED_R9("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_9.svg"),
-    RED_R10("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_10.svg"),
-    RED_R11("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_11.svg"),
-    RED_R12("https://storage.googleapis.com/trim-cloud-bucket/Avatar_clotesR_12.svg"),
+    RED_R1("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_1.svg"),
+    RED_R2("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_2.svg"),
+    RED_R3("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_3.svg"),
+    RED_R4("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_4.svg"),
+    RED_R5("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_5.svg"),
+    RED_R7("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_7.svg"),
+    RED_R9("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_9.svg"),
+    RED_R10("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_10.svg"),
+    RED_R11("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_11.svg"),
+    RED_R12("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesR_12.svg"),
 
     PINK_R1("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesPink_1.svg"),
     PINK_R2("https://storage.googleapis.com/trim-cloud-bucket/Avatr_clothesPink_2.svg"),
