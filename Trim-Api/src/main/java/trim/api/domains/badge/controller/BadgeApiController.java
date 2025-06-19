@@ -6,12 +6,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
-import trim.api.domains.badge.service.CountUpBadgeOfWritingBoardUseCase;
+import trim.api.domains.badge.service.CountUpBadgeUseCase;
 import trim.api.domains.badge.service.GetAllBadgesByMemberUseCase;
 import trim.api.domains.badge.service.UpgradeBadgeLevelUseCase;
 import trim.api.domains.badge.vo.response.BadgeDetailResponse;
 import trim.common.annotation.AuthUser;
-import trim.common.util.EnumConvertUtil;
 import trim.domains.badge.dao.entity.BadgeContent;
 import trim.domains.member.dao.domain.Member;
 
@@ -24,7 +23,7 @@ import java.util.List;
 public class BadgeApiController {
 
     private final UpgradeBadgeLevelUseCase upgradeBadgeLevelUseCase;
-    private final CountUpBadgeOfWritingBoardUseCase countUpBadgeOfWritingBoardUseCase;
+    private final CountUpBadgeUseCase countUpBadgeUseCase;
     private final GetAllBadgesByMemberUseCase getAllBadgesByMemberUseCase;
 
 
@@ -41,13 +40,11 @@ public class BadgeApiController {
         return ApiResponseDto.onSuccess(upgradeBadgeLevelUseCase.execute(badgeId, member));
     }
 
-    @Operation(summary = "게시글 작성을 함으로써 미션의 카운트를 하나 올려줍니다.")
-    @PatchMapping("/boards")
-    public ApiResponseDto<Long> countUpBadgeOfWritingBoard(@Parameter(hidden = true) @AuthUser Member member,
-                                                           @RequestParam String badgeContentKey) {
-        BadgeContent badgeContent = EnumConvertUtil.convert(BadgeContent.class, badgeContentKey);
-        return ApiResponseDto.onSuccess(countUpBadgeOfWritingBoardUseCase
-                .execute(badgeContent, member));
+    @Operation(summary = "여러 종류의 미션의 카운트를 하나 올려줍니다.(좋아요 제외)")
+    @PatchMapping
+    public ApiResponseDto<Long> countUpBadge(@Parameter(hidden = true) @AuthUser Member member,
+                                             @RequestParam BadgeContent badgeContent) {
+        return ApiResponseDto.onSuccess(countUpBadgeUseCase.execute(badgeContent, member));
     }
 
 }
