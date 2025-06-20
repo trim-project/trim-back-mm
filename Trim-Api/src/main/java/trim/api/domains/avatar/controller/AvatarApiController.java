@@ -1,6 +1,5 @@
 package trim.api.domains.avatar.controller;
 
-import feign.Param;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,6 +14,8 @@ import trim.api.domains.avatar.service.possessed.PurchaseClothUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseEyesUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseHairUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseMouthUseCase;
+import trim.api.domains.avatar.service.stored.StoredAvatarUseCase;
+import trim.api.domains.avatar.vo.request.stored.StoredAvatarRequest;
 import trim.api.domains.avatar.vo.response.parts.*;
 import trim.common.annotation.AuthUser;
 import trim.domains.avatar.dao.entity.enums.ClothColor;
@@ -37,6 +38,7 @@ public class AvatarApiController {
     private final GetPurchasedClothPartsUseCase getPurchasedClothPartsUseCase;
     private final GetPurchasedMouthPartsUseCase getPurchasedMouthPartsUseCase;
     private final GetPurchasedEyesPartsUseCase getPurchaseEyesPartsUseCase;
+    private final StoredAvatarUseCase storedAvatarUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
     @PostMapping("/cloths/{clothId}")
@@ -91,4 +93,12 @@ public class AvatarApiController {
     public ApiResponseDto<List<EyesPartsPossessedResponse>> getPossessedEyesParts(@Parameter(hidden = true) @AuthUser Member member) {
         return ApiResponseDto.onSuccess(getPurchaseEyesPartsUseCase.execute(member));
     }
+
+    @Operation(summary = "구매한 요소로 아바타 조합과 배경색을 저장합니다")
+    @PatchMapping("/stored")
+    public ApiResponseDto<Long> storeAvatar(@Parameter(hidden = true) @AuthUser Member member,
+                                            @RequestBody StoredAvatarRequest request) {
+        return ApiResponseDto.onSuccess(storedAvatarUseCase.execute(member, request));
+    }
+
 }

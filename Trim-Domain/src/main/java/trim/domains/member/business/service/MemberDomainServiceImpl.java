@@ -24,7 +24,6 @@ public class MemberDomainServiceImpl implements MemberDomainService {
                 .profile(profile)
                 .role(role)
                 .nickname(nickname)
-                .nicknameChangeChance(1)
                 .build();
         return memberRepository.save(newMember);
     }
@@ -33,7 +32,6 @@ public class MemberDomainServiceImpl implements MemberDomainService {
     public Long convertNickname(String username, String nickname) {
         Member member = memberAdaptor.queryMemberByUsername(username);
         member.updateNickname(nickname);
-        member.countConvertNicknameChance();
         return member.getId();
     }
 
