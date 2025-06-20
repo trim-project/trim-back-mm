@@ -3,6 +3,7 @@ package trim.domains.badge.business.validate;
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainValidator;
 import trim.domains.member.dao.domain.Member;
+import trim.domains.mission.dao.entity.Mission;
 import trim.domains.mission.dao.repository.MissionRepository;
 import trim.domains.mission.exception.MissionHandler;
 
@@ -19,5 +20,10 @@ public class BadgeValidatorImpl implements BadgeValidator{
         }
 
         return count >= 3 ? false : true;
+    }
+
+    @Override
+    public boolean notSelected(Mission mission) {
+        return mission.getIsSelectedBadge().equals(false) ? true : false;
     }
 }

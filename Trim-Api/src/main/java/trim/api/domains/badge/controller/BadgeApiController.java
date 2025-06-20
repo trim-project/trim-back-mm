@@ -6,10 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
-import trim.api.domains.badge.service.CountUpBadgeUseCase;
-import trim.api.domains.badge.service.GetAllBadgesByMemberUseCase;
-import trim.api.domains.badge.service.SelectBadgeUseCase;
-import trim.api.domains.badge.service.UpgradeBadgeLevelUseCase;
+import trim.api.domains.badge.service.*;
 import trim.api.domains.badge.vo.response.BadgeDetailResponse;
 import trim.common.annotation.AuthUser;
 import trim.domains.badge.dao.entity.BadgeContent;
@@ -27,6 +24,7 @@ public class BadgeApiController {
     private final CountUpBadgeUseCase countUpBadgeUseCase;
     private final GetAllBadgesByMemberUseCase getAllBadgesByMemberUseCase;
     private final SelectBadgeUseCase selectBadgeUseCase;
+    private final UnselectBadgeUseCase unselectBadgeUseCase;
 
 
     @Operation(summary = "모든 뱃지를 조회합니다. 이때 사용자의 미션 상태를 반영하여 값을 가져옵니다.")
@@ -49,11 +47,18 @@ public class BadgeApiController {
         return ApiResponseDto.onSuccess(countUpBadgeUseCase.execute(badgeContent, member));
     }
 
-    @Operation(summary = "배지를 선택합니다.")
-    @PatchMapping("/{badgeId}")
+    @Operation(summary = "배지를 선택합니다. 개인이 선택할 수 있는 배지는 최대 3개입니다.")
+    @PatchMapping("/selected/{badgeId}")
     public ApiResponseDto<Long> selectBadge(@Parameter(hidden = true) @AuthUser Member member,
                                             @PathVariable Long badgeId) {
         return ApiResponseDto.onSuccess(selectBadgeUseCase.execute(member, badgeId));
+    }
+
+    @Operation(summary = "배지 선택을 취소합니다.")
+    @PatchMapping("/{badgeId}/unselect")
+    public ApiResponseDto<Long> unselectBadge(@Parameter(hidden = true) @AuthUser Member member,
+                                              @PathVariable Long badgeId) {
+        return ApiResponseDto.onSuccess(unselectBadgeUseCase.execute(member, badgeId));
     }
 
 }

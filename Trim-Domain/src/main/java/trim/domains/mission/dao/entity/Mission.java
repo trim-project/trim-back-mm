@@ -68,4 +68,8 @@ public class Mission {
     public void selectBadge() {
         this.isSelectedBadge = true;
     }
+
+    public void unselectBadge() {
+        this.isSelectedBadge = false;
+    }
 }

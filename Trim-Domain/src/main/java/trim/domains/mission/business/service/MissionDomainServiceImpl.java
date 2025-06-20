@@ -36,10 +36,14 @@ public class MissionDomainServiceImpl implements MissionDomainService{
     }
 
     @Override
-    public Mission selectBadge(Badge badge, Member member) {
-        Mission mission = missionRepository.findByBadgeAndMember(badge, member)
-                .orElseThrow(() -> MissionHandler.NOT_FOUND);
+    public Mission selectBadge(Mission mission) {
         mission.selectBadge();
+        return mission;
+    }
+
+    @Override
+    public Mission unselectBadge(Mission mission) {
+        mission.unselectBadge();
         return mission;
     }
 }

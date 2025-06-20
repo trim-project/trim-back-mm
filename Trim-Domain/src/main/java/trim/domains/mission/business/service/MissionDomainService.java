@@ -11,6 +11,7 @@ public interface MissionDomainService {
 
     Mission createMission(Badge badge, Member member, MissionStatus missionStatus);
 
-    Mission selectBadge(Badge badge, Member member);
+    Mission selectBadge(Mission mission);
 
+    Mission unselectBadge(Mission mission);
 }
