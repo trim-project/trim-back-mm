@@ -36,7 +36,7 @@ public class Mission {
     private MissionStatus missionStatus = LOCKED;
 
     @Builder.Default
-    private boolean selectedBadge = false;
+    private Boolean isSelectedBadge = false;
 
     @Builder.Default
     private int goalCount = 0;
@@ -63,5 +63,9 @@ public class Mission {
             throw MissionHandler.WRONG_STATUS;
         }
         this.missionStatus = IN_PROGRESS;
+    }
+
+    public void selectBadge() {
+        this.isSelectedBadge = true;
     }
 }
