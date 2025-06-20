@@ -70,4 +70,8 @@ public class Member extends BaseTimeEntity {
     public void changeAvatar(Avatar avatar) {
         this.avatar = avatar;
     }
+
+    public void addPoint(int point) {
+        this.point += point;
+    }
 }

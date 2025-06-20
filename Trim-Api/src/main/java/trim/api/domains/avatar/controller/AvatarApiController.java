@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
+import trim.api.domains.avatar.service.SetPointFreeUseCase;
 import trim.api.domains.avatar.service.parts.GetPurchasedClothPartsUseCase;
 import trim.api.domains.avatar.service.parts.GetPurchasedEyesPartsUseCase;
 import trim.api.domains.avatar.service.parts.GetPurchasedHairPartsUseCase;
@@ -42,6 +43,7 @@ public class AvatarApiController {
     private final GetPurchasedEyesPartsUseCase getPurchaseEyesPartsUseCase;
     private final StoredAvatarUseCase storedAvatarUseCase;
     private final GetStoredAvatarUseCase getStoredAvatarUseCase;
+    private final SetPointFreeUseCase setPointFreeUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
     @PostMapping("/cloths/{clothId}")
@@ -108,6 +110,13 @@ public class AvatarApiController {
     @GetMapping("/stored")
     public ApiResponseDto<StoredAvatarResponse> getStoredAvatar(@Parameter(hidden = true) @AuthUser Member member) {
         return ApiResponseDto.onSuccess(getStoredAvatarUseCase.execute(member));
+    }
+
+    @Operation(summary = "포인트 복사 api")
+    @PatchMapping("/points")
+    public ApiResponseDto<Long> addPointFree(@Parameter(hidden = true) @AuthUser Member member,
+                                             @RequestParam int point) {
+        return ApiResponseDto.onSuccess(setPointFreeUseCase.execute(member, point));
     }
 
 }
