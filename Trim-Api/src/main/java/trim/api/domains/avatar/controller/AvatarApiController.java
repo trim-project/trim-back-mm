@@ -14,9 +14,11 @@ import trim.api.domains.avatar.service.possessed.PurchaseClothUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseEyesUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseHairUseCase;
 import trim.api.domains.avatar.service.possessed.PurchaseMouthUseCase;
+import trim.api.domains.avatar.service.stored.GetStoredAvatarUseCase;
 import trim.api.domains.avatar.service.stored.StoredAvatarUseCase;
 import trim.api.domains.avatar.vo.request.stored.StoredAvatarRequest;
 import trim.api.domains.avatar.vo.response.parts.*;
+import trim.api.domains.avatar.vo.response.stored.StoredAvatarResponse;
 import trim.common.annotation.AuthUser;
 import trim.domains.avatar.dao.entity.enums.ClothColor;
 import trim.domains.avatar.dao.entity.enums.HairColor;
@@ -39,6 +41,7 @@ public class AvatarApiController {
     private final GetPurchasedMouthPartsUseCase getPurchasedMouthPartsUseCase;
     private final GetPurchasedEyesPartsUseCase getPurchaseEyesPartsUseCase;
     private final StoredAvatarUseCase storedAvatarUseCase;
+    private final GetStoredAvatarUseCase getStoredAvatarUseCase;
 
     @Operation(summary = "의상 요소를 구매합니다.")
     @PostMapping("/cloths/{clothId}")
@@ -99,6 +102,12 @@ public class AvatarApiController {
     public ApiResponseDto<Long> storeAvatar(@Parameter(hidden = true) @AuthUser Member member,
                                             @RequestBody StoredAvatarRequest request) {
         return ApiResponseDto.onSuccess(storedAvatarUseCase.execute(member, request));
+    }
+
+    @Operation(summary = "저장한 아바타를 조회합니다.")
+    @GetMapping("/stored")
+    public ApiResponseDto<StoredAvatarResponse> getStoredAvatar(@Parameter(hidden = true) @AuthUser Member member) {
+        return ApiResponseDto.onSuccess(getStoredAvatarUseCase.execute(member));
     }
 
 }
