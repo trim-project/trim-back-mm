@@ -4,10 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
+import trim.domains.avatar.dao.entity.enums.BackgroundColor;
+import trim.domains.avatar.dao.entity.parts.MouthParts;
 import trim.domains.member.dto.MemberProfileDto;
 
 @Entity
 @Getter
+@Setter
 @SuperBuilder
 @Table(
         name = "member",
@@ -30,6 +33,9 @@ public class Member extends BaseTimeEntity {
     @Embedded
     private Profile profile;
 
+    @Embedded
+    private Avatar avatar;
+
     @Column(nullable = false, unique = true)
     private String nickname;
 
@@ -41,10 +47,6 @@ public class Member extends BaseTimeEntity {
 
     private String description;
 
-
-    // 변경될 수 있음
-    private int nicknameChangeChance;
-
     @Builder.Default
     private int point = 0;
 
@@ -54,10 +56,6 @@ public class Member extends BaseTimeEntity {
 
     public void updateNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public void countConvertNicknameChance() {
-        this.nicknameChangeChance--;
     }
 
     public void usePoint(int point) {this.point -= point;}

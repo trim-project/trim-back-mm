@@ -7,7 +7,5 @@ public interface MemberValidator {
 
     void checkCanRegister(String username);
 
-    void checkCanConvertNickname(Member member);
-
     boolean isExistsByEmailAndProvider(String email, SocialType provider);
 }

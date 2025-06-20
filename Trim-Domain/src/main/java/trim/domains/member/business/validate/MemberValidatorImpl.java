@@ -19,12 +19,6 @@ public class MemberValidatorImpl implements MemberValidator{
         }
     }
 
-    @Override
-    public void checkCanConvertNickname(Member member) {
-        if (member.getNicknameChangeChance() == 0) {
-            throw MemberHandler.HAVE_ANY_CHANCE_OF_CONVERT_NICKNAME;
-        }
-    }
 
     @Override
     public boolean isExistsByEmailAndProvider(String email, SocialType provider) {
