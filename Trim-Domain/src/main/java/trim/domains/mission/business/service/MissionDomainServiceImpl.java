@@ -2,11 +2,13 @@ package trim.domains.mission.business.service;
 
 import lombok.RequiredArgsConstructor;
 import trim.common.annotation.DomainService;
+import trim.common.exception.ErrorStatus;
 import trim.domains.badge.dao.entity.Badge;
 import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.dao.entity.Mission;
 import trim.domains.mission.dao.entity.MissionStatus;
 import trim.domains.mission.dao.repository.MissionRepository;
+import trim.domains.mission.exception.MissionHandler;
 
 @DomainService
 @RequiredArgsConstructor
@@ -31,5 +33,17 @@ public class MissionDomainServiceImpl implements MissionDomainService{
                 .missionStatus(missionStatus)
                 .build();
         return missionRepository.save(newMission);
+    }
+
+    @Override
+    public Mission selectBadge(Mission mission) {
+        mission.selectBadge();
+        return mission;
+    }
+
+    @Override
+    public Mission unselectBadge(Mission mission) {
+        mission.unselectBadge();
+        return mission;
     }
 }

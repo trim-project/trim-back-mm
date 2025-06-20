@@ -38,4 +38,9 @@ public class MissionAdaptorImpl implements MissionAdaptor{
     public List<Mission> queryMissionByMemberId(Long memberId) {
         return missionRepository.findByMemberId(memberId);
     }
+
+    @Override
+    public List<Mission> queryMissionSelected(Member member) {
+        return missionRepository.findByMemberAndIsSelectedBadgeTrue(member);
+    }
 }
