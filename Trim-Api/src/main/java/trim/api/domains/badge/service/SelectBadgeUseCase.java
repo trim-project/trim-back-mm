@@ -10,6 +10,7 @@ import trim.domains.member.dao.domain.Member;
 import trim.domains.mission.business.adaptor.MissionAdaptor;
 import trim.domains.mission.business.service.MissionDomainService;
 import trim.domains.mission.dao.entity.Mission;
+import trim.domains.mission.dao.entity.MissionStatus;
 import trim.domains.mission.dao.entity.QMission;
 import trim.domains.mission.exception.MissionHandler;
 
@@ -28,6 +29,9 @@ public class SelectBadgeUseCase {
             throw MissionHandler.MAXIMUM_SELECTED_BADGE_IS_THREE;
         }
         Mission mission = missionAdaptor.queryMissionByBadgeIdAndMemberId(badgeId, member.getId());
+        if (!mission.getMissionStatus().equals(MissionStatus.SUCCESS)) {
+            throw MissionHandler.WRONG_STATUS;
+        }
         missionDomainService.selectBadge(mission);
         return mission.getId();
     }
