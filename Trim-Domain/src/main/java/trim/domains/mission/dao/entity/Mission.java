@@ -36,6 +36,9 @@ public class Mission {
     private MissionStatus missionStatus = LOCKED;
 
     @Builder.Default
+    private boolean selectedBadge = false;
+
+    @Builder.Default
     private int goalCount = 0;
 
 
