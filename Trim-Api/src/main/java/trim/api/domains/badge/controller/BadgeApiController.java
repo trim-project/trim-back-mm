@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import trim.api.common.dto.ApiResponseDto;
 import trim.api.domains.badge.service.CountUpBadgeUseCase;
 import trim.api.domains.badge.service.GetAllBadgesByMemberUseCase;
+import trim.api.domains.badge.service.SelectBadgeUseCase;
 import trim.api.domains.badge.service.UpgradeBadgeLevelUseCase;
 import trim.api.domains.badge.vo.response.BadgeDetailResponse;
 import trim.common.annotation.AuthUser;
@@ -25,6 +26,7 @@ public class BadgeApiController {
     private final UpgradeBadgeLevelUseCase upgradeBadgeLevelUseCase;
     private final CountUpBadgeUseCase countUpBadgeUseCase;
     private final GetAllBadgesByMemberUseCase getAllBadgesByMemberUseCase;
+    private final SelectBadgeUseCase selectBadgeUseCase;
 
 
     @Operation(summary = "모든 뱃지를 조회합니다. 이때 사용자의 미션 상태를 반영하여 값을 가져옵니다.")
@@ -45,6 +47,13 @@ public class BadgeApiController {
     public ApiResponseDto<Long> countUpBadge(@Parameter(hidden = true) @AuthUser Member member,
                                              @RequestParam BadgeContent badgeContent) {
         return ApiResponseDto.onSuccess(countUpBadgeUseCase.execute(badgeContent, member));
+    }
+
+    @Operation(summary = "배지를 선택합니다.")
+    @PatchMapping("/{badgeId}")
+    public ApiResponseDto<Long> selectBadge(@Parameter(hidden = true) @AuthUser Member member,
+                                            @PathVariable Long badgeId) {
+        return ApiResponseDto.onSuccess(selectBadgeUseCase.execute(member, badgeId));
     }
 
 }
