@@ -10,7 +10,6 @@ import trim.domains.member.dto.MemberProfileDto;
 
 @Entity
 @Getter
-@Setter
 @SuperBuilder
 @Table(
         name = "member",
@@ -66,5 +65,9 @@ public class Member extends BaseTimeEntity {
         this.description = dto.getDescription();
         this.major = dto.getMajor();
         this.university = dto.getUniversity();
+    }
+
+    public void changeAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 }

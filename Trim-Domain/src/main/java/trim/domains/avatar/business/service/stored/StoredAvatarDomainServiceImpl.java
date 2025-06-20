@@ -20,6 +20,6 @@ public class StoredAvatarDomainServiceImpl implements StoredAvatarDomainService 
                 .mouthForURL(dto.getMouthForURL())
                 .build();
 
-        member.setAvatar(avatar);
+        member.changeAvatar(avatar);
     }
 }
