@@ -13,6 +13,8 @@ public class MissionHandler extends GeneralException {
             new MissionHandler(MissionErrorStatus.MISSION_NOT_CLEARED);
     public static final GeneralException WRONG_STATUS =
             new MissionHandler(MissionErrorStatus.MISSION_WRONG_STATUS);
+    public static final GeneralException SELECT_LEAST_AT_ZERO =
+            new MissionHandler(MissionErrorStatus.MISSION_BADGE_SELECT_LEAST_AT_ZERO);
 
     public MissionHandler(BaseErrorCode baseErrorCode) {
         super(baseErrorCode);
