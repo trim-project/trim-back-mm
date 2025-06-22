@@ -1,0 +1,204 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 399B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.27kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/openjdk:17-jdk-slim
+#3 DONE 0.8s
+
+#4 [internal] load metadata for docker.io/library/openjdk:17-slim
+#4 DONE 0.8s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [builder  1/18] FROM docker.io/library/openjdk:17-jdk-slim@sha256:aaa3b3cb27e3e520b8f116863d0580c438ed55ecfa0bc126b41f68c3f62f9774
+#6 resolve docker.io/library/openjdk:17-jdk-slim@sha256:aaa3b3cb27e3e520b8f116863d0580c438ed55ecfa0bc126b41f68c3f62f9774 done
+#6 DONE 0.0s
+
+#7 [stage-1 1/3] FROM docker.io/library/openjdk:17-slim@sha256:aaa3b3cb27e3e520b8f116863d0580c438ed55ecfa0bc126b41f68c3f62f9774
+#7 resolve docker.io/library/openjdk:17-slim@sha256:aaa3b3cb27e3e520b8f116863d0580c438ed55ecfa0bc126b41f68c3f62f9774 0.0s done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 500.56kB 0.1s done
+#8 DONE 0.1s
+
+#9 [builder  4/18] COPY gradle/ gradle/
+#9 CACHED
+
+#10 [builder  6/18] COPY settings.gradle .
+#10 CACHED
+
+#11 [builder  7/18] COPY Trim-Api/build.gradle /app/Trim-Api/
+#11 CACHED
+
+#12 [builder  2/18] WORKDIR /app
+#12 CACHED
+
+#13 [builder  8/18] COPY Trim-Common/build.gradle /app/Trim-Common/
+#13 CACHED
+
+#14 [builder 11/18] COPY config /app/config
+#14 CACHED
+
+#15 [builder  3/18] COPY gradlew .
+#15 CACHED
+
+#16 [builder  5/18] COPY build.gradle .
+#16 CACHED
+
+#17 [builder  9/18] COPY Trim-Domain/build.gradle /app/Trim-Domain/
+#17 CACHED
+
+#18 [builder 10/18] COPY Trim-Infra/build.gradle /app/Trim-Infra/
+#18 CACHED
+
+#19 [builder 12/18] RUN ./gradlew dependencies --no-daemon
+#19 CACHED
+
+#20 [builder 13/18] COPY . .
+#20 DONE 0.3s
+
+#21 [builder 14/18] RUN ./gradlew copyDomainConfig copyOauthConfig copyStorageConfig --no-daemon
+#21 0.386 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+#21 0.784 Daemon will be stopped at the end of the build 
+#21 2.284 
+#21 2.285 > Task :copyDomainConfig
+#21 2.285 ✅ YAML files copied to: /app/Trim-Api/src/main/resources
+#21 2.285 
+#21 2.285 > Task :copyOauthConfig
+#21 2.285 ✅ YAML files copied to: /app/Trim-Api/src/main/resources
+#21 2.285 
+#21 2.285 > Task :copyStorageConfig
+#21 2.285 ✅ YAML files copied to: /app/Trim-Api/src/main/resources
+#21 2.285 ✅ YAML files copied to: /app/Trim-Infra/src/main/resources
+#21 2.285 [Incubating] Problems report is available at: file:///app/build/reports/problems/problems-report.html
+#21 2.285 
+#21 2.285 Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+#21 2.285 
+#21 2.285 You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+#21 2.285 
+#21 2.285 For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+#21 2.285 
+#21 2.285 BUILD SUCCESSFUL in 2s
+#21 2.285 3 actionable tasks: 3 executed
+#21 DONE 2.4s
+
+#22 [builder 15/18] RUN ls -al /app/Trim-Api/build/resources/main
+#22 0.089 total 28
+#22 0.089 drwxr-xr-x 2 root root 4096 Jun 22 08:11 .
+#22 0.089 drwxr-xr-x 4 root root 4096 Jun 22 08:11 ..
+#22 0.089 -rw-r--r-- 1 root root 1694 Jun 22 08:11 application-domain.yml
+#22 0.089 -rw-r--r-- 1 root root  402 Jun 22 08:11 application-oauth.yml
+#22 0.089 -rw-r--r-- 1 root root  187 Jun 22 08:11 application-storage.yml
+#22 0.089 -rw-r--r-- 1 root root  604 Jun 22 08:11 application.yml
+#22 0.089 -rw-r--r-- 1 root root 2343 Jun 22 08:11 trim-455507-505dacd4947d.json
+#22 DONE 0.1s
+
+#23 [builder 16/18] RUN cat /app/Trim-Api/build/resources/main/application.yml
+#23 0.115 server:
+#23 0.115   port: 8080
+#23 0.115 
+#23 0.115 spring:
+#23 0.115   profiles:
+#23 0.115     include:
+#23 0.115       - domain
+#23 0.115       - oauth
+#23 0.115       - storage
+#23 0.115   datasource:
+#23 0.115     url: jdbc:mysql://mysql:3306/trim
+#23 0.115     username: root
+#23 0.115     password: root
+#23 0.115     driver-class-name: com.mysql.cj.jdbc.Driver
+#23 0.115   jpa:
+#23 0.115     hibernate:
+#23 0.115       ddl-auto: update
+#23 0.115   logging.level:
+#23 0.115     org.hibernate.SQL: debug
+#23 0.115     org.hibernate.type: trace
+#23 0.115   redis:
+#23 0.115     host: redis
+#23 0.115     port: 6379
+#23 0.115 
+#23 0.115 token:
+#23 0.115   secret: 7f13b90ac0c07db6b814907999c4dbbd64646abbfe07cdc527e0dbb0dc037ded
+#23 0.115 
+#23 0.115 
+#23 0.115 springdoc:
+#23 0.115   swagger-ui:
+#23 0.115     tags-sorter: alpha
+#23 0.115     operations-sorter: method
+#23 0.115     path: /swagger-ui.html
+#23 0.115   use-fqn: true
+#23 DONE 0.1s
+
+#24 [builder 17/18] RUN ./gradlew :Trim-Api:bootJar -x test --no-daemon
+#24 0.427 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+#24 0.828 Daemon will be stopped at the end of the build 
+#24 8.728 > Task :Trim-Common:compileJava
+#24 11.23 > Task :Trim-Infra:compileJava
+#24 13.93 Note: Some input files use or override a deprecated API.
+#24 13.93 
+#24 13.93 > Task :Trim-Domain:compileJava
+#24 13.93 Note: Recompile with -Xlint:deprecation for details.
+#24 13.93 Note: /app/Trim-Domain/src/main/java/trim/common/service/RedisService.java uses unchecked or unsafe operations.
+#24 13.93 Note: Recompile with -Xlint:unchecked for details.
+#24 17.23 
+#24 17.23 > Task :Trim-Api:compileJava
+#24 17.33 > Task :Trim-Api:processResources
+#24 17.33 > Task :Trim-Api:classes
+#24 17.33 > Task :Trim-Api:resolveMainClassName
+#24 17.33 > Task :Trim-Common:processResources
+#24 17.33 > Task :Trim-Common:classes
+#24 17.33 > Task :Trim-Common:jar
+#24 17.33 > Task :Trim-Domain:processResources
+#24 17.33 > Task :Trim-Domain:classes
+#24 17.33 > Task :Trim-Domain:jar
+#24 17.33 > Task :Trim-Infra:processResources
+#24 17.33 > Task :Trim-Infra:classes
+#24 17.33 > Task :Trim-Infra:jar
+#24 20.40 > Task :Trim-Api:bootJar
+#24 20.40 [Incubating] Problems report is available at: file:///app/build/reports/problems/problems-report.html
+#24 20.40 
+#24 20.40 Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+#24 20.40 
+#24 20.40 You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+#24 20.40 
+#24 20.40 For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+#24 20.40 
+#24 20.40 BUILD SUCCESSFUL in 20s
+#24 20.40 13 actionable tasks: 13 executed
+#24 DONE 20.6s
+
+#25 [builder 18/18] RUN cp Trim-Api/build/libs/*.jar app.jar
+#25 DONE 0.2s
+
+#12 [builder  2/18] WORKDIR /app
+#12 CACHED
+
+#26 [stage-1 2/3] WORKDIR /app
+#26 CACHED
+
+#27 [stage-1 3/3] COPY --from=builder /app/app.jar .
+#27 DONE 0.1s
+
+#28 exporting to image
+#28 exporting layers
+#28 exporting layers 1.9s done
+#28 exporting manifest sha256:c6d14fc4b9aa0fe9f2c266641f469113a14380bda3c0781ff54226d6dfdda9fc
+#28 exporting manifest sha256:c6d14fc4b9aa0fe9f2c266641f469113a14380bda3c0781ff54226d6dfdda9fc done
+#28 exporting config sha256:6289977824decb9cdda840e24595235b92bb5484f62105d6e88a292b869112e1 0.0s done
+#28 exporting attestation manifest sha256:f16978359bc262841203f6ba71706f6f4dc32c4d118b4304d34817fdab7850c6 0.0s done
+#28 exporting manifest list sha256:d4aa68531192d7a2498dfeb8fc13f8bcb557fb804ea95983d5cde0d880ce28f2 done
+#28 naming to docker.io/library/trim-back-mm-trim-api:latest done
+#28 unpacking to docker.io/library/trim-back-mm-trim-api:latest
+#28 unpacking to docker.io/library/trim-back-mm-trim-api:latest 0.4s done
+#28 DONE 2.3s
+
+#29 resolving provenance for metadata file
+#29 DONE 0.0s
