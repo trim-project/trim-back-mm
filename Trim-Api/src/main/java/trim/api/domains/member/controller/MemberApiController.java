@@ -37,7 +37,7 @@ public class MemberApiController {
     }
 
     @Operation(summary = "포인트 조회")
-    @GetMapping
+    @GetMapping("/point")
     public ApiResponseDto<Integer> getMemberPoint(@Parameter(hidden = true) @AuthUser Member member) {
         return ApiResponseDto.onSuccess(member.getPoint());
     }
