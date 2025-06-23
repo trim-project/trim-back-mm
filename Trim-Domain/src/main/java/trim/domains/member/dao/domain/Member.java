@@ -33,7 +33,10 @@ public class Member extends BaseTimeEntity {
     private Profile profile;
 
     @Embedded
-    private Avatar avatar;
+    @Builder.Default
+    private Avatar avatar = Avatar.builder()
+            .backgroundColor(BackgroundColor.LAVENDER)
+            .build();
 
     @Column(nullable = false, unique = true)
     private String nickname;

@@ -8,18 +8,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import trim.domains.avatar.dao.entity.enums.*;
 
 @Embeddable
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Avatar {
 
-    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private BackgroundColor backgroundColor = BackgroundColor.LAVENDER;
+    private BackgroundColor backgroundColor;
 
     private String clothForURL;
 
