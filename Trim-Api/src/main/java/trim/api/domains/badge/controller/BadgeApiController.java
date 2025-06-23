@@ -45,9 +45,10 @@ public class BadgeApiController {
 
     @Operation(summary = "여러 종류의 미션의 카운트를 하나 올려줍니다.(좋아요 제외)")
     @PatchMapping
-    public ApiResponseDto<Long> countUpBadge(@Parameter(hidden = true) @AuthUser Member member,
+    public ApiResponseDto<Void> countUpBadge(@Parameter(hidden = true) @AuthUser Member member,
                                              @RequestParam BadgeContent badgeContent) {
-        return ApiResponseDto.onSuccess(countUpBadgeUseCase.execute(badgeContent, member));
+        countUpBadgeUseCase.execute(badgeContent, member);
+        return ApiResponseDto.onSuccess(null);
     }
 
     @Operation(summary = "배지를 선택합니다. 개인이 선택할 수 있는 배지는 최대 3개입니다.")

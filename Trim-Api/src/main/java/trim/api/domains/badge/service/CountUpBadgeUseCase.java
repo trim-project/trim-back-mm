@@ -22,12 +22,11 @@ public class CountUpBadgeUseCase {
 
     private final MissionAdaptor missionAdaptor;
 
-    public Long execute(BadgeContent badgeContent, Member member) {
+    public void execute(BadgeContent badgeContent, Member member) {
         List<Mission> missions = missionAdaptor.queryMissionByBadgeContentAndMember(badgeContent, member);
         Optional<Mission> inProgressMission = missions.stream()
                 .filter(mission -> mission.getMissionStatus().equals(IN_PROGRESS))
                 .findFirst();
         if(inProgressMission.isPresent()) inProgressMission.get().countUp();
-        return inProgressMission.get().getId();
     }
 }
