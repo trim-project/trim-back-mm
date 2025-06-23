@@ -7,6 +7,6 @@ import trim.common.interfaces.KeyedEnum;
 @Getter
 @RequiredArgsConstructor
 public enum MissionStatus implements KeyedEnum {
-    SUCCESS("SUCCESS"), IN_PROGRESS("IN_PROGRESS"), LOCKED("LOCKED");
+    SUCCESS("SUCCESS"), IN_PROGRESS("IN_PROGRESS"), LOCKED("LOCKED"), GETTO("GETTO");
     private final String key;
 }

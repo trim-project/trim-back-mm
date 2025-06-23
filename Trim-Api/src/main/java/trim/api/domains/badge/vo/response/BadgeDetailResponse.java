@@ -15,11 +15,17 @@ public class BadgeDetailResponse {
 
     private final BadgeResponse badgeResponse;
     private final MissionStatus missionStatus;
+    private final String description;
 
     public static BadgeDetailResponse of(Mission mission) {
+        BadgeResponse responseBadge = BadgeMapper.INSTANCE.toResponseBadge(mission.getBadge());
         return BadgeDetailResponse.builder()
-                .badgeResponse(BadgeMapper.INSTANCE.toResponseBadge(mission.getBadge()))
+                .badgeResponse(responseBadge)
                 .missionStatus(mission.getMissionStatus())
+                .description(BadgeContentDescription
+                        .from(responseBadge.getBadgeContent(), responseBadge.getLevel())
+                        .getKey()
+                )
                 .build();
     }
 }

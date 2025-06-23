@@ -29,6 +29,8 @@ public class UpgradeBadgeLevelUseCase {
         int nextLevel = completedMission.getBadge().getLevel() + 1;
         // VALIDATE MISSION IS COMPLETED
         if(!missionValidator.isCompletedMission(completedMission)) throw MissionHandler.NOT_CLEARED;
+        // CONVERT STATUS GETTO
+        completedMission.getto();
         // GET BADGE POINT OF COMPLETED MISSION
         memberDomainService.getPoint(member, completedMission.getBadge().getPoint());
         // GET NEXT BADGE
