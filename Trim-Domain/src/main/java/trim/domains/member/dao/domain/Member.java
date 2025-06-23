@@ -38,7 +38,7 @@ public class Member extends BaseTimeEntity {
             .backgroundColor(BackgroundColor.LAVENDER)
             .clothForURL(ClothForURL.BLACK_R1.getKey())
             .mouthForURL(MouthForURL.MOUTH_1.getKey())
-            .hairForURL(HairForURL.HAIR_1_DARK_BROWN.getKey())
+            .hairForURL(HairForURL.HAIR_16_BLUE.getKey())
             .eyesForURL(EyesForURL.EYES_1.getKey())
             .build();
 
