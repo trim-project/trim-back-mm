@@ -35,4 +35,10 @@ public class MemberApiController {
                                                    @RequestBody MemberProfileRequest memberProfileRequest) {
         return ApiResponseDto.onSuccess(patchMemberProfileUseCase.execute(member, memberProfileRequest));
     }
+
+    @Operation(summary = "포인트 조회")
+    @GetMapping
+    public ApiResponseDto<Integer> getMemberPoint(@Parameter(hidden = true) @AuthUser Member member) {
+        return ApiResponseDto.onSuccess(member.getPoint());
+    }
 }

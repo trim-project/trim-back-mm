@@ -47,7 +47,7 @@ public class Member extends BaseTimeEntity {
     private String description;
 
     @Builder.Default
-    private int point = 0;
+    private int point = 300;
 
     public void updatePoint(int point) {
         this.point += point;
