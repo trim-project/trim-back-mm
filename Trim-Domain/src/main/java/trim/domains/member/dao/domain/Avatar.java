@@ -17,8 +17,9 @@ import trim.domains.avatar.dao.entity.enums.*;
 @AllArgsConstructor
 public class Avatar {
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private BackgroundColor backgroundColor;
+    private BackgroundColor backgroundColor = BackgroundColor.LAVENDER;
 
     private String clothForURL;
 
