@@ -3,6 +3,7 @@ package trim.api.domains.knowledge.vo.response;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import trim.api.domains.avatar.vo.response.stored.StoredAvatarResponse;
 import trim.api.domains.comment.vo.response.CommentDetailResponse;
 import trim.api.domains.knowledge.mapper.KnowledgeMapper;
 import trim.api.domains.member.mapper.MemberMapper;
@@ -21,6 +22,7 @@ public class KnowledgeDetailResponse {
 
     private final KnowledgeResponse knowledgeResponse;
     private final MemberResponse memberResponse;
+    private final StoredAvatarResponse storedAvatarResponse;
     @Builder.Default
     private final List<CommentDetailResponse> commentResponses = new ArrayList<>();
     @Builder.Default
@@ -30,6 +32,13 @@ public class KnowledgeDetailResponse {
         return KnowledgeDetailResponse.builder()
                 .knowledgeResponse(KnowledgeMapper.INSTANCE.toKnowledgeResponse(knowledge))
                 .memberResponse(MemberMapper.INSTANCE.toMemberResponse(member))
+                .storedAvatarResponse(StoredAvatarResponse.builder()
+                        .backgroundColor(knowledge.getWriter().getAvatar().getBackgroundColor())
+                        .clothForURL(knowledge.getWriter().getAvatar().getClothForURL())
+                        .mouthForURL(knowledge.getWriter().getAvatar().getMouthForURL())
+                        .eyesForURL(knowledge.getWriter().getAvatar().getEyesForURL())
+                        .hairForURL(knowledge.getWriter().getAvatar().getHairForURL())
+                        .build())
                 .commentResponses(comments.stream().map(CommentDetailResponse::of).toList())
                 .tags(tags)
                 .build();

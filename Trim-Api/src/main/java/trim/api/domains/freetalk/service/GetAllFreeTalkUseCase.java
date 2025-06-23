@@ -2,6 +2,7 @@ package trim.api.domains.freetalk.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
+import trim.api.domains.avatar.vo.response.stored.StoredAvatarResponse;
 import trim.api.domains.freetalk.mapper.FreeTalkMapper;
 import trim.api.domains.freetalk.vo.response.FreeTalkSummaryResponse;
 import trim.api.domains.member.mapper.MemberMapper;
@@ -35,6 +36,13 @@ public class GetAllFreeTalkUseCase {
         return FreeTalkSummaryResponse.builder()
                 .freeTalkResponse(FreeTalkMapper.INSTANCE.toFreeTalkResponse(freeTalk))
                 .memberResponse(MemberMapper.INSTANCE.toMemberResponse(freeTalk.getWriter()))
+                .storedAvatarResponse(StoredAvatarResponse.builder()
+                        .backgroundColor(freeTalk.getWriter().getAvatar().getBackgroundColor())
+                        .clothForURL(freeTalk.getWriter().getAvatar().getClothForURL())
+                        .mouthForURL(freeTalk.getWriter().getAvatar().getMouthForURL())
+                        .eyesForURL(freeTalk.getWriter().getAvatar().getEyesForURL())
+                        .hairForURL(freeTalk.getWriter().getAvatar().getHairForURL())
+                        .build())
                 .commentCount(commentAdaptor.queryCountByBoardId(freeTalk.getId()))
                 .likeCount(likeAdaptor.queryCountByBoard(freeTalk.getId()))
                 .build();

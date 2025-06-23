@@ -3,6 +3,7 @@ package trim.api.domains.knowledge.vo.response;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import trim.api.domains.avatar.vo.response.stored.StoredAvatarResponse;
 import trim.api.domains.knowledge.mapper.KnowledgeMapper;
 import trim.api.domains.member.mapper.MemberMapper;
 import trim.api.domains.member.vo.response.MemberResponse;
@@ -20,6 +21,7 @@ public class KnowledgeSummaryResponse {
 
     private final KnowledgeResponse knowledgeResponse;
     private final MemberResponse memberResponse;
+    private final StoredAvatarResponse storedAvatarResponse;
     private final Long likeCount;
     private final Long commentCount;
 
@@ -30,6 +32,13 @@ public class KnowledgeSummaryResponse {
         return KnowledgeSummaryResponse.builder()
                 .knowledgeResponse(KnowledgeMapper.INSTANCE.toKnowledgeResponse(knowledge))
                 .memberResponse(MemberMapper.INSTANCE.toMemberResponse(member))
+                .storedAvatarResponse(StoredAvatarResponse.builder()
+                        .backgroundColor(knowledge.getWriter().getAvatar().getBackgroundColor())
+                        .clothForURL(knowledge.getWriter().getAvatar().getClothForURL())
+                        .mouthForURL(knowledge.getWriter().getAvatar().getMouthForURL())
+                        .eyesForURL(knowledge.getWriter().getAvatar().getEyesForURL())
+                        .hairForURL(knowledge.getWriter().getAvatar().getHairForURL())
+                        .build())
                 .likeCount(likeCount)
                 .commentCount(commentCount)
                 .tagList(tags)
