@@ -46,6 +46,10 @@ public class Mission {
         this.missionStatus = SUCCESS;
     }
 
+    public void getto() {
+        this.missionStatus = GETTO;
+    }
+
     public void countUp() {
         if (this.goalCount >= this.badge.getGoal()) {
             throw MissionHandler.ALREADY_CLEAR;
