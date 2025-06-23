@@ -27,9 +27,7 @@ public class CountUpBadgeUseCase {
         Optional<Mission> inProgressMission = missions.stream()
                 .filter(mission -> mission.getMissionStatus().equals(IN_PROGRESS))
                 .findFirst();
-        //TODO exception 구체화
-        if(inProgressMission.isEmpty()) throw new GeneralException(ErrorStatus._BAD_REQUEST);
-        inProgressMission.get().countUp();
+        if(inProgressMission.isPresent()) inProgressMission.get().countUp();
         return inProgressMission.get().getId();
     }
 }
