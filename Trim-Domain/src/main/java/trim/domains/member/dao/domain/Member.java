@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import trim.common.model.BaseTimeEntity;
-import trim.domains.avatar.dao.entity.enums.BackgroundColor;
+import trim.domains.avatar.dao.entity.enums.*;
 import trim.domains.avatar.dao.entity.parts.MouthParts;
 import trim.domains.member.dto.MemberProfileDto;
 
@@ -36,6 +36,10 @@ public class Member extends BaseTimeEntity {
     @Builder.Default
     private Avatar avatar = Avatar.builder()
             .backgroundColor(BackgroundColor.LAVENDER)
+            .clothForURL(ClothForURL.BLACK_R1.getKey())
+            .mouthForURL(MouthForURL.MOUTH_1.getKey())
+            .hairForURL(HairForURL.HAIR_1_DARK_BROWN.getKey())
+            .eyesForURL(EyesForURL.EYES_1.getKey())
             .build();
 
     @Column(nullable = false, unique = true)
